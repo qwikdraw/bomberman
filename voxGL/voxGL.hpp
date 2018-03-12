@@ -27,8 +27,8 @@
 
 #define X_DIM 800
 #define Y_DIM 600
-#define NAME "voxGL"
-#define VERTEX_PATH "vertex.glsl"
-#define FRAG_PATH "frag.glsl"
+#define NAME "Window Name"
+#define VERTEX_PATH "voxGL/vertex.glsl"
+#define FRAG_PATH "voxGL/frag.glsl"
 
 #endif
