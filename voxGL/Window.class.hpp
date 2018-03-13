@@ -32,8 +32,9 @@ public:
 
 	void	GetSize(float &width, float &height);
 	bool	IsOpen(void);
-	void	Update(void);
-	void	Clear(void);
+	void	SetRenderZone(float x, float y, float width, float height);
+	void	ClearRenderZone(void);
+	void	UpdateEntireWindow(void);
 	
 	void	EventListen(void);
 	bool	&KeyOn(int);

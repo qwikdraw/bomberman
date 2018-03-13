@@ -41,7 +41,7 @@ void	Window::GetSize(float &width, float &height)
 {
 	int iwidth, iheight;
 
-	glfwGetWindowSize(_window, &iwidth, &iheight);
+	glfwGetFramebufferSize(_window, &iwidth, &iheight);
 	
 	width = static_cast<float>(iwidth);
 	height = static_cast<float>(iheight);
@@ -52,13 +52,31 @@ bool	Window::IsOpen(void)
 	return !glfwWindowShouldClose(_window);
 }
 
-void	Window::Update(void)
+void	Window::SetRenderZone(float x, float y, float width, float height)
+{
+	float windowWidth, windowHeight;
+
+	GetSize(windowWidth, windowHeight);
+
+	glEnable(GL_SCISSOR_TEST);
+	glViewport(windowWidth * x,
+		   windowHeight * y,
+		   windowWidth * width,		   
+		   windowHeight * height);
+	
+	glScissor(windowWidth * x,
+		  windowHeight * y,
+		  windowWidth * width,
+		  windowHeight * height);
+}
+
+void	Window::UpdateEntireWindow(void)
 {
 	glfwSwapBuffers(_window);
 	glfwPollEvents();
 }
 
-void	Window::Clear(void)
+void	Window::ClearRenderZone(void)
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }

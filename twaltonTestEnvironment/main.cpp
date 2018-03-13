@@ -25,7 +25,7 @@ int	main(int ac, char **av)
 
 	VoxRenderer renderer;
 	Grid grid(20, 10, glm::vec3(0, -15, 100));
-
+	
 	glClearColor(0.20, 0.25, 0.29, 1);
 
 	for (int i = 1; i < ac; i++)
@@ -39,9 +39,11 @@ int	main(int ac, char **av)
 		test->SetPos(glm::vec3((i - 1) * 20, 0, 100));
 	}
 
+	window.SetRenderZone(0.2, 0.2, 0.4, 0.6);
+	
 	while (window.IsOpen())
 	{
-		window.Clear();
+		window.ClearRenderZone();
 		camera.Update();
 		if (camera.JustMoved())
 		{
@@ -50,7 +52,7 @@ int	main(int ac, char **av)
 		}
 		renderer.Render();
 		grid.Render();
-		window.Update();
+		window.UpdateEntireWindow();
 
 		GLenum err;
 
