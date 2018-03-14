@@ -1,7 +1,7 @@
 
 NAME = test
 
-SRC = ../voxGL/*.cpp *.cpp
+SRC = ../voxGL/*.cpp *.cpp ../debugTools/*.cpp
 
 QUICKSRC = *.cpp
 
@@ -11,7 +11,7 @@ GLFW_INC = -I ~/.brew/include
 
 GLFW_LINK = -L ~/.brew/lib -lglfw
 
-MY_INC = -I ../voxGL/.
+MY_INC = -I ../voxGL/. -I ../debugTools/.
 
 QUICK_INC = -I .
 

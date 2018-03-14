@@ -1,6 +1,6 @@
 
 #include "voxGL.hpp"
-#include "Grid.class.hpp"
+#include "debug.hpp"
 
 int	main(int ac, char **av)
 {
@@ -44,14 +44,14 @@ int	main(int ac, char **av)
 	while (window.IsOpen())
 	{
 		window.ClearRenderZone();
-/*		camera.Update();
+		camera.Update();
 		
 		renderer.NewPerspective(camera.Perspective());
 		grid.NewPerspective(camera.Perspective());
 		
 		renderer.Render();
 		grid.Render();
-*/
+
 		window.UpdateEntireWindow();
 
 		GLenum err;

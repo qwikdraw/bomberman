@@ -3,7 +3,9 @@
 
 VoxRenderer::VoxRenderer(void)
 {
-	_program = new ShadingProgram(VERTEX_PATH, "", FRAG_PATH);
+	_program = new ShadingProgram(VOXEL_VERTEX_SHADER_PATH,
+				      "",
+				      VOXEL_FRAGMENT_SHADER_PATH);
 	_perspectiveID = glGetUniformLocation(_program->ID(), "perspective");
 	_transformID = glGetUniformLocation(_program->ID(), "transform");
 }

@@ -38,7 +38,8 @@ Grid::Grid(float squareSize,
 	  _center(center),
 	  _transform(transform)
 {
-	_program = new ShadingProgram("gridVS.glsl", "", "gridFS.glsl");
+	_program = new ShadingProgram(GRID_VERTEX_SHADER_PATH, "",
+				      GRID_FRAGMENT_SHADER_PATH);
 	_perspectiveID = glGetUniformLocation(_program->ID(), "perspective");
 	initLines();
 	
@@ -48,6 +49,11 @@ Grid::Grid(float squareSize,
 		     sizeof(GLfloat) * _lines.size(),
 		     &_lines[0],
 		     GL_STATIC_DRAW);	
+}
+
+Grid::~Grid(void)
+{
+	glDeleteBuffers(1, &_linesID);
 }
 
 void	Grid::NewPerspective(glm::mat4 m)

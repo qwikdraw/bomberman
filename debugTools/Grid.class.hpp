@@ -3,6 +3,9 @@
 
 #include "voxGL.hpp"
 
+#define GRID_VERTEX_SHADER_PATH "../debugTools/gridVS.glsl"
+#define GRID_FRAGMENT_SHADER_PATH "../debugTools/gridFS.glsl"
+
 class	Grid
 {
 private:
@@ -24,6 +27,8 @@ public:
 	     float squareLen = 100,
 	     glm::vec3 center = glm::vec3(0, 0, 0),
 	     glm::mat4 transform = glm::mat4(1));
+	virtual ~Grid(void);
+	
 	void	NewPerspective(glm::mat4 m);
 	void	Render(void);
 };
