@@ -44,14 +44,14 @@ int	main(int ac, char **av)
 	while (window.IsOpen())
 	{
 		window.ClearRenderZone();
-		camera.Update();
-		if (camera.JustMoved())
-		{
-			renderer.NewPerspective(camera.Perspective());
-			grid.NewPerspective(camera.Perspective());
-		}
+/*		camera.Update();
+		
+		renderer.NewPerspective(camera.Perspective());
+		grid.NewPerspective(camera.Perspective());
+		
 		renderer.Render();
 		grid.Render();
+*/
 		window.UpdateEntireWindow();
 
 		GLenum err;
@@ -60,5 +60,5 @@ int	main(int ac, char **av)
 		{
 			std::cerr << "OpenGL error: " << err << std::endl;
 		}
-	}	
+	}
 }
