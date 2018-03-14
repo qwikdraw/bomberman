@@ -143,4 +143,18 @@ returns the perspective matrix generated from the camera. This is essential and 
 have a camera so use it.
 
 
+## Grid - included with "debug.hpp"
 
+### Grid(float squareSize = 1, float squareLen = 100, glm::vec3 center = glm::vec3(0, 0, 0),
+glm::mat4 transform = glm::mat4(1))
+
+squareSize is the size of a grid square, squareLen is the number of squares the edge of the Grid is
+made of. Center is the position the Grid is in, and transform is the orientation the Grid is in.
+
+### void	NewPerspective(glm::mat4)
+
+the grid will be drawn with this perspective matrix. Must be called once.
+
+### void	Render(void)
+
+render the grid
