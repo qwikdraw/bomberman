@@ -10,6 +10,8 @@ private:
 
 	static void	KeyCallback(GLFWwindow*, int, int, int, int);
 	static void	ErrorCallback(int, const char*);
+	static void	WindowResizeCallback(GLFWwindow*, int, int);
+	static void	WindowMoveCallback(GLFWwindow*, int, int);
 
 	
 	GLFWwindow *_window;
@@ -21,10 +23,16 @@ private:
 	int _right;
 	int _up;
 	int _down;
+
+	float _screenCornerX;
+	float _screenCornerY;
+	float _width;
+	float _height;
 	
 	Window(void);
 
 	void	WindowHints(void);
+	void	RefreshRenderZone(void);
 
 public:
 
@@ -32,6 +40,7 @@ public:
 
 	void	GetSize(float &width, float &height);
 	bool	IsOpen(void);
+	void	GetRenderZoneSize(float &width, float &height);
 	void	SetRenderZone(float x, float y, float width, float height);
 	void	ClearRenderZone(void);
 	void	UpdateEntireWindow(void);

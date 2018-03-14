@@ -19,7 +19,7 @@ glm::mat4	Camera::Perspective(void)
 
 	float width, height;
 
-	_window->GetSize(width, height);
+	_window->GetRenderZoneSize(width, height);
 
 	glm::mat4 perspective = glm::perspective(glm::radians(45.0f), width/height, 0.1f, 1000.0f);
 
