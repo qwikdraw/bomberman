@@ -1,26 +1,52 @@
 
-#include "ObjFileArrayExtractor.class.hpp"
+#include "ObjFiles.hpp"
 
 int	main(int ac, char **av)
-{
-	ObjFileArrayExtractor extract("test.obj");
+{	
+	Window window(X_DIM, Y_DIM, NAME);
+	Camera camera;
 
-	std::vector<float> vertices = extract.GetVertices();
-	std::vector<float> normals = extract.GetNormals();
-	std::vector<float> uvMap = extract.GetUVMap();
+	window.EventListen();
 
-	for (auto i : vertices)
-		std::cout << i << " ";
-	std::cout << std::endl << std::endl;	
+	window.ForwardAndBackKeys('W', 'S');
+	window.LeftAndRightKeys('A', 'D');
+	window.UpAndDownKeys('Z', 'X');
+
+	camera.TrackEvents(&window);
+
+	ObjFileObject obj("test.obj", "");
+	VoxRenderer renderer;
+
+	for (int i = 1; i < ac; i++)
+	{
+
+		VoxObject *test = new VoxObject(av[i]);
+
+		test->Load();
+		renderer.AttachObject(test);
+
+		test->SetPos(glm::vec3((i - 2) * 20, 0, 0));
+	}
 	
-        for (auto i : normals)
-	        std::cout << i << " ";
-        std::cout << std::endl << std::endl;
+	obj.SetTransform(glm::mat4(100));
 	
-        for (auto i : uvMap)
-	        std::cout << i << " ";
-        std::cout << std::endl;
+	glClearColor(0.3, 0.3, 0.3, 1.0);
+	
+	while (window.IsOpen())
+	{
+		window.ClearRenderZone();
+		camera.Update();
+		obj.UsePerspective(camera.Perspective());
+		obj.Render();
+		renderer.NewPerspective(camera.Perspective());
+		renderer.Render();
+		window.UpdateEntireWindow();
 
+		GLenum err;
 
-	std::cout << vertices.size() << " " << normals.size() << " " << uvMap.size() << std::endl;
+		if ((err = glGetError()) != GL_NO_ERROR)
+		{
+			std::cerr << "OpenGL error: " << err << std::endl;
+		}
+	}
 }

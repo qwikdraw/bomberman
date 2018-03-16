@@ -1,33 +1,45 @@
 
 #include "ObjFileObject.class.hpp"
 
-ObjFileObject::Load(void)
+void	ObjFileObject::Load(void)
 {
+	glUseProgram(_program->ID());
+
+	std::cout << _objectArrays.GetUVMap().size() << std::endl;
+	
 	glGenBuffers(1, &_uvArrayID);
 	glBindBuffer(GL_ARRAY_BUFFER, _uvArrayID);
 	glBufferData(GL_ARRAY_BUFFER,
 		     sizeof(GLfloat) * _objectArrays.GetUVMap().size(),
-		     &_objectArrays.GetUVMap()[0],
+		     &(_objectArrays.GetUVMap()[0]),
 		     GL_STATIC_DRAW);
 
 	glGenBuffers(1, &_normalArrayID);
 	glBindBuffer(GL_ARRAY_BUFFER, _normalArrayID);
 	glBufferData(GL_ARRAY_BUFFER,
 		     sizeof(GLfloat) * _objectArrays.GetNormals().size(),
-		     &_objectArrays.GetNormals()[0],
+		     &(_objectArrays.GetNormals()[0]),
 		     GL_STATIC_DRAW);
 
 	glGenBuffers(1, &_vertexArrayID);
 	glBindBuffer(GL_ARRAY_BUFFER, _vertexArrayID);
 	glBufferData(GL_ARRAY_BUFFER,
 		     sizeof(GLfloat) * _objectArrays.GetVertices().size(),
-		     &_objectArrays.GetVertices()[0],
+		     &(_objectArrays.GetVertices()[0]),
 		     GL_STATIC_DRAW);
 
+	
 	std::vector<unsigned char> testTexture = {255, 255, 255,
 						  0, 0, 0,
 						  255, 255, 255,
 						  0, 0, 0};
+
+	GLenum err;
+
+	if ((err = glGetError()) != GL_NO_ERROR)
+	{
+			std::cerr << "fail 1 " << err << std::endl;
+	}
 	
 	glGenTextures(1, &_textureID);
 	glBindTexture(GL_TEXTURE_2D, _textureID);
@@ -40,16 +52,37 @@ ObjFileObject::Load(void)
 		     GL_RGB,
 		     GL_UNSIGNED_BYTE,
 		     &testTexture[0]);
+
+	        if ((err = glGetError()) != GL_NO_ERROR)
+        {
+                        std::cerr << "fail 2 " << err << std::endl;
+        }
+	
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+        if ((err = glGetError()) != GL_NO_ERROR)
+        {
+                        std::cerr << "fail 3 " << err << std::endl;
+        }
 	
 	glActiveTexture(GL_TEXTURE0);
-	glUniform1i(_textureID, 0);
+        if ((err = glGetError()) != GL_NO_ERROR)
+        {
+                        std::cerr << "fail 1 " << err << std::endl;
+        }
+	glUniform1i(_textureLocationID, 0);
+
+        if ((err = glGetError()) != GL_NO_ERROR)
+        {
+                        std::cerr << "fail 4 " << err << std::endl;
+        }
+
 }
 
-ObjFileObject::Unload(void)
+void	ObjFileObject::Unload(void)
 {
 	glDeleteBuffers(1, &_uvArrayID);
 	glDeleteBuffers(1, &_normalArrayID);
@@ -60,20 +93,21 @@ ObjFileObject::Unload(void)
 
 ObjFileObject::ObjFileObject(std::string objectPath,
 			     std::string texturePath)
-	: _objectArrays(filepath)
+	: _objectArrays(objectPath)
 {
-	Load();
-	_program = new ShadingProgram(OBJ_VERTEX_SHADER_PATH, "",
+	_transform = glm::mat4(1);
+        _program = new ShadingProgram(OBJ_VERTEX_SHADER_PATH, "",
 				      OBJ_FRAGMENT_SHADER_PATH);
 	_perspectiveID = glGetUniformLocation(_program->ID(), "perspective");
 	_transformID = glGetUniformLocation(_program->ID(), "transform");
-	_textureID = glGetUniformLocation(_program->ID(), "texture");
+	_textureLocationID = glGetUniformLocation(_program->ID(), "tex");
+	Load();
 }
 
 void	ObjFileObject::UsePerspective(glm::mat4 m)
 {
 	_program->Use();
-	glUniformMatrix(_perspectiveID,
+	glUniformMatrix4fv(_perspectiveID,
 			1,
 			GL_FALSE,
 			glm::value_ptr(m));
@@ -83,14 +117,16 @@ void	ObjFileObject::SetTransform(glm::mat4 m)
 {
 	_program->Use();
 	_transform = m;
-	glUniformMatrix(_transformID,
+	glUniformMatrix4fv(_transformID,
 			1,
 			GL_FALSE,
 			glm::value_ptr(m));
 }
 
-void	Render(void)
+void	ObjFileObject::Render(void)
 {
+	_program->Use();
+	
 	glBindBuffer(GL_ARRAY_BUFFER, _vertexArrayID);
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
