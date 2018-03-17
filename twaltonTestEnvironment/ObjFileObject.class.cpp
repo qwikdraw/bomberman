@@ -5,8 +5,6 @@ void	ObjFileObject::Load(void)
 {
 	glUseProgram(_program->ID());
 
-	std::cout << _objectArrays.GetUVMap().size() << std::endl;
-	
 	glGenBuffers(1, &_uvArrayID);
 	glBindBuffer(GL_ARRAY_BUFFER, _uvArrayID);
 	glBufferData(GL_ARRAY_BUFFER,
@@ -29,29 +27,25 @@ void	ObjFileObject::Load(void)
 		     GL_STATIC_DRAW);
 
 	
-	std::vector<unsigned char> testTexture = {255, 255, 255,
-						  0, 0, 0,
-						  255, 255, 255,
-						  0, 0, 0};
-
 	GLenum err;
 
 	if ((err = glGetError()) != GL_NO_ERROR)
 	{
 			std::cerr << "fail 1 " << err << std::endl;
 	}
-	
+
+	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 	glGenTextures(1, &_textureID);
 	glBindTexture(GL_TEXTURE_2D, _textureID);
 	glTexImage2D(GL_TEXTURE_2D,
 		     0,
 		     GL_RGB,
-		     2, // texture width
-		     2, // texture height
+		     _textureParser.Width(),
+		     _textureParser.Height(),
 		     0,
 		     GL_RGB,
 		     GL_UNSIGNED_BYTE,
-		     &testTexture[0]);
+		     &(_textureParser.Data()[0]));
 
 	        if ((err = glGetError()) != GL_NO_ERROR)
         {
@@ -93,7 +87,8 @@ void	ObjFileObject::Unload(void)
 
 ObjFileObject::ObjFileObject(std::string objectPath,
 			     std::string texturePath)
-	: _objectArrays(objectPath)
+	: _objectArrays(objectPath),
+	  _textureParser(texturePath)
 {
 	_transform = glm::mat4(1);
         _program = new ShadingProgram(OBJ_VERTEX_SHADER_PATH, "",

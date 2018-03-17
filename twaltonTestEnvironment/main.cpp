@@ -28,7 +28,7 @@ int	main(int ac, char **av)
 		test->SetPos(glm::vec3((i - 2) * 20, 0, 0));
 	}
 	
-	obj.SetTransform(glm::mat4(100));
+	obj.SetTransform(glm::mat4(1));
 	
 	glClearColor(0.3, 0.3, 0.3, 1.0);
 	

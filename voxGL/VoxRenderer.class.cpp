@@ -39,6 +39,7 @@ void	VoxRenderer::Render(void)
 	{
 		_objects[i]->Render();
 	}
+	glDisable(GL_CULL_FACE);
 }
 
 void	VoxRenderer::NewPerspective(glm::mat4 m)

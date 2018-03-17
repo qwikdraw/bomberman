@@ -106,17 +106,30 @@ ObjFileArrayExtractor::ObjFileArrayExtractor(std::string filename)
 	
 	for (auto &p : _faces)
 	{
-		_verticesOut.push_back(_vertices[p.vertex - 1]);
-		_verticesOut.push_back(_vertices[p.vertex]);
-		_verticesOut.push_back(_vertices[p.vertex + 1]);
+		_verticesOut.push_back(_vertices[p.vertex * 3 - 3]);
+		_verticesOut.push_back(_vertices[p.vertex * 3 - 2]);
+		_verticesOut.push_back(_vertices[p.vertex * 3 - 1]);
 
-		_normalsOut.push_back(_normals[p.normal - 1]);
-		_normalsOut.push_back(_normals[p.normal]);
-		_normalsOut.push_back(_normals[p.normal + 1]);
+		_normalsOut.push_back(_normals[p.normal * 3 - 3]);
+		_normalsOut.push_back(_normals[p.normal * 3 - 2]);
+		_normalsOut.push_back(_normals[p.normal * 3 - 1]);
 
-		_uvMapOut.push_back(_uvMap[p.texture - 1]);
-		_uvMapOut.push_back(_uvMap[p.texture]);
+		_uvMapOut.push_back(_uvMap[p.texture * 2 - 2]);
+		_uvMapOut.push_back(_uvMap[p.texture * 2 - 1]);
 	}
+
+	for (auto i : _vertices)
+		std::cout << i << " ";
+	std::cout << std::endl;
+	for (auto i : _normals)
+		std::cout << i << " ";
+	std::cout << std::endl;
+	for (auto i : _uvMap)
+		std::cout << i << " ";
+	std::cout << std::endl;
+	for (auto i : _faces)
+		std::cout << i.vertex << "," << i.normal << "," << i.texture << " ";
+	std::cout << std::endl;
 }
 
 std::vector<float>	&ObjFileArrayExtractor::GetVertices(void)

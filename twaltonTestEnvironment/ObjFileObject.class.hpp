@@ -3,6 +3,7 @@
 
 #include "voxGL.hpp"
 #include "ObjFileArrayExtractor.class.hpp"
+#include "BMPFileParse.class.hpp"
 
 #define OBJ_VERTEX_SHADER_PATH "objVertex.glsl"
 #define OBJ_FRAGMENT_SHADER_PATH "objFrag.glsl"
@@ -13,6 +14,7 @@ private:
 
 	ShadingProgram *_program;
 	ObjFileArrayExtractor _objectArrays;
+	BMPFileParse _textureParser;
 	GLuint _uvArrayID;
 	GLuint _normalArrayID;
 	GLuint _vertexArrayID;
