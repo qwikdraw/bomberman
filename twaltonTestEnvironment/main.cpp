@@ -14,7 +14,7 @@ int	main(int ac, char **av)
 
 	camera.TrackEvents(&window);
 
-	ObjFileObject obj("test.obj", "");
+	ObjFileObject obj("object.obj", "grass.bmp");
 	VoxRenderer renderer;
 
 	for (int i = 1; i < ac; i++)

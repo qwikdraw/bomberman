@@ -45,7 +45,7 @@ void	ObjFileObject::Load(void)
 		     0,
 		     GL_RGB,
 		     GL_UNSIGNED_BYTE,
-		     &(_textureParser.Data()[0]));
+		     _textureParser.Data());
 
 	        if ((err = glGetError()) != GL_NO_ERROR)
         {
