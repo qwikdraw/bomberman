@@ -71,6 +71,11 @@ ObjFileObject::ObjFileObject(std::string objectPath,
 	Load();
 }
 
+ObjFileObject::~ObjFileObject(void)
+{
+	Unload();
+}
+
 void	ObjFileObject::UsePerspective(glm::mat4 m)
 {
 	_program->Use();

@@ -1,5 +1,6 @@
 
-#include "ObjFiles.hpp"
+#include "LowLevelDraw.hpp"
+#include "ScreenImage.class.hpp"
 
 int	main(int ac, char **av)
 {	
@@ -14,32 +15,20 @@ int	main(int ac, char **av)
 
 	camera.TrackEvents(&window);
 
-	ObjFileObject obj("gun.obj", "grass.bmp");
-	VoxRenderer renderer;
-
-	for (int i = 1; i < ac; i++)
-	{
-
-		VoxObject *test = new VoxObject(av[i]);
-
-		test->Load();
-		renderer.AttachObject(test);
-
-		test->SetPos(glm::vec3((i - 2) * 20, 0, 0));
-	}
+//	ObjFileObject obj("gun.obj", "Tulips.bmp");	
 	
-	obj.SetTransform(glm::mat4(1));
+//	obj.SetTransform(glm::mat4(1));
+
+	ScreenImage im("Tulips.bmp");
 	
 	glClearColor(0.3, 0.3, 0.3, 1.0);
 	
 	while (window.IsOpen())
 	{
 		window.ClearRenderZone();
-		camera.Update();
-		obj.UsePerspective(camera.Perspective());
-//		obj.Render();
-		renderer.NewPerspective(camera.Perspective());
-		renderer.Render();
+
+		im.Render();
+		
 		window.UpdateEntireWindow();
 
 		GLenum err;

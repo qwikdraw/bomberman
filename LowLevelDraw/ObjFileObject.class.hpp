@@ -5,8 +5,8 @@
 #include "ObjFileArrayExtractor.class.hpp"
 #include "BMPFileParse.class.hpp"
 
-#define OBJ_VERTEX_SHADER_PATH "objVertex.glsl"
-#define OBJ_FRAGMENT_SHADER_PATH "objFrag.glsl"
+#define OBJ_VERTEX_SHADER_PATH "../LowLevelDraw/objVertex.glsl"
+#define OBJ_FRAGMENT_SHADER_PATH "../LowLevelDraw/objFrag.glsl"
 
 class	ObjFileObject
 {
@@ -31,6 +31,7 @@ private:
 public:
 	
 	ObjFileObject(std::string objectPath, std::string texturePath);
+	virtual ~ObjFileObject(void);
 
 	void	UsePerspective(glm::mat4);
 	void	SetTransform(glm::mat4);
