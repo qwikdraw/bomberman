@@ -236,8 +236,8 @@ void	VoxelChunk::GetTriangleData(void)
 	glm::vec3 vbot = {0, -1, 0};
 	glm::vec3 vleft = {-1, 0, 0};
 	glm::vec3 vright = {1, 0, 0};
-	glm::vec3 vfront = {0, -1, 0};
-	glm::vec3 vback = {0, 1, 0};
+	glm::vec3 vfront = {0, 0, -1};
+	glm::vec3 vback = {0, 0, 1};
 			  
 	
 	for (int i = 0; i < size * size * size; i++)

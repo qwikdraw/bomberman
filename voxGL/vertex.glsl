@@ -13,8 +13,8 @@ out	ShapeData {
 
 void	main()
 {
-	float dot = max( dot( normalize(transform * vec4(normal, 0)),
-	normalize(vec4(-1, -2, -3, 0)) ), 0.1 );
+	vec4 temp = normalize(perspective * transform * vec4(normal, 0));
+	float dot = max( dot(temp, vec4(0, 0, -1, 0)), 0.1 );
 
 	gl_Position = perspective * transform * vec4(vertex, 1);
 	Data.color = color * dot;

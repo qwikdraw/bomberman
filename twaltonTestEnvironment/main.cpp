@@ -14,7 +14,7 @@ int	main(int ac, char **av)
 
 	camera.TrackEvents(&window);
 
-	ObjFileObject obj("object.obj", "grass.bmp");
+	ObjFileObject obj("gun.obj", "grass.bmp");
 	VoxRenderer renderer;
 
 	for (int i = 1; i < ac; i++)
@@ -37,7 +37,7 @@ int	main(int ac, char **av)
 		window.ClearRenderZone();
 		camera.Update();
 		obj.UsePerspective(camera.Perspective());
-		obj.Render();
+//		obj.Render();
 		renderer.NewPerspective(camera.Perspective());
 		renderer.Render();
 		window.UpdateEntireWindow();

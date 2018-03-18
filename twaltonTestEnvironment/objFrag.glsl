@@ -10,6 +10,6 @@ out vec3 color;
 uniform sampler2D tex;
 
 void	main()
-{
-	color = texture(tex, Data.uv).rgb;
+{	
+	color = max(dot(Data.normal, vec3(0, 0, -1)), 0.1) * texture(tex, Data.uv).rgb;
 }

@@ -26,14 +26,6 @@ void	ObjFileObject::Load(void)
 		     &(_objectArrays.GetVertices()[0]),
 		     GL_STATIC_DRAW);
 
-	
-	GLenum err;
-
-	if ((err = glGetError()) != GL_NO_ERROR)
-	{
-			std::cerr << "fail 1 " << err << std::endl;
-	}
-
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 	glGenTextures(1, &_textureID);
 	glBindTexture(GL_TEXTURE_2D, _textureID);
@@ -43,37 +35,17 @@ void	ObjFileObject::Load(void)
 		     _textureParser.Width(),
 		     _textureParser.Height(),
 		     0,
-		     GL_RGB,
+		     GL_BGR,
 		     GL_UNSIGNED_BYTE,
 		     _textureParser.Data());
 
-	        if ((err = glGetError()) != GL_NO_ERROR)
-        {
-                        std::cerr << "fail 2 " << err << std::endl;
-        }
-	
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
-        if ((err = glGetError()) != GL_NO_ERROR)
-        {
-                        std::cerr << "fail 3 " << err << std::endl;
-        }
-	
 	glActiveTexture(GL_TEXTURE0);
-        if ((err = glGetError()) != GL_NO_ERROR)
-        {
-                        std::cerr << "fail 1 " << err << std::endl;
-        }
 	glUniform1i(_textureLocationID, 0);
-
-        if ((err = glGetError()) != GL_NO_ERROR)
-        {
-                        std::cerr << "fail 4 " << err << std::endl;
-        }
-
 }
 
 void	ObjFileObject::Unload(void)
