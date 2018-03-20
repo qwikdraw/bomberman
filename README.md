@@ -20,6 +20,9 @@ brew update && brew install pkg-config glm glfw
 `make`
 ...
 
+### Documentation
+requires `doxygen >= 1.8.4`
+
 ## Authors
 
 * Theo Walton

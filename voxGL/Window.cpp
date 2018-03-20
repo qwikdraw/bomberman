@@ -1,4 +1,3 @@
-
 #include "voxGL.hpp"
 
 Window::Window(void){}

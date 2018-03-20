@@ -1,4 +1,3 @@
-
 #include "voxGL.hpp"
 
 std::string	VoxObject::ReadFile(std::string filepath)

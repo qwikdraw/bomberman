@@ -6,6 +6,8 @@
 *.dSYM
 # Prerequisites
 *.d
+docs/xml
+docs/html
 
 # Compiled Object files
 *.slo

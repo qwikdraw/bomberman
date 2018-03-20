@@ -1,0 +1,20 @@
+# Includes
+@INCLUDE = Doxyfile-another
+
+# Quotes
+PROJECT_BRIEF = "is cool"
+
+# Multiple lines
+HTML_EXTRA_FILES = \
+    css \
+    "another.png" \
+    \
+    "hello"
+
+# Adding
+HTML_EXTRA_STYLESHEET = a.css
+HTML_EXTRA_STYLESHEET += b.css
+
+# Escaping
+M_PAGE_HEADER = 'this is "quotes" \'apostrophes\''
+M_PAGE_FINE_PRINT = "this is \"quotes\""

@@ -22,6 +22,7 @@ Window \
 
 SRC_DIR = voxGL
 OBJ_DIR = obj
+
 SRC = $(addsuffix .cpp, $(addprefix src/, $(LIST)))
 OBJ = $(addsuffix .o, $(addprefix $(OBJ_DIR)/, $(LIST)))
 
@@ -54,4 +55,4 @@ fclean:
 
 re:	fclean all
 
-.PHONY: clean fclean all re directories
+.PHONY: clean fclean all re directories docs

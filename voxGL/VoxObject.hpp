@@ -3,6 +3,7 @@
 
 #include "voxGL.hpp"
 
+//! A Voxel Object
 class	VoxObject
 {
 	struct AnimatedChunk
@@ -47,7 +48,6 @@ private:
 	glm::mat4	ExtrapolateMatrix(AnimatedChunk part);
 
 public:
-
 	VoxObject(std::string filepath);
 	virtual ~VoxObject(void);
 	

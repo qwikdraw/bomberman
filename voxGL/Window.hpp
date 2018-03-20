@@ -3,16 +3,18 @@
 
 #include "voxGL.hpp"
 
+//! Application window
+/*!
+Currently windows represent
+both application windows and rendering surfaces.
+These two concepts should probaly be split into seperate classes.
+*/
 class	Window
 {
-private:
-
-
 	static void	KeyCallback(GLFWwindow*, int, int, int, int);
 	static void	ErrorCallback(int, const char*);
 	static void	WindowResizeCallback(GLFWwindow*, int, int);
 	static void	WindowMoveCallback(GLFWwindow*, int, int);
-
 	
 	GLFWwindow *_window;
 	
@@ -35,14 +37,21 @@ private:
 	void	RefreshRenderZone(void);
 
 public:
-
 	Window(int x, int y, std::string name);
 
+	//! Gets the size of the window
+	/*!
+	Fills arguments with the result.
+	*/
 	void	GetSize(float &width, float &height);
 	bool	IsOpen(void);
 	void	GetRenderZoneSize(float &width, float &height);
 	void	SetRenderZone(float x, float y, float width, float height);
 	void	ClearRenderZone(void);
+	//! Swaps all window buffers
+	/*!
+	This function is not a static function for some reason..
+	*/
 	void	UpdateEntireWindow(void);
 	
 	void	EventListen(void);
