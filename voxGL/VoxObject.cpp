@@ -180,7 +180,7 @@ VoxObject::VoxObject(std::string filepath)
 
 VoxObject::~VoxObject(void)
 {
-	for (int i = 0; i < _parts.size(); i++)
+	for (unsigned i = 0; i < _parts.size(); i++)
 	{
 		delete _parts[i].chunk;
 	}
@@ -195,9 +195,8 @@ glm::mat4	VoxObject::ExtrapolateMatrix(AnimatedChunk part)
 {
 	float cycleTime = fmod(_totalTime, part.animaCycle);
 	
-	int i = 0;
-	
-	while ( i < part.animaTime.size() )
+	unsigned i = 0;
+	while (i < part.animaTime.size() )
 	{		
 		if (cycleTime < part.animaTime[i])
 			break;
@@ -207,7 +206,7 @@ glm::mat4	VoxObject::ExtrapolateMatrix(AnimatedChunk part)
 
 	float a = cycleTime - part.animaTime[i];
 	float b;
- 
+
 	
 	if (i != part.animaTime.size() - 1)
 		b = part.animaTime[i + 1] - part.animaTime[i];
@@ -233,7 +232,7 @@ void	VoxObject::Render(void)
 {
 	_time.Fix();
 	
-	for (int i = 0; i < _parts.size(); i++)
+	for (unsigned i = 0; i < _parts.size(); i++)
 	{
 
 		glm::mat4 matrix = ExtrapolateMatrix(_parts[i]);
@@ -244,7 +243,7 @@ void	VoxObject::Render(void)
 			matrix * _parts[i].relativeTransform;
 
 		_parts[i].chunk->UseMatrix( matrix );
-         	glUniformMatrix4fv(_transformID,				   
+         	glUniformMatrix4fv(_transformID,				
 				   1,
 				   GL_FALSE,
 				   glm::value_ptr(_parts[i].chunk->GetTransform()));
@@ -256,7 +255,7 @@ void	VoxObject::Render(void)
 
 void	VoxObject::Load(void)
 {
-	for (int i = 0; i < _parts.size(); i++)
+	for (unsigned i = 0; i < _parts.size(); i++)
 	{
 		_parts[i].chunk->Load();
 	}
@@ -264,7 +263,7 @@ void	VoxObject::Load(void)
 
 void	VoxObject::Unload(void)	
 {
-	for (int i = 0; i < _parts.size(); i++)
+	for (unsigned i = 0; i < _parts.size(); i++)
 	{
 		_parts[i].chunk->Unload();
 	}

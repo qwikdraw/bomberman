@@ -6,7 +6,6 @@ ShadingProgram::ShadingProgram(void) {}
 ShadingProgram::ShadingProgram(std::string vp, std::string gp, std::string fp)
 {
 	std::string shader;
-	int fd;
 	GLuint shader_id;
 	const GLchar *source;
 	

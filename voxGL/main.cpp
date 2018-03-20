@@ -1,6 +1,5 @@
 
 #include "voxGL.hpp"
-#include "debug.hpp"
 
 int	main(void)
 {

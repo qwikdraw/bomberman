@@ -238,7 +238,7 @@ void	VoxelChunk::GetTriangleData(void)
 	glm::vec3 vright = {1, 0, 0};
 	glm::vec3 vfront = {0, 0, -1};
 	glm::vec3 vback = {0, 0, 1};
-			  
+			
 	
 	for (int i = 0; i < size * size * size; i++)
 	{
@@ -408,7 +408,7 @@ void	VoxelChunk::GetTriangleData(void)
 
 void	VoxelChunk::print(void)
 {
-	for (int i = 0; i < _triangles.size(); i++)
+	for (unsigned i = 0; i < _triangles.size(); ++i)
 	{
 		if (i % 3 == 0)
 			std::cout << std::endl;

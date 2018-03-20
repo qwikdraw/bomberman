@@ -3,10 +3,11 @@
 
 Window::Window(void){}
 
-Window::Window(int x, int y, std::string name) : _width(1),
-						 _height(1),
+Window::Window(int x, int y, std::string name) :
 						 _screenCornerX(0),
-						 _screenCornerY(0)
+						 _screenCornerY(0),
+						 _width(1),
+						 _height(1)
 {
 	GLuint vertex_array_id;
 
@@ -81,7 +82,7 @@ void	Window::SetRenderZone(float x, float y, float width, float height)
 	glEnable(GL_SCISSOR_TEST);
 	glViewport(windowWidth * x,
 		   windowHeight * y,
-		   windowWidth * width,		   
+		   windowWidth * width,		
 		   windowHeight * height);
 	
 	glScissor(windowWidth * x,
@@ -106,7 +107,7 @@ void	Window::EventListen(void)
 	glfwSetKeyCallback(_window, KeyCallback);
 }
 
-void	Window::KeyCallback(GLFWwindow *glfwWindow, int key, int scancode, int action, int mods)
+void	Window::KeyCallback(GLFWwindow *glfwWindow, int key, int, int action, int)
 {
 	Window *window = reinterpret_cast<Window*>( glfwGetWindowUserPointer(glfwWindow) );
 
@@ -121,12 +122,12 @@ void	Window::KeyCallback(GLFWwindow *glfwWindow, int key, int scancode, int acti
 		window->KeyOn(key) = false;
 }
 
-void	Window::ErrorCallback(int error, const char *description)
+void	Window::ErrorCallback(int, const char *description)
 {
 	std::cerr << description << std::endl;
 }
 
-void	Window::WindowResizeCallback(GLFWwindow *glfwWindow, int width, int height)
+void	Window::WindowResizeCallback(GLFWwindow *glfwWindow, int, int)
 {
 	Window *window = reinterpret_cast<Window*>( glfwGetWindowUserPointer(glfwWindow) );
 

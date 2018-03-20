@@ -17,13 +17,13 @@
 #include <glm/ext.hpp>
 #include <chrono>
 
-#include "Time.class.hpp"
-#include "Window.class.hpp"
-#include "ShadingProgram.class.hpp"
-#include "VoxelChunk.class.hpp"
-#include "VoxObject.class.hpp"
-#include "VoxRenderer.class.hpp"
-#include "Camera.class.hpp"
+#include "Time.hpp"
+#include "Window.hpp"
+#include "ShadingProgram.hpp"
+#include "VoxelChunk.hpp"
+#include "VoxObject.hpp"
+#include "VoxRenderer.hpp"
+#include "Camera.hpp"
 
 #define X_DIM 800
 #define Y_DIM 600

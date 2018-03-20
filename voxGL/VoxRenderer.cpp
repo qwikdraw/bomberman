@@ -18,7 +18,7 @@ void	VoxRenderer::AttachObject(VoxObject *object)
 
 void	VoxRenderer::DetachObject(VoxObject *object)
 {
-	for (int i = 0; i < _objects.size(); i++)
+	for (unsigned i = 0; i < _objects.size(); ++i)
 	{
 		if (object == _objects[i])
 		{
@@ -35,7 +35,7 @@ void	VoxRenderer::Render(void)
 	glCullFace(GL_BACK);
 	glFrontFace(GL_CW);
 	
-	for (int i = 0; i < _objects.size(); i++)
+	for (unsigned i = 0; i < _objects.size(); ++i)
 	{
 		_objects[i]->Render();
 	}
