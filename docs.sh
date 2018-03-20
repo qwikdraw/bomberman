@@ -1,5 +1,8 @@
 #!/bin/sh
 cd docs/m.css/doxygen
-source ./venv/bin/activate
+virtualenv .build
+source ./.build/bin/activate
+pip install -r requirements.txt
 ./dox2html5.py ../../Doxyfile-mcss
 deactivate
+rm -rf .build
