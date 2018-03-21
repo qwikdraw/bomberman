@@ -44,10 +44,13 @@ public:
 	Fills arguments with the result.
 	*/
 	void	GetSize(float &width, float &height);
+	
+	//! Bool is open
 	bool	IsOpen(void);
 	void	GetRenderZoneSize(float &width, float &height);
 	void	SetRenderZone(float x, float y, float width, float height);
 	void	ClearRenderZone(void);
+	
 	//! Swaps all window buffers
 	/*!
 	This function is not a static function for some reason..
