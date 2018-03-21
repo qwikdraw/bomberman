@@ -20,7 +20,7 @@ VoxRenderer \
 VoxelChunk \
 Window \
 
-SRC_DIR = voxGL
+SRC_DIR = src
 OBJ_DIR = obj
 
 SRC = $(addsuffix .cpp, $(addprefix src/, $(LIST)))
@@ -34,7 +34,7 @@ LDFLAGS = -framework OpenGl $(shell pkg-config --libs glfw3 glm)
 all: $(OBJ_DIR) $(NAME)
 
 $(OBJ_DIR):
-	mkdir -p $(OBJ_DIR)
+	@mkdir -p $(OBJ_DIR)
 
 $(NAME): $(OBJ)
 	@echo "\033[32;1mLinking.. \033[0m"

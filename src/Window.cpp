@@ -1,8 +1,9 @@
 #include "voxGL.hpp"
+#include <stdexcept>
 
 Window::Window(void){}
 
-Window::Window(int x, int y, std::string name) :
+Window::Window(int width, int height, std::string name) :
 						 _screenCornerX(0),
 						 _screenCornerY(0),
 						 _width(1),
@@ -11,14 +12,13 @@ Window::Window(int x, int y, std::string name) :
 	GLuint vertex_array_id;
 
 	if (glfwInit() == GLFW_FALSE)
-		exit(1);
+		throw std::runtime_error("Failed to initialize GLFW");
 	WindowHints();
 	glfwSetErrorCallback(ErrorCallback);
-	_window = glfwCreateWindow(x, y, name.c_str(), NULL, NULL);
-	if (!_window)
+	if (!(_window = glfwCreateWindow(width, height, name.c_str(), NULL, NULL)))
 	{
 		glfwTerminate();
-		exit(1);
+		throw std::runtime_error("Failed to initialize window");
 	}
 	glfwSetWindowUserPointer(_window, this);
 	glfwSetWindowSizeCallback(_window, WindowResizeCallback);
@@ -57,7 +57,7 @@ bool	Window::IsOpen(void)
 	return !glfwWindowShouldClose(_window);
 }
 
-void	Window::GetRenderZoneSize(float &width, float &height)
+void	Window::GetDrawableSize(float &width, float &height)
 {
 	float actualWidth, actualHeight;
 
@@ -67,7 +67,7 @@ void	Window::GetRenderZoneSize(float &width, float &height)
 	height = _height * actualHeight;
 }
 
-void	Window::SetRenderZone(float x, float y, float width, float height)
+void	Window::SetStencil(float x, float y, float width, float height)
 {
 	float windowWidth, windowHeight;
 
@@ -90,15 +90,51 @@ void	Window::SetRenderZone(float x, float y, float width, float height)
 		  windowHeight * height);
 }
 
-void	Window::UpdateEntireWindow(void)
+void	Window::ClearStencil(void)
+{
+	float windowWidth, windowHeight;
+
+	GetSize(windowWidth, windowHeight);
+
+	_screenCornerX = 0;
+	_screenCornerY = 0;
+	_width = windowWidth;
+	_height = windowHeight;
+
+	glViewport(0, 0, windowWidth, windowHeight);
+	glScissor(0, 0, windowWidth, windowHeight);
+	glDisable(GL_SCISSOR_TEST);
+}
+
+
+void	Window::Render(void)
 {
 	glfwSwapBuffers(_window);
 	glfwPollEvents();
 }
 
-void	Window::ClearRenderZone(void)
+void	Window::Clear(void)
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+}
+
+void	Window::RefreshStencil(void)
+{
+	SetStencil(_screenCornerX, _screenCornerY, _width, _height);
+}
+
+void	Window::WindowResizeCallback(GLFWwindow *glfwWindow, int, int)
+{
+	Window *window = reinterpret_cast<Window*>( glfwGetWindowUserPointer(glfwWindow) );
+
+	window->RefreshStencil();
+}
+
+void	Window::WindowMoveCallback(GLFWwindow *glfwWindow, int, int)
+{
+	Window *window = reinterpret_cast<Window*>( glfwGetWindowUserPointer(glfwWindow) );
+
+	window->RefreshStencil();
 }
 
 void	Window::EventListen(void)
@@ -124,25 +160,6 @@ void	Window::KeyCallback(GLFWwindow *glfwWindow, int key, int, int action, int)
 void	Window::ErrorCallback(int, const char *description)
 {
 	std::cerr << description << std::endl;
-}
-
-void	Window::WindowResizeCallback(GLFWwindow *glfwWindow, int, int)
-{
-	Window *window = reinterpret_cast<Window*>( glfwGetWindowUserPointer(glfwWindow) );
-
-	window->RefreshRenderZone();
-}
-
-void	Window::WindowMoveCallback(GLFWwindow *glfwWindow, int, int)
-{
-	Window *window = reinterpret_cast<Window*>( glfwGetWindowUserPointer(glfwWindow) );
-
-	window->RefreshRenderZone();
-}
-
-void	Window::RefreshRenderZone(void)
-{
-	SetRenderZone(_screenCornerX, _screenCornerY, _width, _height);
 }
 
 bool	&Window::KeyOn(int key)
