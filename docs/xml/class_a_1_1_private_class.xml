@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="class_a_1_1_private_class" kind="class" language="C++" prot="private">
+    <compoundname>A::PrivateClass</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_a_1_1_private_class_1a2a862f735ef5507cf2257b676cf97ba1" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int A::PrivateClass::a</definition>
+        <argsstring></argsstring>
+        <name>a</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><ref refid="class_a" kindref="compound">A</ref> var </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_ignored/File.h" line="12" column="1" bodyfile="m.css/doxygen/test/compound_ignored/File.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Private class. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="m.css/doxygen/test/compound_ignored/File.h" line="12" column="1" bodyfile="m.css/doxygen/test/compound_ignored/File.h" bodystart="12" bodyend="12"/>
+    <listofallmembers>
+      <member refid="class_a_1_1_private_class_1a2a862f735ef5507cf2257b676cf97ba1" prot="private" virt="non-virtual"><scope>A::PrivateClass</scope><name>a</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

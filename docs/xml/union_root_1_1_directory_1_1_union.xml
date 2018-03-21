@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="union_root_1_1_directory_1_1_union" kind="union" language="C++" prot="public">
+    <compoundname>Root::Directory::Union</compoundname>
+    <includes refid="compound__listing_2_directory_2_file_8h" local="no">File.h</includes>
+    <briefdescription>
+<para>An union. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="m.css/doxygen/test/compound_listing/Directory/File.h" line="14" column="1" bodyfile="m.css/doxygen/test/compound_listing/Directory/File.h" bodystart="14" bodyend="14"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

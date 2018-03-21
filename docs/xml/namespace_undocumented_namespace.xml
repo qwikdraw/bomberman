@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="namespace_undocumented_namespace" kind="namespace" language="C++">
+    <compoundname>UndocumentedNamespace</compoundname>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="compound__namespace__members__in__file__scope_2_file_8h_1aeefb6576381a49c1c6e3b7352fe4472f" prot="public" static="no" strong="no">
+        <type></type>
+        <name>Enum</name>
+        <enumvalue id="compound__namespace__members__in__file__scope_2_file_8h_1aeefb6576381a49c1c6e3b7352fe4472fafbbe8f667f7bfa0603c82d017bc304da" prot="public">
+          <name>Value</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para><ref refid="class_a" kindref="compound">A</ref> value </para>          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>An enum. </para>        </briefdescription>
+        <detaileddescription>
+<para>Detailed enum docs. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_namespace_members_in_file_scope/File.h" line="77" column="1" bodyfile="m.css/doxygen/test/compound_namespace_members_in_file_scope/File.h" bodystart="77" bodyend="79"/>
+      </memberdef>
+      <memberdef kind="enum" id="compound__namespace__members__in__file__scope_2_file_8h_1a2632ae5b1d4434dc63030d1343378099" prot="public" static="no" strong="no">
+        <type></type>
+        <name>EnumBrief</name>
+        <briefdescription>
+<para>Enum with just a brief. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_namespace_members_in_file_scope/File.h" line="82" column="1" bodyfile="m.css/doxygen/test/compound_namespace_members_in_file_scope/File.h" bodystart="82" bodyend="82"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="compound__namespace__members__in__file__scope_2_file_8h_1ad339d36696a203dd41ce1b4967eaff0a" prot="public" static="no">
+        <type>int</type>
+        <definition>typedef int UndocumentedNamespace::Typedef</definition>
+        <argsstring></argsstring>
+        <name>Typedef</name>
+        <briefdescription>
+<para><ref refid="class_a" kindref="compound">A</ref> typedef. </para>        </briefdescription>
+        <detaileddescription>
+<para>Detailed typedef docs. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_namespace_members_in_file_scope/File.h" line="89" column="1" bodyfile="m.css/doxygen/test/compound_namespace_members_in_file_scope/File.h" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="compound__namespace__members__in__file__scope_2_file_8h_1a023e422700677703873bc1e7372e7400" prot="public" static="no">
+        <type>int</type>
+        <definition>typedef int UndocumentedNamespace::TypedefBrief</definition>
+        <argsstring></argsstring>
+        <name>TypedefBrief</name>
+        <briefdescription>
+<para>Typedef with just a brief. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_namespace_members_in_file_scope/File.h" line="92" column="1" bodyfile="m.css/doxygen/test/compound_namespace_members_in_file_scope/File.h" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="compound__namespace__members__in__file__scope_2_file_8h_1a7dc9e9cdaf8275ac8636d69b90f37045" prot="public" static="no" mutable="no">
+        <type>constexpr int</type>
+        <definition>constexpr int UndocumentedNamespace::Variable</definition>
+        <argsstring></argsstring>
+        <name>Variable</name>
+        <initializer>= 5</initializer>
+        <briefdescription>
+<para><ref refid="class_a" kindref="compound">A</ref> variable. </para>        </briefdescription>
+        <detaileddescription>
+<para>Detailed variable docs. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_namespace_members_in_file_scope/File.h" line="99" column="1" bodyfile="m.css/doxygen/test/compound_namespace_members_in_file_scope/File.h" bodystart="99" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="compound__namespace__members__in__file__scope_2_file_8h_1a39904e2093f37ccfc2b7ad44ead2420a" prot="public" static="no" mutable="no">
+        <type>constexpr int</type>
+        <definition>constexpr int UndocumentedNamespace::VariableBrief</definition>
+        <argsstring></argsstring>
+        <name>VariableBrief</name>
+        <initializer>= 5</initializer>
+        <briefdescription>
+<para>Variable with just a brief. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_namespace_members_in_file_scope/File.h" line="102" column="1" bodyfile="m.css/doxygen/test/compound_namespace_members_in_file_scope/File.h" bodystart="102" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__group_1gac07863d69ae41a4e395b31f73b35fbcd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void UndocumentedNamespace::foo</definition>
+        <argsstring>()</argsstring>
+        <name>foo</name>
+        <briefdescription>
+<para><ref refid="class_a" kindref="compound">A</ref> function. </para>        </briefdescription>
+        <detaileddescription>
+<para>Detailed function docs.</para><para><ref refid="class_a" kindref="compound">A</ref> foo.</para><para>[0] </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_namespace_members_in_file_scope/File.h" line="67" column="1" bodyfile="m.css/doxygen/test/contents_code_language/snippet.cpp" bodystart="2" bodyend="2"/>
+      </memberdef>
+      <memberdef kind="function" id="compound__namespace__members__in__file__scope_2_file_8h_1a9ca3f6e800be14b033c364187b444b2f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void UndocumentedNamespace::fooBrief</definition>
+        <argsstring>()</argsstring>
+        <name>fooBrief</name>
+        <briefdescription>
+<para>Function with just a brief. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_namespace_members_in_file_scope/File.h" line="70" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="m.css/doxygen/test/compound_namespace_members_in_file_scope/File.h" line="60" column="1"/>
+  </compounddef>
+</doxygen>

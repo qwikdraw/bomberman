@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="compound__warnings_2_file_8h" kind="file" language="C++">
+    <compoundname>File.h</compoundname>
+    <innernamespace refid="namespace_magnum">Magnum</innernamespace>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="compound__warnings_2_file_8h_1a0b5dc044cfdce524ccaae11d7c4b02d8" prot="public" static="no">
+        <name>MAGNUM_EXPORT</name>
+        <initializer>__attribute__ ((visibility (&quot;default&quot;)))</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_warnings/File.h" line="2" column="9" bodyfile="m.css/doxygen/test/compound_warnings/File.h" bodystart="2" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="m.css/doxygen/test/compound_warnings/File.h"/>
+  </compounddef>
+</doxygen>

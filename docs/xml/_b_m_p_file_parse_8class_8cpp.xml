@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="_b_m_p_file_parse_8class_8cpp" kind="file" language="C++">
+    <compoundname>BMPFileParse.class.cpp</compoundname>
+    <includes refid="_b_m_p_file_parse_8class_8hpp" local="yes">BMPFileParse.class.hpp</includes>
+    <incdepgraph>
+      <node id="269">
+        <label>/nfs/2017/t/twalton/bomberman/github/LowLevelDraw/BMPFileParse.class.cpp</label>
+        <link refid="_b_m_p_file_parse_8class_8cpp"/>
+        <childnode refid="270" relation="include">
+        </childnode>
+      </node>
+      <node id="273">
+        <label>fstream</label>
+      </node>
+      <node id="272">
+        <label>vector</label>
+      </node>
+      <node id="274">
+        <label>iostream</label>
+      </node>
+      <node id="270">
+        <label>BMPFileParse.class.hpp</label>
+        <link refid="_b_m_p_file_parse_8class_8hpp_source"/>
+        <childnode refid="271" relation="include">
+        </childnode>
+        <childnode refid="272" relation="include">
+        </childnode>
+        <childnode refid="273" relation="include">
+        </childnode>
+        <childnode refid="274" relation="include">
+        </childnode>
+      </node>
+      <node id="271">
+        <label>cstring</label>
+      </node>
+    </incdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/nfs/2017/t/twalton/bomberman/github/LowLevelDraw/BMPFileParse.class.cpp"/>
+  </compounddef>
+</doxygen>

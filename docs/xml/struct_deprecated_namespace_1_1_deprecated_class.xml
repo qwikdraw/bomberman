@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="struct_deprecated_namespace_1_1_deprecated_class" kind="struct" language="C++" prot="public">
+    <compoundname>DeprecatedNamespace::DeprecatedClass</compoundname>
+    <basecompoundref refid="struct_deprecated_namespace_1_1_base_deprecated_class" prot="public" virt="non-virtual">DeprecatedNamespace::BaseDeprecatedClass</basecompoundref>
+    <includes refid="compound__deprecated_2_dir_2_deprecated_file_8h" local="no">DeprecatedFile.h</includes>
+    <briefdescription>
+<para><ref refid="class_a" kindref="compound">A</ref> class. </para>    </briefdescription>
+    <detaileddescription>
+<para><xrefsect id="deprecated_1_deprecated000006"><xreftitle>Deprecated</xreftitle><xrefdescription><para>This class is deprecated. </para></xrefdescription></xrefsect></para><para><xrefsect id="deprecated_1_deprecated000019"><xreftitle>Deprecated</xreftitle><xrefdescription><para>This class is deprecated. </para></xrefdescription></xrefsect></para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="34">
+        <label>DeprecatedNamespace::DeprecatedClass</label>
+        <link refid="struct_deprecated_namespace_1_1_deprecated_class"/>
+        <childnode refid="35" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="35">
+        <label>DeprecatedNamespace::BaseDeprecatedClass</label>
+        <link refid="struct_deprecated_namespace_1_1_base_deprecated_class"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="36">
+        <label>DeprecatedNamespace::DeprecatedClass</label>
+        <link refid="struct_deprecated_namespace_1_1_deprecated_class"/>
+        <childnode refid="37" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="37">
+        <label>DeprecatedNamespace::BaseDeprecatedClass</label>
+        <link refid="struct_deprecated_namespace_1_1_base_deprecated_class"/>
+      </node>
+    </collaborationgraph>
+    <location file="m.css/doxygen/test/compound_deprecated/Dir/DeprecatedFile.h" line="31" column="1" bodyfile="m.css/doxygen/test/compound_deprecated/Dir/DeprecatedFile.h" bodystart="31" bodyend="31"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

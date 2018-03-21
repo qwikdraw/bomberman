@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="namespace_var" kind="namespace" language="C++">
+    <compoundname>Var</compoundname>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="namespace_var_1a4f9fd9cff960aeecffcab6a5d2ffcd81" prot="public" static="no" mutable="no">
+        <type>constexpr const int</type>
+        <definition>constexpr const int Var::a</definition>
+        <argsstring></argsstring>
+        <name>a</name>
+        <initializer>= 25</initializer>
+        <briefdescription>
+<para><ref refid="class_a" kindref="compound">A</ref> value. </para>        </briefdescription>
+        <detaileddescription>
+<para>Details. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_detailed/File.h" line="209" column="1" bodyfile="m.css/doxygen/test/compound_detailed/File.h" bodystart="209" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para><ref refid="class_a" kindref="compound">A</ref> namespace. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="m.css/doxygen/test/compound_detailed/File.h" line="202" column="1"/>
+  </compounddef>
+</doxygen>

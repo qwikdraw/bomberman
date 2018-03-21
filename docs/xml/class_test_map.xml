@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="class_test_map" kind="class" language="C++" prot="public">
+    <compoundname>TestMap</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_test_map_1a1dff4312c26af659944dda273b8ea788" prot="private" static="no" mutable="no">
+        <type><ref refid="class_obj_file_object" kindref="compound">ObjFileObject</ref></type>
+        <definition>ObjFileObject TestMap::_mapBlock</definition>
+        <argsstring></argsstring>
+        <name>_mapBlock</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/twaltonTestEnvironment/TestMap.class.hpp" line="12" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/twaltonTestEnvironment/TestMap.class.hpp" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_test_map_1ae5c89541a40d8cc21cb1a67711f12d93" prot="private" static="no" mutable="no">
+        <type><ref refid="class_obj_file_object" kindref="compound">ObjFileObject</ref></type>
+        <definition>ObjFileObject TestMap::_landscape</definition>
+        <argsstring></argsstring>
+        <name>_landscape</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/twaltonTestEnvironment/TestMap.class.hpp" line="13" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/twaltonTestEnvironment/TestMap.class.hpp" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_test_map_1a91ebf17b4e1c3800fa23b6b71ae57a6d" prot="private" static="no" mutable="no">
+        <type>glm::mat4</type>
+        <definition>glm::mat4 TestMap::_perspective</definition>
+        <argsstring></argsstring>
+        <name>_perspective</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/twaltonTestEnvironment/TestMap.class.hpp" line="14" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/twaltonTestEnvironment/TestMap.class.hpp" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_test_map_1abb5aa9ce73c59e5da732984c6d614351" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>TestMap::TestMap</definition>
+        <argsstring>(void)</argsstring>
+        <name>TestMap</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/twaltonTestEnvironment/TestMap.class.hpp" line="18" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/twaltonTestEnvironment/TestMap.class.cpp" bodystart="4" bodyend="6"/>
+      </memberdef>
+      <memberdef kind="function" id="class_test_map_1a9f157b37911615b336f1f0e3a5b54422" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void TestMap::UsePerspective</definition>
+        <argsstring>(glm::mat4)</argsstring>
+        <name>UsePerspective</name>
+        <param>
+          <type>glm::mat4</type>
+          <defname>m</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/twaltonTestEnvironment/TestMap.class.hpp" line="20" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/twaltonTestEnvironment/TestMap.class.cpp" bodystart="8" bodyend="11"/>
+      </memberdef>
+      <memberdef kind="function" id="class_test_map_1a4a2a6043410f046c02264f2827e5ea61" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void TestMap::Render</definition>
+        <argsstring>(void)</argsstring>
+        <name>Render</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/twaltonTestEnvironment/TestMap.class.hpp" line="21" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/twaltonTestEnvironment/TestMap.class.cpp" bodystart="13" bodyend="27"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/nfs/2017/t/twalton/bomberman/github/twaltonTestEnvironment/TestMap.class.hpp" line="8" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/twaltonTestEnvironment/TestMap.class.hpp" bodystart="7" bodyend="24"/>
+    <listofallmembers>
+      <member refid="class_test_map_1ae5c89541a40d8cc21cb1a67711f12d93" prot="private" virt="non-virtual"><scope>TestMap</scope><name>_landscape</name></member>
+      <member refid="class_test_map_1a1dff4312c26af659944dda273b8ea788" prot="private" virt="non-virtual"><scope>TestMap</scope><name>_mapBlock</name></member>
+      <member refid="class_test_map_1a91ebf17b4e1c3800fa23b6b71ae57a6d" prot="private" virt="non-virtual"><scope>TestMap</scope><name>_perspective</name></member>
+      <member refid="class_test_map_1a4a2a6043410f046c02264f2827e5ea61" prot="public" virt="non-virtual"><scope>TestMap</scope><name>Render</name></member>
+      <member refid="class_test_map_1abb5aa9ce73c59e5da732984c6d614351" prot="public" virt="non-virtual"><scope>TestMap</scope><name>TestMap</name></member>
+      <member refid="class_test_map_1a9f157b37911615b336f1f0e3a5b54422" prot="public" virt="non-virtual"><scope>TestMap</scope><name>UsePerspective</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

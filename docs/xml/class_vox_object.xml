@@ -1,0 +1,458 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="class_vox_object" kind="class" language="C++" prot="public">
+    <compoundname>VoxObject</compoundname>
+    <includes refid="_vox_object_8hpp" local="no">VoxObject.hpp</includes>
+    <innerclass refid="struct_vox_object_1_1_animated_chunk" prot="private">VoxObject::AnimatedChunk</innerclass>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_vox_object_1ae00c9e94c03d5cc0c81a52e8cf70fb31" prot="private" static="no" mutable="no">
+        <type><ref refid="class_time" kindref="compound">Time</ref></type>
+        <definition>Time VoxObject::_time</definition>
+        <argsstring></argsstring>
+        <name>_time</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxObject.hpp" line="26" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxObject.hpp" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_vox_object_1a12fc45de5e694697dba33fd42deee494" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; AnimatedChunk &gt;</type>
+        <definition>std::vector&lt;AnimatedChunk&gt; VoxObject::_parts</definition>
+        <argsstring></argsstring>
+        <name>_parts</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxObject.hpp" line="27" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxObject.hpp" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_vox_object_1ab83dbeb561e619fee95f915aa10970eb" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float VoxObject::_totalTime</definition>
+        <argsstring></argsstring>
+        <name>_totalTime</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxObject.hpp" line="28" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxObject.hpp" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_vox_object_1a4212be7ebdcf723ac8868715c93bdcd1" prot="private" static="no" mutable="no">
+        <type>GLuint</type>
+        <definition>GLuint VoxObject::_transformID</definition>
+        <argsstring></argsstring>
+        <name>_transformID</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxObject.hpp" line="29" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxObject.hpp" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_vox_object_1a8bcd604c251ba4ffab6cb42d2a9f91ce" prot="private" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 VoxObject::_pos</definition>
+        <argsstring></argsstring>
+        <name>_pos</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxObject.hpp" line="32" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxObject.hpp" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_vox_object_1a8d4d357320d40f71fe3dd492f5d174d0" prot="private" static="no" mutable="no">
+        <type>glm::mat4</type>
+        <definition>glm::mat4 VoxObject::_transform</definition>
+        <argsstring></argsstring>
+        <name>_transform</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxObject.hpp" line="36" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxObject.hpp" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_vox_object_1a8a4211b3532ebb18ecd9334f3eddf9f0" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string VoxObject::ReadFile</definition>
+        <argsstring>(std::string)</argsstring>
+        <name>ReadFile</name>
+        <param>
+          <type>std::string</type>
+          <defname>filepath</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxObject.hpp" line="38" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxObject.cpp" bodystart="3" bodyend="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_vox_object_1a6e0a1a1d00359d2a0e9356b0be448337" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>glm::mat4</type>
+        <definition>glm::mat4 VoxObject::getRelativeTransform</definition>
+        <argsstring>(std::string &amp;)</argsstring>
+        <name>getRelativeTransform</name>
+        <param>
+          <type>std::string &amp;</type>
+          <defname>format</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxObject.hpp" line="40" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxObject.cpp" bodystart="113" bodyend="131"/>
+      </memberdef>
+      <memberdef kind="function" id="class_vox_object_1af4abbf89395122855867bcfb10a62ae4" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 VoxObject::getChunkPos</definition>
+        <argsstring>(std::string &amp;)</argsstring>
+        <name>getChunkPos</name>
+        <param>
+          <type>std::string &amp;</type>
+          <defname>format</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxObject.hpp" line="41" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxObject.cpp" bodystart="95" bodyend="111"/>
+      </memberdef>
+      <memberdef kind="function" id="class_vox_object_1af58cfa7fcccbc4ca44f3ff453f56e667" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>AnimatedChunk</type>
+        <definition>VoxObject::AnimatedChunk VoxObject::getAnimatedChunk</definition>
+        <argsstring>(std::string &amp;)</argsstring>
+        <name>getAnimatedChunk</name>
+        <param>
+          <type>std::string &amp;</type>
+          <defname>format</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxObject.hpp" line="42" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxObject.cpp" bodystart="133" bodyend="166"/>
+      </memberdef>
+      <memberdef kind="function" id="class_vox_object_1a318328e3e598f9b21b8772706738b47a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>float VoxObject::getAnimaCycle</definition>
+        <argsstring>(std::string &amp;)</argsstring>
+        <name>getAnimaCycle</name>
+        <param>
+          <type>std::string &amp;</type>
+          <defname>format</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxObject.hpp" line="43" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxObject.cpp" bodystart="83" bodyend="93"/>
+      </memberdef>
+      <memberdef kind="function" id="class_vox_object_1acd7f01d727a86a175f98c7816179b4e0" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_voxel_chunk" kindref="compound">VoxelChunk</ref> *</type>
+        <definition>VoxelChunk * VoxObject::getChunk</definition>
+        <argsstring>(std::string &amp;)</argsstring>
+        <name>getChunk</name>
+        <param>
+          <type>std::string &amp;</type>
+          <defname>format</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxObject.hpp" line="44" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxObject.cpp" bodystart="64" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="function" id="class_vox_object_1a46c1c0e9cc22d5544d635d32fffb0136" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; float &gt;</type>
+        <definition>std::vector&lt; float &gt; VoxObject::getAnimaTime</definition>
+        <argsstring>(std::string &amp;)</argsstring>
+        <name>getAnimaTime</name>
+        <param>
+          <type>std::string &amp;</type>
+          <defname>format</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxObject.hpp" line="45" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxObject.cpp" bodystart="41" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="function" id="class_vox_object_1ac0de1722afc961c11143ed81ff924b67" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; glm::mat4 &gt;</type>
+        <definition>std::vector&lt; glm::mat4 &gt; VoxObject::getAnimaTransform</definition>
+        <argsstring>(std::string &amp;)</argsstring>
+        <name>getAnimaTransform</name>
+        <param>
+          <type>std::string &amp;</type>
+          <defname>format</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxObject.hpp" line="46" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxObject.cpp" bodystart="12" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="class_vox_object_1a090b2eca85de1281e8098e4952586882" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>glm::mat4</type>
+        <definition>glm::mat4 VoxObject::ExtrapolateMatrix</definition>
+        <argsstring>(AnimatedChunk part)</argsstring>
+        <name>ExtrapolateMatrix</name>
+        <param>
+          <type>AnimatedChunk</type>
+          <declname>part</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxObject.hpp" line="48" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxObject.cpp" bodystart="193" bodyend="228"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_vox_object_1aef8ba2feacf43d5704046aced7312d95" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>VoxObject::VoxObject</definition>
+        <argsstring>(std::string filepath)</argsstring>
+        <name>VoxObject</name>
+        <param>
+          <type>std::string</type>
+          <declname>filepath</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxObject.hpp" line="51" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxObject.cpp" bodystart="168" bodyend="178"/>
+      </memberdef>
+      <memberdef kind="function" id="class_vox_object_1af05753c0a413117962b5b2f9d548a47b" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>VoxObject::~VoxObject</definition>
+        <argsstring>(void)</argsstring>
+        <name>~VoxObject</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxObject.hpp" line="52" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxObject.cpp" bodystart="180" bodyend="186"/>
+      </memberdef>
+      <memberdef kind="function" id="class_vox_object_1af3e18033f30fbba97f92338fa476e1a9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>GLuint &amp;</type>
+        <definition>GLuint &amp; VoxObject::TransformID</definition>
+        <argsstring>(void)</argsstring>
+        <name>TransformID</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxObject.hpp" line="54" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxObject.cpp" bodystart="188" bodyend="191"/>
+      </memberdef>
+      <memberdef kind="function" id="class_vox_object_1a8e41bef740a2bb010f397782298ee6f4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void VoxObject::Render</definition>
+        <argsstring>(void)</argsstring>
+        <name>Render</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxObject.hpp" line="55" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxObject.cpp" bodystart="230" bodyend="253"/>
+      </memberdef>
+      <memberdef kind="function" id="class_vox_object_1ad355ddf2918d05241ae24e35afd7a09a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void VoxObject::Load</definition>
+        <argsstring>(void)</argsstring>
+        <name>Load</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxObject.hpp" line="56" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxObject.cpp" bodystart="255" bodyend="261"/>
+      </memberdef>
+      <memberdef kind="function" id="class_vox_object_1a0c2fb1e3d6c1f5565b28e5886542fc60" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void VoxObject::Unload</definition>
+        <argsstring>(void)</argsstring>
+        <name>Unload</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxObject.hpp" line="57" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxObject.cpp" bodystart="263" bodyend="269"/>
+      </memberdef>
+      <memberdef kind="function" id="class_vox_object_1af30f58a25329fd9db8f1c4d5dd6575c8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void VoxObject::SetTransform</definition>
+        <argsstring>(glm::mat4)</argsstring>
+        <name>SetTransform</name>
+        <param>
+          <type>glm::mat4</type>
+          <defname>m</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxObject.hpp" line="59" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxObject.cpp" bodystart="271" bodyend="274"/>
+      </memberdef>
+      <memberdef kind="function" id="class_vox_object_1acd595af931031e34f3e0450813f79a1c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>glm::mat4</type>
+        <definition>glm::mat4 VoxObject::GetTransform</definition>
+        <argsstring>(void)</argsstring>
+        <name>GetTransform</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxObject.hpp" line="60" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxObject.cpp" bodystart="276" bodyend="279"/>
+      </memberdef>
+      <memberdef kind="function" id="class_vox_object_1ab3794c6f3e34de675b49ebc1651e6743" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void VoxObject::SetPos</definition>
+        <argsstring>(glm::vec3)</argsstring>
+        <name>SetPos</name>
+        <param>
+          <type>glm::vec3</type>
+          <defname>p</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxObject.hpp" line="61" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxObject.cpp" bodystart="281" bodyend="284"/>
+      </memberdef>
+      <memberdef kind="function" id="class_vox_object_1a4d89fcf8ba56b95c25ba189214ebf1d1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 VoxObject::GetPos</definition>
+        <argsstring>(void)</argsstring>
+        <name>GetPos</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxObject.hpp" line="62" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxObject.cpp" bodystart="286" bodyend="289"/>
+      </memberdef>
+      <memberdef kind="function" id="class_vox_object_1a0f4f31f593ba945fe027c4a04f5b13fe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void VoxObject::Move</definition>
+        <argsstring>(glm::vec3)</argsstring>
+        <name>Move</name>
+        <param>
+          <type>glm::vec3</type>
+          <defname>v</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxObject.hpp" line="63" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxObject.cpp" bodystart="291" bodyend="294"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para><ref refid="class_a" kindref="compound">A</ref> Voxel Object. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxObject.hpp" line="8" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxObject.hpp" bodystart="7" bodyend="65"/>
+    <listofallmembers>
+      <member refid="class_vox_object_1a12fc45de5e694697dba33fd42deee494" prot="private" virt="non-virtual"><scope>VoxObject</scope><name>_parts</name></member>
+      <member refid="class_vox_object_1a8bcd604c251ba4ffab6cb42d2a9f91ce" prot="private" virt="non-virtual"><scope>VoxObject</scope><name>_pos</name></member>
+      <member refid="class_vox_object_1ae00c9e94c03d5cc0c81a52e8cf70fb31" prot="private" virt="non-virtual"><scope>VoxObject</scope><name>_time</name></member>
+      <member refid="class_vox_object_1ab83dbeb561e619fee95f915aa10970eb" prot="private" virt="non-virtual"><scope>VoxObject</scope><name>_totalTime</name></member>
+      <member refid="class_vox_object_1a8d4d357320d40f71fe3dd492f5d174d0" prot="private" virt="non-virtual"><scope>VoxObject</scope><name>_transform</name></member>
+      <member refid="class_vox_object_1a4212be7ebdcf723ac8868715c93bdcd1" prot="private" virt="non-virtual"><scope>VoxObject</scope><name>_transformID</name></member>
+      <member refid="class_vox_object_1a090b2eca85de1281e8098e4952586882" prot="private" virt="non-virtual"><scope>VoxObject</scope><name>ExtrapolateMatrix</name></member>
+      <member refid="class_vox_object_1a318328e3e598f9b21b8772706738b47a" prot="private" virt="non-virtual"><scope>VoxObject</scope><name>getAnimaCycle</name></member>
+      <member refid="class_vox_object_1af58cfa7fcccbc4ca44f3ff453f56e667" prot="private" virt="non-virtual"><scope>VoxObject</scope><name>getAnimatedChunk</name></member>
+      <member refid="class_vox_object_1a46c1c0e9cc22d5544d635d32fffb0136" prot="private" virt="non-virtual"><scope>VoxObject</scope><name>getAnimaTime</name></member>
+      <member refid="class_vox_object_1ac0de1722afc961c11143ed81ff924b67" prot="private" virt="non-virtual"><scope>VoxObject</scope><name>getAnimaTransform</name></member>
+      <member refid="class_vox_object_1acd7f01d727a86a175f98c7816179b4e0" prot="private" virt="non-virtual"><scope>VoxObject</scope><name>getChunk</name></member>
+      <member refid="class_vox_object_1af4abbf89395122855867bcfb10a62ae4" prot="private" virt="non-virtual"><scope>VoxObject</scope><name>getChunkPos</name></member>
+      <member refid="class_vox_object_1a4d89fcf8ba56b95c25ba189214ebf1d1" prot="public" virt="non-virtual"><scope>VoxObject</scope><name>GetPos</name></member>
+      <member refid="class_vox_object_1a6e0a1a1d00359d2a0e9356b0be448337" prot="private" virt="non-virtual"><scope>VoxObject</scope><name>getRelativeTransform</name></member>
+      <member refid="class_vox_object_1acd595af931031e34f3e0450813f79a1c" prot="public" virt="non-virtual"><scope>VoxObject</scope><name>GetTransform</name></member>
+      <member refid="class_vox_object_1ad355ddf2918d05241ae24e35afd7a09a" prot="public" virt="non-virtual"><scope>VoxObject</scope><name>Load</name></member>
+      <member refid="class_vox_object_1a0f4f31f593ba945fe027c4a04f5b13fe" prot="public" virt="non-virtual"><scope>VoxObject</scope><name>Move</name></member>
+      <member refid="class_vox_object_1a8a4211b3532ebb18ecd9334f3eddf9f0" prot="private" virt="non-virtual"><scope>VoxObject</scope><name>ReadFile</name></member>
+      <member refid="class_vox_object_1a8e41bef740a2bb010f397782298ee6f4" prot="public" virt="non-virtual"><scope>VoxObject</scope><name>Render</name></member>
+      <member refid="class_vox_object_1ab3794c6f3e34de675b49ebc1651e6743" prot="public" virt="non-virtual"><scope>VoxObject</scope><name>SetPos</name></member>
+      <member refid="class_vox_object_1af30f58a25329fd9db8f1c4d5dd6575c8" prot="public" virt="non-virtual"><scope>VoxObject</scope><name>SetTransform</name></member>
+      <member refid="class_vox_object_1af3e18033f30fbba97f92338fa476e1a9" prot="public" virt="non-virtual"><scope>VoxObject</scope><name>TransformID</name></member>
+      <member refid="class_vox_object_1a0c2fb1e3d6c1f5565b28e5886542fc60" prot="public" virt="non-virtual"><scope>VoxObject</scope><name>Unload</name></member>
+      <member refid="class_vox_object_1aef8ba2feacf43d5704046aced7312d95" prot="public" virt="non-virtual"><scope>VoxObject</scope><name>VoxObject</name></member>
+      <member refid="class_vox_object_1af05753c0a413117962b5b2f9d548a47b" prot="public" virt="virtual"><scope>VoxObject</scope><name>~VoxObject</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

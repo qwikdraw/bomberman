@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="compound__namespace__members__in__file__scope_2_file_8h" kind="file" language="C++">
+    <compoundname>File.h</compoundname>
+    <innernamespace refid="namespace_namespace">Namespace</innernamespace>
+    <innernamespace refid="namespace_undocumented_namespace">UndocumentedNamespace</innernamespace>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="compound__namespace__members__in__file__scope_2_file_8h_1a1e6e7cc6cc96adc8342c838f55790259" prot="public" static="no">
+        <name>A_MACRO</name>
+        <briefdescription>
+<para><ref refid="class_a" kindref="compound">A</ref> macro. </para>        </briefdescription>
+        <detaileddescription>
+<para>This appears only in the file docs and fully expanded. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_namespace_members_in_file_scope/File.h" line="55" column="9" bodyfile="m.css/doxygen/test/compound_namespace_members_in_file_scope/File.h" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para><ref refid="class_a" kindref="compound">A</ref> file. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="m.css/doxygen/test/compound_namespace_members_in_file_scope/File.h"/>
+  </compounddef>
+</doxygen>

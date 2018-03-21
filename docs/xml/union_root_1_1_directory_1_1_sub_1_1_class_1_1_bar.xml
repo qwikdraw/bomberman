@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="union_root_1_1_directory_1_1_sub_1_1_class_1_1_bar" kind="union" language="C++" prot="protected">
+    <compoundname>Root::Directory::Sub::Class::Bar</compoundname>
+    <includes refid="_class_8h" local="no">Class.h</includes>
+    <templateparamlist>
+      <param>
+        <type>class T</type>
+      </param>
+      <param>
+        <type>class U</type>
+        <defval>void</defval>
+      </param>
+    </templateparamlist>
+    <briefdescription>
+<para><ref refid="class_a" kindref="compound">A</ref> protected subclass. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="m.css/doxygen/test/compound_listing/Directory/Sub/Class.h" line="63" column="1" bodyfile="m.css/doxygen/test/compound_listing/Directory/Sub/Class.h" bodystart="63" bodyend="63"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

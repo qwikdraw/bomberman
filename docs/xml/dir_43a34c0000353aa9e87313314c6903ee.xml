@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="dir_43a34c0000353aa9e87313314c6903ee" kind="dir">
+    <compoundname>m.css/doxygen/test/compound_listing/Another</compoundname>
+    <innerfile refid="_some_8h">Some.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="m.css/doxygen/test/compound_listing/Another/"/>
+  </compounddef>
+</doxygen>

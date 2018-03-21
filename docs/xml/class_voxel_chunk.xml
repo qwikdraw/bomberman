@@ -1,0 +1,592 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="class_voxel_chunk" kind="class" language="C++" prot="public">
+    <compoundname>VoxelChunk</compoundname>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="class_voxel_chunk_1a6c76280835611a4fe022bf0c89063d27" prot="private" static="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int VoxelChunk::size</definition>
+        <argsstring></argsstring>
+        <name>size</name>
+        <initializer>= 10</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.hpp" line="10" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.hpp" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_voxel_chunk_1aa5a2b9258bbfa0d8a26b78fdfff573f1" prot="private" static="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int VoxelChunk::top</definition>
+        <argsstring></argsstring>
+        <name>top</name>
+        <initializer>=         0b00000001000000000000000000000000</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.hpp" line="12" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.hpp" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_voxel_chunk_1ad58909b2da4634bfe4ee2d687d744c7e" prot="private" static="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int VoxelChunk::bot</definition>
+        <argsstring></argsstring>
+        <name>bot</name>
+        <initializer>=         0b00000010000000000000000000000000</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.hpp" line="13" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.hpp" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_voxel_chunk_1afb2f8f76d6fd4dcd825a3ddba7220cc9" prot="private" static="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int VoxelChunk::left</definition>
+        <argsstring></argsstring>
+        <name>left</name>
+        <initializer>=        0b00000100000000000000000000000000</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.hpp" line="14" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.hpp" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_voxel_chunk_1ab0104d4fbbb94092bdf538da508e6915" prot="private" static="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int VoxelChunk::right</definition>
+        <argsstring></argsstring>
+        <name>right</name>
+        <initializer>=       0b00001000000000000000000000000000</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.hpp" line="15" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.hpp" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_voxel_chunk_1ac2ac171065916089250d4762ce2e6a33" prot="private" static="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int VoxelChunk::front</definition>
+        <argsstring></argsstring>
+        <name>front</name>
+        <initializer>=       0b00010000000000000000000000000000</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.hpp" line="16" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.hpp" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_voxel_chunk_1a3ca135a1335a1f14f4a4174423739c59" prot="private" static="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int VoxelChunk::back</definition>
+        <argsstring></argsstring>
+        <name>back</name>
+        <initializer>=        0b00100000000000000000000000000000</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.hpp" line="17" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.hpp" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_voxel_chunk_1ae236781a930163ad922e87d902277cd5" prot="private" static="no" mutable="no">
+        <type>GLuint</type>
+        <definition>GLuint VoxelChunk::_triangleBufferID</definition>
+        <argsstring></argsstring>
+        <name>_triangleBufferID</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.hpp" line="19" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.hpp" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_voxel_chunk_1adf9085e1d0d9905439ba173a4b559447" prot="private" static="no" mutable="no">
+        <type>GLuint</type>
+        <definition>GLuint VoxelChunk::_normalBufferID</definition>
+        <argsstring></argsstring>
+        <name>_normalBufferID</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.hpp" line="20" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.hpp" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_voxel_chunk_1a386688ab6490669378a4a1ca85f6d943" prot="private" static="no" mutable="no">
+        <type>GLuint</type>
+        <definition>GLuint VoxelChunk::_colorBufferID</definition>
+        <argsstring></argsstring>
+        <name>_colorBufferID</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.hpp" line="21" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.hpp" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_voxel_chunk_1abe6513b686fc5f44ab659e2af04afbab" prot="private" static="no" mutable="no">
+        <type>GLint</type>
+        <definition>GLint VoxelChunk::_array[size *size *size]</definition>
+        <argsstring>[size *size *size]</argsstring>
+        <name>_array</name>
+        <initializer>= {}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.hpp" line="22" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.hpp" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_voxel_chunk_1ae0f8039dddb9ae5de7ddf6a179735a0a" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; GLfloat &gt;</type>
+        <definition>std::vector&lt;GLfloat&gt; VoxelChunk::_triangles</definition>
+        <argsstring></argsstring>
+        <name>_triangles</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.hpp" line="23" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.hpp" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_voxel_chunk_1a75012074e4eea12598c9c53b61b2f84e" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; GLfloat &gt;</type>
+        <definition>std::vector&lt;GLfloat&gt; VoxelChunk::_normals</definition>
+        <argsstring></argsstring>
+        <name>_normals</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.hpp" line="24" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.hpp" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_voxel_chunk_1a131230d511a94e8f8d4eb314430c0a43" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; GLfloat &gt;</type>
+        <definition>std::vector&lt;GLfloat&gt; VoxelChunk::_colors</definition>
+        <argsstring></argsstring>
+        <name>_colors</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.hpp" line="25" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.hpp" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_voxel_chunk_1ad6e356da400237a87c64d2bbfcb23d55" prot="private" static="no" mutable="no">
+        <type>glm::mat4</type>
+        <definition>glm::mat4 VoxelChunk::_transform</definition>
+        <argsstring></argsstring>
+        <name>_transform</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.hpp" line="26" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.hpp" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_voxel_chunk_1a66a56593c3abe25fcf9adfaa2f9002bb" prot="private" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 VoxelChunk::_pos</definition>
+        <argsstring></argsstring>
+        <name>_pos</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.hpp" line="27" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.hpp" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_voxel_chunk_1a3eefa0533dbc891093e75cd048b72d37" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void VoxelChunk::RemoveHiddenSides</definition>
+        <argsstring>(void)</argsstring>
+        <name>RemoveHiddenSides</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.hpp" line="29" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.cpp" bodystart="116" bodyend="151"/>
+      </memberdef>
+      <memberdef kind="function" id="class_voxel_chunk_1a74a19c4dd6d8ca2fa54676c6fac2e9ad" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void VoxelChunk::OcclusionRecolor</definition>
+        <argsstring>(void)</argsstring>
+        <name>OcclusionRecolor</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.hpp" line="30" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.cpp" bodystart="168" bodyend="211"/>
+      </memberdef>
+      <memberdef kind="function" id="class_voxel_chunk_1a9144bc3f02fcd6b37f301e1516055a01" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void VoxelChunk::ShadeColor</definition>
+        <argsstring>(int &amp;col, float factor, float contrast)</argsstring>
+        <name>ShadeColor</name>
+        <param>
+          <type>int &amp;</type>
+          <declname>col</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>factor</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>contrast</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.hpp" line="31" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.cpp" bodystart="213" bodyend="230"/>
+      </memberdef>
+      <memberdef kind="function" id="class_voxel_chunk_1a9a8df3fbe41a6d639eafddd0be6273f9" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void VoxelChunk::GetTriangleData</definition>
+        <argsstring>(void)</argsstring>
+        <name>GetTriangleData</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.hpp" line="32" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.cpp" bodystart="232" bodyend="407"/>
+      </memberdef>
+      <memberdef kind="function" id="class_voxel_chunk_1ae1f0d9f3ad746cecd310c5b0ab55ad9a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool VoxelChunk::IsBlock</definition>
+        <argsstring>(int x, int y, int z)</argsstring>
+        <name>IsBlock</name>
+        <param>
+          <type>int</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>z</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.hpp" line="35" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.cpp" bodystart="153" bodyend="166"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_voxel_chunk_1a1789ea58b287d5aa6a2d29332b09da58" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>VoxelChunk::VoxelChunk</definition>
+        <argsstring>(void)</argsstring>
+        <name>VoxelChunk</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.hpp" line="39" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.cpp" bodystart="4" bodyend="6"/>
+      </memberdef>
+      <memberdef kind="function" id="class_voxel_chunk_1abf3417de54cf2c81ae5243963cc5e122" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>VoxelChunk::VoxelChunk</definition>
+        <argsstring>(int[])</argsstring>
+        <name>VoxelChunk</name>
+        <param>
+          <type>int</type>
+          <defname>arr</defname>
+          <array>[]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.hpp" line="40" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.cpp" bodystart="8" bodyend="14"/>
+      </memberdef>
+      <memberdef kind="function" id="class_voxel_chunk_1ae9f2900e0ca8cecd54ccc944d916f3a9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>VoxelChunk::VoxelChunk</definition>
+        <argsstring>(const std::function&lt; int(int, int)&gt; &amp;f)</argsstring>
+        <name>VoxelChunk</name>
+        <param>
+          <type>const std::function&lt; int(int, int)&gt; &amp;</type>
+          <declname>f</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.hpp" line="41" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.cpp" bodystart="16" bodyend="22"/>
+      </memberdef>
+      <memberdef kind="function" id="class_voxel_chunk_1a76c7fce55ad8679511086a855f449605" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int &amp;</type>
+        <definition>int &amp; VoxelChunk::Item</definition>
+        <argsstring>(int i, int j, int k)</argsstring>
+        <name>Item</name>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>j</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>k</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.hpp" line="44" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.cpp" bodystart="24" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="function" id="class_voxel_chunk_1a30402cd8a0bb144a119ddccd1664de7c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int &amp;</type>
+        <definition>int &amp; VoxelChunk::Item</definition>
+        <argsstring>(int)</argsstring>
+        <name>Item</name>
+        <param>
+          <type>int</type>
+          <defname>i</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.hpp" line="47" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.cpp" bodystart="29" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="class_voxel_chunk_1a0470b4eec0f7cfb3fa5c4671f0e61c09" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void VoxelChunk::ApplyMatrix</definition>
+        <argsstring>(glm::mat4)</argsstring>
+        <name>ApplyMatrix</name>
+        <param>
+          <type>glm::mat4</type>
+          <defname>m</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.hpp" line="49" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.cpp" bodystart="34" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="class_voxel_chunk_1a1e5021d1d2aa994d3dabc917e4a02cee" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void VoxelChunk::UseMatrix</definition>
+        <argsstring>(glm::mat4)</argsstring>
+        <name>UseMatrix</name>
+        <param>
+          <type>glm::mat4</type>
+          <defname>m</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.hpp" line="51" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.cpp" bodystart="40" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="function" id="class_voxel_chunk_1abab59b6ecbd0ea6ccd7be73695266015" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void VoxelChunk::Load</definition>
+        <argsstring>(void)</argsstring>
+        <name>Load</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.hpp" line="53" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.cpp" bodystart="46" bodyend="76"/>
+      </memberdef>
+      <memberdef kind="function" id="class_voxel_chunk_1a372ae75b1f2dd490c18071bef1aa3f16" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void VoxelChunk::Render</definition>
+        <argsstring>(void)</argsstring>
+        <name>Render</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.hpp" line="55" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.cpp" bodystart="78" bodyend="97"/>
+      </memberdef>
+      <memberdef kind="function" id="class_voxel_chunk_1aef1ccd91f5ab18e65143f77df5df7eca" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void VoxelChunk::Unload</definition>
+        <argsstring>(void)</argsstring>
+        <name>Unload</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.hpp" line="57" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.cpp" bodystart="99" bodyend="104"/>
+      </memberdef>
+      <memberdef kind="function" id="class_voxel_chunk_1a8877ae9b2f6568554a72d250e4469580" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>glm::mat4 &amp;</type>
+        <definition>glm::mat4 &amp; VoxelChunk::GetTransform</definition>
+        <argsstring>(void)</argsstring>
+        <name>GetTransform</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.hpp" line="59" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.cpp" bodystart="106" bodyend="109"/>
+      </memberdef>
+      <memberdef kind="function" id="class_voxel_chunk_1a1098cdb8dd33cd3e6659c0b38d2c6f83" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 VoxelChunk::Pos</definition>
+        <argsstring>(void)</argsstring>
+        <name>Pos</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.hpp" line="61" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.cpp" bodystart="111" bodyend="114"/>
+      </memberdef>
+      <memberdef kind="function" id="class_voxel_chunk_1a868cb8521f6c536a3ccc368dee98eeb3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void VoxelChunk::print</definition>
+        <argsstring>(void)</argsstring>
+        <name>print</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.hpp" line="63" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.cpp" bodystart="409" bodyend="419"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.hpp" line="7" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxelChunk.hpp" bodystart="6" bodyend="64"/>
+    <listofallmembers>
+      <member refid="class_voxel_chunk_1abe6513b686fc5f44ab659e2af04afbab" prot="private" virt="non-virtual"><scope>VoxelChunk</scope><name>_array</name></member>
+      <member refid="class_voxel_chunk_1a386688ab6490669378a4a1ca85f6d943" prot="private" virt="non-virtual"><scope>VoxelChunk</scope><name>_colorBufferID</name></member>
+      <member refid="class_voxel_chunk_1a131230d511a94e8f8d4eb314430c0a43" prot="private" virt="non-virtual"><scope>VoxelChunk</scope><name>_colors</name></member>
+      <member refid="class_voxel_chunk_1adf9085e1d0d9905439ba173a4b559447" prot="private" virt="non-virtual"><scope>VoxelChunk</scope><name>_normalBufferID</name></member>
+      <member refid="class_voxel_chunk_1a75012074e4eea12598c9c53b61b2f84e" prot="private" virt="non-virtual"><scope>VoxelChunk</scope><name>_normals</name></member>
+      <member refid="class_voxel_chunk_1a66a56593c3abe25fcf9adfaa2f9002bb" prot="private" virt="non-virtual"><scope>VoxelChunk</scope><name>_pos</name></member>
+      <member refid="class_voxel_chunk_1ad6e356da400237a87c64d2bbfcb23d55" prot="private" virt="non-virtual"><scope>VoxelChunk</scope><name>_transform</name></member>
+      <member refid="class_voxel_chunk_1ae236781a930163ad922e87d902277cd5" prot="private" virt="non-virtual"><scope>VoxelChunk</scope><name>_triangleBufferID</name></member>
+      <member refid="class_voxel_chunk_1ae0f8039dddb9ae5de7ddf6a179735a0a" prot="private" virt="non-virtual"><scope>VoxelChunk</scope><name>_triangles</name></member>
+      <member refid="class_voxel_chunk_1a0470b4eec0f7cfb3fa5c4671f0e61c09" prot="public" virt="non-virtual"><scope>VoxelChunk</scope><name>ApplyMatrix</name></member>
+      <member refid="class_voxel_chunk_1a3ca135a1335a1f14f4a4174423739c59" prot="private" virt="non-virtual"><scope>VoxelChunk</scope><name>back</name></member>
+      <member refid="class_voxel_chunk_1ad58909b2da4634bfe4ee2d687d744c7e" prot="private" virt="non-virtual"><scope>VoxelChunk</scope><name>bot</name></member>
+      <member refid="class_voxel_chunk_1ac2ac171065916089250d4762ce2e6a33" prot="private" virt="non-virtual"><scope>VoxelChunk</scope><name>front</name></member>
+      <member refid="class_voxel_chunk_1a8877ae9b2f6568554a72d250e4469580" prot="public" virt="non-virtual"><scope>VoxelChunk</scope><name>GetTransform</name></member>
+      <member refid="class_voxel_chunk_1a9a8df3fbe41a6d639eafddd0be6273f9" prot="private" virt="non-virtual"><scope>VoxelChunk</scope><name>GetTriangleData</name></member>
+      <member refid="class_voxel_chunk_1ae1f0d9f3ad746cecd310c5b0ab55ad9a" prot="private" virt="non-virtual"><scope>VoxelChunk</scope><name>IsBlock</name></member>
+      <member refid="class_voxel_chunk_1a76c7fce55ad8679511086a855f449605" prot="public" virt="non-virtual"><scope>VoxelChunk</scope><name>Item</name></member>
+      <member refid="class_voxel_chunk_1a30402cd8a0bb144a119ddccd1664de7c" prot="public" virt="non-virtual"><scope>VoxelChunk</scope><name>Item</name></member>
+      <member refid="class_voxel_chunk_1afb2f8f76d6fd4dcd825a3ddba7220cc9" prot="private" virt="non-virtual"><scope>VoxelChunk</scope><name>left</name></member>
+      <member refid="class_voxel_chunk_1abab59b6ecbd0ea6ccd7be73695266015" prot="public" virt="non-virtual"><scope>VoxelChunk</scope><name>Load</name></member>
+      <member refid="class_voxel_chunk_1a74a19c4dd6d8ca2fa54676c6fac2e9ad" prot="private" virt="non-virtual"><scope>VoxelChunk</scope><name>OcclusionRecolor</name></member>
+      <member refid="class_voxel_chunk_1a1098cdb8dd33cd3e6659c0b38d2c6f83" prot="public" virt="non-virtual"><scope>VoxelChunk</scope><name>Pos</name></member>
+      <member refid="class_voxel_chunk_1a868cb8521f6c536a3ccc368dee98eeb3" prot="public" virt="non-virtual"><scope>VoxelChunk</scope><name>print</name></member>
+      <member refid="class_voxel_chunk_1a3eefa0533dbc891093e75cd048b72d37" prot="private" virt="non-virtual"><scope>VoxelChunk</scope><name>RemoveHiddenSides</name></member>
+      <member refid="class_voxel_chunk_1a372ae75b1f2dd490c18071bef1aa3f16" prot="public" virt="non-virtual"><scope>VoxelChunk</scope><name>Render</name></member>
+      <member refid="class_voxel_chunk_1ab0104d4fbbb94092bdf538da508e6915" prot="private" virt="non-virtual"><scope>VoxelChunk</scope><name>right</name></member>
+      <member refid="class_voxel_chunk_1a9144bc3f02fcd6b37f301e1516055a01" prot="private" virt="non-virtual"><scope>VoxelChunk</scope><name>ShadeColor</name></member>
+      <member refid="class_voxel_chunk_1a6c76280835611a4fe022bf0c89063d27" prot="private" virt="non-virtual"><scope>VoxelChunk</scope><name>size</name></member>
+      <member refid="class_voxel_chunk_1aa5a2b9258bbfa0d8a26b78fdfff573f1" prot="private" virt="non-virtual"><scope>VoxelChunk</scope><name>top</name></member>
+      <member refid="class_voxel_chunk_1aef1ccd91f5ab18e65143f77df5df7eca" prot="public" virt="non-virtual"><scope>VoxelChunk</scope><name>Unload</name></member>
+      <member refid="class_voxel_chunk_1a1e5021d1d2aa994d3dabc917e4a02cee" prot="public" virt="non-virtual"><scope>VoxelChunk</scope><name>UseMatrix</name></member>
+      <member refid="class_voxel_chunk_1a1789ea58b287d5aa6a2d29332b09da58" prot="public" virt="non-virtual"><scope>VoxelChunk</scope><name>VoxelChunk</name></member>
+      <member refid="class_voxel_chunk_1abf3417de54cf2c81ae5243963cc5e122" prot="public" virt="non-virtual"><scope>VoxelChunk</scope><name>VoxelChunk</name></member>
+      <member refid="class_voxel_chunk_1ae9f2900e0ca8cecd54ccc944d916f3a9" prot="public" virt="non-virtual"><scope>VoxelChunk</scope><name>VoxelChunk</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="dir_1554254096ccff2f5160e82a2d498362" kind="dir">
+    <compoundname>m.css/doxygen/test/search</compoundname>
+    <innerdir refid="dir_8712f0ce2be3f0c4b4d575b866c8e7d4">m.css/doxygen/test/search/DeprecatedDir</innerdir>
+    <innerdir refid="dir_3d53e94ffa742c6ae082d622c0b64a48">m.css/doxygen/test/search/Dir</innerdir>
+    <innerdir refid="dir_8a33aeebe653c88de4fe4a76734df9d2">m.css/doxygen/test/search/UndocumentedDir</innerdir>
+    <innerfile refid="example_8cpp">example.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="m.css/doxygen/test/search/"/>
+  </compounddef>
+</doxygen>

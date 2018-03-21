@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="namespace_magnum" kind="namespace" language="C++">
+    <compoundname>Magnum</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespace_magnum_1a7f3d59790996b9f86ca6d4adc63549e2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>constexpr bool MAGNUM_EXPORT</type>
+        <definition>constexpr bool MAGNUM_EXPORT Magnum::hasCoolThings</definition>
+        <argsstring>()</argsstring>
+        <name>hasCoolThings</name>
+        <briefdescription>
+<para>Always returns <computeroutput>true</computeroutput> </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_warnings/File.h" line="11" column="1" bodyfile="m.css/doxygen/test/compound_warnings/File.h" bodystart="11" bodyend="11"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Root namespace. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="m.css/doxygen/test/compound_warnings/File.h" line="8" column="1"/>
+  </compounddef>
+</doxygen>

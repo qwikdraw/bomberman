@@ -1,0 +1,259 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="class_obj_file_array_extractor" kind="class" language="C++" prot="public">
+    <compoundname>ObjFileArrayExtractor</compoundname>
+    <innerclass refid="struct_obj_file_array_extractor_1_1_point" prot="private">ObjFileArrayExtractor::Point</innerclass>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_obj_file_array_extractor_1a90ee9b62d89c1b4d6f2b97e57a0d118a" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; float &gt;</type>
+        <definition>std::vector&lt;float&gt; ObjFileArrayExtractor::_vertices</definition>
+        <argsstring></argsstring>
+        <name>_vertices</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/LowLevelDraw/ObjFileArrayExtractor.class.hpp" line="21" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/LowLevelDraw/ObjFileArrayExtractor.class.hpp" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_obj_file_array_extractor_1a4528c783c52003ce0d9b09a5f2b43ebe" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; float &gt;</type>
+        <definition>std::vector&lt;float&gt; ObjFileArrayExtractor::_normals</definition>
+        <argsstring></argsstring>
+        <name>_normals</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/LowLevelDraw/ObjFileArrayExtractor.class.hpp" line="22" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/LowLevelDraw/ObjFileArrayExtractor.class.hpp" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_obj_file_array_extractor_1a6aa262bed6050c2392b99414c9f8c3a4" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; float &gt;</type>
+        <definition>std::vector&lt;float&gt; ObjFileArrayExtractor::_uvMap</definition>
+        <argsstring></argsstring>
+        <name>_uvMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/LowLevelDraw/ObjFileArrayExtractor.class.hpp" line="23" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/LowLevelDraw/ObjFileArrayExtractor.class.hpp" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_obj_file_array_extractor_1aae75f1405d7d28fe25acef3f5b238515" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; Point &gt;</type>
+        <definition>std::vector&lt;Point&gt; ObjFileArrayExtractor::_faces</definition>
+        <argsstring></argsstring>
+        <name>_faces</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/LowLevelDraw/ObjFileArrayExtractor.class.hpp" line="24" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/LowLevelDraw/ObjFileArrayExtractor.class.hpp" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_obj_file_array_extractor_1aa496c2b4802c847dad243d1a933d2c60" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; float &gt;</type>
+        <definition>std::vector&lt;float&gt; ObjFileArrayExtractor::_verticesOut</definition>
+        <argsstring></argsstring>
+        <name>_verticesOut</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/LowLevelDraw/ObjFileArrayExtractor.class.hpp" line="26" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/LowLevelDraw/ObjFileArrayExtractor.class.hpp" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_obj_file_array_extractor_1ab1415067aabcc425fdf6fe3666756fd0" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; float &gt;</type>
+        <definition>std::vector&lt;float&gt; ObjFileArrayExtractor::_normalsOut</definition>
+        <argsstring></argsstring>
+        <name>_normalsOut</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/LowLevelDraw/ObjFileArrayExtractor.class.hpp" line="27" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/LowLevelDraw/ObjFileArrayExtractor.class.hpp" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_obj_file_array_extractor_1abab2ba6ac00dfaeb6981fbaaa1a32822" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; float &gt;</type>
+        <definition>std::vector&lt;float&gt; ObjFileArrayExtractor::_uvMapOut</definition>
+        <argsstring></argsstring>
+        <name>_uvMapOut</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/LowLevelDraw/ObjFileArrayExtractor.class.hpp" line="28" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/LowLevelDraw/ObjFileArrayExtractor.class.hpp" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_obj_file_array_extractor_1ae9f2205490fb5c3ae0331e372d78f0da" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ObjFileArrayExtractor::Parse_v</definition>
+        <argsstring>(std::stringstream &amp;)</argsstring>
+        <name>Parse_v</name>
+        <param>
+          <type>std::stringstream &amp;</type>
+          <defname>ss</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/LowLevelDraw/ObjFileArrayExtractor.class.hpp" line="30" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/LowLevelDraw/ObjFileArrayExtractor.class.cpp" bodystart="4" bodyend="21"/>
+      </memberdef>
+      <memberdef kind="function" id="class_obj_file_array_extractor_1a08eb9df343b983fac9f7bf83d5bc4422" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ObjFileArrayExtractor::Parse_vn</definition>
+        <argsstring>(std::stringstream &amp;)</argsstring>
+        <name>Parse_vn</name>
+        <param>
+          <type>std::stringstream &amp;</type>
+          <defname>ss</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/LowLevelDraw/ObjFileArrayExtractor.class.hpp" line="31" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/LowLevelDraw/ObjFileArrayExtractor.class.cpp" bodystart="23" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="class_obj_file_array_extractor_1a85e132e396da42b632214abe482454e1" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ObjFileArrayExtractor::Parse_vt</definition>
+        <argsstring>(std::stringstream &amp;)</argsstring>
+        <name>Parse_vt</name>
+        <param>
+          <type>std::stringstream &amp;</type>
+          <defname>ss</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/LowLevelDraw/ObjFileArrayExtractor.class.hpp" line="32" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/LowLevelDraw/ObjFileArrayExtractor.class.cpp" bodystart="42" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="function" id="class_obj_file_array_extractor_1a0f39e8ebbd39643310b56aa4d11550e6" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ObjFileArrayExtractor::Parse_f</definition>
+        <argsstring>(std::stringstream &amp;)</argsstring>
+        <name>Parse_f</name>
+        <param>
+          <type>std::stringstream &amp;</type>
+          <defname>ss</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/LowLevelDraw/ObjFileArrayExtractor.class.hpp" line="33" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/LowLevelDraw/ObjFileArrayExtractor.class.cpp" bodystart="57" bodyend="75"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_obj_file_array_extractor_1aa6a7f6585022859104ba0ff098d3f7eb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>ObjFileArrayExtractor::ObjFileArrayExtractor</definition>
+        <argsstring>(std::string filename)</argsstring>
+        <name>ObjFileArrayExtractor</name>
+        <param>
+          <type>std::string</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/LowLevelDraw/ObjFileArrayExtractor.class.hpp" line="37" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/LowLevelDraw/ObjFileArrayExtractor.class.cpp" bodystart="77" bodyend="120"/>
+      </memberdef>
+      <memberdef kind="function" id="class_obj_file_array_extractor_1adaae8cc9ae43b49046f0e46959e14103" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; float &gt; &amp;</type>
+        <definition>std::vector&lt; float &gt; &amp; ObjFileArrayExtractor::GetVertices</definition>
+        <argsstring>(void)</argsstring>
+        <name>GetVertices</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/LowLevelDraw/ObjFileArrayExtractor.class.hpp" line="39" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/LowLevelDraw/ObjFileArrayExtractor.class.cpp" bodystart="122" bodyend="125"/>
+      </memberdef>
+      <memberdef kind="function" id="class_obj_file_array_extractor_1ad37277620b44f5e033393dc7386321aa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; float &gt; &amp;</type>
+        <definition>std::vector&lt; float &gt; &amp; ObjFileArrayExtractor::GetNormals</definition>
+        <argsstring>(void)</argsstring>
+        <name>GetNormals</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/LowLevelDraw/ObjFileArrayExtractor.class.hpp" line="40" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/LowLevelDraw/ObjFileArrayExtractor.class.cpp" bodystart="127" bodyend="130"/>
+      </memberdef>
+      <memberdef kind="function" id="class_obj_file_array_extractor_1acf626e097ad309d612be93a0c5b7795e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; float &gt; &amp;</type>
+        <definition>std::vector&lt; float &gt; &amp; ObjFileArrayExtractor::GetUVMap</definition>
+        <argsstring>(void)</argsstring>
+        <name>GetUVMap</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/LowLevelDraw/ObjFileArrayExtractor.class.hpp" line="41" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/LowLevelDraw/ObjFileArrayExtractor.class.cpp" bodystart="132" bodyend="135"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/nfs/2017/t/twalton/bomberman/github/LowLevelDraw/ObjFileArrayExtractor.class.hpp" line="10" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/LowLevelDraw/ObjFileArrayExtractor.class.hpp" bodystart="9" bodyend="42"/>
+    <listofallmembers>
+      <member refid="class_obj_file_array_extractor_1aae75f1405d7d28fe25acef3f5b238515" prot="private" virt="non-virtual"><scope>ObjFileArrayExtractor</scope><name>_faces</name></member>
+      <member refid="class_obj_file_array_extractor_1a4528c783c52003ce0d9b09a5f2b43ebe" prot="private" virt="non-virtual"><scope>ObjFileArrayExtractor</scope><name>_normals</name></member>
+      <member refid="class_obj_file_array_extractor_1ab1415067aabcc425fdf6fe3666756fd0" prot="private" virt="non-virtual"><scope>ObjFileArrayExtractor</scope><name>_normalsOut</name></member>
+      <member refid="class_obj_file_array_extractor_1a6aa262bed6050c2392b99414c9f8c3a4" prot="private" virt="non-virtual"><scope>ObjFileArrayExtractor</scope><name>_uvMap</name></member>
+      <member refid="class_obj_file_array_extractor_1abab2ba6ac00dfaeb6981fbaaa1a32822" prot="private" virt="non-virtual"><scope>ObjFileArrayExtractor</scope><name>_uvMapOut</name></member>
+      <member refid="class_obj_file_array_extractor_1a90ee9b62d89c1b4d6f2b97e57a0d118a" prot="private" virt="non-virtual"><scope>ObjFileArrayExtractor</scope><name>_vertices</name></member>
+      <member refid="class_obj_file_array_extractor_1aa496c2b4802c847dad243d1a933d2c60" prot="private" virt="non-virtual"><scope>ObjFileArrayExtractor</scope><name>_verticesOut</name></member>
+      <member refid="class_obj_file_array_extractor_1ad37277620b44f5e033393dc7386321aa" prot="public" virt="non-virtual"><scope>ObjFileArrayExtractor</scope><name>GetNormals</name></member>
+      <member refid="class_obj_file_array_extractor_1acf626e097ad309d612be93a0c5b7795e" prot="public" virt="non-virtual"><scope>ObjFileArrayExtractor</scope><name>GetUVMap</name></member>
+      <member refid="class_obj_file_array_extractor_1adaae8cc9ae43b49046f0e46959e14103" prot="public" virt="non-virtual"><scope>ObjFileArrayExtractor</scope><name>GetVertices</name></member>
+      <member refid="class_obj_file_array_extractor_1aa6a7f6585022859104ba0ff098d3f7eb" prot="public" virt="non-virtual"><scope>ObjFileArrayExtractor</scope><name>ObjFileArrayExtractor</name></member>
+      <member refid="class_obj_file_array_extractor_1a0f39e8ebbd39643310b56aa4d11550e6" prot="private" virt="non-virtual"><scope>ObjFileArrayExtractor</scope><name>Parse_f</name></member>
+      <member refid="class_obj_file_array_extractor_1ae9f2205490fb5c3ae0331e372d78f0da" prot="private" virt="non-virtual"><scope>ObjFileArrayExtractor</scope><name>Parse_v</name></member>
+      <member refid="class_obj_file_array_extractor_1a08eb9df343b983fac9f7bf83d5bc4422" prot="private" virt="non-virtual"><scope>ObjFileArrayExtractor</scope><name>Parse_vn</name></member>
+      <member refid="class_obj_file_array_extractor_1a85e132e396da42b632214abe482454e1" prot="private" virt="non-virtual"><scope>ObjFileArrayExtractor</scope><name>Parse_vt</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

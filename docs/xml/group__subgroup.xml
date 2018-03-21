@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="group__subgroup" kind="group">
+    <compoundname>subgroup</compoundname>
+    <title>A subgroup</title>
+    <briefdescription>
+<para>Subgroup brief description. </para>    </briefdescription>
+    <detaileddescription>
+<sect1 id="group__subgroup_1subgroup-description">
+<title>Description</title>
+<para>Subgroup description. There are <bold>no members</bold>, so there should be also no Reference section in the TOC. </para></sect1>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

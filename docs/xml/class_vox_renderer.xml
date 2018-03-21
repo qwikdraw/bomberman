@@ -1,0 +1,192 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="class_vox_renderer" kind="class" language="C++" prot="public">
+    <compoundname>VoxRenderer</compoundname>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="class_vox_renderer_1a5edcec698b5b28acb097c99d8f38448d" prot="private" static="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int VoxRenderer::size</definition>
+        <argsstring></argsstring>
+        <name>size</name>
+        <initializer>= 1000</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxRenderer.hpp" line="10" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxRenderer.hpp" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_vox_renderer_1ac0b0f935df54f6a2281e0bcac84f4dc5" prot="private" static="no" mutable="no">
+        <type><ref refid="class_shading_program" kindref="compound">ShadingProgram</ref> *</type>
+        <definition>ShadingProgram* VoxRenderer::_program</definition>
+        <argsstring></argsstring>
+        <name>_program</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxRenderer.hpp" line="12" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxRenderer.hpp" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_vox_renderer_1a17ee576cd7e8aea0fd651c8a4d51da1f" prot="private" static="no" mutable="no">
+        <type>GLuint</type>
+        <definition>GLuint VoxRenderer::_perspectiveID</definition>
+        <argsstring></argsstring>
+        <name>_perspectiveID</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxRenderer.hpp" line="13" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxRenderer.hpp" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_vox_renderer_1a5a4c02a8e220300b4371622dcc641347" prot="private" static="no" mutable="no">
+        <type>GLuint</type>
+        <definition>GLuint VoxRenderer::_transformID</definition>
+        <argsstring></argsstring>
+        <name>_transformID</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxRenderer.hpp" line="14" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxRenderer.hpp" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_vox_renderer_1a1e5122f3a70220314ea2ae0c7304f318" prot="private" static="no" mutable="no">
+        <type>glm::mat4</type>
+        <definition>glm::mat4 VoxRenderer::_perspective</definition>
+        <argsstring></argsstring>
+        <name>_perspective</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxRenderer.hpp" line="15" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxRenderer.hpp" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_vox_renderer_1a8c23902ae950daa83c1509869442e46f" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="class_vox_object" kindref="compound">VoxObject</ref> * &gt;</type>
+        <definition>std::vector&lt;VoxObject*&gt; VoxRenderer::_objects</definition>
+        <argsstring></argsstring>
+        <name>_objects</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxRenderer.hpp" line="16" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxRenderer.hpp" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_vox_renderer_1a83e009a77af77509dddf1068d9e8ea03" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>VoxRenderer::VoxRenderer</definition>
+        <argsstring>(void)</argsstring>
+        <name>VoxRenderer</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxRenderer.hpp" line="20" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxRenderer.cpp" bodystart="4" bodyend="11"/>
+      </memberdef>
+      <memberdef kind="function" id="class_vox_renderer_1aef88a3bfa4e8cb15ad64fb2bd476fbbb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void VoxRenderer::AttachObject</definition>
+        <argsstring>(VoxObject *object)</argsstring>
+        <name>AttachObject</name>
+        <param>
+          <type><ref refid="class_vox_object" kindref="compound">VoxObject</ref> *</type>
+          <declname>object</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxRenderer.hpp" line="22" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxRenderer.cpp" bodystart="13" bodyend="17"/>
+      </memberdef>
+      <memberdef kind="function" id="class_vox_renderer_1ac69e0d589687bd0e53c590acc5c395c7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void VoxRenderer::DetachObject</definition>
+        <argsstring>(VoxObject *object)</argsstring>
+        <name>DetachObject</name>
+        <param>
+          <type><ref refid="class_vox_object" kindref="compound">VoxObject</ref> *</type>
+          <declname>object</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxRenderer.hpp" line="23" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxRenderer.cpp" bodystart="19" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="class_vox_renderer_1a03eae0e5ebfcab26b0a4c9d663df89e6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void VoxRenderer::Render</definition>
+        <argsstring>(void)</argsstring>
+        <name>Render</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxRenderer.hpp" line="24" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxRenderer.cpp" bodystart="31" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="function" id="class_vox_renderer_1a50c688ae8c99da08e50efa3eee7f2aec" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void VoxRenderer::NewPerspective</definition>
+        <argsstring>(glm::mat4)</argsstring>
+        <name>NewPerspective</name>
+        <param>
+          <type>glm::mat4</type>
+          <defname>m</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxRenderer.hpp" line="25" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxRenderer.cpp" bodystart="45" bodyend="54"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxRenderer.hpp" line="7" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/VoxRenderer.hpp" bodystart="6" bodyend="26"/>
+    <listofallmembers>
+      <member refid="class_vox_renderer_1a8c23902ae950daa83c1509869442e46f" prot="private" virt="non-virtual"><scope>VoxRenderer</scope><name>_objects</name></member>
+      <member refid="class_vox_renderer_1a1e5122f3a70220314ea2ae0c7304f318" prot="private" virt="non-virtual"><scope>VoxRenderer</scope><name>_perspective</name></member>
+      <member refid="class_vox_renderer_1a17ee576cd7e8aea0fd651c8a4d51da1f" prot="private" virt="non-virtual"><scope>VoxRenderer</scope><name>_perspectiveID</name></member>
+      <member refid="class_vox_renderer_1ac0b0f935df54f6a2281e0bcac84f4dc5" prot="private" virt="non-virtual"><scope>VoxRenderer</scope><name>_program</name></member>
+      <member refid="class_vox_renderer_1a5a4c02a8e220300b4371622dcc641347" prot="private" virt="non-virtual"><scope>VoxRenderer</scope><name>_transformID</name></member>
+      <member refid="class_vox_renderer_1aef88a3bfa4e8cb15ad64fb2bd476fbbb" prot="public" virt="non-virtual"><scope>VoxRenderer</scope><name>AttachObject</name></member>
+      <member refid="class_vox_renderer_1ac69e0d589687bd0e53c590acc5c395c7" prot="public" virt="non-virtual"><scope>VoxRenderer</scope><name>DetachObject</name></member>
+      <member refid="class_vox_renderer_1a50c688ae8c99da08e50efa3eee7f2aec" prot="public" virt="non-virtual"><scope>VoxRenderer</scope><name>NewPerspective</name></member>
+      <member refid="class_vox_renderer_1a03eae0e5ebfcab26b0a4c9d663df89e6" prot="public" virt="non-virtual"><scope>VoxRenderer</scope><name>Render</name></member>
+      <member refid="class_vox_renderer_1a5edcec698b5b28acb097c99d8f38448d" prot="private" virt="non-virtual"><scope>VoxRenderer</scope><name>size</name></member>
+      <member refid="class_vox_renderer_1a83e009a77af77509dddf1068d9e8ea03" prot="public" virt="non-virtual"><scope>VoxRenderer</scope><name>VoxRenderer</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

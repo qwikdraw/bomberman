@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="_class_8h" kind="file" language="C++">
+    <compoundname>Class.h</compoundname>
+    <innerclass refid="class_root_1_1_directory_1_1_sub_1_1_class" prot="public">Root::Directory::Sub::Class</innerclass>
+    <innerclass refid="struct_root_1_1_directory_1_1_sub_1_1_class_1_1_foo" prot="public">Root::Directory::Sub::Class::Foo</innerclass>
+    <innerclass refid="union_root_1_1_directory_1_1_sub_1_1_class_1_1_bar" prot="protected">Root::Directory::Sub::Class::Bar</innerclass>
+    <innerclass refid="class_root_1_1_directory_1_1_sub_1_1_class_1_1_private" prot="private">Root::Directory::Sub::Class::Private</innerclass>
+    <innernamespace refid="namespace_root">Root</innernamespace>
+    <innernamespace refid="namespace_root_1_1_directory">Root::Directory</innernamespace>
+    <innernamespace refid="namespace_root_1_1_directory_1_1_sub">Root::Directory::Sub</innernamespace>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="_class_8h_1af370f27ec90a92ed7656537eacb476e9" prot="public" static="no">
+        <name>A_MACRO</name>
+        <param><defname>foo</defname></param>
+        <initializer><ref refid="group__group2_1ga49a4b11e50430aa0a78de989ea99e082" kindref="member">bar</ref></initializer>
+        <briefdescription>
+<para><ref refid="class_a" kindref="compound">A</ref> macro. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_listing/Directory/Sub/Class.h" line="158" column="9" bodyfile="m.css/doxygen/test/compound_listing/Directory/Sub/Class.h" bodystart="158" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>File in a subdirectory. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="m.css/doxygen/test/compound_listing/Directory/Sub/Class.h"/>
+  </compounddef>
+</doxygen>

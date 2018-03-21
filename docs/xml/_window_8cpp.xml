@@ -1,0 +1,145 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="_window_8cpp" kind="file" language="C++">
+    <compoundname>Window.cpp</compoundname>
+    <includes refid="vox_g_l_8hpp" local="yes">voxGL.hpp</includes>
+    <incdepgraph>
+      <node id="891">
+        <label>Time.hpp</label>
+        <link refid="_time_8hpp_source"/>
+        <childnode refid="877" relation="include">
+        </childnode>
+      </node>
+      <node id="876">
+        <label>/nfs/2017/t/twalton/bomberman/github/voxGL/Window.cpp</label>
+        <link refid="_window_8cpp"/>
+        <childnode refid="877" relation="include">
+        </childnode>
+      </node>
+      <node id="894">
+        <label>VoxelChunk.hpp</label>
+        <link refid="_voxel_chunk_8hpp_source"/>
+        <childnode refid="877" relation="include">
+        </childnode>
+      </node>
+      <node id="879">
+        <label>string</label>
+      </node>
+      <node id="878">
+        <label>GLFW/glfw3.h</label>
+      </node>
+      <node id="877">
+        <label>voxGL.hpp</label>
+        <link refid="vox_g_l_8hpp_source"/>
+        <childnode refid="878" relation="include">
+        </childnode>
+        <childnode refid="879" relation="include">
+        </childnode>
+        <childnode refid="880" relation="include">
+        </childnode>
+        <childnode refid="881" relation="include">
+        </childnode>
+        <childnode refid="882" relation="include">
+        </childnode>
+        <childnode refid="883" relation="include">
+        </childnode>
+        <childnode refid="884" relation="include">
+        </childnode>
+        <childnode refid="885" relation="include">
+        </childnode>
+        <childnode refid="886" relation="include">
+        </childnode>
+        <childnode refid="887" relation="include">
+        </childnode>
+        <childnode refid="888" relation="include">
+        </childnode>
+        <childnode refid="889" relation="include">
+        </childnode>
+        <childnode refid="890" relation="include">
+        </childnode>
+        <childnode refid="891" relation="include">
+        </childnode>
+        <childnode refid="892" relation="include">
+        </childnode>
+        <childnode refid="893" relation="include">
+        </childnode>
+        <childnode refid="894" relation="include">
+        </childnode>
+        <childnode refid="895" relation="include">
+        </childnode>
+        <childnode refid="896" relation="include">
+        </childnode>
+        <childnode refid="897" relation="include">
+        </childnode>
+      </node>
+      <node id="884">
+        <label>regex</label>
+      </node>
+      <node id="881">
+        <label>fstream</label>
+      </node>
+      <node id="896">
+        <label>VoxRenderer.hpp</label>
+        <link refid="_vox_renderer_8hpp_source"/>
+        <childnode refid="877" relation="include">
+        </childnode>
+      </node>
+      <node id="883">
+        <label>vector</label>
+      </node>
+      <node id="889">
+        <label>glm/ext.hpp</label>
+      </node>
+      <node id="886">
+        <label>array</label>
+      </node>
+      <node id="880">
+        <label>sstream</label>
+      </node>
+      <node id="893">
+        <label>ShadingProgram.hpp</label>
+        <link refid="_shading_program_8hpp_source"/>
+        <childnode refid="877" relation="include">
+        </childnode>
+      </node>
+      <node id="895">
+        <label>VoxObject.hpp</label>
+        <link refid="_vox_object_8hpp_source"/>
+        <childnode refid="877" relation="include">
+        </childnode>
+      </node>
+      <node id="882">
+        <label>iostream</label>
+      </node>
+      <node id="888">
+        <label>glm/gtc/matrix_transform.hpp</label>
+      </node>
+      <node id="897">
+        <label>Camera.hpp</label>
+        <link refid="_camera_8hpp_source"/>
+        <childnode refid="877" relation="include">
+        </childnode>
+      </node>
+      <node id="890">
+        <label>chrono</label>
+      </node>
+      <node id="892">
+        <label>Window.hpp</label>
+        <link refid="_window_8hpp_source"/>
+        <childnode refid="877" relation="include">
+        </childnode>
+      </node>
+      <node id="885">
+        <label>algorithm</label>
+      </node>
+      <node id="887">
+        <label>glm/glm.hpp</label>
+      </node>
+    </incdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/Window.cpp"/>
+  </compounddef>
+</doxygen>

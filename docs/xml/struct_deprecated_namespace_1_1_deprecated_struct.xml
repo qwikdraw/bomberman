@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="struct_deprecated_namespace_1_1_deprecated_struct" kind="struct" language="C++" prot="public">
+    <compoundname>DeprecatedNamespace::DeprecatedStruct</compoundname>
+    <includes refid="compound__deprecated_2_dir_2_deprecated_file_8h" local="no">DeprecatedFile.h</includes>
+    <briefdescription>
+<para><ref refid="class_a" kindref="compound">A</ref> struct. </para>    </briefdescription>
+    <detaileddescription>
+<para><xrefsect id="deprecated_1_deprecated000012"><xreftitle>Deprecated</xreftitle><xrefdescription><para>This struct is deprecated. </para></xrefdescription></xrefsect></para><para><xrefsect id="deprecated_1_deprecated000026"><xreftitle>Deprecated</xreftitle><xrefdescription><para>This struct is deprecated. </para></xrefdescription></xrefsect></para>    </detaileddescription>
+    <location file="m.css/doxygen/test/compound_deprecated/Dir/DeprecatedFile.h" line="83" column="1" bodyfile="m.css/doxygen/test/compound_deprecated/Dir/DeprecatedFile.h" bodystart="83" bodyend="83"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

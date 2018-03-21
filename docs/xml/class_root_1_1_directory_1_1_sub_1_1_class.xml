@@ -1,0 +1,549 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="class_root_1_1_directory_1_1_sub_1_1_class" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>Root::Directory::Sub::Class</compoundname>
+    <includes refid="_class_8h" local="no">Class.h</includes>
+    <innerclass refid="union_root_1_1_directory_1_1_sub_1_1_class_1_1_bar" prot="protected">Root::Directory::Sub::Class::Bar</innerclass>
+    <innerclass refid="struct_root_1_1_directory_1_1_sub_1_1_class_1_1_foo" prot="public">Root::Directory::Sub::Class::Foo</innerclass>
+    <innerclass refid="class_root_1_1_directory_1_1_sub_1_1_class_1_1_private" prot="private">Root::Directory::Sub::Class::Private</innerclass>
+      <sectiondef kind="user-defined">
+      <header>Group with only undocumented functions should not appear in the docs</header>
+      <memberdef kind="function" id="class_root_1_1_directory_1_1_sub_1_1_class_1a5c7a5fa4d1c4ee56508cc40c4fe5cd7a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Root::Directory::Sub::Class::undocumented</definition>
+        <argsstring>()</argsstring>
+        <name>undocumented</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_listing/Directory/Sub/Class.h" line="57" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <memberdef kind="variable" id="class_root_1_1_directory_1_1_sub_1_1_class_1ad8074ad0d980d9d198b7165e55a5eec7" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Root::Directory::Sub::Class::member</definition>
+        <argsstring></argsstring>
+        <name>member</name>
+        <briefdescription>
+<para><ref refid="class_a" kindref="compound">A</ref> member that gets ignored because the group has no name. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_listing/Directory/Sub/Class.h" line="91" column="1" bodyfile="m.css/doxygen/test/compound_listing/Directory/Sub/Class.h" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Group full of non-public stuff which should be marked as such</header>
+      <memberdef kind="enum" id="class_root_1_1_directory_1_1_sub_1_1_class_1a82511584183fc6aa5505e0e4ce811580" prot="protected" static="no" strong="no">
+        <type></type>
+        <name>Flag</name>
+        <briefdescription>
+<para>Protected flag in a group. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_listing/Directory/Sub/Class.h" line="98" column="1" bodyfile="m.css/doxygen/test/compound_listing/Directory/Sub/Class.h" bodystart="98" bodyend="98"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_root_1_1_directory_1_1_sub_1_1_class_1a4a7ac6e39fedaf79a0ceb0f8d2a3cb64" prot="protected" static="no">
+        <type>void</type>
+        <definition>using Root::Directory::Sub::Class::Main =  void</definition>
+        <argsstring></argsstring>
+        <name>Main</name>
+        <briefdescription>
+<para>Protected alias in a group. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_listing/Directory/Sub/Class.h" line="101" column="1" bodyfile="m.css/doxygen/test/compound_listing/Directory/Sub/Class.h" bodystart="101" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_root_1_1_directory_1_1_sub_1_1_class_1a347f08e1aec78ec16125bac4c2577962" prot="protected" static="no" mutable="no">
+        <type>void *</type>
+        <definition>void* Root::Directory::Sub::Class::variable</definition>
+        <argsstring></argsstring>
+        <name>variable</name>
+        <briefdescription>
+<para>Protected variable in a group. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_listing/Directory/Sub/Class.h" line="107" column="1" bodyfile="m.css/doxygen/test/compound_listing/Directory/Sub/Class.h" bodystart="107" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_root_1_1_directory_1_1_sub_1_1_class_1a829faa7cd38054a51a303027eaee3b31" prot="protected" static="no" const="yes" explicit="no" inline="no" refqual="lvalue" virt="non-virtual">
+        <type>void</type>
+        <definition>void Root::Directory::Sub::Class::foo</definition>
+        <argsstring>() const &amp;</argsstring>
+        <name>foo</name>
+        <briefdescription>
+<para>Protected function in a group. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_listing/Directory/Sub/Class.h" line="104" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_root_1_1_directory_1_1_sub_1_1_class_1af5c2ec17b691bd71f7445c9ee886b82e" prot="private" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>int</type>
+        <definition>virtual int Root::Directory::Sub::Class::doStuff</definition>
+        <argsstring>()=0</argsstring>
+        <name>doStuff</name>
+        <briefdescription>
+<para>Private virtual function in a group. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_listing/Directory/Sub/Class.h" line="111" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-type">
+      <memberdef kind="enum" id="class_root_1_1_directory_1_1_sub_1_1_class_1a5436ccacac4eb56e594b3c8f20a78a95" prot="public" static="no" strong="no">
+        <type></type>
+        <name>E</name>
+        <enumvalue id="class_root_1_1_directory_1_1_sub_1_1_class_1a5436ccacac4eb56e594b3c8f20a78a95ab40890227c995cba62c5ba928fa05797" prot="public">
+          <name>FooBar</name>
+          <initializer>= 3</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para><ref refid="class_a" kindref="compound">A</ref> enum value. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_listing/Directory/Sub/Class.h" line="32" column="1" bodyfile="m.css/doxygen/test/compound_listing/Directory/Sub/Class.h" bodystart="32" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_root_1_1_directory_1_1_sub_1_1_class_1af68c16757e5d0c83765cff3837952b8b" prot="public" static="no">
+        <type>void(*</type>
+        <definition>typedef void(* Root::Directory::Sub::Class::Deleter) (int, void *)</definition>
+        <argsstring>)(int, void *)</argsstring>
+        <name>Deleter</name>
+        <briefdescription>
+<para><ref refid="class_a" kindref="compound">A</ref> public typedef. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_listing/Directory/Sub/Class.h" line="29" column="1" bodyfile="m.css/doxygen/test/compound_listing/Directory/Sub/Class.h" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-type">
+      <memberdef kind="enum" id="class_root_1_1_directory_1_1_sub_1_1_class_1a0d7a4c92456263a36bd0819d9f26c996" prot="protected" static="no" strong="no">
+        <type></type>
+        <name>Boolean</name>
+        <enumvalue id="class_root_1_1_directory_1_1_sub_1_1_class_1a0d7a4c92456263a36bd0819d9f26c996ac8702eedbc992251f82e762161e1abf7" prot="protected">
+          <name>True</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_root_1_1_directory_1_1_sub_1_1_class_1a0d7a4c92456263a36bd0819d9f26c996ac3788e41d3959f1e2592b2789b2c2651" prot="protected">
+          <name>False</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_root_1_1_directory_1_1_sub_1_1_class_1a0d7a4c92456263a36bd0819d9f26c996a584feb009cffeb8f24c00613b65189dd" prot="protected">
+          <name>FileNotFound</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Protected enum. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_listing/Directory/Sub/Class.h" line="69" column="1" bodyfile="m.css/doxygen/test/compound_listing/Directory/Sub/Class.h" bodystart="69" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_root_1_1_directory_1_1_sub_1_1_class_1ad4571bbf02497aa3e998918dcee071fc" prot="protected" static="no">
+        <type>double</type>
+        <definition>using Root::Directory::Sub::Class::Type =  double</definition>
+        <argsstring></argsstring>
+        <name>Type</name>
+        <briefdescription>
+<para><ref refid="class_a" kindref="compound">A</ref> protected alias. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_listing/Directory/Sub/Class.h" line="66" column="1" bodyfile="m.css/doxygen/test/compound_listing/Directory/Sub/Class.h" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="related">
+      <memberdef kind="enum" id="class_root_1_1_directory_1_1_sub_1_1_class_1a8150b7776c2a1749101acf22e868d091" prot="public" static="no" strong="no">
+        <type></type>
+        <name>Enum</name>
+        <briefdescription>
+<para>An enum. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_listing/Directory/Sub/Class.h" line="131" column="1" bodyfile="m.css/doxygen/test/compound_listing/Directory/Sub/Class.h" bodystart="131" bodyend="131"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_root_1_1_directory_1_1_sub_1_1_class_1a7cc214a236ad3bb6ad435bdcf5262a3f" prot="public" static="no">
+        <type>int</type>
+        <definition>typedef int Int</definition>
+        <argsstring></argsstring>
+        <name>Int</name>
+        <briefdescription>
+<para><ref refid="class_a" kindref="compound">A</ref> typedef. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_listing/Directory/Sub/Class.h" line="136" column="1" bodyfile="m.css/doxygen/test/compound_listing/Directory/Sub/Class.h" bodystart="136" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_root_1_1_directory_1_1_sub_1_1_class_1a3ffd74e95952eacd75f04a2b85d61845" prot="public" static="no">
+        <type>float</type>
+        <definition>using Float =  float</definition>
+        <argsstring></argsstring>
+        <name>Float</name>
+        <briefdescription>
+<para>An using declaration. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_listing/Directory/Sub/Class.h" line="141" column="1" bodyfile="m.css/doxygen/test/compound_listing/Directory/Sub/Class.h" bodystart="141" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_root_1_1_directory_1_1_sub_1_1_class_1a7708bd7aaec399e771a2b30db52e4d22" prot="public" static="no" mutable="no">
+        <type>constexpr const int</type>
+        <definition>constexpr const int Var</definition>
+        <argsstring></argsstring>
+        <name>Var</name>
+        <initializer>= 3</initializer>
+        <briefdescription>
+<para><ref refid="class_a" kindref="compound">A</ref> variable. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_listing/Directory/Sub/Class.h" line="146" column="1" bodyfile="m.css/doxygen/test/compound_listing/Directory/Sub/Class.h" bodystart="146" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_root_1_1_directory_1_1_sub_1_1_class_1ac07863d69ae41a4e395b31f73b35fbcd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void foo</definition>
+        <argsstring>()</argsstring>
+        <name>foo</name>
+        <briefdescription>
+<para><ref refid="class_a" kindref="compound">A</ref> function. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_listing/Directory/Sub/Class.h" line="151" column="1"/>
+      </memberdef>
+      <memberdef kind="define" id="class_root_1_1_directory_1_1_sub_1_1_class_1ac93121ddaf1925d97ab2673f6151b062" prot="public" static="no">
+        <name>A_MACRO</name>
+        <param><defname>foo</defname></param>
+        <briefdescription>
+<para><ref refid="class_a" kindref="compound">A</ref> macro. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_listing/Directory/Sub/Class.h" line="159" column="1" bodyfile="m.css/doxygen/test/compound_listing/Directory/Sub/Class.h" bodystart="158" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="class_root_1_1_directory_1_1_sub_1_1_class_1a37f97d663491ff54fda7f9cfc3080006" prot="public" static="yes" mutable="no">
+        <type>constexpr int</type>
+        <definition>constexpr int Root::Directory::Sub::Class::Size</definition>
+        <argsstring></argsstring>
+        <name>Size</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+<para><ref refid="class_a" kindref="compound">A</ref> public static var. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_listing/Directory/Sub/Class.h" line="35" column="1" bodyfile="m.css/doxygen/test/compound_listing/Directory/Sub/Class.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_root_1_1_directory_1_1_sub_1_1_class_1ad877084846b47e5504224c72aa49d399" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string Root::Directory::Sub::Class::debug</definition>
+        <argsstring></argsstring>
+        <name>debug</name>
+        <briefdescription>
+<para><ref refid="class_a" kindref="compound">A</ref> public variable. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_listing/Directory/Sub/Class.h" line="53" column="1" bodyfile="m.css/doxygen/test/compound_listing/Directory/Sub/Class.h" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-static-attrib">
+      <memberdef kind="variable" id="class_root_1_1_directory_1_1_sub_1_1_class_1a74e37b7c91fdbbfb8b077f96ae5e6b2f" prot="protected" static="yes" mutable="no">
+        <type>bool</type>
+        <definition>bool Root::Directory::Sub::Class::False</definition>
+        <argsstring></argsstring>
+        <name>False</name>
+        <briefdescription>
+<para><ref refid="class_a" kindref="compound">A</ref> protected static var. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_listing/Directory/Sub/Class.h" line="74" column="1" bodyfile="m.css/doxygen/test/compound_listing/Directory/Sub/Class.h" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="class_root_1_1_directory_1_1_sub_1_1_class_1a7646ff8bc6f40c535eb3c281d969f8cd" prot="protected" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string Root::Directory::Sub::Class::logger</definition>
+        <argsstring></argsstring>
+        <name>logger</name>
+        <briefdescription>
+<para><ref refid="class_a" kindref="compound">A</ref> protected variable. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_listing/Directory/Sub/Class.h" line="86" column="1" bodyfile="m.css/doxygen/test/compound_listing/Directory/Sub/Class.h" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_root_1_1_directory_1_1_sub_1_1_class_1abc9f4f532d25aa0d957a183098f2291d" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Root::Directory::Sub::Class::damage</definition>
+        <argsstring>()</argsstring>
+        <name>damage</name>
+        <briefdescription>
+<para><ref refid="class_a" kindref="compound">A</ref> public static function. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_listing/Directory/Sub/Class.h" line="38" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_root_1_1_directory_1_1_sub_1_1_class_1a01c99be667ab8ee934e9f94da744ea83" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type>constexpr</type>
+        <definition>constexpr Root::Directory::Sub::Class::Class</definition>
+        <argsstring>(int, void *) noexcept</argsstring>
+        <name>Class</name>
+        <param>
+          <type>int</type>
+        </param>
+        <param>
+          <type>void *</type>
+        </param>
+        <briefdescription>
+<para><ref refid="class_a" kindref="compound">A</ref> constructor without parameter names. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_listing/Directory/Sub/Class.h" line="41" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_root_1_1_directory_1_1_sub_1_1_class_1a55a51bc352524f6da634bb257d69a784" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Root::Directory::Sub::Class::Class</definition>
+        <argsstring>(Class &amp;)=delete</argsstring>
+        <name>Class</name>
+        <param>
+          <type><ref refid="class_root_1_1_directory_1_1_sub_1_1_class" kindref="compound">Class</ref> &amp;</type>
+        </param>
+        <briefdescription>
+<para>Deleted copy. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_listing/Directory/Sub/Class.h" line="44" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_root_1_1_directory_1_1_sub_1_1_class_1ad749cc571894bad6cb3b23b1f4527233" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_root_1_1_directory_1_1_sub_1_1_class" kindref="compound">Class</ref> &amp;</type>
+        <definition>Class&amp; Root::Directory::Sub::Class::operator=</definition>
+        <argsstring>(Class &amp;&amp;)=default</argsstring>
+        <name>operator=</name>
+        <param>
+          <type><ref refid="class_root_1_1_directory_1_1_sub_1_1_class" kindref="compound">Class</ref> &amp;&amp;</type>
+        </param>
+        <briefdescription>
+<para>Defaulted move. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_listing/Directory/Sub/Class.h" line="47" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_root_1_1_directory_1_1_sub_1_1_class_1ae8ec516d48f6045f9fd7c08ba724bf6e" prot="public" static="no" const="yes" explicit="yes" inline="no" refqual="rvalue" virt="non-virtual">
+        <type></type>
+        <definition>Root::Directory::Sub::Class::operator bool</definition>
+        <argsstring>() const &amp;&amp;</argsstring>
+        <name>operator bool</name>
+        <briefdescription>
+<para><ref refid="class_a" kindref="compound">A</ref> conversion operator that works only on &amp;&amp;. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_listing/Directory/Sub/Class.h" line="50" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-static-func">
+      <memberdef kind="function" id="class_root_1_1_directory_1_1_sub_1_1_class_1a493c315509b0c10158bdc5dd229ea1bf" prot="protected" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Root::Directory::Sub::Class::repair</definition>
+        <argsstring>()</argsstring>
+        <name>repair</name>
+        <briefdescription>
+<para><ref refid="class_a" kindref="compound">A</ref> protected static function. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_listing/Directory/Sub/Class.h" line="77" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_root_1_1_directory_1_1_sub_1_1_class_1a7f5debd40ecca62a7ee98cd83858c013" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type></type>
+        <definition>virtual Root::Directory::Sub::Class::~Class</definition>
+        <argsstring>()=0</argsstring>
+        <name>~Class</name>
+        <briefdescription>
+<para><ref refid="class_a" kindref="compound">A</ref> protected pure virtual destructor. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_listing/Directory/Sub/Class.h" line="80" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_root_1_1_directory_1_1_sub_1_1_class_1a5ae387679a842b33720c0ceadb2583a0" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>constexpr int</type>
+        <definition>constexpr int Root::Directory::Sub::Class::fetchMeSomeIntegers</definition>
+        <argsstring>() const</argsstring>
+        <name>fetchMeSomeIntegers</name>
+        <briefdescription>
+<para>Protected function. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_listing/Directory/Sub/Class.h" line="83" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_root_1_1_directory_1_1_sub_1_1_class_1a28551ce6aa7f9f41c1360ed17737b65d" prot="private" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>int</type>
+        <definition>virtual int Root::Directory::Sub::Class::doSomething</definition>
+        <argsstring>() const</argsstring>
+        <name>doSomething</name>
+        <briefdescription>
+<para><ref refid="class_a" kindref="compound">A</ref> documented private virtual function. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_listing/Directory/Sub/Class.h" line="119" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_root_1_1_directory_1_1_sub_1_1_class_1aca8c131ecd20fce6c6d1c081db3d0b0a" prot="private" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>int</type>
+        <definition>virtual int Root::Directory::Sub::Class::boom</definition>
+        <argsstring>()=0</argsstring>
+        <name>boom</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_listing/Directory/Sub/Class.h" line="122" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_root_1_1_directory_1_1_sub_1_1_class_1a66006fab0f097585de6ee88da99ced31" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Root::Directory::Sub::Class::foobar</definition>
+        <argsstring>()</argsstring>
+        <name>foobar</name>
+        <briefdescription>
+<para>This shouldn&apos;t appear in the docs. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_listing/Directory/Sub/Class.h" line="125" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para><ref refid="class_a" kindref="compound">A</ref> class. </para>    </briefdescription>
+    <detaileddescription>
+<sect1 id="class_root_1_1_directory_1_1_sub_1_1_class_1Class-section">
+<title>A section</title>
+<para>Text.</para><sect2 id="class_root_1_1_directory_1_1_sub_1_1_class_1Class-sub-section">
+<title>Subsection</title>
+</sect2>
+<sect2 id="class_root_1_1_directory_1_1_sub_1_1_class_1Class-sub-section2">
+<title>Subsection 2</title>
+<sect3 id="class_root_1_1_directory_1_1_sub_1_1_class_1Class-sub-section3">
+<title>Subsection 3</title>
+</sect3>
+</sect2>
+</sect1>
+<sect1 id="class_root_1_1_directory_1_1_sub_1_1_class_1Class-section2">
+<title>Section 2</title>
+</sect1>
+    </detaileddescription>
+    <location file="m.css/doxygen/test/compound_listing/Directory/Sub/Class.h" line="23" column="1" bodyfile="m.css/doxygen/test/compound_listing/Directory/Sub/Class.h" bodystart="23" bodyend="126"/>
+    <listofallmembers>
+      <member refid="class_root_1_1_directory_1_1_sub_1_1_class_1ac93121ddaf1925d97ab2673f6151b062" prot="public" virt="non-virtual"><scope>Root::Directory::Sub::Class</scope><name>A_MACRO</name></member>
+      <member refid="class_root_1_1_directory_1_1_sub_1_1_class_1a0d7a4c92456263a36bd0819d9f26c996" prot="protected" virt="non-virtual"><scope>Root::Directory::Sub::Class</scope><name>Boolean</name></member>
+      <member refid="class_root_1_1_directory_1_1_sub_1_1_class_1aca8c131ecd20fce6c6d1c081db3d0b0a" prot="private" virt="pure-virtual"><scope>Root::Directory::Sub::Class</scope><name>boom</name></member>
+      <member refid="class_root_1_1_directory_1_1_sub_1_1_class_1a01c99be667ab8ee934e9f94da744ea83" prot="public" virt="non-virtual"><scope>Root::Directory::Sub::Class</scope><name>Class</name></member>
+      <member refid="class_root_1_1_directory_1_1_sub_1_1_class_1a55a51bc352524f6da634bb257d69a784" prot="public" virt="non-virtual"><scope>Root::Directory::Sub::Class</scope><name>Class</name></member>
+      <member refid="class_root_1_1_directory_1_1_sub_1_1_class_1abc9f4f532d25aa0d957a183098f2291d" prot="public" virt="non-virtual"><scope>Root::Directory::Sub::Class</scope><name>damage</name></member>
+      <member refid="class_root_1_1_directory_1_1_sub_1_1_class_1ad877084846b47e5504224c72aa49d399" prot="public" virt="non-virtual"><scope>Root::Directory::Sub::Class</scope><name>debug</name></member>
+      <member refid="class_root_1_1_directory_1_1_sub_1_1_class_1af68c16757e5d0c83765cff3837952b8b" prot="public" virt="non-virtual"><scope>Root::Directory::Sub::Class</scope><name>Deleter</name></member>
+      <member refid="class_root_1_1_directory_1_1_sub_1_1_class_1a28551ce6aa7f9f41c1360ed17737b65d" prot="private" virt="virtual"><scope>Root::Directory::Sub::Class</scope><name>doSomething</name></member>
+      <member refid="class_root_1_1_directory_1_1_sub_1_1_class_1af5c2ec17b691bd71f7445c9ee886b82e" prot="private" virt="pure-virtual"><scope>Root::Directory::Sub::Class</scope><name>doStuff</name></member>
+      <member refid="class_root_1_1_directory_1_1_sub_1_1_class_1a5436ccacac4eb56e594b3c8f20a78a95" prot="public" virt="non-virtual"><scope>Root::Directory::Sub::Class</scope><name>E</name></member>
+      <member refid="class_root_1_1_directory_1_1_sub_1_1_class_1a8150b7776c2a1749101acf22e868d091" prot="public" virt="non-virtual"><scope>Root::Directory::Sub::Class</scope><name>Enum</name></member>
+      <member refid="class_root_1_1_directory_1_1_sub_1_1_class_1a74e37b7c91fdbbfb8b077f96ae5e6b2f" prot="protected" virt="non-virtual"><scope>Root::Directory::Sub::Class</scope><name>False</name></member>
+      <member refid="class_root_1_1_directory_1_1_sub_1_1_class_1a0d7a4c92456263a36bd0819d9f26c996ac3788e41d3959f1e2592b2789b2c2651" prot="protected" virt="non-virtual"><scope>Root::Directory::Sub::Class</scope><name>False</name></member>
+      <member refid="class_root_1_1_directory_1_1_sub_1_1_class_1a5ae387679a842b33720c0ceadb2583a0" prot="protected" virt="non-virtual"><scope>Root::Directory::Sub::Class</scope><name>fetchMeSomeIntegers</name></member>
+      <member refid="class_root_1_1_directory_1_1_sub_1_1_class_1a0d7a4c92456263a36bd0819d9f26c996a584feb009cffeb8f24c00613b65189dd" prot="protected" virt="non-virtual"><scope>Root::Directory::Sub::Class</scope><name>FileNotFound</name></member>
+      <member refid="class_root_1_1_directory_1_1_sub_1_1_class_1a82511584183fc6aa5505e0e4ce811580" prot="protected" virt="non-virtual"><scope>Root::Directory::Sub::Class</scope><name>Flag</name></member>
+      <member refid="class_root_1_1_directory_1_1_sub_1_1_class_1a3ffd74e95952eacd75f04a2b85d61845" prot="public" virt="non-virtual"><scope>Root::Directory::Sub::Class</scope><name>Float</name></member>
+      <member refid="class_root_1_1_directory_1_1_sub_1_1_class_1a829faa7cd38054a51a303027eaee3b31" prot="protected" virt="non-virtual"><scope>Root::Directory::Sub::Class</scope><name>foo</name></member>
+      <member refid="class_root_1_1_directory_1_1_sub_1_1_class_1ac07863d69ae41a4e395b31f73b35fbcd" prot="public" virt="non-virtual"><scope>Root::Directory::Sub::Class</scope><name>foo</name></member>
+      <member refid="class_root_1_1_directory_1_1_sub_1_1_class_1a66006fab0f097585de6ee88da99ced31" prot="private" virt="non-virtual"><scope>Root::Directory::Sub::Class</scope><name>foobar</name></member>
+      <member refid="class_root_1_1_directory_1_1_sub_1_1_class_1a5436ccacac4eb56e594b3c8f20a78a95ab40890227c995cba62c5ba928fa05797" prot="public" virt="non-virtual"><scope>Root::Directory::Sub::Class</scope><name>FooBar</name></member>
+      <member refid="class_root_1_1_directory_1_1_sub_1_1_class_1a7cc214a236ad3bb6ad435bdcf5262a3f" prot="public" virt="non-virtual"><scope>Root::Directory::Sub::Class</scope><name>Int</name></member>
+      <member refid="class_root_1_1_directory_1_1_sub_1_1_class_1a7646ff8bc6f40c535eb3c281d969f8cd" prot="protected" virt="non-virtual"><scope>Root::Directory::Sub::Class</scope><name>logger</name></member>
+      <member refid="class_root_1_1_directory_1_1_sub_1_1_class_1a4a7ac6e39fedaf79a0ceb0f8d2a3cb64" prot="protected" virt="non-virtual"><scope>Root::Directory::Sub::Class</scope><name>Main</name></member>
+      <member refid="class_root_1_1_directory_1_1_sub_1_1_class_1ad8074ad0d980d9d198b7165e55a5eec7" prot="protected" virt="non-virtual"><scope>Root::Directory::Sub::Class</scope><name>member</name></member>
+      <member refid="class_root_1_1_directory_1_1_sub_1_1_class_1ae8ec516d48f6045f9fd7c08ba724bf6e" prot="public" virt="non-virtual"><scope>Root::Directory::Sub::Class</scope><name>operator bool</name></member>
+      <member refid="class_root_1_1_directory_1_1_sub_1_1_class_1ad749cc571894bad6cb3b23b1f4527233" prot="public" virt="non-virtual"><scope>Root::Directory::Sub::Class</scope><name>operator=</name></member>
+      <member refid="class_root_1_1_directory_1_1_sub_1_1_class_1a493c315509b0c10158bdc5dd229ea1bf" prot="protected" virt="non-virtual"><scope>Root::Directory::Sub::Class</scope><name>repair</name></member>
+      <member refid="class_root_1_1_directory_1_1_sub_1_1_class_1a37f97d663491ff54fda7f9cfc3080006" prot="public" virt="non-virtual"><scope>Root::Directory::Sub::Class</scope><name>Size</name></member>
+      <member refid="class_root_1_1_directory_1_1_sub_1_1_class_1a0d7a4c92456263a36bd0819d9f26c996ac8702eedbc992251f82e762161e1abf7" prot="protected" virt="non-virtual"><scope>Root::Directory::Sub::Class</scope><name>True</name></member>
+      <member refid="class_root_1_1_directory_1_1_sub_1_1_class_1ad4571bbf02497aa3e998918dcee071fc" prot="protected" virt="non-virtual"><scope>Root::Directory::Sub::Class</scope><name>Type</name></member>
+      <member refid="class_root_1_1_directory_1_1_sub_1_1_class_1a5c7a5fa4d1c4ee56508cc40c4fe5cd7a" prot="public" virt="non-virtual"><scope>Root::Directory::Sub::Class</scope><name>undocumented</name></member>
+      <member refid="class_root_1_1_directory_1_1_sub_1_1_class_1a7708bd7aaec399e771a2b30db52e4d22" prot="public" virt="non-virtual"><scope>Root::Directory::Sub::Class</scope><name>Var</name></member>
+      <member refid="class_root_1_1_directory_1_1_sub_1_1_class_1a347f08e1aec78ec16125bac4c2577962" prot="protected" virt="non-virtual"><scope>Root::Directory::Sub::Class</scope><name>variable</name></member>
+      <member refid="class_root_1_1_directory_1_1_sub_1_1_class_1a7f5debd40ecca62a7ee98cd83858c013" prot="protected" virt="pure-virtual"><scope>Root::Directory::Sub::Class</scope><name>~Class</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

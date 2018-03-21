@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="dir_6347e3ad5dead8d66d4d4b45e6a2ee7c" kind="dir">
+    <compoundname>m.css/doxygen/test/compound_warnings</compoundname>
+    <innerfile refid="compound__warnings_2_file_8h">File.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="m.css/doxygen/test/compound_warnings/"/>
+  </compounddef>
+</doxygen>

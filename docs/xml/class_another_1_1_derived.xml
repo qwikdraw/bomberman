@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="class_another_1_1_derived" kind="class" language="C++" prot="public">
+    <compoundname>Another::Derived</compoundname>
+    <basecompoundref refid="class_namespace_1_1_a" prot="public" virt="non-virtual">Namespace::A</basecompoundref>
+    <includes refid="cpp__derived_2input_8h" local="no">input.h</includes>
+    <briefdescription>
+<para><ref refid="class_a" kindref="compound">A</ref> derived class. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="45">
+        <label>Another::ProtectedBase</label>
+        <link refid="class_another_1_1_protected_base"/>
+      </node>
+      <node id="42">
+        <label>Another::Derived</label>
+        <link refid="class_another_1_1_derived"/>
+        <childnode refid="43" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="43">
+        <label>Namespace::A</label>
+        <link refid="class_namespace_1_1_a"/>
+        <childnode refid="44" relation="private-inheritance">
+        </childnode>
+        <childnode refid="45" relation="protected-inheritance">
+        </childnode>
+        <childnode refid="46" relation="public-inheritance">
+        </childnode>
+        <childnode refid="47" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="46">
+        <label>Namespace::UndocumentedBase</label>
+        <link refid="class_namespace_1_1_undocumented_base"/>
+      </node>
+      <node id="44">
+        <label>Namespace::PrivateBase</label>
+        <link refid="class_namespace_1_1_private_base"/>
+      </node>
+      <node id="47">
+        <label>Namespace::VirtualBase</label>
+        <link refid="class_namespace_1_1_virtual_base"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="51">
+        <label>Another::ProtectedBase</label>
+        <link refid="class_another_1_1_protected_base"/>
+      </node>
+      <node id="48">
+        <label>Another::Derived</label>
+        <link refid="class_another_1_1_derived"/>
+        <childnode refid="49" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="49">
+        <label>Namespace::A</label>
+        <link refid="class_namespace_1_1_a"/>
+        <childnode refid="50" relation="private-inheritance">
+        </childnode>
+        <childnode refid="51" relation="protected-inheritance">
+        </childnode>
+        <childnode refid="52" relation="public-inheritance">
+        </childnode>
+        <childnode refid="53" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="52">
+        <label>Namespace::UndocumentedBase</label>
+        <link refid="class_namespace_1_1_undocumented_base"/>
+      </node>
+      <node id="50">
+        <label>Namespace::PrivateBase</label>
+        <link refid="class_namespace_1_1_private_base"/>
+      </node>
+      <node id="53">
+        <label>Namespace::VirtualBase</label>
+        <link refid="class_namespace_1_1_virtual_base"/>
+      </node>
+    </collaborationgraph>
+    <location file="m.css/doxygen/test/cpp_derived/input.h" line="35" column="1" bodyfile="m.css/doxygen/test/cpp_derived/input.h" bodystart="35" bodyend="35"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,183 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="namespace_deprecated_namespace" kind="namespace" language="C++">
+    <compoundname>DeprecatedNamespace</compoundname>
+    <innerclass refid="struct_deprecated_namespace_1_1_base_deprecated_class" prot="public">DeprecatedNamespace::BaseDeprecatedClass</innerclass>
+    <innerclass refid="struct_deprecated_namespace_1_1_deprecated_class" prot="public">DeprecatedNamespace::DeprecatedClass</innerclass>
+    <innerclass refid="struct_deprecated_namespace_1_1_deprecated_struct" prot="public">DeprecatedNamespace::DeprecatedStruct</innerclass>
+    <innerclass refid="union_deprecated_namespace_1_1_deprecated_union" prot="public">DeprecatedNamespace::DeprecatedUnion</innerclass>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="namespace_deprecated_namespace_1ab1e37ddc1d65765f2a48485df4af7b47" prot="public" static="no" strong="no">
+        <type></type>
+        <name>DeprecatedEnum</name>
+        <enumvalue id="namespace_deprecated_namespace_1ab1e37ddc1d65765f2a48485df4af7b47aa4d464de178e623239177e744f063cc3" prot="public">
+          <name>Value</name>
+          <initializer>= 15</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Enum value </para>          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_deprecated_namespace_1ab1e37ddc1d65765f2a48485df4af7b47a689202409e48743b914713f96d93947c" prot="public">
+          <name>Value</name>
+          <initializer>= 15</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Enum value </para>          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>An enum. </para>        </briefdescription>
+        <detaileddescription>
+<para><xrefsect id="deprecated_1_deprecated000010"><xreftitle>Deprecated</xreftitle><xrefdescription><para>This enum is deprecated. </para></xrefdescription></xrefsect></para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_deprecated/Dir/DeprecatedFile.h" line="55" column="1" bodyfile="m.css/doxygen/test/compound_deprecated/Dir/DeprecatedFile.h" bodystart="55" bodyend="58"/>
+      </memberdef>
+      <memberdef kind="enum" id="namespace_deprecated_namespace_1ac59010e983270c330b8625b5433961b9" prot="public" static="no" strong="no">
+        <type></type>
+        <name>Enum</name>
+        <enumvalue id="namespace_deprecated_namespace_1ac59010e983270c330b8625b5433961b9aad7bb85a28af8a4e08df4550abde24ee" prot="public">
+          <name>DeprecatedValue</name>
+          <initializer>= 15</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Enum value <xrefsect id="deprecated_1_deprecated000014"><xreftitle>Deprecated</xreftitle><xrefdescription><para>This enum is deprecated. </para></xrefdescription></xrefsect></para>          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_deprecated_namespace_1ac59010e983270c330b8625b5433961b9a4b5b0e9709902228c33df7e5e377e596" prot="public">
+          <name>DeprecatedValue</name>
+          <initializer>= 15</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Enum value <xrefsect id="deprecated_1_deprecated000027"><xreftitle>Deprecated</xreftitle><xrefdescription><para>This enum is deprecated. </para></xrefdescription></xrefsect></para>          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>An enum. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_deprecated/Dir/DeprecatedFile.h" line="61" column="1" bodyfile="m.css/doxygen/test/compound_deprecated/Dir/DeprecatedFile.h" bodystart="61" bodyend="67"/>
+      </memberdef>
+      <memberdef kind="enum" id="namespace_deprecated_namespace_1ab1e37ddc1d65765f2a48485df4af7b47" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>DeprecatedEnum</name>
+        <enumvalue id="namespace_deprecated_namespace_1ab1e37ddc1d65765f2a48485df4af7b47aa4d464de178e623239177e744f063cc3" prot="public">
+          <name>Value</name>
+          <initializer>= 15</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Enum value </para>          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_deprecated_namespace_1ab1e37ddc1d65765f2a48485df4af7b47a689202409e48743b914713f96d93947c" prot="public">
+          <name>Value</name>
+          <initializer>= 15</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Enum value </para>          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>An enum. </para>        </briefdescription>
+        <detaileddescription>
+<para><xrefsect id="deprecated_1_deprecated000023"><xreftitle>Deprecated</xreftitle><xrefdescription><para>This enum is deprecated. </para></xrefdescription></xrefsect></para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/search/DeprecatedDir/DeprecatedFile.h" line="45" column="1" bodyfile="m.css/doxygen/test/search/DeprecatedDir/DeprecatedFile.h" bodystart="45" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="enum" id="namespace_deprecated_namespace_1ac59010e983270c330b8625b5433961b9" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>Enum</name>
+        <enumvalue id="namespace_deprecated_namespace_1ac59010e983270c330b8625b5433961b9aad7bb85a28af8a4e08df4550abde24ee" prot="public">
+          <name>DeprecatedValue</name>
+          <initializer>= 15</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Enum value <xrefsect id="deprecated_1_deprecated000014"><xreftitle>Deprecated</xreftitle><xrefdescription><para>This enum is deprecated. </para></xrefdescription></xrefsect></para>          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_deprecated_namespace_1ac59010e983270c330b8625b5433961b9a4b5b0e9709902228c33df7e5e377e596" prot="public">
+          <name>DeprecatedValue</name>
+          <initializer>= 15</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Enum value <xrefsect id="deprecated_1_deprecated000027"><xreftitle>Deprecated</xreftitle><xrefdescription><para>This enum is deprecated. </para></xrefdescription></xrefsect></para>          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>An enum. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/search/DeprecatedDir/DeprecatedFile.h" line="51" column="1" bodyfile="m.css/doxygen/test/search/DeprecatedDir/DeprecatedFile.h" bodystart="51" bodyend="57"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="namespace_deprecated_namespace_1af503ad3ff194a4c2512aff16df771164" prot="public" static="no">
+        <type>int</type>
+        <definition>typedef int DeprecatedNamespace::DeprecatedTypedef</definition>
+        <argsstring></argsstring>
+        <name>DeprecatedTypedef</name>
+        <briefdescription>
+<para><ref refid="class_a" kindref="compound">A</ref> typedef. </para>        </briefdescription>
+        <detaileddescription>
+<para><xrefsect id="deprecated_1_deprecated000009"><xreftitle>Deprecated</xreftitle><xrefdescription><para>This typedef is deprecated. </para></xrefdescription></xrefsect></para><para><xrefsect id="deprecated_1_deprecated000022"><xreftitle>Deprecated</xreftitle><xrefdescription><para>This typedef is deprecated. </para></xrefdescription></xrefsect></para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_deprecated/Dir/DeprecatedFile.h" line="49" column="1" bodyfile="m.css/doxygen/test/compound_deprecated/Dir/DeprecatedFile.h" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="namespace_deprecated_namespace_1ae934297fc39624409333eefbfeabf5e5" prot="public" static="no" mutable="no">
+        <type>constexpr int</type>
+        <definition>constexpr int DeprecatedNamespace::DeprecatedVariable</definition>
+        <argsstring></argsstring>
+        <name>DeprecatedVariable</name>
+        <initializer>= 5</initializer>
+        <briefdescription>
+<para><ref refid="class_a" kindref="compound">A</ref> variable. </para>        </briefdescription>
+        <detaileddescription>
+<para><xrefsect id="deprecated_1_deprecated000008"><xreftitle>Deprecated</xreftitle><xrefdescription><para>This variable is deprecated. </para></xrefdescription></xrefsect></para><para><xrefsect id="deprecated_1_deprecated000021"><xreftitle>Deprecated</xreftitle><xrefdescription><para>This variable is deprecated. </para></xrefdescription></xrefsect></para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_deprecated/Dir/DeprecatedFile.h" line="43" column="1" bodyfile="m.css/doxygen/test/compound_deprecated/Dir/DeprecatedFile.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespace_deprecated_namespace_1a9a1b3fc71d294b548095985acc0d5092" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DeprecatedNamespace::deprecatedFoo</definition>
+        <argsstring>(int a, bool b, double c)</argsstring>
+        <name>deprecatedFoo</name>
+        <param>
+          <type>int</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>b</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>c</declname>
+        </param>
+        <briefdescription>
+<para><ref refid="class_a" kindref="compound">A</ref> function. </para>        </briefdescription>
+        <detaileddescription>
+<para><xrefsect id="deprecated_1_deprecated000007"><xreftitle>Deprecated</xreftitle><xrefdescription><para>This function is deprecated. </para></xrefdescription></xrefsect></para><para><xrefsect id="deprecated_1_deprecated000020"><xreftitle>Deprecated</xreftitle><xrefdescription><para>This function is deprecated. </para></xrefdescription></xrefsect></para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_deprecated/Dir/DeprecatedFile.h" line="37" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para><ref refid="class_a" kindref="compound">A</ref> namespace. </para>    </briefdescription>
+    <detaileddescription>
+<para><xrefsect id="deprecated_1_deprecated000003"><xreftitle>Deprecated</xreftitle><xrefdescription><para>This namespace is deprecated. </para></xrefdescription></xrefsect></para><para><xrefsect id="deprecated_1_deprecated000017"><xreftitle>Deprecated</xreftitle><xrefdescription><para>This namespace is deprecated. </para></xrefdescription></xrefsect></para>    </detaileddescription>
+    <location file="m.css/doxygen/test/compound_deprecated/Dir/DeprecatedFile.h" line="19" column="1"/>
+  </compounddef>
+</doxygen>

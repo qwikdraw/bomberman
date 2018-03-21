@@ -1,0 +1,158 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="class_time" kind="class" language="C++" prot="public">
+    <compoundname>Time</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_time_1a9d8118281939cab0b413b2d4dfeddabd" prot="private" static="no" mutable="no">
+        <type>std::chrono::high_resolution_clock::time_point</type>
+        <definition>std::chrono::high_resolution_clock::time_point Time::_startTime</definition>
+        <argsstring></argsstring>
+        <name>_startTime</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/Time.hpp" line="10" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/Time.hpp" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_time_1ad56fd7b0f69fc919cc00f6bcc9089828" prot="private" static="no" mutable="no">
+        <type>std::chrono::high_resolution_clock::time_point</type>
+        <definition>std::chrono::high_resolution_clock::time_point Time::_delta</definition>
+        <argsstring></argsstring>
+        <name>_delta</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/Time.hpp" line="11" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/Time.hpp" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_time_1aa27ea4a0defc9f49494df55ccac03c0e" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float Time::_totalTime</definition>
+        <argsstring></argsstring>
+        <name>_totalTime</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/Time.hpp" line="12" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/Time.hpp" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_time_1a3788afb7fbed36073f26b17a20968a55" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float Time::_deltaTime</definition>
+        <argsstring></argsstring>
+        <name>_deltaTime</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/Time.hpp" line="13" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/Time.hpp" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_time_1ae270da2181c9fbff9cd119531c179997" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Time::Time</definition>
+        <argsstring>(void)</argsstring>
+        <name>Time</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/Time.hpp" line="17" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/Time.cpp" bodystart="4" bodyend="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_time_1a91caada4e359fd77aec6cb0a6bc71774" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Time::Fix</definition>
+        <argsstring>(void)</argsstring>
+        <name>Fix</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/Time.hpp" line="19" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/Time.cpp" bodystart="12" bodyend="26"/>
+      </memberdef>
+      <memberdef kind="function" id="class_time_1a32f5fa59cb55ebf81c0ad132a1ecaa3b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Time::Reset</definition>
+        <argsstring>(void)</argsstring>
+        <name>Reset</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/Time.hpp" line="20" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/Time.cpp" bodystart="28" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="class_time_1a90489edb1444414541ea501c034d392e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>float Time::GetTime</definition>
+        <argsstring>(void)</argsstring>
+        <name>GetTime</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/Time.hpp" line="21" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/Time.cpp" bodystart="36" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="class_time_1a630f46a11976b6968df62f855967e5d9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>float Time::GetDeltaTime</definition>
+        <argsstring>(void)</argsstring>
+        <name>GetDeltaTime</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/Time.hpp" line="22" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/Time.cpp" bodystart="41" bodyend="44"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/Time.hpp" line="7" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/Time.hpp" bodystart="6" bodyend="23"/>
+    <listofallmembers>
+      <member refid="class_time_1ad56fd7b0f69fc919cc00f6bcc9089828" prot="private" virt="non-virtual"><scope>Time</scope><name>_delta</name></member>
+      <member refid="class_time_1a3788afb7fbed36073f26b17a20968a55" prot="private" virt="non-virtual"><scope>Time</scope><name>_deltaTime</name></member>
+      <member refid="class_time_1a9d8118281939cab0b413b2d4dfeddabd" prot="private" virt="non-virtual"><scope>Time</scope><name>_startTime</name></member>
+      <member refid="class_time_1aa27ea4a0defc9f49494df55ccac03c0e" prot="private" virt="non-virtual"><scope>Time</scope><name>_totalTime</name></member>
+      <member refid="class_time_1a91caada4e359fd77aec6cb0a6bc71774" prot="public" virt="non-virtual"><scope>Time</scope><name>Fix</name></member>
+      <member refid="class_time_1a630f46a11976b6968df62f855967e5d9" prot="public" virt="non-virtual"><scope>Time</scope><name>GetDeltaTime</name></member>
+      <member refid="class_time_1a90489edb1444414541ea501c034d392e" prot="public" virt="non-virtual"><scope>Time</scope><name>GetTime</name></member>
+      <member refid="class_time_1a32f5fa59cb55ebf81c0ad132a1ecaa3b" prot="public" virt="non-virtual"><scope>Time</scope><name>Reset</name></member>
+      <member refid="class_time_1ae270da2181c9fbff9cd119531c179997" prot="public" virt="non-virtual"><scope>Time</scope><name>Time</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

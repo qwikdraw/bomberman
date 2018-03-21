@@ -16,5 +16,5 @@ void	main()
 {
 	Data.normal = vec3(perspective * transform * vec4(normal, 0));
 	Data.uv = uv;
-	gl_Position = perspective * transform * vec4(vertex * 10, 1);
+	gl_Position = perspective * transform * vec4(vertex, 1);
 }

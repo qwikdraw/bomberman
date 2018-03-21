@@ -1,0 +1,261 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="class_camera" kind="class" language="C++" prot="public">
+    <compoundname>Camera</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_camera_1a250e55d763ab0d66d6c4628003428589" prot="private" static="no" mutable="no">
+        <type><ref refid="class_time" kindref="compound">Time</ref></type>
+        <definition>Time Camera::_time</definition>
+        <argsstring></argsstring>
+        <name>_time</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/Camera.hpp" line="10" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/Camera.hpp" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_camera_1aac810f0d1cb5c2da0a339ccb1fdbc13e" prot="private" static="no" mutable="no">
+        <type>glm::mat4</type>
+        <definition>glm::mat4 Camera::_transform</definition>
+        <argsstring></argsstring>
+        <name>_transform</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/Camera.hpp" line="11" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/Camera.hpp" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_camera_1adc588f704dbceebdc5e3d00b3ba8825e" prot="private" static="no" mutable="no">
+        <type><ref refid="class_window" kindref="compound">Window</ref> *</type>
+        <definition>Window* Camera::_window</definition>
+        <argsstring></argsstring>
+        <name>_window</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/Camera.hpp" line="12" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/Camera.hpp" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_camera_1ae6ca216cb845ccf7813740f8d4902efa" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Camera::_cameraShouldMove</definition>
+        <argsstring></argsstring>
+        <name>_cameraShouldMove</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/Camera.hpp" line="13" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/Camera.hpp" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="class_camera_1a6efce45463534986af8b47a7333ffb0c" prot="public" static="yes" mutable="no">
+        <type>const glm::vec3 constexpr</type>
+        <definition>glm::vec3 const Camera::Pos</definition>
+        <argsstring></argsstring>
+        <name>Pos</name>
+        <initializer>= {0, 0, 0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/Camera.hpp" line="17" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/Camera.hpp" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_camera_1a04c64102f9b96c3875246d1a9eb17e61" prot="public" static="yes" mutable="no">
+        <type>const glm::vec3 constexpr</type>
+        <definition>glm::vec3 const Camera::Up</definition>
+        <argsstring></argsstring>
+        <name>Up</name>
+        <initializer>= {0, 1, 0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/Camera.hpp" line="18" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/Camera.hpp" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_camera_1ad41b5e4710454e15541f0665a23c7088" prot="public" static="yes" mutable="no">
+        <type>const glm::vec3 constexpr</type>
+        <definition>glm::vec3 const Camera::Forward</definition>
+        <argsstring></argsstring>
+        <name>Forward</name>
+        <initializer>= {0, 0, 1}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/Camera.hpp" line="19" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/Camera.hpp" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_camera_1a0b32c7acd12dda93d6c9ddb33725c57c" prot="public" static="yes" mutable="no">
+        <type>const glm::vec3 constexpr</type>
+        <definition>glm::vec3 const Camera::Right</definition>
+        <argsstring></argsstring>
+        <name>Right</name>
+        <initializer>= {1, 0, 0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/Camera.hpp" line="20" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/Camera.hpp" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_camera_1a5c68f1ee8348320a6c47419ae2d724fb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Camera::Camera</definition>
+        <argsstring>(void)</argsstring>
+        <name>Camera</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/Camera.hpp" line="22" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/Camera.cpp" bodystart="9" bodyend="12"/>
+      </memberdef>
+      <memberdef kind="function" id="class_camera_1a63cd39ccf981c4ca0ab01df9207261ad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Camera::Move</definition>
+        <argsstring>(glm::vec3 amount)</argsstring>
+        <name>Move</name>
+        <param>
+          <type>glm::vec3</type>
+          <declname>amount</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/Camera.hpp" line="24" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/Camera.cpp" bodystart="29" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="function" id="class_camera_1a4083b34e4f367b0d1a679e12cddad57a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Camera::Rotate</definition>
+        <argsstring>(glm::vec3 axis, float degrees)</argsstring>
+        <name>Rotate</name>
+        <param>
+          <type>glm::vec3</type>
+          <declname>axis</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>degrees</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/Camera.hpp" line="25" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/Camera.cpp" bodystart="35" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="class_camera_1a332e44668fd40107f05e8c7b152c0c02" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Camera::TrackEvents</definition>
+        <argsstring>(Window *)</argsstring>
+        <name>TrackEvents</name>
+        <param>
+          <type><ref refid="class_window" kindref="compound">Window</ref> *</type>
+          <defname>window</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/Camera.hpp" line="26" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/Camera.cpp" bodystart="41" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="function" id="class_camera_1ad52e1270c41d3c9d496bbd619688a146" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Camera::Update</definition>
+        <argsstring>(void)</argsstring>
+        <name>Update</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/Camera.hpp" line="27" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/Camera.cpp" bodystart="46" bodyend="90"/>
+      </memberdef>
+      <memberdef kind="function" id="class_camera_1a733999576a3751bdfa41049c783a69c9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Camera::JustMoved</definition>
+        <argsstring>(void)</argsstring>
+        <name>JustMoved</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/Camera.hpp" line="28" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/Camera.cpp" bodystart="92" bodyend="97"/>
+      </memberdef>
+      <memberdef kind="function" id="class_camera_1add991cc6ee4544588742d059f8344ed2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>glm::mat4</type>
+        <definition>glm::mat4 Camera::Perspective</definition>
+        <argsstring>(void)</argsstring>
+        <name>Perspective</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/Camera.hpp" line="29" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/Camera.cpp" bodystart="14" bodyend="27"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/nfs/2017/t/twalton/bomberman/github/voxGL/Camera.hpp" line="7" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/voxGL/Camera.hpp" bodystart="6" bodyend="30"/>
+    <listofallmembers>
+      <member refid="class_camera_1ae6ca216cb845ccf7813740f8d4902efa" prot="private" virt="non-virtual"><scope>Camera</scope><name>_cameraShouldMove</name></member>
+      <member refid="class_camera_1a250e55d763ab0d66d6c4628003428589" prot="private" virt="non-virtual"><scope>Camera</scope><name>_time</name></member>
+      <member refid="class_camera_1aac810f0d1cb5c2da0a339ccb1fdbc13e" prot="private" virt="non-virtual"><scope>Camera</scope><name>_transform</name></member>
+      <member refid="class_camera_1adc588f704dbceebdc5e3d00b3ba8825e" prot="private" virt="non-virtual"><scope>Camera</scope><name>_window</name></member>
+      <member refid="class_camera_1a5c68f1ee8348320a6c47419ae2d724fb" prot="public" virt="non-virtual"><scope>Camera</scope><name>Camera</name></member>
+      <member refid="class_camera_1ad41b5e4710454e15541f0665a23c7088" prot="public" virt="non-virtual"><scope>Camera</scope><name>Forward</name></member>
+      <member refid="class_camera_1a733999576a3751bdfa41049c783a69c9" prot="public" virt="non-virtual"><scope>Camera</scope><name>JustMoved</name></member>
+      <member refid="class_camera_1a63cd39ccf981c4ca0ab01df9207261ad" prot="public" virt="non-virtual"><scope>Camera</scope><name>Move</name></member>
+      <member refid="class_camera_1add991cc6ee4544588742d059f8344ed2" prot="public" virt="non-virtual"><scope>Camera</scope><name>Perspective</name></member>
+      <member refid="class_camera_1a6efce45463534986af8b47a7333ffb0c" prot="public" virt="non-virtual"><scope>Camera</scope><name>Pos</name></member>
+      <member refid="class_camera_1a0b32c7acd12dda93d6c9ddb33725c57c" prot="public" virt="non-virtual"><scope>Camera</scope><name>Right</name></member>
+      <member refid="class_camera_1a4083b34e4f367b0d1a679e12cddad57a" prot="public" virt="non-virtual"><scope>Camera</scope><name>Rotate</name></member>
+      <member refid="class_camera_1a332e44668fd40107f05e8c7b152c0c02" prot="public" virt="non-virtual"><scope>Camera</scope><name>TrackEvents</name></member>
+      <member refid="class_camera_1a04c64102f9b96c3875246d1a9eb17e61" prot="public" virt="non-virtual"><scope>Camera</scope><name>Up</name></member>
+      <member refid="class_camera_1ad52e1270c41d3c9d496bbd619688a146" prot="public" virt="non-virtual"><scope>Camera</scope><name>Update</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

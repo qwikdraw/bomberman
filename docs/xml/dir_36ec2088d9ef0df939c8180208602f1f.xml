@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="dir_36ec2088d9ef0df939c8180208602f1f" kind="dir">
+    <compoundname>m.css/doxygen/test/compound_deprecated/Dir</compoundname>
+    <innerdir refid="dir_c34fa5efa1d5023fa17597b628a1f0e7">m.css/doxygen/test/compound_deprecated/Dir/DeprecatedSubdir</innerdir>
+    <innerfile refid="compound__deprecated_2_dir_2_deprecated_file_8h">DeprecatedFile.h</innerfile>
+    <briefdescription>
+<para><ref refid="class_a" kindref="compound">A</ref> directory. </para>    </briefdescription>
+    <detaileddescription>
+<para>{glDirectory() glDir() GL_DIR} </para>    </detaileddescription>
+    <location file="m.css/doxygen/test/compound_deprecated/Dir/"/>
+  </compounddef>
+</doxygen>

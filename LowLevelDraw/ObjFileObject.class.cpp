@@ -98,6 +98,10 @@ void	ObjFileObject::SetTransform(glm::mat4 m)
 void	ObjFileObject::Render(void)
 {
 	_program->Use();
+
+	glBindTexture(GL_TEXTURE_2D, _textureID);
+	glActiveTexture(GL_TEXTURE0);
+	glUniform1i(_textureLocationID, 0);
 	
 	glBindBuffer(GL_ARRAY_BUFFER, _vertexArrayID);
 	glEnableVertexAttribArray(0);

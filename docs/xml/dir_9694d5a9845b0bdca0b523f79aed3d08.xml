@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="dir_9694d5a9845b0bdca0b523f79aed3d08" kind="dir">
+    <compoundname>m.css/doxygen/test/cpp_derived</compoundname>
+    <innerfile refid="cpp__derived_2input_8h">input.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="m.css/doxygen/test/cpp_derived/"/>
+  </compounddef>
+</doxygen>

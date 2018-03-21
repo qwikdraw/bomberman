@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="search_2_deprecated_dir_2_deprecated_file_8h" kind="file" language="C++">
+    <compoundname>DeprecatedFile.h</compoundname>
+    <innerclass refid="struct_deprecated_namespace_1_1_deprecated_class" prot="public">DeprecatedNamespace::DeprecatedClass</innerclass>
+    <innerclass refid="union_deprecated_namespace_1_1_deprecated_union" prot="public">DeprecatedNamespace::DeprecatedUnion</innerclass>
+    <innerclass refid="struct_deprecated_namespace_1_1_deprecated_struct" prot="public">DeprecatedNamespace::DeprecatedStruct</innerclass>
+    <innernamespace refid="namespace_deprecated_namespace">DeprecatedNamespace</innernamespace>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="search_2_deprecated_dir_2_deprecated_file_8h_1a7f8376730349fef9ff7d103b0245a13e" prot="public" static="no">
+        <name>DEPRECATED_MACRO</name>
+        <param><defname>a</defname></param>
+        <param><defname>b</defname></param>
+        <param><defname>c</defname></param>
+        <briefdescription>
+<para><ref refid="class_a" kindref="compound">A</ref> macro. </para>        </briefdescription>
+        <detaileddescription>
+<para><xrefsect id="deprecated_1_deprecated000018"><xreftitle>Deprecated</xreftitle><xrefdescription><para>This macro is deprecated </para></xrefdescription></xrefsect></para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/search/DeprecatedDir/DeprecatedFile.h" line="83" column="9" bodyfile="m.css/doxygen/test/search/DeprecatedDir/DeprecatedFile.h" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para><ref refid="class_a" kindref="compound">A</ref> file. </para>    </briefdescription>
+    <detaileddescription>
+<para><xrefsect id="deprecated_1_deprecated000016"><xreftitle>Deprecated</xreftitle><xrefdescription><para>This file is deprecated. </para></xrefdescription></xrefsect></para>    </detaileddescription>
+    <location file="m.css/doxygen/test/search/DeprecatedDir/DeprecatedFile.h"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="dir_d496cb73bc0eacc5a4346fde32b39cbc" kind="dir">
+    <compoundname>m.css/doxygen/test/contents_code_language</compoundname>
+    <innerfile refid="snippet_8cpp">snippet.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="m.css/doxygen/test/contents_code_language/"/>
+  </compounddef>
+</doxygen>

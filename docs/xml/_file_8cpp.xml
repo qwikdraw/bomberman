@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="_file_8cpp" kind="file" language="C++">
+    <compoundname>File.cpp</compoundname>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="_file_8cpp_1aa4c2a5552e9bc49b1816ff532f558c74" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int a</definition>
+        <argsstring></argsstring>
+        <name>a</name>
+        <briefdescription>
+<para><ref refid="class_a" kindref="compound">A</ref> var that doesn&apos;t appear in the docs because it&apos;s in undoc file. </para>        </briefdescription>
+        <detaileddescription>
+<para>Undocumented file </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_ignored/File.cpp" line="4" column="1" bodyfile="m.css/doxygen/test/compound_ignored/File.cpp" bodystart="4" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="m.css/doxygen/test/compound_ignored/File.cpp"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="snippet_8cpp" kind="file" language="C++">
+    <compoundname>snippet.cpp</compoundname>
+    <includes local="no">cmath</includes>
+    <incdepgraph>
+      <node id="263">
+        <label>cmath</label>
+      </node>
+      <node id="262">
+        <label>m.css/doxygen/test/contents_code_language/snippet.cpp</label>
+        <link refid="snippet_8cpp"/>
+        <childnode refid="263" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__group_1gac07863d69ae41a4e395b31f73b35fbcd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void foo</definition>
+        <argsstring>()</argsstring>
+        <name>foo</name>
+        <briefdescription>
+<para><ref refid="class_a" kindref="compound">A</ref> function. </para>        </briefdescription>
+        <detaileddescription>
+<para><ref refid="class_a" kindref="compound">A</ref> foo.</para><para>[0] </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/contents_code_language/snippet.cpp" line="2" column="1" bodyfile="m.css/doxygen/test/contents_code_language/snippet.cpp" bodystart="2" bodyend="2"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group2_1ga49a4b11e50430aa0a78de989ea99e082" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void bar</definition>
+        <argsstring>()</argsstring>
+        <name>bar</name>
+        <briefdescription>
+<para>Wrong. </para>        </briefdescription>
+        <detaileddescription>
+<para><ref refid="class_a" kindref="compound">A</ref> bar.</para><para>Function in a group.</para><para>[0] [1] </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/contents_code_language/snippet.cpp" line="8" column="1" bodyfile="m.css/doxygen/test/contents_code_language/snippet.cpp" bodystart="8" bodyend="8"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="m.css/doxygen/test/contents_code_language/snippet.cpp"/>
+  </compounddef>
+</doxygen>

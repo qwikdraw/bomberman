@@ -1,0 +1,141 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="namespace_root_1_1_directory" kind="namespace" language="C++">
+    <compoundname>Root::Directory</compoundname>
+    <innerclass refid="class_root_1_1_directory_1_1_class" prot="public">Root::Directory::Class</innerclass>
+    <innerclass refid="struct_root_1_1_directory_1_1_struct" prot="public">Root::Directory::Struct</innerclass>
+    <innerclass refid="union_root_1_1_directory_1_1_union" prot="public">Root::Directory::Union</innerclass>
+    <innernamespace refid="namespace_root_1_1_directory_1_1_sub">Root::Directory::Sub</innernamespace>
+      <sectiondef kind="user-defined">
+      <header>A group</header>
+      <memberdef kind="enum" id="compound__listing_2_directory_2_file_8h_1ad48cec404dd0ac98a7cb35cde9b80ef7" prot="public" static="no" strong="no">
+        <type></type>
+        <name>Flag</name>
+        <briefdescription>
+<para>Flag in a group. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_listing/Directory/File.h" line="34" column="1" bodyfile="m.css/doxygen/test/compound_listing/Directory/File.h" bodystart="34" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="typedef" id="compound__listing_2_directory_2_file_8h_1ad647ff34e255fa1b8adea19bfc55d631" prot="public" static="no">
+        <type>void</type>
+        <definition>using Root::Directory::Main = typedef void</definition>
+        <argsstring></argsstring>
+        <name>Main</name>
+        <briefdescription>
+<para>Alias in a group. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_listing/Directory/File.h" line="37" column="1" bodyfile="m.css/doxygen/test/compound_listing/Directory/File.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="compound__listing_2_directory_2_file_8h_1ac4c2505beb086a985a4154d00d41de70" prot="public" static="no" mutable="no">
+        <type>constexpr void *</type>
+        <definition>constexpr void* Root::Directory::variable</definition>
+        <argsstring></argsstring>
+        <name>variable</name>
+        <initializer>= nullptr</initializer>
+        <briefdescription>
+<para>Variable in a group. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_listing/Directory/File.h" line="43" column="1" bodyfile="m.css/doxygen/test/compound_listing/Directory/File.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="function" id="compound__listing_2_directory_2_file_8h_1a0daa434b0cb806e7613bcc06ed6baaf6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Root::Directory::bar</definition>
+        <argsstring>()</argsstring>
+        <name>bar</name>
+        <briefdescription>
+<para>Function in a group. </para>        </briefdescription>
+        <detaileddescription>
+<para>Function in a group.</para><para>[0] [1] </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_listing/Directory/File.h" line="40" column="1" bodyfile="m.css/doxygen/test/contents_code_language/snippet.cpp" bodystart="8" bodyend="8"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="compound__listing_2_directory_2_file_8h_1afdcca564079156feb9314ad46e0ec20d" prot="public" static="no" strong="no">
+        <type></type>
+        <name>Enum</name>
+        <briefdescription>
+<para>An enum. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_listing/Directory/File.h" line="17" column="1" bodyfile="m.css/doxygen/test/compound_listing/Directory/File.h" bodystart="17" bodyend="17"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="compound__listing_2_directory_2_file_8h_1ac5f7e56298e7c5f4744da826f519b41c" prot="public" static="no">
+        <type>int</type>
+        <definition>typedef int Root::Directory::Int</definition>
+        <argsstring></argsstring>
+        <name>Int</name>
+        <briefdescription>
+<para><ref refid="class_a" kindref="compound">A</ref> typedef. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_listing/Directory/File.h" line="20" column="1" bodyfile="m.css/doxygen/test/compound_listing/Directory/File.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="compound__listing_2_directory_2_file_8h_1a61d6355f361b4a422e0dc65fc6ab9703" prot="public" static="no">
+        <type>float</type>
+        <definition>using Root::Directory::Float = typedef float</definition>
+        <argsstring></argsstring>
+        <name>Float</name>
+        <briefdescription>
+<para>An using declaration. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_listing/Directory/File.h" line="23" column="1" bodyfile="m.css/doxygen/test/compound_listing/Directory/File.h" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="compound__listing_2_directory_2_file_8h_1acdc29819d61c01eed9c74242010a7601" prot="public" static="no" mutable="no">
+        <type>constexpr const int</type>
+        <definition>constexpr const int Root::Directory::Var</definition>
+        <argsstring></argsstring>
+        <name>Var</name>
+        <initializer>= 3</initializer>
+        <briefdescription>
+<para><ref refid="class_a" kindref="compound">A</ref> variable. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_listing/Directory/File.h" line="26" column="1" bodyfile="m.css/doxygen/test/compound_listing/Directory/File.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="compound__listing_2_directory_2_file_8h_1a1e483a02e625a420e6b3541677ab4fbd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Root::Directory::foo</definition>
+        <argsstring>()</argsstring>
+        <name>foo</name>
+        <briefdescription>
+<para><ref refid="class_a" kindref="compound">A</ref> function. </para>        </briefdescription>
+        <detaileddescription>
+<para>[0] </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_listing/Directory/File.h" line="29" column="1" bodyfile="m.css/doxygen/test/contents_code_language/snippet.cpp" bodystart="2" bodyend="2"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="m.css/doxygen/test/compound_listing/Directory/File.h" line="5" column="1"/>
+  </compounddef>
+</doxygen>

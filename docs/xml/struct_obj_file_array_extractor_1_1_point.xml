@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="struct_obj_file_array_extractor_1_1_point" kind="struct" language="C++" prot="private">
+    <compoundname>ObjFileArrayExtractor::Point</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_obj_file_array_extractor_1_1_point_1a1f08250eedbc6158144fe7c7376905f4" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ObjFileArrayExtractor::Point::vertex</definition>
+        <argsstring></argsstring>
+        <name>vertex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/LowLevelDraw/ObjFileArrayExtractor.class.hpp" line="14" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/LowLevelDraw/ObjFileArrayExtractor.class.hpp" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_obj_file_array_extractor_1_1_point_1a54de5b1ed7bf9f8ccf5003fd2c3bcd36" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ObjFileArrayExtractor::Point::normal</definition>
+        <argsstring></argsstring>
+        <name>normal</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/LowLevelDraw/ObjFileArrayExtractor.class.hpp" line="15" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/LowLevelDraw/ObjFileArrayExtractor.class.hpp" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_obj_file_array_extractor_1_1_point_1a01bacb3a014244cd83be3042970c626b" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ObjFileArrayExtractor::Point::texture</definition>
+        <argsstring></argsstring>
+        <name>texture</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/nfs/2017/t/twalton/bomberman/github/LowLevelDraw/ObjFileArrayExtractor.class.hpp" line="16" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/LowLevelDraw/ObjFileArrayExtractor.class.hpp" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/nfs/2017/t/twalton/bomberman/github/LowLevelDraw/ObjFileArrayExtractor.class.hpp" line="13" column="1" bodyfile="/nfs/2017/t/twalton/bomberman/github/LowLevelDraw/ObjFileArrayExtractor.class.hpp" bodystart="12" bodyend="17"/>
+    <listofallmembers>
+      <member refid="struct_obj_file_array_extractor_1_1_point_1a54de5b1ed7bf9f8ccf5003fd2c3bcd36" prot="public" virt="non-virtual"><scope>ObjFileArrayExtractor::Point</scope><name>normal</name></member>
+      <member refid="struct_obj_file_array_extractor_1_1_point_1a01bacb3a014244cd83be3042970c626b" prot="public" virt="non-virtual"><scope>ObjFileArrayExtractor::Point</scope><name>texture</name></member>
+      <member refid="struct_obj_file_array_extractor_1_1_point_1a1f08250eedbc6158144fe7c7376905f4" prot="public" virt="non-virtual"><scope>ObjFileArrayExtractor::Point</scope><name>vertex</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

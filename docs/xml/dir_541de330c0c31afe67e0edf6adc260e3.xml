@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="dir_541de330c0c31afe67e0edf6adc260e3" kind="dir">
+    <compoundname>m.css/doc</compoundname>
+    <innerdir refid="dir_30886e0ae9f50f1a2f2e293dce925959">m.css/doc/plugins</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="m.css/doc/"/>
+  </compounddef>
+</doxygen>

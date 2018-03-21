@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="_top_level_file_8h" kind="file" language="C++">
+    <compoundname>TopLevelFile.h</compoundname>
+    <innerclass refid="class_top_level_class" prot="public">TopLevelClass</innerclass>
+    <briefdescription>
+<para>Top-level file. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="m.css/doxygen/test/compound_listing/TopLevelFile.h"/>
+  </compounddef>
+</doxygen>

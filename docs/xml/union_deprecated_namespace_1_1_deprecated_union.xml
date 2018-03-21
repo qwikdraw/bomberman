@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="union_deprecated_namespace_1_1_deprecated_union" kind="union" language="C++" prot="public">
+    <compoundname>DeprecatedNamespace::DeprecatedUnion</compoundname>
+    <includes refid="compound__deprecated_2_dir_2_deprecated_file_8h" local="no">DeprecatedFile.h</includes>
+    <briefdescription>
+<para>An union. </para>    </briefdescription>
+    <detaileddescription>
+<para><xrefsect id="deprecated_1_deprecated000011"><xreftitle>Deprecated</xreftitle><xrefdescription><para>This union is deprecated. </para></xrefdescription></xrefsect></para><para><xrefsect id="deprecated_1_deprecated000025"><xreftitle>Deprecated</xreftitle><xrefdescription><para>This union is deprecated. </para></xrefdescription></xrefsect></para>    </detaileddescription>
+    <location file="m.css/doxygen/test/compound_deprecated/Dir/DeprecatedFile.h" line="77" column="1" bodyfile="m.css/doxygen/test/compound_deprecated/Dir/DeprecatedFile.h" bodystart="77" bodyend="77"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

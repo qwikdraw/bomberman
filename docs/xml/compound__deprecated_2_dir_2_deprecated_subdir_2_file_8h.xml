@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="compound__deprecated_2_dir_2_deprecated_subdir_2_file_8h" kind="file" language="C++">
+    <compoundname>File.h</compoundname>
+    <briefdescription>
+<para><ref refid="class_a" kindref="compound">A</ref> file. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="m.css/doxygen/test/compound_deprecated/Dir/DeprecatedSubdir/File.h"/>
+  </compounddef>
+</doxygen>

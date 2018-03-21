@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="dir_cb741f21035d609ba20b9e621478d52d" kind="dir">
+    <compoundname>/nfs/2017/t/twalton/bomberman/github/debugTools</compoundname>
+    <innerfile refid="debug_8hpp">debug.hpp</innerfile>
+    <innerfile refid="_grid_8class_8cpp">Grid.class.cpp</innerfile>
+    <innerfile refid="_grid_8class_8hpp">Grid.class.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/nfs/2017/t/twalton/bomberman/github/debugTools/"/>
+  </compounddef>
+</doxygen>

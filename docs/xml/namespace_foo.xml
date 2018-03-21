@@ -1,0 +1,314 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="namespace_foo" kind="namespace" language="C++">
+    <compoundname>Foo</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespace_foo_1a438de3b4c677344081baef1ec352f691" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T</type>
+          </param>
+        </templateparamlist>
+        <type>int</type>
+        <definition>int Foo::foo</definition>
+        <argsstring>(int a, std::string b, char(&amp;things)[5], bool, char(&amp;)[42], int stuff[], double[1337])</argsstring>
+        <name>foo</name>
+        <param>
+          <type>int</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>b</declname>
+        </param>
+        <param>
+          <type>char(&amp;)</type>
+          <declname>things</declname>
+          <array>[5]</array>
+        </param>
+        <param>
+          <type>bool</type>
+        </param>
+        <param>
+          <type>char(&amp;)</type>
+          <array>[42]</array>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>stuff</declname>
+          <array>[]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <array>[1337]</array>
+        </param>
+        <briefdescription>
+<para>Function with <emphasis>everything</emphasis> </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="class_a" kindref="compound">A</ref> template, innit </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>That&apos;s a for you </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Well, a string </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>things</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>And an array! </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>stuff</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Another array </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>It returns! </para></simplesect>
+<parameterlist kind="retval"><parameteritem>
+<parameternamelist>
+<parametername>0</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Zero? </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>42</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Answer.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+Ooooh, more text! </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_detailed/File.h" line="110" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="namespace_foo_1a256688820e6f5564e3210874bbda84c3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>constexpr void</type>
+        <definition>constexpr void Foo::bar</definition>
+        <argsstring>(int in, int &amp;out, void *shit) noexcept</argsstring>
+        <name>bar</name>
+        <param>
+          <type>int</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>int &amp;</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>shit</declname>
+        </param>
+        <briefdescription>
+<para>Input and output. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="inout">shit</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Well, that&apos;s messy </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_detailed/File.h" line="118" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="namespace_foo_1ada6488b07291f349307778cc7bb3547d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Foo::justReturn</definition>
+        <argsstring>()</argsstring>
+        <name>justReturn</name>
+        <briefdescription>
+<para>Function. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>With just return value docs should still have detailed section </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_detailed/File.h" line="124" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="namespace_foo_1a2aed7a8280e0ed79f5f9ceb0d54f4a30" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Foo::justReturnValues</definition>
+        <argsstring>()</argsstring>
+        <name>justReturnValues</name>
+        <briefdescription>
+<para>Function. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="retval"><parameteritem>
+<parameternamelist>
+<parametername>42</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>With just return value docs should still have detailed section </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_detailed/File.h" line="130" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="namespace_foo_1aea7a925ccf30c967a965b2549cec4154" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class <ref refid="class_a" kindref="compound">A</ref></type>
+          </param>
+          <param>
+            <type>class B</type>
+          </param>
+        </templateparamlist>
+        <type>int</type>
+        <definition>int Foo::bar</definition>
+        <argsstring>(int a, int b)</argsstring>
+        <name>bar</name>
+        <param>
+          <type>int</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+<para><ref refid="class_a" kindref="compound">A</ref> function with scattered docs. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>First parameter docs</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>B</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Second template parameter docs</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+This is a function that has the docs all scattered around. They should get merged and reordered.</para><para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername><ref refid="class_a" kindref="compound">A</ref></parametername>
+</parameternamelist>
+<parameterdescription>
+<para>First template parameter docs</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Second parameter docs</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+That goes also for the return values.</para><para><parameterlist kind="retval"><parameteritem>
+<parameternamelist>
+<parametername>0</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Zero</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+Yes?</para><para><parameterlist kind="retval"><parameteritem>
+<parameternamelist>
+<parametername>1337</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>1337 h4xx0r?! </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>42</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The answer. To everything </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_detailed/File.h" line="155" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="namespace_foo_1a1e4e8c2c75da6e24d78c8a84e0cb3226" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Foo::thisIsAShittyWayToPassAVectorButWhatever</definition>
+        <argsstring>(float x, float y, float z)</argsstring>
+        <name>thisIsAShittyWayToPassAVectorButWhatever</name>
+        <param>
+          <type>float</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>z</declname>
+        </param>
+        <briefdescription>
+<para>Function with one description for all params. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+<parametername>y</parametername>
+<parametername>z</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Coordinates in 3D space </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="m.css/doxygen/test/compound_detailed/File.h" line="161" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para><ref refid="class_a" kindref="compound">A</ref> namespace. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="m.css/doxygen/test/compound_detailed/File.h" line="95" column="1"/>
+  </compounddef>
+</doxygen>

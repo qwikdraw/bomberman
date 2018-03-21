@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="struct_template_warning" kind="struct" language="C++" prot="public">
+    <compoundname>TemplateWarning</compoundname>
+    <includes refid="compound__detailed_2_file_8h" local="no">File.h</includes>
+    <templateparamlist>
+      <param>
+        <type>class T</type>
+      </param>
+    </templateparamlist>
+    <briefdescription>
+<para>Class with wrong template parameter description. </para>    </briefdescription>
+    <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Documented wrongly as parameter </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>WTF</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>And this one does not exist </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>    </detaileddescription>
+    <location file="m.css/doxygen/test/compound_detailed/File.h" line="85" column="1" bodyfile="m.css/doxygen/test/compound_detailed/File.h" bodystart="85" bodyend="85"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

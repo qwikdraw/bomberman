@@ -1,6 +1,6 @@
 
 #include "LowLevelDraw.hpp"
-#include "ScreenImage.class.hpp"
+#include "TestMap.class.hpp"
 
 int	main(int ac, char **av)
 {	
@@ -15,20 +15,19 @@ int	main(int ac, char **av)
 
 	camera.TrackEvents(&window);
 
-//	ObjFileObject obj("gun.obj", "Tulips.bmp");	
-	
-//	obj.SetTransform(glm::mat4(1));
+	TestMap map;
 
 	ScreenImage im("Tulips.bmp");
-	
+
 	glClearColor(0.3, 0.3, 0.3, 1.0);
 	
 	while (window.IsOpen())
 	{
 		window.ClearRenderZone();
-
+		camera.Update();
+		map.UsePerspective(camera.Perspective());
 		im.Render();
-		
+		map.Render();
 		window.UpdateEntireWindow();
 
 		GLenum err;
