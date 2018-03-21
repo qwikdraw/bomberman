@@ -1,4 +1,5 @@
-#!/bin/sh
+#!/bin/s
+pip -q install virtualenv
 cd docs/m.css/doxygen
 virtualenv .build
 source ./.build/bin/activate

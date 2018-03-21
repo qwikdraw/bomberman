@@ -20,8 +20,8 @@ Window::Window(int x, int y, std::string name) :
 		glfwTerminate();
 		exit(1);
 	}
-        glfwSetWindowUserPointer(_window, this);
-        glfwSetWindowSizeCallback(_window, WindowResizeCallback);
+	glfwSetWindowUserPointer(_window, this);
+	glfwSetWindowSizeCallback(_window, WindowResizeCallback);
 	glfwSetWindowPosCallback(_window, WindowMoveCallback);
 	glfwMakeContextCurrent(_window);
 	glEnable(GL_DEPTH_TEST);

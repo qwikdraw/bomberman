@@ -21,7 +21,9 @@ brew update && brew install pkg-config glm glfw
 ...
 
 ### Documentation
-requires `doxygen >= 1.8.4`
+requires:
+`doxygen >= 1.8.4`
+`Python 3.6`
 
 ## Authors
 
