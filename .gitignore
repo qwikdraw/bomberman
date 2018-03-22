@@ -9,6 +9,7 @@ bomberman
 *.d
 docs/xml
 docs/html
+*__pycache__
 
 # Compiled Object files
 *.slo
