@@ -24,13 +24,13 @@ brew update && brew install pkg-config glm glfw
 requires:
 `doxygen >= 1.8.4`
 `Python 3.6`
+For example on MacOS..
+```
+brew update && brew install python doxygen
+```
 
 ## Authors
 
 * Theo Walton
 * Logan Kaser
 * ...
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
