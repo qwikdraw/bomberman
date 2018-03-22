@@ -28,6 +28,8 @@ For example on MacOS..
 ```
 brew update && brew install python doxygen
 ```
+Then to build the documentation run `./docs.sh`
+documentation is build in the `docs/html` directory.
 
 ## Authors
 
