@@ -77,8 +77,9 @@ int	main(void)
 	while (window.IsOpen())
 	{
 		window.Clear();
-		camera.Update();
-		particles.UsePerspective(camera.ExplicitPerspective());		
+		camera.Update();		
+		particles.UseLookAt(camera.ExplicitPerspective().first);
+		particles.UseProjection(camera.ExplicitPerspective().second);
 
 		update(particles);
 		particles.Sort();

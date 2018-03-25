@@ -44,17 +44,22 @@ Particles::Particles(int amount) : _amount(amount)
 		     GL_STREAM_DRAW);	
 }
 
-void	Particles::UsePerspective(std::pair<glm::mat4, glm::mat4> m)
+void	Particles::UseLookAt(glm::mat4 m)
 {
 	_program->Use();
 
-	_lookAt = m.first;
-	_view = m.second;
-	
+	_lookAt = m;
 	glUniformMatrix4fv(_lookAtID,
 			   1,
 			   GL_FALSE,
 			   glm::value_ptr(_lookAt));
+}
+
+void	Particles::UseProjection(glm::mat4 m)	
+{
+	_program->Use();
+
+	_view = m;
 	glUniformMatrix4fv(_viewID,
 			   1,
 			   GL_FALSE,
@@ -107,6 +112,7 @@ void	Particles::Sort(void)
 		  [&modifiedPosArray](size_t i, size_t j){return modifiedPosArray[i] < modifiedPosArray[j];});
 
 	std::vector<float> tempPositions(_positionArray.size());
+	std::vector<float> tempColors(_colorArray.size());
 	std::vector<size_t> tempIndices(_indices.size());
 
 	for (size_t i = 0; i < indices.size(); i++)
@@ -114,6 +120,9 @@ void	Particles::Sort(void)
 		std::memmove(&tempPositions[0] + i * 4,
 			     &_positionArray[0] + indices[i] * 4,
 			     sizeof(float) * 4);
+		std::memmove(&tempColors[0] + i * 4,
+			     &_colorArray[0] + indices[i] * 4,
+			     sizeof(float) * 4);		
 		tempIndices[i] = _indices[indices[i]];			     
 	}
 	std::memmove(&_positionArray[0], &tempPositions[0], sizeof(float) * _positionArray.size());
