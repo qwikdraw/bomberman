@@ -26,6 +26,21 @@ glm::mat4	Camera::Perspective(void)
 	return perspective * look;
 }
 
+std::pair<glm::mat4, glm::mat4>       Camera::ExplicitPerspective(void)
+{
+        glm::mat4 look = glm::lookAt(glm::vec3(_transform * glm::vec4(Pos, 1)),
+                                     glm::vec3(_transform * glm::vec4(Forward, 1)),
+                                     glm::vec3(_transform * glm::vec4(Up, 0)));
+
+        float width, height;
+
+        _window->GetDrawableSize(width, height);
+
+        glm::mat4 perspective = glm::perspective(glm::radians(45.0f), width/height, 0.1f, 1000.0f);
+
+        return std::pair<glm::mat4, glm::mat4>(look, perspective);
+}
+
 void	Camera::Move(glm::vec3 amount)
 {
 	_transform = glm::translate(_transform, amount);

@@ -6,38 +6,22 @@ layout(location = 1) in vec4 position;
 layout(location = 2) in vec4 color;
 
 uniform mat4 transform;
-uniform mat4 perspective;
+uniform mat4 view;
+uniform mat4 lookAt;
 
 out vec4 fragColor;
 
-float rand(vec2 co)
-{
-    return 1 - fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453);
-}
-
-mat4 rotationMatrix(vec3 axis, float angle)
-{
-    axis = normalize(axis);
-    float s = sin(angle);
-    float c = cos(angle);
-    float oc = 1.0 - c;
-    
-    return mat4(oc * axis.x * axis.x + c,           oc * axis.x * axis.y - axis.z * s,  oc * axis.z * axis.x + axis.y * s,  0.0,
-                oc * axis.x * axis.y + axis.z * s,  oc * axis.y * axis.y + c,           oc * axis.y * axis.z - axis.x * s,  0.0,
-                oc * axis.z * axis.x - axis.y * s,  oc * axis.y * axis.z + axis.x * s,  oc * axis.z * axis.z + c,           0.0,
-                0.0,                                0.0,                                0.0,                                1.0);
-}
-
-mat4	randomRotationMatrix(vec2 co)
-{
-	return rotationMatrix(vec3(rand(co), rand(co * 2), rand(co * 3)), rand(co * 4) * 6.5);
-}
-
 void	main()
 {
-	vec3 rotatedVertex = vertex;//vec3(randomRotationMatrix(position.xy) * vec4(vertex, 1));
-	
-	gl_Position = perspective * transform * vec4(rotatedVertex * position.w + position.xyz, 1);
+	float aspect = view[1][1] / view[0][0];
+	vec3 centerTransformed = vec3(transform * lookAt * vec4(position.xyz, 1));
+	vec3 cameraRight = vec3( view[0][0], view[1][0], view[2][0] );
+	vec3 cameraUp = vec3( view[0][1], view[1][1], view[2][1] );
+	vec3 vertexPos = centerTransformed +
+			cameraRight * vertex.x * position.w * aspect +
+			cameraUp * vertex.y * position.w;
+
+	gl_Position = view * vec4(vertexPos, 1);
 
 	fragColor = color;
 }
