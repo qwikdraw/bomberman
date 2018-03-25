@@ -39,16 +39,12 @@ void	update(Particles &particles)
         std::vector<float> &pos = particles.GetPhysicalAttributes();
 	std::vector<size_t> &index = particles.GetAttributeIndices();
 
-//	for (size_t i = 0; i < index.size(); i++)
-//		std::cout << index[i] << " ";
-//	std::cout << std::endl;
-	
 	for (size_t i = 0; i < pos.size(); i+=4)
 	{
 		size_t posIndex = index[i / 4] * 4;
-		pos[posIndex] += speed[i];
-		pos[posIndex + 1] += speed[i + 1];
-		pos[posIndex + 2] += speed[i + 2];
+		pos[i] += speed[posIndex];
+		pos[i + 1] += speed[posIndex + 1];
+		pos[i + 2] += speed[posIndex + 2];
 	}
 
 }
@@ -71,7 +67,7 @@ int	main(void)
 
 	camera.TrackEvents(&window);
 
-	Particles particles(6);
+	Particles particles(100000);
 	particles.SetTransform(glm::translate(glm::vec3(0, 0, -10)));
 
 	glClearColor(0.20, 0.25, 0.29, 1);

@@ -100,22 +100,12 @@ void	Particles::Sort(void)
 		modifiedPosArray[i / 4] = p2.z;
 	}
 
-        std::cout << "z     : ";
-        for (auto x : modifiedPosArray)
-                std::cout << x << " ";
-        std::cout << std::endl;
-	
 	std::vector<size_t> indices(modifiedPosArray.size());
 	
 	std::iota(indices.begin(), indices.end(), 0);
 	std::sort(indices.begin(), indices.end(),
 		  [&modifiedPosArray](size_t i, size_t j){return modifiedPosArray[i] < modifiedPosArray[j];});
 
-	std::cout << "before: ";
-	for (auto x : _indices)
-		std::cout << x << " ";
-	std::cout << std::endl;
-	
 	std::vector<float> tempPositions(_positionArray.size());
 	std::vector<size_t> tempIndices(_indices.size());
 
@@ -128,12 +118,6 @@ void	Particles::Sort(void)
 	}
 	std::memmove(&_positionArray[0], &tempPositions[0], sizeof(float) * _positionArray.size());
 	std::memmove(&_indices[0], &tempIndices[0], sizeof(size_t) * _indices.size());
-
-
-	std::cout << "after:  ";
-        for (auto x : _indices)
-                std::cout << x << " ";
-        std::cout << std::endl;
 }
 
 void	Particles::Update(void)
