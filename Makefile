@@ -12,7 +12,6 @@
 
 NAME = bomberman
 LIST = main \
-Camera \
 ShadingProgram \
 Time \
 VoxObject \
