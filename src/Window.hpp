@@ -17,7 +17,7 @@ class	Window
 	static void	WindowResizeCallback(GLFWwindow*, int, int);
 	static void	WindowMoveCallback(GLFWwindow*, int, int);
 	
-	GLFWwindow *_window;
+	GLFWwindow* _window;
 	
 	bool _keyHeld[4096] = {};
 	int _forward;
@@ -71,20 +71,13 @@ public:
 	
 	//! Renders entire window, call once per frame.
 	void	Render(void);
-	
-	void	EventListen(void);
-	bool	&KeyOn(int);
-	
-	void	ForwardAndBackKeys(int forward, int back);
-	void	LeftAndRightKeys(int left, int right);
-	void	UpAndDownKeys(int up, int down);
-	
-	bool	IsForward(void);
-	bool	IsBackward(void);
-	bool	IsLeft(void);
-	bool	IsRight(void);
-	bool	IsUp(void);
-	bool	IsDown(void);
+
+	//! Returns the pointer to the internal GLFW window.
+	/*! This could be used to extend the window functionality
+	or for when you need to do something that this wrapper does
+	not support. Such as creating your own event messaging system.
+	*/
+	GLFWwindow* getGLWindow(void);
 };
 
 #endif

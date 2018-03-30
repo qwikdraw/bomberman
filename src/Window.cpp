@@ -15,7 +15,8 @@ Window::Window(int width, int height, std::string name) :
 		throw std::runtime_error("Failed to initialize GLFW");
 	WindowHints();
 	glfwSetErrorCallback(ErrorCallback);
-	if (!(_window = glfwCreateWindow(width, height, name.c_str(), NULL, NULL)))
+	_window = glfwCreateWindow(width, height, name.c_str(), NULL, NULL);
+	if (!_window)
 	{
 		glfwTerminate();
 		throw std::runtime_error("Failed to initialize window");
@@ -92,17 +93,15 @@ void	Window::SetStencil(float x, float y, float width, float height)
 
 void	Window::ClearStencil(void)
 {
-	float windowWidth, windowHeight;
-
-	GetSize(windowWidth, windowHeight);
-
 	_screenCornerX = 0;
 	_screenCornerY = 0;
-	_width = windowWidth;
-	_height = windowHeight;
+	_width = 1;
+	_height = 1;
 
-	glViewport(0, 0, windowWidth, windowHeight);
-	glScissor(0, 0, windowWidth, windowHeight);
+	float width, height;
+	GetSize(width, height);
+	glViewport(0, 0, width, height);
+	glScissor(0, 0, width, height);
 	glDisable(GL_SCISSOR_TEST);
 }
 
@@ -137,92 +136,12 @@ void	Window::WindowMoveCallback(GLFWwindow *glfwWindow, int, int)
 	window->RefreshStencil();
 }
 
-void	Window::EventListen(void)
-{
-	glfwSetKeyCallback(_window, KeyCallback);
-}
-
-void	Window::KeyCallback(GLFWwindow *glfwWindow, int key, int, int action, int)
-{
-	Window *window = reinterpret_cast<Window*>( glfwGetWindowUserPointer(glfwWindow) );
-
-	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
-		glfwSetWindowShouldClose(glfwWindow, GL_TRUE);
-
-	if (action == GLFW_PRESS)
-	{
-		window->KeyOn(key) = true;
-	}
-	else if (action == GLFW_RELEASE)
-		window->KeyOn(key) = false;
-}
-
 void	Window::ErrorCallback(int, const char *description)
 {
 	std::cerr << description << std::endl;
 }
 
-bool	&Window::KeyOn(int key)
+GLFWwindow* Window::getGLWindow(void)
 {
-	return _keyHeld[key];
-}
-
-void	Window::ForwardAndBackKeys(int forward, int backward)
-{
-	_forward = forward;
-	_backward = backward;
-}
-
-void	Window::LeftAndRightKeys(int left, int right)
-{
-	_left = left;
-	_right = right;
-}
-
-void	Window::UpAndDownKeys(int up, int down)
-{
-	_up = up;
-	_down = down;	
-}
-
-bool	Window::IsForward(void)
-{
-	if (_keyHeld[_forward])
-		return true;
-	return false;
-}
-
-bool	Window::IsBackward(void)
-{
-	if (_keyHeld[_backward])
-		return true;
-	return false;
-}
-
-bool	Window::IsLeft(void)
-{
-	if (_keyHeld[_left])
-		return true;
-	return false;
-}
-
-bool	Window::IsRight(void)
-{
-	if (_keyHeld[_right])
-		return true;
-	return false;
-}
-
-bool	Window::IsUp(void)
-{
-	if (_keyHeld[_up])
-		return true;
-	return false;
-}
-
-bool	Window::IsDown(void)
-{
-	if (_keyHeld[_down])
-		return true;
-	return false;
+	return _window;
 }

@@ -23,11 +23,7 @@
 #include "VoxelChunk.hpp"
 #include "VoxObject.hpp"
 #include "VoxRenderer.hpp"
-#include "Camera.hpp"
 
-#define X_DIM 800
-#define Y_DIM 600
-#define NAME "Window Name"
 #define VOXEL_VERTEX_SHADER_PATH "../voxGL/vertex.glsl"
 #define VOXEL_FRAGMENT_SHADER_PATH "../voxGL/frag.glsl"
 
