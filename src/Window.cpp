@@ -1,13 +1,11 @@
 #include "voxGL.hpp"
 #include <stdexcept>
 
-Window::Window(void){}
-
 Window::Window(int width, int height, std::string name) :
-						 _screenCornerX(0),
-						 _screenCornerY(0),
-						 _width(1),
-						 _height(1)
+	_screenCornerX(0),
+	_screenCornerY(0),
+	_width(1),
+	_height(1)
 {
 	GLuint vertex_array_id;
 
@@ -24,23 +22,26 @@ Window::Window(int width, int height, std::string name) :
 	glfwSetWindowUserPointer(_window, this);
 	glfwSetWindowSizeCallback(_window, WindowResizeCallback);
 	glfwSetWindowPosCallback(_window, WindowMoveCallback);
+	glfwSetKeyCallback(_window, KeyCallback);
 	glfwMakeContextCurrent(_window);
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);
 
 	glGenVertexArrays(1, &vertex_array_id);
 	glBindVertexArray(vertex_array_id);
+	WindowHints();
 }
 
 void	Window::WindowHints(void)
 {
 	glfwDefaultWindowHints();
-	glfwWindowHint(GLFW_SAMPLES, 4);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-	glfwWindowHint(GLFW_DEPTH_BITS, 32);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+	glfwWindowHint(GLFW_DEPTH_BITS, 32);
+	glfwWindowHint(GLFW_SAMPLES, 4);
+	glEnable(GL_MULTISAMPLE);
 }
 
 void	Window::GetSize(float &width, float &height)
@@ -124,14 +125,14 @@ void	Window::RefreshStencil(void)
 
 void	Window::WindowResizeCallback(GLFWwindow *glfwWindow, int, int)
 {
-	Window *window = reinterpret_cast<Window*>( glfwGetWindowUserPointer(glfwWindow) );
+	Window *window = reinterpret_cast<Window*>(glfwGetWindowUserPointer(glfwWindow));
 
 	window->RefreshStencil();
 }
 
 void	Window::WindowMoveCallback(GLFWwindow *glfwWindow, int, int)
 {
-	Window *window = reinterpret_cast<Window*>( glfwGetWindowUserPointer(glfwWindow) );
+	Window *window = reinterpret_cast<Window*>(glfwGetWindowUserPointer(glfwWindow));
 
 	window->RefreshStencil();
 }
@@ -144,4 +145,14 @@ void	Window::ErrorCallback(int, const char *description)
 GLFWwindow* Window::getGLWindow(void)
 {
 	return _window;
+}
+
+void	KeyCallback(GLFWwindow *glfwWindow, int key, int, int action, int)
+{
+	Window *window = reinterpret_cast<Window*>(glfwGetWindowUserPointer(glfwWindow));
+	if (action == GLFW_PRESS) {
+		window->_keys[key] = true;
+	}
+	else if (action == GLFW_RELEASE)
+		window->_keys[key] = false;
 }

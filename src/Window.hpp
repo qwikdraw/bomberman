@@ -10,34 +10,30 @@ and the ability to specify a subsection that application window
 for rendering.
 All coordinates are in normalized device coordinates.
 */
+
+void	KeyCallback(GLFWwindow*, int key, int, int action, int);
+
 class	Window
 {
-	static void	KeyCallback(GLFWwindow*, int, int, int, int);
+	friend void	KeyCallback(GLFWwindow*, int key, int, int action, int);
 	static void	ErrorCallback(int, const char*);
 	static void	WindowResizeCallback(GLFWwindow*, int, int);
 	static void	WindowMoveCallback(GLFWwindow*, int, int);
-	
 	GLFWwindow* _window;
-	
-	bool _keyHeld[4096] = {};
-	int _forward;
-	int _backward;
-	int _left;
-	int _right;
-	int _up;
-	int _down;
 
 	float _screenCornerX;
 	float _screenCornerY;
 	float _width;
 	float _height;
-	
-	Window(void);
 
 	void	WindowHints(void);
 	void	RefreshStencil(void);
 
+	//! Array of bools indicating if a key is down.
+	bool _keys[512] = {false};
+
 public:
+
 	//! Create a new window with x width and y height the window title is set to name.
 	Window(int x, int y, std::string name);
 
