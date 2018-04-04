@@ -27,6 +27,7 @@ public:
 	void	Update(void);
 	bool	JustMoved(void);
 	glm::mat4	Perspective(void);
+	std::pair<glm::mat4, glm::mat4>	ExplicitPerspective(void);
 };
 
 #endif
