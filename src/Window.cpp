@@ -29,7 +29,6 @@ Window::Window(int width, int height, std::string name) :
 
 	glGenVertexArrays(1, &vertex_array_id);
 	glBindVertexArray(vertex_array_id);
-	WindowHints();
 }
 
 void	Window::WindowHints(void)
@@ -106,7 +105,6 @@ void	Window::ClearStencil(void)
 	glDisable(GL_SCISSOR_TEST);
 }
 
-
 void	Window::Render(void)
 {
 	glfwSwapBuffers(_window);
@@ -155,4 +153,11 @@ void	KeyCallback(GLFWwindow *glfwWindow, int key, int, int action, int)
 	}
 	else if (action == GLFW_RELEASE)
 		window->_keys[key] = false;
+}
+
+bool Window::key(int key) {
+	if (key > 0 && key < 512)
+		return _keys[key];
+	else
+		return false;
 }

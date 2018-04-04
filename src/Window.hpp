@@ -3,6 +3,10 @@
 
 #include "voxGL.hpp"
 
+
+void	KeyCallback(GLFWwindow*, int key, int, int action, int);
+
+
 //! Application window
 /*!
 Currently windows represent an application window
@@ -10,9 +14,6 @@ and the ability to specify a subsection that application window
 for rendering.
 All coordinates are in normalized device coordinates.
 */
-
-void	KeyCallback(GLFWwindow*, int key, int, int action, int);
-
 class	Window
 {
 	friend void	KeyCallback(GLFWwindow*, int key, int, int action, int);
@@ -31,7 +32,6 @@ class	Window
 
 	//! Array of bools indicating if a key is down.
 	bool _keys[512] = {false};
-
 public:
 
 	//! Create a new window with x width and y height the window title is set to name.
@@ -68,11 +68,13 @@ public:
 	//! Renders entire window, call once per frame.
 	void	Render(void);
 
-	//! Returns the pointer to the internal GLFW window.
-	/*! This could be used to extend the window functionality
-	or for when you need to do something that this wrapper does
-	not support. Such as creating your own event messaging system.
+	//! Check if a key is down.
+	/*! This method is good for quick debuging, and exists for
+	backwards compatibility with older theo code.
 	*/
+	bool	key(int key);
+
+	//! Returns the pointer to the internal GLFW window.
 	GLFWwindow* getGLWindow(void);
 };
 
