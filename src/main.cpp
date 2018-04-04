@@ -1,6 +1,6 @@
 
 #include "voxGL.hpp"
-#include "Particles.class.hpp"
+#include "Particles.hpp"
 
 std::vector<float> lifetime;
 std::vector<float> speed;
