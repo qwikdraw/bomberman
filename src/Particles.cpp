@@ -1,5 +1,5 @@
 
-#include "Particles.class.hpp"
+#include "Particles.hpp"
 
 Particles::Particles(int amount) : _amount(amount)
 {
@@ -44,23 +44,18 @@ Particles::Particles(int amount) : _amount(amount)
 		     GL_STREAM_DRAW);	
 }
 
-void	Particles::UseLookAt(glm::mat4 m)
+void	Particles::UseExplicitPerspective(std::pair<glm::mat4, glm::mat4> pair)
 {
 	_program->Use();
 
-	_lookAt = m;
+	_lookAt = pair.first;
+	_view = pair.second;
+
 	glUniformMatrix4fv(_lookAtID,
 			   1,
 			   GL_FALSE,
 			   glm::value_ptr(_lookAt));
-}
-
-void	Particles::UseProjection(glm::mat4 m)	
-{
-	_program->Use();
-
-	_view = m;
-	glUniformMatrix4fv(_viewID,
+        glUniformMatrix4fv(_viewID,
 			   1,
 			   GL_FALSE,
 			   glm::value_ptr(_view));

@@ -1,5 +1,5 @@
-#ifndef PARTICLES_CLASS_HPP
-#define PARTICLES_CLASS_HPP
+#ifndef PARTICLES_HPP
+#define PARTICLES_HPP
 
 #include "voxGL.hpp"
 #include <numeric>
@@ -37,11 +37,12 @@ public:
 	
 	Particles(int amount);
 
-	//! Use the given lookAt matrix
-	void	UseLookAt(glm::mat4 m);
-
-	//! Use the given projection matrix
-	void	UseProjection(glm::mat4 m);
+	//! Use the explicit perspective provided by camera
+	/*!
+	An 'Explicit Perspective' is an std::pair<glm::mat4, glm::mat4> where the first element
+	represents the lookAt matrix, and the second element represents the projection matrix.
+	 */
+	void	UseExplicitPerspective(std::pair<glm::mat4, glm::mat4> pair);
 	
 	//! Set the transform matrix to be applied to the particles
 	void	SetTransform(glm::mat4 m);
