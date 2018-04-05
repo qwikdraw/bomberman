@@ -19,7 +19,7 @@ VoxObject \
 VoxRenderer \
 VoxelChunk \
 Window \
-Particles.class \
+Particles \
 
 SRC_DIR = src
 OBJ_DIR = obj

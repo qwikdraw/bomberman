@@ -1,112 +1,78 @@
 
 #include "voxGL.hpp"
 
-glm::vec3 const	Camera::Pos;
-glm::vec3 const	Camera::Up;
-glm::vec3 const	Camera::Forward;
-glm::vec3 const	Camera::Right;
+glm::vec3 constexpr Camera::_basePos;
+glm::vec3 constexpr Camera::_up;
+glm::vec3 constexpr Camera::_forward;
 
-Camera::Camera(void) : _cameraShouldMove(true)
+Camera::Camera(void)
 {
-	_transform = glm::mat4(1);
-}
-
-glm::mat4	Camera::Perspective(void)
-{
-	glm::mat4 look = glm::lookAt(glm::vec3(_transform * glm::vec4(Pos, 1)),
-				     glm::vec3(_transform * glm::vec4(Forward, 1)),
-				     glm::vec3(_transform * glm::vec4(Up, 0)));
-
-	float width, height;
-
-	_window->GetDrawableSize(width, height);
-
-	glm::mat4 perspective = glm::perspective(glm::radians(45.0f), width/height, 0.1f, 1000.0f);
-
-	return perspective * look;
-}
-
-std::pair<glm::mat4, glm::mat4>       Camera::ExplicitPerspective(void)
-{
-        glm::mat4 look = glm::lookAt(glm::vec3(_transform * glm::vec4(Pos, 1)),
-                                     glm::vec3(_transform * glm::vec4(Forward, 1)),
-                                     glm::vec3(_transform * glm::vec4(Up, 0)));
-
-        float width, height;
-
-        _window->GetDrawableSize(width, height);
-
-        glm::mat4 perspective = glm::perspective(glm::radians(45.0f), width/height, 0.1f, 1000.0f);
-
-        return std::pair<glm::mat4, glm::mat4>(look, perspective);
+	_position = _basePos;
+	_rotation = glm::mat4(1);
+	_near = 0.1;
+	_far = 1000;
+	_fov = 45;
 }
 
 void	Camera::Move(glm::vec3 amount)
 {
-	_transform = glm::translate(_transform, amount);
-	_cameraShouldMove = true;
+	_position += amount;
+}
+
+void	Camera::MoveTo(glm::vec3 position)
+{
+	_position = position;
+}
+
+void	Camera::RelativeMove(glm::vec3 amount)
+{
+	glm::vec3 absolute = glm::vec3(_rotation * glm::vec4(amount, 0));
+
+	Move(absolute);
 }
 
 void	Camera::Rotate(glm::vec3 axis, float degrees)
 {
-	_transform = glm::rotate(_transform, glm::radians(degrees), axis);
-	_cameraShouldMove = true;	
+	_rotation = glm::rotate(_rotation, glm::radians(degrees), axis);
 }
 
-void	Camera::TrackEvents(Window *window)
+void	Camera::SetAspect(float aspect)
 {
-	_window = window;
+	_aspect = aspect;
 }
 
-void	Camera::Update(void)
+void	Camera::SetNearDist(float dist)
 {
-	_time.Fix();
-
-	if (_window->IsForward())
-	{
-		Move(Forward * _time.GetDeltaTime() * 10);
-	}
-	if (_window->IsBackward())
-	{
-		Move(-Forward * _time.GetDeltaTime() * 10);
-	}
-	if (_window->IsLeft())
-	{
-		Move(-Right * _time.GetDeltaTime() * 10);
-	}
-	if (_window->IsRight())
-	{
-		Move(Right * _time.GetDeltaTime() * 10);
-	}
-	if (_window->IsUp())
-	{
-		Move(Up * _time.GetDeltaTime() * 10);		
-	}
-	if (_window->IsDown())
-	{
-		Move(-Up * _time.GetDeltaTime() * 10);
-	}
-	if (_window->KeyOn('N'))
-	{
-		Rotate(glm::vec3(0, -1, 0), _time.GetDeltaTime() * 10);
-	}
-	if (_window->KeyOn('M'))
-	{
-		Rotate(glm::vec3(0, 1, 0), _time.GetDeltaTime() * 10);
-	}
-	if (_window->KeyOn('J'))
-	{
-		Rotate(glm::vec3(-1, 0, 0), _time.GetDeltaTime() * 10);
-	}
-	if (_window->KeyOn('K'))
-	{
-		Rotate(glm::vec3(1, 0, 0), _time.GetDeltaTime() * 10);
-	}
+	_near = dist;
 }
 
-bool	Camera::JustMoved(void)
+void	Camera::SetFarDist(float dist)
 {
-	bool out = _cameraShouldMove;
-	_cameraShouldMove = false;
-	return out;
+	_far = dist;
 }
+
+void	Camera::SetFOV(float degrees)
+{
+	_fov = degrees;
+}
+
+glm::mat4	Camera::Perspective(void)
+{
+	std::pair<glm::mat4, glm::mat4> p = ExplicitPerspective();
+
+	return p.second * p.first;
+}
+
+std::pair<glm::mat4, glm::mat4>	Camera::ExplicitPerspective(void)
+{
+	glm::mat4 transform = glm::translate(_rotation, _position);
+	glm::mat4 lookAt = glm::lookAt(glm::vec3(transform * glm::vec4(_basePos, 1)),
+				       glm::vec3(transform * glm::vec4(_forward, 1)),
+				       glm::vec3(transform * glm::vec4(_up, 0)));
+	glm::mat4 perspective = glm::perspective(glm::radians(_fov), _aspect, _near, _far);
+
+	return std::pair<glm::mat4, glm::mat4>(lookAt, perspective);
+}
+
+
+	

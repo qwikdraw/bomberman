@@ -65,19 +65,18 @@ int	main(void)
 	window.LeftAndRightKeys('A', 'D');
 	window.UpAndDownKeys('Z', 'X');
 
-	camera.TrackEvents(&window);
-
 	Particles particles(100000);
 	particles.SetTransform(glm::translate(glm::vec3(0, 0, -10)));
 
 	glClearColor(0.20, 0.25, 0.29, 1);
 
 	init(particles);
+
+	camera.Move(glm::vec3(-10, 0, 0));
 	
 	while (window.IsOpen())
 	{
 		window.Clear();
-		camera.Update();
 		particles.UseExplicitPerspective(camera.ExplicitPerspective());
 
 		update(particles);
