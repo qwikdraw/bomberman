@@ -161,3 +161,20 @@ bool Window::key(int key) {
 	else
 		return false;
 }
+
+void	MouseButtonCallback(GLFWwindow *glfwWindow, int button, int action, int)
+{
+	Window *window = reinterpret_cast<Window*>(glfwGetWindowUserPointer(glfwWindow));
+	if (action == GLFW_PRESS) {
+		window->_mouseButtons[button] = true;
+	}
+	else if (action == GLFW_RELEASE)
+		window->_mouseButtons[button] = false;
+}
+
+bool Window::mouseButton(int button) {
+	if (button > 0 && button < 8)
+		return _mouseButtons[button];
+	else
+		return false;
+}

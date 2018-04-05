@@ -5,7 +5,7 @@
 
 
 void	KeyCallback(GLFWwindow*, int key, int, int action, int);
-
+void	MouseButtonCallback(GLFWwindow*, int button, int action, int);
 
 //! Application window
 /*!
@@ -17,6 +17,7 @@ All coordinates are in normalized device coordinates.
 class	Window
 {
 	friend void	KeyCallback(GLFWwindow*, int key, int, int action, int);
+	friend void	MouseButtonCallback(GLFWwindow*, int button, int action, int);
 	static void	ErrorCallback(int, const char*);
 	static void	WindowResizeCallback(GLFWwindow*, int, int);
 	static void	WindowMoveCallback(GLFWwindow*, int, int);
@@ -32,6 +33,9 @@ class	Window
 
 	//! Array of bools indicating if a key is down.
 	bool _keys[512] = {false};
+
+	//! Array of bools indicating if a mouse button is pressed.
+	bool _mouseButtons[8] = {false};
 public:
 
 	//! Create a new window with x width and y height the window title is set to name.
@@ -69,10 +73,10 @@ public:
 	void	Render(void);
 
 	//! Check if a key is down.
-	/*! This method is good for quick debuging, and exists for
-	backwards compatibility with older theo code.
-	*/
 	bool	key(int key);
+
+	//! Check if a mouse button is pressed.
+	bool	mouseButton(int button);
 
 	//! Returns the pointer to the internal GLFW window.
 	GLFWwindow* getGLWindow(void);

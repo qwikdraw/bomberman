@@ -1,4 +1,4 @@
-
+/*
 #include "voxGL.hpp"
 #include "Particles.hpp"
 
@@ -94,3 +94,6 @@ int	main(void)
 		}
 	}
 }
+*/
+
+int main(void){return 0;}
