@@ -25,6 +25,7 @@ int	main(void)
 	{
 		window.RemoveRenderMask();
 		window.Clear();
+
 		if (window.key(GLFW_KEY_SPACE)) {
 			window.SetRenderMask(0,0,0.1,0.2);
 		}
