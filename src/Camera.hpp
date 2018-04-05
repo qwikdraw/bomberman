@@ -20,6 +20,12 @@ private:
 
 public:
 
+	//! Create a camera used for getting perspectives.
+	/*!
+	the following values are initialized:
+	Aspect ratio = 1, near dist = 0.1, far dist = 1000, fov = 45 degrees. The camera starts facing
+	the positive X axis at the origin with (0, 0, 1) being its up vector.
+	 */	
 	Camera(void);
 
 	void	Move(glm::vec3 amount);
