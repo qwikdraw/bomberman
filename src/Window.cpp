@@ -42,10 +42,9 @@ void	Window::WindowHints(void)
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	glfwWindowHint(GLFW_DEPTH_BITS, 32);
 	glfwWindowHint(GLFW_SAMPLES, 4);
-	glEnable(GL_MULTISAMPLE);
 }
 
-void	Window::GetSize(float &width, float &height)
+void	Window::GetWindowSize(float &width, float &height)
 {
 	int iwidth, iheight;
 
@@ -55,22 +54,29 @@ void	Window::GetSize(float &width, float &height)
 	height = static_cast<float>(iheight);
 }
 
+float Window::GetAspect(void)
+{
+	float width, height;
+	GetSize(width, height);
+	return width / height;
+}
+
 bool	Window::IsOpen(void)
 {
 	return !glfwWindowShouldClose(_window);
 }
 
-void	Window::GetDrawableSize(float &width, float &height)
+void	Window::GetSize(float &width, float &height)
 {
 	float actualWidth, actualHeight;
 
-	GetSize(actualWidth, actualHeight);
+	GetWindowSize(actualWidth, actualHeight);
 
 	width = _width * actualWidth;
 	height = _height * actualHeight;
 }
 
-void	Window::SetStencil(float x, float y, float width, float height)
+void	Window::SetRenderMask(float x, float y, float width, float height)
 {
 	float windowWidth, windowHeight;
 
@@ -79,29 +85,27 @@ void	Window::SetStencil(float x, float y, float width, float height)
 	_screenCornerX = x;
 	_screenCornerY = y;
 	
-	GetSize(windowWidth, windowHeight);
-
+	GetWindowSize(windowWidth, windowHeight);
 	glEnable(GL_SCISSOR_TEST);
 	glViewport(windowWidth * x,
 		   windowHeight * y,
 		   windowWidth * width,		
 		   windowHeight * height);
-	
 	glScissor(windowWidth * x,
 		  windowHeight * y,
 		  windowWidth * width,
 		  windowHeight * height);
 }
 
-void	Window::ClearStencil(void)
+void	Window::RemoveRenderMask(void)
 {
 	_screenCornerX = 0;
 	_screenCornerY = 0;
 	_width = 1;
 	_height = 1;
 
-	float width, height;
-	GetSize(width, height);
+	int width, height;
+	glfwGetFramebufferSize(_window, &width, &height);
 	glViewport(0, 0, width, height);
 	glScissor(0, 0, width, height);
 	glDisable(GL_SCISSOR_TEST);
@@ -118,23 +122,23 @@ void	Window::Clear(void)
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
-void	Window::RefreshStencil(void)
+void	Window::RefreshRenderMask(void)
 {
-	SetStencil(_screenCornerX, _screenCornerY, _width, _height);
+	SetRenderMask(_screenCornerX, _screenCornerY, _width, _height);
 }
 
 void	Window::WindowResizeCallback(GLFWwindow *glfwWindow, int, int)
 {
 	Window *window = reinterpret_cast<Window*>(glfwGetWindowUserPointer(glfwWindow));
 
-	window->RefreshStencil();
+	window->RefreshRenderMask();
 }
 
 void	Window::WindowMoveCallback(GLFWwindow *glfwWindow, int, int)
 {
 	Window *window = reinterpret_cast<Window*>(glfwGetWindowUserPointer(glfwWindow));
 
-	window->RefreshStencil();
+	window->RefreshRenderMask();
 }
 
 void	Window::ErrorCallback(int, const char *description)
@@ -158,7 +162,7 @@ void	KeyCallback(GLFWwindow *glfwWindow, int key, int, int action, int)
 }
 
 bool Window::key(int key) {
-	if (key > 0 && key < 512)
+	if (key >= 0 && key < 512)
 		return _keys[key];
 	else
 		return false;
@@ -175,7 +179,7 @@ void	MouseButtonCallback(GLFWwindow *glfwWindow, int button, int action, int)
 }
 
 bool Window::mouseButton(int button) {
-	if (button > 0 && button < 8)
+	if (button >= 0 && button < 8)
 		return _mouseButtons[button];
 	else
 		return false;

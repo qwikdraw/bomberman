@@ -24,7 +24,7 @@
 #include "VoxObject.hpp"
 #include "VoxRenderer.hpp"
 
-#define VOXEL_VERTEX_SHADER_PATH "../voxGL/vertex.glsl"
-#define VOXEL_FRAGMENT_SHADER_PATH "../voxGL/frag.glsl"
+#define VOXEL_VERTEX_SHADER_PATH "shaders/vertex.glsl"
+#define VOXEL_FRAGMENT_SHADER_PATH "shaders/frag.glsl"
 
 #endif

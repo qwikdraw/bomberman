@@ -31,7 +31,7 @@ class	Window
 	float _height;
 
 	void	WindowHints(void);
-	void	RefreshStencil(void);
+	void	RefreshRenderMask(void);
 
 	//! Array of bools indicating if a key is down.
 	bool _keys[512] = {false};
@@ -51,7 +51,10 @@ public:
 	Fills arguments with the result.
 	For the size of the currently drawable area (with respect to the current stencil), see GetDrawableSize.
 	*/
-	void	GetSize(float &width, float &height);
+	void	GetWindowSize(float &width, float &height);
+
+	//! Gets the aspect ratio of the currently drawable area.
+	float GetAspect(void);
 	
 	//! Returns true if the window is open, false otherwise.
 	bool	IsOpen(void);
@@ -62,13 +65,13 @@ public:
 	its lower left corner at that point.
 	Implemented with glStencil.
 	*/
-	void	SetStencil(float x, float y, float width, float height);
+	void	SetRenderMask(float x, float y, float width, float height);
 
 	//! Removes render stencil.
-	void	ClearStencil(void);
+	void	RemoveRenderMask(void);
 
 	//! Get the current drawable area, value depends on the current stencil
-	void	GetDrawableSize(float &width, float &height);
+	void	GetSize(float &width, float &height);
 
 	//! Clears render zone with the current glClearColor.
 	void	Clear(void);
