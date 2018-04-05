@@ -36,7 +36,7 @@ ShadingProgram::ShadingProgram(std::string vp, std::string gp, std::string fp)
 	glShaderSource(shader_id, 1, &source, nullptr);
 	glCompileShader(shader_id);
 	CheckCompilation(shader_id, fp);
-        glAttachShader(_program, shader_id);
+	glAttachShader(_program, shader_id);
 	glLinkProgram(_program);
 //	CheckLinking();
 }

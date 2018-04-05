@@ -1,13 +1,11 @@
 #include "voxGL.hpp"
 #include <stdexcept>
 
-Window::Window(void){}
-
 Window::Window(int width, int height, std::string name) :
-						 _screenCornerX(0),
-						 _screenCornerY(0),
-						 _width(1),
-						 _height(1)
+	_screenCornerX(0),
+	_screenCornerY(0),
+	_width(1),
+	_height(1)
 {
 	GLuint vertex_array_id;
 
@@ -15,7 +13,8 @@ Window::Window(int width, int height, std::string name) :
 		throw std::runtime_error("Failed to initialize GLFW");
 	WindowHints();
 	glfwSetErrorCallback(ErrorCallback);
-	if (!(_window = glfwCreateWindow(width, height, name.c_str(), NULL, NULL)))
+	_window = glfwCreateWindow(width, height, name.c_str(), NULL, NULL);
+	if (!_window)
 	{
 		glfwTerminate();
 		throw std::runtime_error("Failed to initialize window");
@@ -23,6 +22,9 @@ Window::Window(int width, int height, std::string name) :
 	glfwSetWindowUserPointer(_window, this);
 	glfwSetWindowSizeCallback(_window, WindowResizeCallback);
 	glfwSetWindowPosCallback(_window, WindowMoveCallback);
+	glfwSetKeyCallback(_window, KeyCallback);
+	glfwSetMouseButtonCallback(_window, MouseButtonCallback);
+	glfwSetCursorPosCallback(_window, MousePositionCallback);
 	glfwMakeContextCurrent(_window);
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);
@@ -34,15 +36,15 @@ Window::Window(int width, int height, std::string name) :
 void	Window::WindowHints(void)
 {
 	glfwDefaultWindowHints();
-	glfwWindowHint(GLFW_SAMPLES, 4);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-	glfwWindowHint(GLFW_DEPTH_BITS, 32);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+	glfwWindowHint(GLFW_DEPTH_BITS, 32);
+	glfwWindowHint(GLFW_SAMPLES, 4);
 }
 
-void	Window::GetSize(float &width, float &height)
+void	Window::GetWindowSize(float &width, float &height)
 {
 	int iwidth, iheight;
 
@@ -52,22 +54,29 @@ void	Window::GetSize(float &width, float &height)
 	height = static_cast<float>(iheight);
 }
 
+float Window::GetAspect(void)
+{
+	float width, height;
+	GetSize(width, height);
+	return width / height;
+}
+
 bool	Window::IsOpen(void)
 {
 	return !glfwWindowShouldClose(_window);
 }
 
-void	Window::GetDrawableSize(float &width, float &height)
+void	Window::GetSize(float &width, float &height)
 {
 	float actualWidth, actualHeight;
 
-	GetSize(actualWidth, actualHeight);
+	GetWindowSize(actualWidth, actualHeight);
 
 	width = _width * actualWidth;
 	height = _height * actualHeight;
 }
 
-void	Window::SetStencil(float x, float y, float width, float height)
+void	Window::SetRenderMask(float x, float y, float width, float height)
 {
 	float windowWidth, windowHeight;
 
@@ -76,36 +85,31 @@ void	Window::SetStencil(float x, float y, float width, float height)
 	_screenCornerX = x;
 	_screenCornerY = y;
 	
-	GetSize(windowWidth, windowHeight);
-
+	GetWindowSize(windowWidth, windowHeight);
 	glEnable(GL_SCISSOR_TEST);
 	glViewport(windowWidth * x,
 		   windowHeight * y,
 		   windowWidth * width,		
 		   windowHeight * height);
-	
 	glScissor(windowWidth * x,
 		  windowHeight * y,
 		  windowWidth * width,
 		  windowHeight * height);
 }
 
-void	Window::ClearStencil(void)
+void	Window::RemoveRenderMask(void)
 {
-	float windowWidth, windowHeight;
-
-	GetSize(windowWidth, windowHeight);
-
 	_screenCornerX = 0;
 	_screenCornerY = 0;
-	_width = windowWidth;
-	_height = windowHeight;
+	_width = 1;
+	_height = 1;
 
-	glViewport(0, 0, windowWidth, windowHeight);
-	glScissor(0, 0, windowWidth, windowHeight);
+	int width, height;
+	glfwGetFramebufferSize(_window, &width, &height);
+	glViewport(0, 0, width, height);
+	glScissor(0, 0, width, height);
 	glDisable(GL_SCISSOR_TEST);
 }
-
 
 void	Window::Render(void)
 {
@@ -118,43 +122,23 @@ void	Window::Clear(void)
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
-void	Window::RefreshStencil(void)
+void	Window::RefreshRenderMask(void)
 {
-	SetStencil(_screenCornerX, _screenCornerY, _width, _height);
+	SetRenderMask(_screenCornerX, _screenCornerY, _width, _height);
 }
 
 void	Window::WindowResizeCallback(GLFWwindow *glfwWindow, int, int)
 {
-	Window *window = reinterpret_cast<Window*>( glfwGetWindowUserPointer(glfwWindow) );
+	Window *window = reinterpret_cast<Window*>(glfwGetWindowUserPointer(glfwWindow));
 
-	window->RefreshStencil();
+	window->RefreshRenderMask();
 }
 
 void	Window::WindowMoveCallback(GLFWwindow *glfwWindow, int, int)
 {
-	Window *window = reinterpret_cast<Window*>( glfwGetWindowUserPointer(glfwWindow) );
+	Window *window = reinterpret_cast<Window*>(glfwGetWindowUserPointer(glfwWindow));
 
-	window->RefreshStencil();
-}
-
-void	Window::EventListen(void)
-{
-	glfwSetKeyCallback(_window, KeyCallback);
-}
-
-void	Window::KeyCallback(GLFWwindow *glfwWindow, int key, int, int action, int)
-{
-	Window *window = reinterpret_cast<Window*>( glfwGetWindowUserPointer(glfwWindow) );
-
-	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
-		glfwSetWindowShouldClose(glfwWindow, GL_TRUE);
-
-	if (action == GLFW_PRESS)
-	{
-		window->KeyOn(key) = true;
-	}
-	else if (action == GLFW_RELEASE)
-		window->KeyOn(key) = false;
+	window->RefreshRenderMask();
 }
 
 void	Window::ErrorCallback(int, const char *description)
@@ -162,67 +146,52 @@ void	Window::ErrorCallback(int, const char *description)
 	std::cerr << description << std::endl;
 }
 
-bool	&Window::KeyOn(int key)
+GLFWwindow* Window::getGLWindow(void)
 {
-	return _keyHeld[key];
+	return _window;
 }
 
-void	Window::ForwardAndBackKeys(int forward, int backward)
+void	KeyCallback(GLFWwindow *glfwWindow, int key, int, int action, int)
 {
-	_forward = forward;
-	_backward = backward;
+	Window *window = reinterpret_cast<Window*>(glfwGetWindowUserPointer(glfwWindow));
+	if (action == GLFW_PRESS) {
+		window->_keys[key] = true;
+	}
+	else if (action == GLFW_RELEASE)
+		window->_keys[key] = false;
 }
 
-void	Window::LeftAndRightKeys(int left, int right)
-{
-	_left = left;
-	_right = right;
+bool Window::key(int key) {
+	if (key >= 0 && key < 512)
+		return _keys[key];
+	else
+		return false;
 }
 
-void	Window::UpAndDownKeys(int up, int down)
+void	MouseButtonCallback(GLFWwindow *glfwWindow, int button, int action, int)
 {
-	_up = up;
-	_down = down;	
+	Window *window = reinterpret_cast<Window*>(glfwGetWindowUserPointer(glfwWindow));
+	if (action == GLFW_PRESS) {
+		window->_mouseButtons[button] = true;
+	}
+	else if (action == GLFW_RELEASE)
+		window->_mouseButtons[button] = false;
 }
 
-bool	Window::IsForward(void)
-{
-	if (_keyHeld[_forward])
-		return true;
-	return false;
+bool Window::mouseButton(int button) {
+	if (button >= 0 && button < 8)
+		return _mouseButtons[button];
+	else
+		return false;
 }
 
-bool	Window::IsBackward(void)
+void	MousePositionCallback(GLFWwindow *glfwWindow, double x, double y)
 {
-	if (_keyHeld[_backward])
-		return true;
-	return false;
+	Window *window = reinterpret_cast<Window*>(glfwGetWindowUserPointer(glfwWindow));
+	window->_mousePosition.x = x;
+	window->_mousePosition.y = y;
 }
 
-bool	Window::IsLeft(void)
-{
-	if (_keyHeld[_left])
-		return true;
-	return false;
-}
-
-bool	Window::IsRight(void)
-{
-	if (_keyHeld[_right])
-		return true;
-	return false;
-}
-
-bool	Window::IsUp(void)
-{
-	if (_keyHeld[_up])
-		return true;
-	return false;
-}
-
-bool	Window::IsDown(void)
-{
-	if (_keyHeld[_down])
-		return true;
-	return false;
+const glm::vec2& Window::mousePos(void) {
+	return const_cast<const glm::vec2&>(_mousePosition);
 }
