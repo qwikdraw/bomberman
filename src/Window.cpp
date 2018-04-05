@@ -23,6 +23,8 @@ Window::Window(int width, int height, std::string name) :
 	glfwSetWindowSizeCallback(_window, WindowResizeCallback);
 	glfwSetWindowPosCallback(_window, WindowMoveCallback);
 	glfwSetKeyCallback(_window, KeyCallback);
+	glfwSetMouseButtonCallback(_window, MouseButtonCallback);
+	glfwSetCursorPosCallback(_window, MousePositionCallback);
 	glfwMakeContextCurrent(_window);
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);
@@ -177,4 +179,15 @@ bool Window::mouseButton(int button) {
 		return _mouseButtons[button];
 	else
 		return false;
+}
+
+void	MousePositionCallback(GLFWwindow *glfwWindow, double x, double y)
+{
+	Window *window = reinterpret_cast<Window*>(glfwGetWindowUserPointer(glfwWindow));
+	window->_mousePosition.x = x;
+	window->_mousePosition.y = y;
+}
+
+const glm::vec2& Window::mousePos(void) {
+	return const_cast<const glm::vec2&>(_mousePosition);
 }

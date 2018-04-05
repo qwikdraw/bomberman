@@ -2,10 +2,11 @@
 #define WINDOW_CLASS_HPP
 
 #include "voxGL.hpp"
-
+#include <glm/vec2.hpp>
 
 void	KeyCallback(GLFWwindow*, int key, int, int action, int);
 void	MouseButtonCallback(GLFWwindow*, int button, int action, int);
+void	MousePositionCallback(GLFWwindow*, double x, double y);
 
 //! Application window
 /*!
@@ -18,6 +19,7 @@ class	Window
 {
 	friend void	KeyCallback(GLFWwindow*, int key, int, int action, int);
 	friend void	MouseButtonCallback(GLFWwindow*, int button, int action, int);
+	friend void	MousePositionCallback(GLFWwindow*, double x, double y);
 	static void	ErrorCallback(int, const char*);
 	static void	WindowResizeCallback(GLFWwindow*, int, int);
 	static void	WindowMoveCallback(GLFWwindow*, int, int);
@@ -36,6 +38,8 @@ class	Window
 
 	//! Array of bools indicating if a mouse button is pressed.
 	bool _mouseButtons[8] = {false};
+
+	glm::vec2 _mousePosition = glm::vec2(0.0f, 0.0f);
 public:
 
 	//! Create a new window with x width and y height the window title is set to name.
@@ -77,6 +81,9 @@ public:
 
 	//! Check if a mouse button is pressed.
 	bool	mouseButton(int button);
+
+	//! Get the current mouse position.
+	const glm::vec2& mousePos(void);
 
 	//! Returns the pointer to the internal GLFW window.
 	GLFWwindow* getGLWindow(void);
