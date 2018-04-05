@@ -12,14 +12,13 @@
 
 NAME = bomberman
 LIST = main \
-Camera \
 ShadingProgram \
 Time \
 VoxObject \
 VoxRenderer \
 VoxelChunk \
 Window \
-Particles.class \
+Particles \
 
 SRC_DIR = src
 OBJ_DIR = obj
@@ -27,8 +26,9 @@ OBJ_DIR = obj
 SRC = $(addsuffix .cpp, $(addprefix src/, $(LIST)))
 OBJ = $(addsuffix .o, $(addprefix $(OBJ_DIR)/, $(LIST)))
 
-CPPFLAGS = -std=c++11 -O3 -march=native -Wall -Wextra -Werror \
-$(shell pkg-config --cflags glfw3 glm)
+CPPFLAGS = -std=c++11 -Wall -Wextra -Werror \
+$(shell pkg-config --cflags glfw3 glm) \
+-g -O3 -march=native \
 
 LDFLAGS = -framework OpenGl $(shell pkg-config --libs glfw3 glm)
 
