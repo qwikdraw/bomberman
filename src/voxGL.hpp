@@ -28,7 +28,7 @@
 #define X_DIM 800
 #define Y_DIM 600
 #define NAME "Window Name"
-#define VOXEL_VERTEX_SHADER_PATH "../voxGL/vertex.glsl"
-#define VOXEL_FRAGMENT_SHADER_PATH "../voxGL/frag.glsl"
+#define VOXEL_VERTEX_SHADER_PATH "src/vertex.glsl"
+#define VOXEL_FRAGMENT_SHADER_PATH "src/frag.glsl"
 
 #endif
