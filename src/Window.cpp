@@ -6,8 +6,8 @@ Window::Window(int width, int height, std::string name) :
 	_screenCornerY(0),
 	_width(1),
 	_height(1),
-	_window_width(width),
-	_window_height(height)
+	_windowWidth(width),
+	_windowHeight(height)
 {
 	GLuint vertex_array_id;
 
@@ -49,8 +49,8 @@ void	Window::WindowHints(void)
 
 void	Window::GetWindowSize(float &width, float &height)
 {
-	width = static_cast<float>(_window_width);
-	height = static_cast<float>(_window_height);
+	width = static_cast<float>(_windowWidth);
+	height = static_cast<float>(_windowHeight);
 }
 
 void	Window::GetMaxRenderSize(float &width, float &height)
@@ -139,8 +139,8 @@ void	Window::RefreshRenderMask(void)
 void	WindowResizeCallback(GLFWwindow *glfwWindow, int width, int height)
 {
 	Window *window = reinterpret_cast<Window*>(glfwGetWindowUserPointer(glfwWindow));
-	window->_window_width = width;
-	window->_window_height = height;
+	window->_windowWidth = width;
+	window->_windowHeight = height;
 	window->RefreshRenderMask();
 }
 
