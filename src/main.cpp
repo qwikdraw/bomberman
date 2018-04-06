@@ -29,16 +29,20 @@ int	main(void)
 		if (window.key(GLFW_KEY_SPACE)) {
 			window.SetRenderMask(0,0,0.1,0.2);
 		}
-
 		if (window.key(GLFW_KEY_1)) {
 			std::cout << "Aspect Ratio: " << window.GetAspect() << std::endl;
+		}
+		if (window.key(GLFW_KEY_2)) {
+			std::cout << "MousePos().x: " << window.mousePos().x << std::endl;
 		}
 		glDrawArrays(GL_TRIANGLES, 0, 3);
 		window.Render();
 		GLenum err;
 		if ((err = glGetError()) != GL_NO_ERROR)
 			std::cerr << err << std::endl;
-		if (window.key(GLFW_KEY_ESCAPE))
+		if (window.key(GLFW_KEY_ESCAPE)) {
+			glfwTerminate();
 			return (0);
+		}
 	}
 }
