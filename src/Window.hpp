@@ -30,8 +30,8 @@ class	Window
 	float _screenCornerY;
 	float _width;
 	float _height;
-	int _window_width;
-	int _window_height;
+	int _windowWidth;
+	int _windowHeight;
 
 	void	WindowHints(void);
 	void	RefreshRenderMask(void);
