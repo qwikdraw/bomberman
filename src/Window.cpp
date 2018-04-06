@@ -5,7 +5,9 @@ Window::Window(int width, int height, std::string name) :
 	_screenCornerX(0),
 	_screenCornerY(0),
 	_width(1),
-	_height(1)
+	_height(1),
+	_window_width(width),
+	_window_height(height)
 {
 	GLuint vertex_array_id;
 
@@ -44,7 +46,14 @@ void	Window::WindowHints(void)
 	glfwWindowHint(GLFW_SAMPLES, 4);
 }
 
+
 void	Window::GetWindowSize(float &width, float &height)
+{
+	width = static_cast<float>(_window_width);
+	height = static_cast<float>(_window_height);
+}
+
+void	Window::GetMaxRenderSize(float &width, float &height)
 {
 	int iwidth, iheight;
 
@@ -70,7 +79,7 @@ void	Window::GetSize(float &width, float &height)
 {
 	float actualWidth, actualHeight;
 
-	GetWindowSize(actualWidth, actualHeight);
+	GetMaxRenderSize(actualWidth, actualHeight);
 
 	width = _width * actualWidth;
 	height = _height * actualHeight;
@@ -85,7 +94,7 @@ void	Window::SetRenderMask(float x, float y, float width, float height)
 	_screenCornerX = x;
 	_screenCornerY = y;
 	
-	GetWindowSize(windowWidth, windowHeight);
+	GetMaxRenderSize(windowWidth, windowHeight);
 	glEnable(GL_SCISSOR_TEST);
 	glViewport(windowWidth * x,
 		   windowHeight * y,
@@ -127,10 +136,11 @@ void	Window::RefreshRenderMask(void)
 	SetRenderMask(_screenCornerX, _screenCornerY, _width, _height);
 }
 
-void	Window::WindowResizeCallback(GLFWwindow *glfwWindow, int, int)
+void	WindowResizeCallback(GLFWwindow *glfwWindow, int width, int height)
 {
 	Window *window = reinterpret_cast<Window*>(glfwGetWindowUserPointer(glfwWindow));
-
+	window->_window_width = width;
+	window->_window_height = height;
 	window->RefreshRenderMask();
 }
 
@@ -188,8 +198,10 @@ bool Window::mouseButton(int button) {
 void	MousePositionCallback(GLFWwindow *glfwWindow, double x, double y)
 {
 	Window *window = reinterpret_cast<Window*>(glfwGetWindowUserPointer(glfwWindow));
-	window->_mousePosition.x = x;
-	window->_mousePosition.y = y;
+	float width, height;
+	window->GetWindowSize(width, height);
+	window->_mousePosition.x = x / width;
+	window->_mousePosition.y = y / height;
 }
 
 const glm::vec2& Window::mousePos(void) {

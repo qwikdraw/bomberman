@@ -7,6 +7,7 @@
 void	KeyCallback(GLFWwindow*, int key, int, int action, int);
 void	MouseButtonCallback(GLFWwindow*, int button, int action, int);
 void	MousePositionCallback(GLFWwindow*, double x, double y);
+void	WindowResizeCallback(GLFWwindow*, int width, int height);
 
 //! Application window
 /*!
@@ -20,8 +21,8 @@ class	Window
 	friend void	KeyCallback(GLFWwindow*, int key, int, int action, int);
 	friend void	MouseButtonCallback(GLFWwindow*, int button, int action, int);
 	friend void	MousePositionCallback(GLFWwindow*, double x, double y);
+	friend void	WindowResizeCallback(GLFWwindow*, int width, int hieght);
 	static void	ErrorCallback(int, const char*);
-	static void	WindowResizeCallback(GLFWwindow*, int, int);
 	static void	WindowMoveCallback(GLFWwindow*, int, int);
 	GLFWwindow* _window;
 
@@ -29,6 +30,8 @@ class	Window
 	float _screenCornerY;
 	float _width;
 	float _height;
+	int _window_width;
+	int _window_height;
 
 	void	WindowHints(void);
 	void	RefreshRenderMask(void);
@@ -51,6 +54,7 @@ public:
 	Fills arguments with the result.
 	For the size of the currently drawable area (with respect to the current stencil), see GetDrawableSize.
 	*/
+	void	GetMaxRenderSize(float &width, float &height);
 	void	GetWindowSize(float &width, float &height);
 
 	//! Gets the aspect ratio of the currently drawable area.
