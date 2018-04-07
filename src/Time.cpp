@@ -1,44 +1,30 @@
-
 #include "voxGL.hpp"
 
 Time::Time(void)
 {
-	_startTime = std::chrono::high_resolution_clock::now();
-	_delta = _startTime;
-	_totalTime = 0;
-	_deltaTime = -1;
+	_oldTime = glfwGetTime();
+	_deltaTime = 0.0;
 }
 
-void	Time::Fix(void)
+void	Time::Step(void)
 {
-	auto currentTime = std::chrono::high_resolution_clock::now();
-	auto elapsedTime = currentTime - _startTime;
-	auto elapsedDeltaTime = currentTime - _delta;
-
-	_totalTime = std::chrono::duration<float>(elapsedTime).count();
-
-	if (_deltaTime != -1)
-		_deltaTime = std::chrono::duration<float>(elapsedDeltaTime).count();
-	else
-		_deltaTime = 0;
-
-	_delta = std::chrono::high_resolution_clock::now();
+	double time = glfwGetTime();
+	_deltaTime = time - _oldTime;
+	_oldTime = time;
 }
 
 void	Time::Reset(void)
 {
-	_startTime = std::chrono::high_resolution_clock::now();
-	_delta = _startTime;
-	_totalTime = 0;
-	_deltaTime = -1;
+	glfwSetTime(0.0);
+	_oldTime = 0.0;
 }
 
-float	Time::GetTime(void)
+double	Time::Total(void)
 {
-	return _totalTime;
+	return glfwGetTime();
 }
 
-float	Time::GetDeltaTime(void)
+double	Time::Delta(void)
 {
 	return _deltaTime;
 }

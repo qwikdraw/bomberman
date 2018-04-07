@@ -47,10 +47,10 @@ void	Window::WindowHints(void)
 }
 
 
-void	Window::GetWindowSize(float &width, float &height)
+void	Window::GetWindowSize(int &width, int &height)
 {
-	width = static_cast<float>(_windowWidth);
-	height = static_cast<float>(_windowHeight);
+	width = _windowWidth;
+	height = _windowHeight;
 }
 
 void	Window::GetMaxRenderSize(float &width, float &height)
@@ -198,10 +198,10 @@ bool Window::mouseButton(int button) {
 void	MousePositionCallback(GLFWwindow *glfwWindow, double x, double y)
 {
 	Window *window = reinterpret_cast<Window*>(glfwGetWindowUserPointer(glfwWindow));
-	float width, height;
+	int width, height;
 	window->GetWindowSize(width, height);
-	window->_mousePosition.x = x / width;
-	window->_mousePosition.y = y / height;
+	window->_mousePosition.x = (x * 2 / width) -1;
+	window->_mousePosition.y = (y * 2 / height) -1;
 }
 
 const glm::vec2& Window::mousePos(void) {

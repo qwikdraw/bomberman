@@ -1,5 +1,4 @@
-#ifndef VOXGL_HPP
-#define VOXGL_HPP
+#pragma once
 
 #define GLFW_INCLUDE_GLCOREARB
 
@@ -15,7 +14,6 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/ext.hpp>
-#include <chrono>
 
 #include "Time.hpp"
 #include "Window.hpp"
@@ -26,5 +24,3 @@
 
 #define VOXEL_VERTEX_SHADER_PATH "shaders/vertex.glsl"
 #define VOXEL_FRAGMENT_SHADER_PATH "shaders/frag.glsl"
-
-#endif

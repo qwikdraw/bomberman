@@ -1,5 +1,4 @@
-#ifndef CAMERA_HPP
-#define CAMERA_HPP
+#pragma once
 
 #include "voxGL.hpp"
 
@@ -40,5 +39,3 @@ public:
 	glm::mat4	Perspective(void);
 	std::pair<glm::mat4, glm::mat4>	ExplicitPerspective(void);
 };
-
-#endif

@@ -1,25 +1,22 @@
-#ifndef TIME_CLASS_HPP
-#define TIME_CLASS_HPP
+#pragma once
 
-#include "voxGL.hpp"
-
-class	Time
+//! Time utility class
+class Time
 {
-private:
-	
-	std::chrono::high_resolution_clock::time_point _startTime;
-	std::chrono::high_resolution_clock::time_point _delta;
-	float _totalTime;
-	float _deltaTime;
-
+	double _oldTime;
+	double _deltaTime;
 public:
-
 	Time(void);
-	
-	void	Fix(void);
-	void	Reset(void);
-	float GetTime(void);
-	float GetDeltaTime(void);
-};
 
-#endif
+	//! Reset the total time to zero, see Time.Total
+	void Reset(void);
+
+	//! Step time forward, measure delta time
+	void Step(void);
+
+	//! Time since the creation of the Time object or the last call to Time.Reset
+	double Total(void);
+
+	//! Time since the last call to Time.Step
+	double Delta(void);
+};

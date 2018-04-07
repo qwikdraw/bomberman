@@ -1,5 +1,4 @@
-#ifndef WINDOW_CLASS_HPP
-#define WINDOW_CLASS_HPP
+#pragma once
 
 #include "voxGL.hpp"
 #include <glm/vec2.hpp>
@@ -48,14 +47,11 @@ public:
 	//! Create a new window with x width and y height the window title is set to name.
 	Window(int x, int y, std::string name);
 
-	//! Gets the size of the application window
-	/*!
-	This function gets the size of the application window regardless of the current stencil.
-	Fills arguments with the result.
-	For the size of the currently drawable area (with respect to the current stencil), see GetDrawableSize.
-	*/
+	//! Size of the framebuffer in pixels, ignores RenderMask
 	void	GetMaxRenderSize(float &width, float &height);
-	void	GetWindowSize(float &width, float &height);
+
+	//! Size of the OS Application window in pixels.
+	void	GetWindowSize(int &width, int &height);
 
 	//! Gets the aspect ratio of the currently drawable area.
 	float GetAspect(void);
@@ -95,5 +91,3 @@ public:
 	//! Returns the pointer to the internal GLFW window.
 	GLFWwindow* getGLWindow(void);
 };
-
-#endif

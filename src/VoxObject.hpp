@@ -1,5 +1,4 @@
-#ifndef VOXOBJECT_CLASS_HPP
-#define VOXOBJECT_CLASS_HPP
+#pragma once
 
 #include "voxGL.hpp"
 
@@ -25,7 +24,7 @@ private:
 
 	Time _time;
 	std::vector<AnimatedChunk> _parts;
-	float _totalTime;
+	double _totalTime;
 	GLuint _transformID;
 
 	//the world position of the object
@@ -63,5 +62,3 @@ public:
 	void	Move(glm::vec3);
 		
 };
-
-#endif
