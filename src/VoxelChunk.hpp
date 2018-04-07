@@ -1,8 +1,8 @@
-#ifndef VOXELCHUNK_CLASS_HPP
-#define VOXELCHUNK_CLASS_HPP
+#pragma once
 
 #include "voxGL.hpp"
 
+//! Stores a 10/10/10 array of ints and a transform matrix
 class	VoxelChunk
 {
 private:
@@ -62,7 +62,3 @@ public:
 
 	void	print(void);
 };
-
-//stores a 10/10/10 array of ints and a transform matrix
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef VOXRENDERER_CLASS_HPP
-#define VOXRENDERER_CLASS_HPP
+#pragma once
 
 #include "voxGL.hpp"
 
@@ -24,5 +23,3 @@ public:
 	void	Render(void);
 	void	NewPerspective(glm::mat4);
 };
-
-#endif

@@ -19,6 +19,8 @@ VoxRenderer \
 VoxelChunk \
 Window \
 Particles \
+Engine \
+TestState
 
 SRC_DIR = src
 OBJ_DIR = obj

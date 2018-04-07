@@ -1,5 +1,4 @@
-#ifndef PARTICLES_HPP
-#define PARTICLES_HPP
+#pragma once
 
 #include "voxGL.hpp"
 #include <numeric>
@@ -85,5 +84,3 @@ public:
 	//! Renders the particles.
 	void	Render(void);
 };
-
-#endif

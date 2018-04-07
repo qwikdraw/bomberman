@@ -1,5 +1,4 @@
-#ifndef SHADINGPROGRAM_CLASS_HPP
-#define SHADINGPROGRAM_CLASS_HPP
+#pragma once
 
 #include "voxGL.hpp"
 
@@ -20,5 +19,3 @@ public:
 	void	Use(void);
 	GLuint	ID(void);
 };
-
-#endif

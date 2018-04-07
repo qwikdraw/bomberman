@@ -229,7 +229,7 @@ glm::mat4	VoxObject::ExtrapolateMatrix(AnimatedChunk part)
 
 void	VoxObject::Render(void)
 {
-	_time.Fix();
+	_time.Step();
 	
 	for (unsigned i = 0; i < _parts.size(); i++)
 	{
@@ -249,7 +249,7 @@ void	VoxObject::Render(void)
 
 		_parts[i].chunk->Render();
 	}
-	_totalTime += _time.GetDeltaTime();
+	_totalTime += _time.Delta();
 }
 
 void	VoxObject::Load(void)
