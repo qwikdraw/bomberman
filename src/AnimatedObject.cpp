@@ -7,6 +7,9 @@ std::istream	&operator >> (std::istream &is, AnimatedObject::AnimatedPartRaw &lh
 	
 	is >> lhs.objectFile >> lhs.textureFile >> junkInfo;
 
+	if (!is)
+		throw std::exception();
+	
 	std::string s;
 	while (1)
 	{
@@ -24,7 +27,7 @@ std::istream	&operator >> (std::istream &is, AnimatedObject::AnimatedPartRaw &lh
 		is >> t;
 		lhs.time.push_back(t);
 	}
-	is >> junkInfo >> lhs.cycle >> junkInfo >> lhs.pos[0] >> lhs.pos[1] >> lhs.pos[2];	
+	is >> lhs.cycle >> junkInfo >> lhs.pos[0] >> lhs.pos[1] >> lhs.pos[2];	
 	return is;
 }
 
@@ -37,9 +40,16 @@ AnimatedObject::AnimatedObject(std::string filepath)
 	
 	while (f)
 	{
-		AnimatedPartRaw raw;		
-		f >> raw;
-
+		AnimatedPartRaw raw;
+		try
+		{
+			f >> raw;
+		}
+		catch (std::exception)
+		{
+			break;
+		}
+	
 		AnimatedPart processed;
 
 		processed.animaTransform = raw.transform;
@@ -53,6 +63,7 @@ AnimatedObject::AnimatedObject(std::string filepath)
 	}
 	_pos = glm::vec3(0, 0, 0);
 	_transform = glm::mat4(1);
+
 }
 
 AnimatedObject::~AnimatedObject(void)
@@ -123,10 +134,6 @@ void	AnimatedObject::Render(void)
 {
 	_time.Fix();
 
-//	_parts[0].object->UsePerspective(_perspective);
-//	_parts[0].object->Render();
-//	return;
-	
 	for (unsigned i = 0; i < _parts.size(); i++)
 	{
 		glm::mat4 matrix = InterpolateMatrix(_parts[i]);
@@ -135,12 +142,6 @@ void	AnimatedObject::Render(void)
 
 		matrix = translate2 * _transform * translate1 *	matrix;
 
-		for (int i = 0; i < 16; i++)
-		{
-			std::cout << matrix[i / 4][i % 4] << " ";
-		}
-		std::cout << std::endl;
-		
 		_parts[i].object->SetTransform(matrix);
 		_parts[i].object->UsePerspective(_perspective);
 		_parts[i].object->Render();
