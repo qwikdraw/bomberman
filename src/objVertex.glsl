@@ -14,7 +14,7 @@ out	ShapeData {
 
 void	main()
 {
-	Data.normal = vec3(perspective * transform * vec4(normal, 0));
+	Data.normal = normalize(vec3(perspective * transform * vec4(normal, 0)));
 	Data.uv = uv;
 	gl_Position = perspective * transform * vec4(vertex, 1);
 }
