@@ -1,5 +1,5 @@
 
-#include "ScreenImage.class.hpp"
+#include "ScreenImage.hpp"
 
 const	std::vector<float> ScreenImage::_vertexArray = {1, -1, 0,
                                                         -1, -1, 0,

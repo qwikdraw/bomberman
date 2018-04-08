@@ -1,5 +1,5 @@
 
-#include "ObjFileObject.class.hpp"
+#include "ObjFileObject.hpp"
 
 void	ObjFileObject::Load(void)
 {
@@ -62,18 +62,19 @@ ObjFileObject::ObjFileObject(std::string objectPath,
 	: _objectArrays(objectPath),
 	  _textureParser(texturePath)
 {
-	_transform = glm::mat4(1);
         _program = new ShadingProgram(OBJ_VERTEX_SHADER_PATH, "",
 				      OBJ_FRAGMENT_SHADER_PATH);
 	_perspectiveID = glGetUniformLocation(_program->ID(), "perspective");
 	_transformID = glGetUniformLocation(_program->ID(), "transform");
 	_textureLocationID = glGetUniformLocation(_program->ID(), "tex");
+	SetTransform(glm::mat4(1));
 	Load();
 }
 
 ObjFileObject::~ObjFileObject(void)
 {
 	Unload();
+	delete _program;
 }
 
 void	ObjFileObject::UsePerspective(glm::mat4 m)

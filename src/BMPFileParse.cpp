@@ -1,5 +1,5 @@
 
-#include "BMPFileParse.class.hpp"
+#include "BMPFileParse.hpp"
 
 BMPFileParse::BMPFileParse(std::string filepath)
 {

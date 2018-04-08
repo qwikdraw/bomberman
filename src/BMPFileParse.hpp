@@ -1,5 +1,5 @@
-#ifndef BMPFILEPARSE_CLASS_HPP
-#define BMPFILEPARSE_CLASS_HPP
+#ifndef BMPFILEPARSE_HPP
+#define BMPFILEPARSE_HPP
 
 #include <cstring>
 #include <vector>

@@ -1,5 +1,6 @@
 
 #include "voxGL.hpp"
+#include "AnimatedObject.hpp"
 
 int	main(void)
 {
@@ -11,29 +12,25 @@ int	main(void)
                 std::cerr << "FAIL\n";
 
 
-	window.EventListen();
-
-	window.ForwardAndBackKeys('W', 'S');
-	window.LeftAndRightKeys('A', 'D');
-	window.UpAndDownKeys('Z', 'X');
+//	window.EventListen();
 
 	glClearColor(0.20, 0.25, 0.29, 1);
 
-	camera.Move(glm::vec3(-20, 0, 0));
-	camera.Rotate(glm::vec3(0, 0, 1), 45);
-	
-	VoxObject o("src/voxelModels/bomb.voxobj");	
-	VoxRenderer vr;
+	camera.Move(glm::vec3(-10, 0, 3));
+	camera.Rotate(glm::vec3(1, 0, 0), -90);
 
-	o.Load();
-	vr.AttachObject(&o);	
+//	ObjFileObject p("src/bomb.obj", "twaltonTestEnvironment/Tulips.bmp");
+	
+	AnimatedObject animation("src/animationFile");
+	
+	std::cout << "animation loaded" << std::endl;
 	
 	while (window.IsOpen())
 	{
 		window.Clear();
 
-		vr.NewPerspective(camera.Perspective());
-		vr.Render();
+		animation.UsePerspective(camera.Perspective());
+		animation.Render();
 		
 		window.Render();
 

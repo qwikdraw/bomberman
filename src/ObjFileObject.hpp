@@ -1,12 +1,12 @@
-#ifndef OBJFILEOBJECT_CLASS_HPP
-#define OBJFILEOBJECT_CLASS_HPP
+#ifndef OBJFILEOBJECT_HPP
+#define OBJFILEOBJECT_HPP
 
 #include "voxGL.hpp"
-#include "ObjFileArrayExtractor.class.hpp"
-#include "BMPFileParse.class.hpp"
+#include "ObjFileArrayExtractor.hpp"
+#include "BMPFileParse.hpp"
 
-#define OBJ_VERTEX_SHADER_PATH "../LowLevelDraw/objVertex.glsl"
-#define OBJ_FRAGMENT_SHADER_PATH "../LowLevelDraw/objFrag.glsl"
+#define OBJ_VERTEX_SHADER_PATH "src/objVertex.glsl"
+#define OBJ_FRAGMENT_SHADER_PATH "src/objFrag.glsl"
 
 class	ObjFileObject
 {

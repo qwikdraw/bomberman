@@ -20,6 +20,10 @@ VoxRenderer \
 VoxelChunk \
 Window \
 Particles \
+AnimatedObject \
+ObjFileObject \
+ObjFileArrayExtractor \
+BMPFileParse
 
 SRC_DIR = src
 OBJ_DIR = obj
