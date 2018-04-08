@@ -1,5 +1,6 @@
 
 #include "voxGL.hpp"
+#include "Camera.hpp"
 
 glm::vec3 constexpr Camera::_basePos;
 glm::vec3 constexpr Camera::_up;
