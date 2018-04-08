@@ -18,6 +18,7 @@ VoxObject \
 VoxRenderer \
 VoxelChunk \
 Window \
+Camera \
 Particles \
 AnimatedObject \
 ObjFileObject \

@@ -5,7 +5,8 @@ layout(location = 1) in vec3 normal;
 layout(location = 2) in vec2 uv;
 
 uniform mat4 transform;
-uniform mat4 perspective;
+uniform mat4 projection;
+uniform mat4 lookAt;
 
 out	ShapeData {
 	vec3 normal;
@@ -14,7 +15,7 @@ out	ShapeData {
 
 void	main()
 {
-	Data.normal = normalize(vec3(perspective * transform * vec4(normal, 0)));
+	Data.normal = normalize(vec3(lookAt * transform * vec4(normal, 0)));
 	Data.uv = uv;
-	gl_Position = perspective * transform * vec4(vertex, 1);
+	gl_Position = projection * lookAt * transform * vec4(vertex, 1);
 }

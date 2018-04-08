@@ -18,7 +18,8 @@ private:
 	GLuint _uvArrayID;
 	GLuint _normalArrayID;
 	GLuint _vertexArrayID;
-	GLuint _perspectiveID;
+	GLuint _projectionID;
+	GLuint _lookAtID;
 	GLuint _transformID;	
 	GLuint _textureID;
 	GLuint _textureLocationID;
@@ -33,7 +34,7 @@ public:
 	ObjFileObject(std::string objectPath, std::string texturePath);
 	virtual ~ObjFileObject(void);
 
-	void	UsePerspective(glm::mat4);
+	void	UseExplicitPerspective(std::pair<glm::mat4, glm::mat4>);
 	void	SetTransform(glm::mat4);
 	void	Render(void);
 };

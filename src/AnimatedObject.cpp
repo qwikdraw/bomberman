@@ -74,9 +74,9 @@ AnimatedObject::~AnimatedObject(void)
 
 //________________
 
-void	AnimatedObject::UsePerspective(glm::mat4 m)
+void	AnimatedObject::UseExplicitPerspective(std::pair<glm::mat4, glm::mat4> p)
 {
-	_perspective = m;
+	_explicitPerspective = p;
 }
 
 void	AnimatedObject::SetTransform(glm::mat4 m)
@@ -143,7 +143,7 @@ void	AnimatedObject::Render(void)
 		matrix = translate2 * _transform * translate1 *	matrix;
 
 		_parts[i].object->SetTransform(matrix);
-		_parts[i].object->UsePerspective(_perspective);
+		_parts[i].object->UseExplicitPerspective(_explicitPerspective);
 		_parts[i].object->Render();
 	}
 	_totalTime += _time.GetDeltaTime();

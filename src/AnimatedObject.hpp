@@ -35,7 +35,7 @@ private:
 	Time _time;
 	std::vector<AnimatedPart> _parts;
 	float _totalTime;
-	glm::mat4 _perspective;
+	std::pair<glm::mat4, glm::mat4> _explicitPerspective;
 	glm::mat4 _transform;
 	glm::vec3 _pos;
 
@@ -47,7 +47,7 @@ public:
 	AnimatedObject(std::string filepath);
 	~AnimatedObject(void);
 
-	void	UsePerspective(glm::mat4);
+	void	UseExplicitPerspective(std::pair<glm::mat4, glm::mat4>);
 	void	SetTransform(glm::mat4);
 	void	Move(glm::vec3);
 	void	MoveTo(glm::vec3);

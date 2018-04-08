@@ -64,7 +64,8 @@ ObjFileObject::ObjFileObject(std::string objectPath,
 {
         _program = new ShadingProgram(OBJ_VERTEX_SHADER_PATH, "",
 				      OBJ_FRAGMENT_SHADER_PATH);
-	_perspectiveID = glGetUniformLocation(_program->ID(), "perspective");
+	_projectionID = glGetUniformLocation(_program->ID(), "projection");
+	_lookAtID = glGetUniformLocation(_program->ID(), "lookAt");
 	_transformID = glGetUniformLocation(_program->ID(), "transform");
 	_textureLocationID = glGetUniformLocation(_program->ID(), "tex");
 	SetTransform(glm::mat4(1));
@@ -77,13 +78,18 @@ ObjFileObject::~ObjFileObject(void)
 	delete _program;
 }
 
-void	ObjFileObject::UsePerspective(glm::mat4 m)
+void	ObjFileObject::UseExplicitPerspective(std::pair<glm::mat4, glm::mat4> p)
 {
 	_program->Use();
-	glUniformMatrix4fv(_perspectiveID,
+
+	glUniformMatrix4fv(_lookAtID,
+			   1,
+			   GL_FALSE,
+			   glm::value_ptr(p.first));	
+	glUniformMatrix4fv(_projectionID,
 			1,
 			GL_FALSE,
-			glm::value_ptr(m));
+			glm::value_ptr(p.second));
 }
 
 void	ObjFileObject::SetTransform(glm::mat4 m)
