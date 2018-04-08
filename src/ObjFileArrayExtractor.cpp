@@ -1,5 +1,5 @@
 
-#include "ObjFileArrayExtractor.class.hpp"
+#include "ObjFileArrayExtractor.hpp"
 
 void	ObjFileArrayExtractor::Parse_v(std::stringstream &ss)
 {
@@ -75,7 +75,7 @@ void	ObjFileArrayExtractor::Parse_f(std::stringstream &ss)
 }
 
 ObjFileArrayExtractor::ObjFileArrayExtractor(std::string filename)
-{
+{	
 	std::ifstream file(filename);
 
 	if (!file)
@@ -106,10 +106,11 @@ ObjFileArrayExtractor::ObjFileArrayExtractor(std::string filename)
 	
 	for (auto &p : _faces)
 	{
+		
 		_verticesOut.push_back(_vertices[p.vertex * 3 - 3]);
 		_verticesOut.push_back(_vertices[p.vertex * 3 - 2]);
 		_verticesOut.push_back(_vertices[p.vertex * 3 - 1]);
-
+		
 		_normalsOut.push_back(_normals[p.normal * 3 - 3]);
 		_normalsOut.push_back(_normals[p.normal * 3 - 2]);
 		_normalsOut.push_back(_normals[p.normal * 3 - 1]);

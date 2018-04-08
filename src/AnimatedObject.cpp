@@ -1,21 +1,64 @@
 
 #include "AnimatedObject.hpp"
 
-std::istream	&operator >> (std::istream &is, AnimatedPartRaw &lhs)
+std::istream	&operator >> (std::istream &is, AnimatedObject::AnimatedPartRaw &lhs)
 {
 	std::string junkInfo;
 	
-	is >> lhs.objectFile >> junkInfo;
+	is >> lhs.objectFile >> lhs.textureFile >> junkInfo;
 
-	
+	std::string s;
+	while (1)
+	{
+		s = "";
+		is >> s;
+		if (s != "matrix")
+			break;
+		
+		glm::mat4 matrix;		
+		for (int i = 0; i < 16; i++)
+			is >> matrix[i / 4][i % 4];
+		lhs.transform.push_back(matrix);
+		
+		float t;
+		is >> t;
+		lhs.time.push_back(t);
+	}
+	is >> junkInfo >> lhs.cycle >> junkInfo >> lhs.pos[0] >> lhs.pos[1] >> lhs.pos[2];	
+	return is;
 }
 
 AnimatedObject::AnimatedObject(std::string filepath)
 {
-	size_t	pathEnd = filepath.find_last_of("\\");	
-	_absolutePath = filepath.substr(0, pathEnd);
+	size_t	pathEnd = filepath.find_last_of("/");	
+	std::string absolutePath = filepath.substr(0, pathEnd);
 
-	std::ifstream f(filepath);	
+	std::ifstream f(filepath);
+	
+	while (f)
+	{
+		AnimatedPartRaw raw;		
+		f >> raw;
+
+		AnimatedPart processed;
+
+		processed.animaTransform = raw.transform;
+		processed.animaTime = raw.time;
+		processed.animaCycle = raw.cycle;
+		processed.partPos = raw.pos;
+		processed.object = new ObjFileObject(absolutePath + "/" + raw.objectFile,
+						     absolutePath + "/" + raw.textureFile);
+
+		_parts.push_back(processed);
+	}
+	_pos = glm::vec3(0, 0, 0);
+	_transform = glm::mat4(1);
+}
+
+AnimatedObject::~AnimatedObject(void)
+{
+	for (auto part : _parts)
+		delete part.object;
 }
 
 //________________
@@ -80,6 +123,10 @@ void	AnimatedObject::Render(void)
 {
 	_time.Fix();
 
+//	_parts[0].object->UsePerspective(_perspective);
+//	_parts[0].object->Render();
+//	return;
+	
 	for (unsigned i = 0; i < _parts.size(); i++)
 	{
 		glm::mat4 matrix = InterpolateMatrix(_parts[i]);
@@ -87,6 +134,13 @@ void	AnimatedObject::Render(void)
 		glm::mat4 translate2 = glm::translate(_pos);
 
 		matrix = translate2 * _transform * translate1 *	matrix;
+
+		for (int i = 0; i < 16; i++)
+		{
+			std::cout << matrix[i / 4][i % 4] << " ";
+		}
+		std::cout << std::endl;
+		
 		_parts[i].object->SetTransform(matrix);
 		_parts[i].object->UsePerspective(_perspective);
 		_parts[i].object->Render();
