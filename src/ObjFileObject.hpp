@@ -1,12 +1,12 @@
-#ifndef OBJFILEOBJECT_CLASS_HPP
-#define OBJFILEOBJECT_CLASS_HPP
+#ifndef OBJFILEOBJECT_HPP
+#define OBJFILEOBJECT_HPP
 
 #include "voxGL.hpp"
-#include "ObjFileArrayExtractor.class.hpp"
-#include "BMPFileParse.class.hpp"
+#include "ObjFileArrayExtractor.hpp"
+#include "BMPFileParse.hpp"
 
-#define OBJ_VERTEX_SHADER_PATH "../LowLevelDraw/objVertex.glsl"
-#define OBJ_FRAGMENT_SHADER_PATH "../LowLevelDraw/objFrag.glsl"
+#define OBJ_VERTEX_SHADER_PATH "src/objVertex.glsl"
+#define OBJ_FRAGMENT_SHADER_PATH "src/objFrag.glsl"
 
 class	ObjFileObject
 {
@@ -18,7 +18,8 @@ private:
 	GLuint _uvArrayID;
 	GLuint _normalArrayID;
 	GLuint _vertexArrayID;
-	GLuint _perspectiveID;
+	GLuint _projectionID;
+	GLuint _lookAtID;
 	GLuint _transformID;	
 	GLuint _textureID;
 	GLuint _textureLocationID;
@@ -33,7 +34,7 @@ public:
 	ObjFileObject(std::string objectPath, std::string texturePath);
 	virtual ~ObjFileObject(void);
 
-	void	UsePerspective(glm::mat4);
+	void	UsePerspective(std::pair<glm::mat4, glm::mat4>);
 	void	SetTransform(glm::mat4);
 	void	Render(void);
 };

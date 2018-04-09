@@ -1,5 +1,5 @@
-#ifndef SCREENIMAGE_CLASS_HPP
-#define SCREENIMAGE_CLASS_HPP
+#ifndef SCREENIMAGE_HPP
+#define SCREENIMAGE_HPP
 
 #define SCREENIMAGE_VERTEX_SHADER_PATH "../LowLevelDraw/screenImageVertex.glsl"
 #define SCREENIMAGE_FRAGMENT_SHADER_PATH "../LowLevelDraw/screenImageFrag.glsl"

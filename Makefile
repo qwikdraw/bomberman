@@ -6,7 +6,7 @@
 #    By: logan  <logan@42.us.org>                   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/13 10:03:24 by logan             #+#    #+#              #
-#    Updated: 2018/03/13 10:03:26 by logan            ###   ########.fr        #
+#    Updated: 2018/04/08 22:59:25 by twalton          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,13 +14,15 @@ NAME = bomberman
 LIST = main \
 ShadingProgram \
 Time \
-VoxObject \
-VoxRenderer \
-VoxelChunk \
 Window \
+Camera \
 Particles \
 Engine \
-TestState
+TestState \
+AnimatedObject \
+ObjFileObject \
+ObjFileArrayExtractor \
+BMPFileParse
 
 SRC_DIR = src
 OBJ_DIR = obj

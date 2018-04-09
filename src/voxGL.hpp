@@ -18,9 +18,3 @@
 #include "Time.hpp"
 #include "Window.hpp"
 #include "ShadingProgram.hpp"
-#include "VoxelChunk.hpp"
-#include "VoxObject.hpp"
-#include "VoxRenderer.hpp"
-
-#define VOXEL_VERTEX_SHADER_PATH "shaders/vertex.glsl"
-#define VOXEL_FRAGMENT_SHADER_PATH "shaders/frag.glsl"
