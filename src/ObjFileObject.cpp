@@ -78,7 +78,7 @@ ObjFileObject::~ObjFileObject(void)
 	delete _program;
 }
 
-void	ObjFileObject::UseExplicitPerspective(std::pair<glm::mat4, glm::mat4> p)
+void	ObjFileObject::UsePerspective(std::pair<glm::mat4, glm::mat4> p)
 {
 	_program->Use();
 

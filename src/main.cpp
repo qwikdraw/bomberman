@@ -36,7 +36,7 @@ int	main(void)
 			std::cout << "MousePos().x: " << window.mousePos().x << std::endl;
 		}
 		camera.SetAspect(window.GetAspect());
-		animation.UseExplicitPerspective(camera.ExplicitPerspective());
+		animation.UsePerspective(camera.Perspective());
 		animation.Render();
 		
 		window.Render();

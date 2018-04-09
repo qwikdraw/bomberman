@@ -34,7 +34,7 @@ public:
 	ObjFileObject(std::string objectPath, std::string texturePath);
 	virtual ~ObjFileObject(void);
 
-	void	UseExplicitPerspective(std::pair<glm::mat4, glm::mat4>);
+	void	UsePerspective(std::pair<glm::mat4, glm::mat4>);
 	void	SetTransform(glm::mat4);
 	void	Render(void);
 };

@@ -37,8 +37,7 @@ public:
 	void	SetFarDist(float dist);
 	void	SetFOV(float degrees);
 	
-	glm::mat4	Perspective(void);
-	std::pair<glm::mat4, glm::mat4>	ExplicitPerspective(void);
+	std::pair<glm::mat4, glm::mat4>	Perspective(void);
 };
 
 #endif

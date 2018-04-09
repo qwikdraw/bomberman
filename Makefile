@@ -14,9 +14,6 @@ NAME = bomberman
 LIST = main \
 ShadingProgram \
 Time \
-VoxObject \
-VoxRenderer \
-VoxelChunk \
 Window \
 Camera \
 Particles \
