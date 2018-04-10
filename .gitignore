@@ -16,7 +16,6 @@ docs/html
 *.slo
 *.lo
 *.o
-*.obj
 
 # Precompiled Headers
 *.gch

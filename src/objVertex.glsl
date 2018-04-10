@@ -1,5 +1,7 @@
 #version 410 core
 
+#define MAX_LIGHTS 100
+
 layout(location = 0) in vec3 vertex;
 layout(location = 1) in vec3 normal;
 layout(location = 2) in vec2 uv;
@@ -7,21 +9,38 @@ layout(location = 2) in vec2 uv;
 uniform mat4 transform;
 uniform mat4 projection;
 uniform mat4 lookAt;
+uniform vec3 lightPos[MAX_LIGHTS];
+uniform vec3 lightColor[MAX_LIGHTS];
+uniform float lightFalloff[MAX_LIGHTS];
+
 
 out	ShapeData {
-	float dot;
 	vec2 uv;
+	vec3 lightMod;
 } Data;
+
+vec3	GetLightModifier(vec3 v, vec3 n)
+{
+	vec3 ret = vec3(0, 0, 0);
+
+	for (int i = 0; i < MAX_LIGHTS; i++)
+	{
+		if (lightColor[i] == vec3(0, 0, 0))
+			continue;
+		vec3 ray = lightPos[i] - v;
+		float intensity = lightFalloff[i] / (lightFalloff[i] + length(ray));
+		
+		ret += max(dot(n, normalize(ray)), 0.2) * lightColor[i] * intensity;
+	}
+	return ret;
+}
 
 void	main()
 {
-	vec3 actualNormal = normalize(vec3(lookAt * transform * vec4(normal, 0)));
-
-	vec3 actualVertex = vec3(lookAt * transform * vec4(vertex, 1));
-	vec3 viewPoint = vec3(lookAt * transform * vec4(0, 0, 0, 0));
-
-	Data.dot = dot(actualNormal, -normalize(actualVertex - viewPoint));
+	vec3 actualNormal = normalize(vec3(transform * vec4(normal, 0)));
+	vec3 actualVertex = vec3(transform * vec4(vertex, 1));
 
 	Data.uv = uv;
+	Data.lightMod = GetLightModifier(actualVertex, actualNormal);
 	gl_Position = projection * lookAt * transform * vec4(vertex, 1);
 }
