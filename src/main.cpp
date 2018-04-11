@@ -36,7 +36,7 @@ int	main(void)
 		window.Clear();
 
 		if (window.key(GLFW_KEY_SPACE)) {
-			window.SetRenderMask(0,0,0.1,0.2);
+			window.SetRenderMask(0,0,0.1,1);
 		}
 		if (window.key(GLFW_KEY_1)) {
 			std::cout << "Aspect Ratio: " << window.GetAspect() << std::endl;
@@ -54,10 +54,7 @@ int	main(void)
 		if ((err = glGetError()) != GL_NO_ERROR)
 			std::cerr << err << std::endl;
 		
-		if (window.key(GLFW_KEY_ESCAPE)) {
-			glfwTerminate();
-			
-			return (0);
-		}
+		if (window.key(GLFW_KEY_ESCAPE))
+			window.SetClosed();
 	}
 }

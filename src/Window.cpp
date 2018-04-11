@@ -72,7 +72,18 @@ float Window::GetAspect(void)
 
 bool	Window::IsOpen(void)
 {
-	return !glfwWindowShouldClose(_window);
+	bool closed = glfwWindowShouldClose(_window);
+	if (closed)
+	{
+		glfwDestroyWindow(_window);
+		glfwTerminate();
+	}
+	return !closed;
+}
+
+void	Window::SetClosed(void)
+{
+	glfwSetWindowShouldClose(_window, 1);
 }
 
 void	Window::GetSize(float &width, float &height)
