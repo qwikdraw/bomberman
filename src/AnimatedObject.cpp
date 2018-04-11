@@ -63,7 +63,7 @@ AnimatedObject::AnimatedObject(std::string filepath)
 	}
 	_pos = glm::vec3(0, 0, 0);
 	_transform = glm::mat4(1);
-
+	_totalTime = 0;
 }
 
 AnimatedObject::~AnimatedObject(void)
