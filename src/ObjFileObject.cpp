@@ -44,6 +44,10 @@ void	ObjFileObject::Load(void)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+	glGenerateMipmap(GL_TEXTURE_2D);
+	
 	glActiveTexture(GL_TEXTURE0);
 	glUniform1i(_textureLocationID, 0);
 }
@@ -64,10 +68,15 @@ ObjFileObject::ObjFileObject(std::string objectPath,
 {
         _program = new ShadingProgram(OBJ_VERTEX_SHADER_PATH, "",
 				      OBJ_FRAGMENT_SHADER_PATH);
+	
 	_projectionID = glGetUniformLocation(_program->ID(), "projection");
 	_lookAtID = glGetUniformLocation(_program->ID(), "lookAt");
 	_transformID = glGetUniformLocation(_program->ID(), "transform");
 	_textureLocationID = glGetUniformLocation(_program->ID(), "tex");
+	_lightPosID = glGetUniformLocation(_program->ID(), "lightPos");
+	_lightColorID = glGetUniformLocation(_program->ID(), "lightColor");
+	_lightFalloffID = glGetUniformLocation(_program->ID(), "lightFalloff");
+	
 	SetTransform(glm::mat4(1));
 	Load();
 }
@@ -106,6 +115,20 @@ void	ObjFileObject::Render(void)
 {
 	_program->Use();
 
+	if (Light::positions.size())
+	{
+		glUniform3fv(_lightPosID,
+			     Light::positions.size(),
+			     reinterpret_cast<const GLfloat*>(&(Light::positions[0].x)));
+	        glUniform3fv(_lightColorID,
+			     Light::colors.size(),
+			     reinterpret_cast<const GLfloat*>(&(Light::colors[0].x)));
+		glUniform1fv(_lightFalloffID,
+			     Light::falloffs.size(),
+			     &Light::falloffs[0]);
+			     
+	}
+	
 	glBindTexture(GL_TEXTURE_2D, _textureID);
 	glActiveTexture(GL_TEXTURE0);
 	glUniform1i(_textureLocationID, 0);

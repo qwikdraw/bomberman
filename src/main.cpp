@@ -1,6 +1,7 @@
 #include "voxGL.hpp"
 #include "AnimatedObject.hpp"
 #include "Camera.hpp"
+#include "Light.hpp"
 
 int	main(void)
 {
@@ -14,13 +15,21 @@ int	main(void)
 	glClearColor(0.20, 0.25, 0.29, 1);
 
 	camera.Move(glm::vec3(-10, 0, 3));
-	camera.Rotate(glm::vec3(1, 0, 0), -90);
+//	camera.Rotate(glm::vec3(1, 0, 0), -90);
 
 	AnimatedObject animation("src/animationFile");
 	
 	std::cout << "animation loaded" << std::endl;
-	
 
+	std::vector<Light*> lights;
+
+	for (int i = 0;  i < 500; i++)
+	{
+		lights.push_back(new Light(glm::vec3(0, i, 4), glm::vec3(1, 1, 1), 2)); 
+	}
+
+	std::cout << Light::positions.size() << std::endl;
+	
 	while (window.IsOpen())
 	{
 		window.RemoveRenderMask();

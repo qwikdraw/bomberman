@@ -22,7 +22,8 @@ TestState \
 AnimatedObject \
 ObjFileObject \
 ObjFileArrayExtractor \
-BMPFileParse
+BMPFileParse \
+Light
 
 SRC_DIR = src
 OBJ_DIR = obj

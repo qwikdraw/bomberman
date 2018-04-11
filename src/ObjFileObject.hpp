@@ -4,6 +4,7 @@
 #include "voxGL.hpp"
 #include "ObjFileArrayExtractor.hpp"
 #include "BMPFileParse.hpp"
+#include "Light.hpp"
 
 #define OBJ_VERTEX_SHADER_PATH "src/objVertex.glsl"
 #define OBJ_FRAGMENT_SHADER_PATH "src/objFrag.glsl"
@@ -23,7 +24,10 @@ private:
 	GLuint _transformID;	
 	GLuint _textureID;
 	GLuint _textureLocationID;
-
+	GLuint _lightPosID;
+	GLuint _lightColorID;
+	GLuint _lightFalloffID;
+	
 	glm::mat4 _transform;
 	
 	void	Load(void);
