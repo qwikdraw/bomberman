@@ -59,6 +59,9 @@ public:
 	//! Returns true if the window is open, false otherwise.
 	bool	IsOpen(void);
 
+	//! Sets the window to be closed on the next IsOpen call.
+	void	SetClosed(void);
+	
 	//! Set a rendering stencil.
 	/*! Specify the area of the window you wish to draw to. (x, y) is the coordinate of the bottom left part
 	of the rectangle you wish to draw to. Width and height define the rectangle that will be drawable with
