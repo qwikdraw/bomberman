@@ -1,48 +1,47 @@
+#include "voxGL.hpp"
+
 #include "TestState.hpp"
 
-TestState::TestState(void) {
-	static const GLfloat vertices[6] = {
-		-1.0f, -1.0f,
-		1.0f, -1.0f,
-		1.0f, 1.0f
-	};
-	ShadingProgram program(
-		"src/shaders/vertex_2d_simple.glsl",
-		"",
-		"src/shaders/frag_simple.glsl"
-	);
-	program.Use();
-	GLuint vbo;
-	glGenBuffers(1, &vbo);
-	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, NULL);
-	glEnableVertexAttribArray(0);
+TestState::TestState(void) :
+_camera(Camera()),
+_animation(AnimatedObject("src/animationFile"))
+{
+	_camera.Move(glm::vec3(-10, 0, 3));
+	for (int i = 0; i < 10; ++i)
+		_lights.push_back(new Light(glm::vec3(0, 0, 4), glm::vec3(1, 1, 1), 2));
+	if (glGetError() != GL_NO_ERROR)
+		std::cerr << "FAIL\n";
 }
 
-TestState::~TestState(void) {}
-
-void TestState::Update(Engine*, Window& window, double) {
-		if (window.key(GLFW_KEY_SPACE)) {
-			window.Clear();
-			window.SetRenderMask(0,0,0.1,0.2);
-		} else {
-			window.RemoveRenderMask();
-		}
-		if (window.key(GLFW_KEY_1)) {
-			std::cout << "Aspect Ratio: " << window.GetAspect() << std::endl;
-		}
-		if (window.key(GLFW_KEY_2)) {
-			std::cout << "MousePos().x: " << window.mousePos().x << std::endl;
-		}
-		if (window.key(GLFW_KEY_ESCAPE)) {
-			glfwTerminate();
-			exit(1);
-		}
+TestState::~TestState(void)
+{
+	for (auto l: _lights) {
+		delete l;
+	}
 }
 
-void TestState::Draw(Engine*, Window& window, double) {
+void TestState::Update(Engine* engine, Window& window, double)
+{
+	if (window.Key(GLFW_KEY_SPACE)) {
 		window.Clear();
-		glDrawArrays(GL_TRIANGLES, 0, 3);
-		window.Render();
+		window.SetRenderMask(0.25f,0.25f,0.5f,0.5f);
+	} else {
+		window.RemoveRenderMask();
+	}
+	if (window.Key(GLFW_KEY_ESCAPE))
+	{
+		engine->isRunning = false;
+	}
+	if (window.Key(GLFW_KEY_1))
+	{
+		engine->ChangeState(new TestState());
+	}
+}
+
+void TestState::Draw(Engine*, Window& window, double)
+{
+	window.Clear();
+	_camera.SetAspect(window.GetAspect());
+	_animation.UsePerspective(_camera.Perspective());
+	_animation.Render();
 }

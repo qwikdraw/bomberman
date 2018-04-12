@@ -70,20 +70,15 @@ float Window::GetAspect(void)
 	return width / height;
 }
 
-bool	Window::IsOpen(void)
+bool	Window::ShouldClose(void)
 {
-	bool closed = glfwWindowShouldClose(_window);
-	if (closed)
-	{
-		glfwDestroyWindow(_window);
-		glfwTerminate();
-	}
-	return !closed;
+	return glfwWindowShouldClose(_window);
 }
 
-void	Window::SetClosed(void)
+void	Window::Close(void)
 {
-	glfwSetWindowShouldClose(_window, 1);
+	glfwDestroyWindow(_window);
+	glfwTerminate();
 }
 
 void	Window::GetSize(float &width, float &height)
@@ -167,7 +162,7 @@ void	Window::ErrorCallback(int, const char *description)
 	std::cerr << description << std::endl;
 }
 
-GLFWwindow* Window::getGLWindow(void)
+GLFWwindow* Window::GetGLWindow(void)
 {
 	return _window;
 }
@@ -182,7 +177,7 @@ void	KeyCallback(GLFWwindow *glfwWindow, int key, int, int action, int)
 		window->_keys[key] = false;
 }
 
-bool Window::key(int key) {
+bool Window::Key(int key) {
 	if (key >= 0 && key < 512)
 		return _keys[key];
 	else
@@ -199,7 +194,8 @@ void	MouseButtonCallback(GLFWwindow *glfwWindow, int button, int action, int)
 		window->_mouseButtons[button] = false;
 }
 
-bool Window::mouseButton(int button) {
+bool Window::MouseButton(int button)
+{
 	if (button >= 0 && button < 8)
 		return _mouseButtons[button];
 	else
@@ -215,6 +211,7 @@ void	MousePositionCallback(GLFWwindow *glfwWindow, double x, double y)
 	window->_mousePosition.y = (y * 2 / height) -1;
 }
 
-const glm::vec2& Window::mousePos(void) {
+const glm::vec2& Window::MousePos(void)
+{
 	return const_cast<const glm::vec2&>(_mousePosition);
 }
