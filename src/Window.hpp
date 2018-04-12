@@ -54,13 +54,13 @@ public:
 	void	GetWindowSize(int &width, int &height);
 
 	//! Gets the aspect ratio of the currently drawable area.
-	float GetAspect(void);
-	
-	//! Returns true if the window is open, false otherwise.
-	bool	IsOpen(void);
+	float	GetAspect(void);
 
-	//! Sets the window to be closed on the next IsOpen call.
-	void	SetClosed(void);
+	//! Should window close?
+	bool	ShouldClose(void);
+
+	//! Closes the window.
+	void	Close(void);
 	
 	//! Set a rendering stencil.
 	/*! Specify the area of the window you wish to draw to. (x, y) is the coordinate of the bottom left part
@@ -83,14 +83,14 @@ public:
 	void	Render(void);
 
 	//! Check if a key is down.
-	bool	key(int key);
+	bool	Key(int key);
 
 	//! Check if a mouse button is pressed.
-	bool	mouseButton(int button);
+	bool	MouseButton(int button);
 
 	//! Get the current mouse position.
-	const glm::vec2& mousePos(void);
+	const glm::vec2& MousePos(void);
 
 	//! Returns the pointer to the internal GLFW window.
-	GLFWwindow* getGLWindow(void);
+	GLFWwindow* GetGLWindow(void);
 };

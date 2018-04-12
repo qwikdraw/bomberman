@@ -10,9 +10,10 @@ const std::vector<glm::vec3> &Light::colors = Light::_colors;
 const std::vector<float> &Light::falloffs = Light::_falloffs;
 
 
-Light::Light(glm::vec3 pos, glm::vec3 color, float falloff) : _pos(pos),
-							      _color(color),
-							      _falloff(falloff)
+Light::Light(glm::vec3 pos, glm::vec3 color, float falloff) :
+_pos(pos),
+_color(color),
+_falloff(falloff)
 {
 	_positions.push_back(_pos);
 	_colors.push_back(_color);
@@ -28,6 +29,7 @@ Light::~Light(void)
 			_positions.erase(_positions.begin() + i);
 			_colors.erase(_colors.begin() + i);
 			_falloffs.erase(_falloffs.begin() + i);
+			break;
 		}
 	}
 }

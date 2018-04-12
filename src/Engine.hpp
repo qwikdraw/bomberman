@@ -12,9 +12,9 @@ class Engine
 {
 	std::vector<IState*> _states;
 	Time _time;
-	Window _window;
-	bool _isRunning;
+	Window& _window;
 public:
+	bool isRunning;
 	Engine(Window& window);
 	~Engine(void);
 	void PushState(IState* state);
