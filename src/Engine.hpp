@@ -13,11 +13,13 @@ class Engine
 	std::vector<IState*> _states;
 	Time _time;
 	Window _window;
+	bool _isRunning;
 public:
-	Engine(std::string name);
+	Engine(Window& window);
 	~Engine(void);
 	void PushState(IState* state);
 	void PopState(void);
-	void Update(void);
-	void Draw(void);
+	void ChangeState(IState* state);
+	void Run(void);
+	void Stop(void);
 };
