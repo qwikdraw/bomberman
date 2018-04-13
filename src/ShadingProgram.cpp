@@ -1,5 +1,4 @@
-
-#include "voxGL.hpp"
+#include "ShadingProgram.hpp"
 
 ShadingProgram::ShadingProgram(void) {}
 

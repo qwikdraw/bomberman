@@ -33,8 +33,8 @@ void Engine::ChangeState(IState* state)
 void Engine::Run(void)
 {
 	_time.Step();
+	_window.Clear();
 	_states.back()->Update(this, _window, _time.Delta());
-	_states.back()->Draw(this, _window, _time.Delta());
 	_window.Render();
 	if (_window.ShouldClose())
 		isRunning = false;

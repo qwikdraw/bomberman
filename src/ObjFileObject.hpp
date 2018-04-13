@@ -1,7 +1,6 @@
-#ifndef OBJFILEOBJECT_HPP
-#define OBJFILEOBJECT_HPP
+#pragma once
 
-#include "voxGL.hpp"
+#include "bomberman.hpp"
 #include "ObjFileArrayExtractor.hpp"
 #include "BMPFileParse.hpp"
 #include "Light.hpp"
@@ -42,5 +41,3 @@ public:
 	void	SetTransform(glm::mat4);
 	void	Render(void);
 };
-
-#endif

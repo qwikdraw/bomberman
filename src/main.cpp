@@ -1,4 +1,4 @@
-#include "voxGL.hpp"
+#include "bomberman.hpp"
 #include "TestState.hpp"
 
 int	main(void)

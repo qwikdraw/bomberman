@@ -1,5 +1,3 @@
-#include "voxGL.hpp"
-
 #include "TestState.hpp"
 
 TestState::TestState(void) :
@@ -23,7 +21,6 @@ TestState::~TestState(void)
 void TestState::Update(Engine* engine, Window& window, double)
 {
 	if (window.Key(GLFW_KEY_SPACE)) {
-		window.Clear();
 		window.SetRenderMask(0.25f,0.25f,0.5f,0.5f);
 	} else {
 		window.RemoveRenderMask();
@@ -36,11 +33,6 @@ void TestState::Update(Engine* engine, Window& window, double)
 	{
 		engine->ChangeState(new TestState());
 	}
-}
-
-void TestState::Draw(Engine*, Window& window, double)
-{
-	window.Clear();
 	_camera.SetAspect(window.GetAspect());
 	_animation.UsePerspective(_camera.Perspective());
 	_animation.Render();

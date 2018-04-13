@@ -10,5 +10,4 @@ protected:
 public:
 	virtual ~IState(void) {};
 	virtual void Update(Engine* game, Window& window, double dt) = 0;
-	virtual void Draw(Engine* game, Window& window, double dt) = 0;
 };

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "voxGL.hpp"
+#include "bomberman.hpp"
 #include <glm/vec2.hpp>
 
 void	KeyCallback(GLFWwindow*, int key, int, int action, int);

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "voxGL.hpp"
+#include "bomberman.hpp"
 #include <numeric>
 
 #define PARTICLE_VERTEX_SHADER_PATH "src/particleVertex.glsl"

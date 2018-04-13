@@ -1,5 +1,3 @@
-
-#include "voxGL.hpp"
 #include "Camera.hpp"
 
 glm::vec3 constexpr Camera::_basePos;
@@ -68,6 +66,3 @@ std::pair<glm::mat4, glm::mat4>	Camera::Perspective(void)
 
 	return std::pair<glm::mat4, glm::mat4>(lookAt, perspective);
 }
-
-
-	
