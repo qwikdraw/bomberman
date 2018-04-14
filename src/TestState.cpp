@@ -1,39 +1,39 @@
 #include "TestState.hpp"
+#include "components.hpp"
 
-TestState::TestState(void) :
-_camera(Camera()),
-_animation(AnimatedObject("src/animationFile"))
+class MovementSystem : public ex::System<MovementSystem> {
+public:
+	explicit MovementSystem(void) {}
+	void update(ex::EntityManager &es, ex::EventManager &events, ex::TimeDelta dt) override {
+		std::cout << "things" << std::endl;
+		es.each<CellPosition>([](ex::Entity, CellPosition& pos) {
+			pos.x += 1;
+			std::cout << "Position x = " << pos.x << std::endl;
+		});
+	}
+};
+
+TestState::TestState(Engine& e) :
+_engine(e), _window(e.window), _camera(Camera())
 {
 	_camera.Move(glm::vec3(-10, 0, 3));
 	for (int i = 0; i < 10; ++i)
 		_lights.push_back(new Light(glm::vec3(0, 0, 4), glm::vec3(1, 1, 1), 2));
-	if (glGetError() != GL_NO_ERROR)
-		std::cerr << "FAIL\n";
+	systems.add<MovementSystem>();
+	systems.configure();
+	(void)_engine;
+	ex::Entity ent = entities.create();
+	ent.assign<CellPosition>(0,0);
 }
 
 TestState::~TestState(void)
 {
-	for (auto l: _lights) {
+	for (auto l: _lights)
 		delete l;
-	}
 }
 
-void TestState::Update(Engine* engine, Window& window, double)
+void TestState::Update(double dt)
 {
-	if (window.Key(GLFW_KEY_SPACE)) {
-		window.SetRenderMask(0.25f,0.25f,0.5f,0.5f);
-	} else {
-		window.RemoveRenderMask();
-	}
-	if (window.Key(GLFW_KEY_ESCAPE))
-	{
-		engine->isRunning = false;
-	}
-	if (window.Key(GLFW_KEY_1))
-	{
-		engine->ChangeState(new TestState());
-	}
-	_camera.SetAspect(window.GetAspect());
-	_animation.UsePerspective(_camera.Perspective());
-	_animation.Render();
+	_camera.SetAspect(_window.GetAspect());
+	systems.update_all(dt);
 }

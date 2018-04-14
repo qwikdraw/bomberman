@@ -13,8 +13,8 @@ class Engine
 {
 	std::vector<IState*> _states;
 	Time _time;
-	Window& _window;
 public:
+	Window& window;
 	bool isRunning;
 	Engine(Window& window);
 	~Engine(void);

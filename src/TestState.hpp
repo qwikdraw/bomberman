@@ -1,19 +1,18 @@
 #pragma once
 
 #include "bomberman.hpp"
-#include "AnimatedObject.hpp"
 #include "Camera.hpp"
 #include "Light.hpp"
-
 #include "IState.hpp"
 
-class TestState : public IState
+class TestState : public IState, public ex::EntityX
 {
+	Engine& _engine;
+	Window& _window;
 	Camera _camera;
-	AnimatedObject _animation;
 	std::vector<Light*> _lights;
 public:
-	TestState(void);
+	TestState(Engine& engine);
 	~TestState(void);
-	void Update(Engine*, Window& window, double);
+	void Update(double dt);
 };
