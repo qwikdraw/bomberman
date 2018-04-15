@@ -1,11 +1,12 @@
-#ifndef ANIMATEDOBJECT_HPP
-#define ANIMATEDOBJECT_HPP
+#pragma once
 
-#include "ObjFileObject.hpp"
 #include <fstream>
 #include <iostream>
 #include <string>
 #include <vector>
+
+#include "ObjFile.hpp"
+#include "Time.hpp"
 
 class	AnimatedObject
 {
@@ -23,7 +24,7 @@ public:
 private:
 	struct	AnimatedPart
 	{
-		ObjFileObject *object;
+		ObjFile *object;
 		std::vector<glm::mat4> animaTransform;
 		std::vector<float> animaTime;
 		float animaCycle;
@@ -46,15 +47,11 @@ public:
 
 	AnimatedObject(std::string filepath);
 	~AnimatedObject(void);
-
 	void	UsePerspective(std::pair<glm::mat4, glm::mat4>);
 	void	SetTransform(glm::mat4);
 	void	Move(glm::vec3);
 	void	MoveTo(glm::vec3);
-	
 	void	Render(void);
 };
 
 std::istream	&operator >> (std::istream &is, AnimatedObject::AnimatedPartRaw &lhs);
-
-#endif

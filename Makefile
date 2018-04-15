@@ -19,8 +19,8 @@ Camera \
 Particles \
 Engine \
 TestState \
-AnimatedObject \
-ObjFileObject \
+AnimatedObj \
+ObjFile \
 ObjFileArrayExtractor \
 BMPFileParse \
 Light
@@ -66,6 +66,6 @@ fclean:
 re:	fclean deps all
 
 deps:
-	./deps.sh
+	@./deps.sh
 
-.PHONY: clean fclean all re directories docs
+.PHONY: clean fclean all re docs

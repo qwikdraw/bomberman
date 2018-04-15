@@ -1,5 +1,4 @@
-
-#include "AnimatedObject.hpp"
+#include "AnimatedObj.hpp"
 
 std::istream	&operator >> (std::istream &is, AnimatedObject::AnimatedPartRaw &lhs)
 {
@@ -56,7 +55,7 @@ AnimatedObject::AnimatedObject(std::string filepath)
 		processed.animaTime = raw.time;
 		processed.animaCycle = raw.cycle;
 		processed.partPos = raw.pos;
-		processed.object = new ObjFileObject(absolutePath + "/" + raw.objectFile,
+		processed.object = new ObjFile(absolutePath + "/" + raw.objectFile,
 						     absolutePath + "/" + raw.textureFile);
 
 		_parts.push_back(processed);
@@ -103,9 +102,9 @@ glm::mat4	AnimatedObject::InterpolateMatrix(AnimatedPart part)
 	{
 		if (cycleTime < part.animaTime[i])
 			break;
-		i++;		
+		++i;
 	}
-	i--;
+	--i;
 
 	float a = cycleTime - part.animaTime[i];
 	float b;

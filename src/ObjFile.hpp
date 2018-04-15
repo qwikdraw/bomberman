@@ -4,14 +4,13 @@
 #include "ObjFileArrayExtractor.hpp"
 #include "BMPFileParse.hpp"
 #include "Light.hpp"
+#include "ShadingProgram.hpp"
 
 #define OBJ_VERTEX_SHADER_PATH "src/objVertex.glsl"
 #define OBJ_FRAGMENT_SHADER_PATH "src/objFrag.glsl"
 
-class	ObjFileObject
+class	ObjFile
 {
-private:
-
 	ShadingProgram *_program;
 	ObjFileArrayExtractor _objectArrays;
 	BMPFileParse _textureParser;
@@ -31,13 +30,13 @@ private:
 	
 	void	Load(void);
 	void	Unload(void);
-	
+
 public:
-	
-	ObjFileObject(std::string objectPath, std::string texturePath);
-	virtual ~ObjFileObject(void);
+	ObjFile(std::string objectPath, std::string texturePath);
+	virtual ~ObjFile(void);
 
 	void	UsePerspective(std::pair<glm::mat4, glm::mat4>);
 	void	SetTransform(glm::mat4);
 	void	Render(void);
+	void	Render(glm::vec3);
 };

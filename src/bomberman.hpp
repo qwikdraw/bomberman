@@ -14,7 +14,3 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/ext.hpp>
-
-#include "Time.hpp"
-#include "Window.hpp"
-#include "ShadingProgram.hpp"

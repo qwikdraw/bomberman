@@ -1,9 +1,9 @@
-#include "ObjFileObject.hpp"
+#include "ObjFile.hpp"
 
 #define GL_TEXTURE_MAX_ANISOTROPY_EXT 0x84FE
 #define GL_MAX_TEXTURE_MAX_ANISOTROPY_EXT 0x84FF
 
-void	ObjFileObject::Load(void)
+void	ObjFile::Load(void)
 {
 	glUseProgram(_program->ID());
 
@@ -46,22 +46,17 @@ void	ObjFileObject::Load(void)
 	
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+	glGenerateMipmap(GL_TEXTURE_2D);
 
 	float aniso = 0.0f;
 	glGetFloatv(GL_MAX_TEXTURE_MAX_ANISOTROPY_EXT, &aniso);
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAX_ANISOTROPY_EXT, aniso);
-
-	glGenerateMipmap(GL_TEXTURE_2D);
-
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-	glGenerateMipmap(GL_TEXTURE_2D);
 	
 	glActiveTexture(GL_TEXTURE0);
 	glUniform1i(_textureLocationID, 0);
 }
 
-void	ObjFileObject::Unload(void)
+void	ObjFile::Unload(void)
 {
 	glDeleteBuffers(1, &_uvArrayID);
 	glDeleteBuffers(1, &_normalArrayID);
@@ -70,14 +65,11 @@ void	ObjFileObject::Unload(void)
 	glDeleteTextures(1, &_textureID);
 }
 
-ObjFileObject::ObjFileObject(std::string objectPath,
-			     std::string texturePath)
-	: _objectArrays(objectPath),
-	  _textureParser(texturePath)
+ObjFile::ObjFile(std::string objectPath, std::string texturePath) :
+_objectArrays(objectPath),  _textureParser(texturePath)
 {
-        _program = new ShadingProgram(OBJ_VERTEX_SHADER_PATH, "",
-				      OBJ_FRAGMENT_SHADER_PATH);
-	
+	_program = new ShadingProgram(OBJ_VERTEX_SHADER_PATH, "", OBJ_FRAGMENT_SHADER_PATH);
+
 	_projectionID = glGetUniformLocation(_program->ID(), "projection");
 	_lookAtID = glGetUniformLocation(_program->ID(), "lookAt");
 	_transformID = glGetUniformLocation(_program->ID(), "transform");
@@ -85,18 +77,18 @@ ObjFileObject::ObjFileObject(std::string objectPath,
 	_lightPosID = glGetUniformLocation(_program->ID(), "lightPos");
 	_lightColorID = glGetUniformLocation(_program->ID(), "lightColor");
 	_lightFalloffID = glGetUniformLocation(_program->ID(), "lightFalloff");
-	
+
 	SetTransform(glm::mat4(1));
 	Load();
 }
 
-ObjFileObject::~ObjFileObject(void)
+ObjFile::~ObjFile(void)
 {
 	Unload();
 	delete _program;
 }
 
-void	ObjFileObject::UsePerspective(std::pair<glm::mat4, glm::mat4> p)
+void	ObjFile::UsePerspective(std::pair<glm::mat4, glm::mat4> p)
 {
 	_program->Use();
 
@@ -110,7 +102,7 @@ void	ObjFileObject::UsePerspective(std::pair<glm::mat4, glm::mat4> p)
 			glm::value_ptr(p.second));
 }
 
-void	ObjFileObject::SetTransform(glm::mat4 m)
+void	ObjFile::SetTransform(glm::mat4 m)
 {
 	_program->Use();
 	_transform = m;
@@ -120,22 +112,21 @@ void	ObjFileObject::SetTransform(glm::mat4 m)
 			glm::value_ptr(m));
 }
 
-void	ObjFileObject::Render(void)
+void	ObjFile::Render(void)
 {
 	_program->Use();
 
 	if (Light::positions.size())
 	{
 		glUniform3fv(_lightPosID,
-			     Light::positions.size(),
-			     reinterpret_cast<const GLfloat*>(&(Light::positions[0].x)));
-	        glUniform3fv(_lightColorID,
-			     Light::colors.size(),
-			     reinterpret_cast<const GLfloat*>(&(Light::colors[0].x)));
+			Light::positions.size(),
+			reinterpret_cast<const GLfloat*>(&(Light::positions[0].x)));
+		glUniform3fv(_lightColorID,
+			Light::colors.size(),
+			reinterpret_cast<const GLfloat*>(&(Light::colors[0].x)));
 		glUniform1fv(_lightFalloffID,
-			     Light::falloffs.size(),
-			     &Light::falloffs[0]);
-			     
+			Light::falloffs.size(),
+			&Light::falloffs[0]);
 	}
 	
 	glBindTexture(GL_TEXTURE_2D, _textureID);
@@ -159,4 +150,9 @@ void	ObjFileObject::Render(void)
 	glDisableVertexAttribArray(0);
 	glDisableVertexAttribArray(1);
 	glDisableVertexAttribArray(2);
+}
+
+void	ObjFile::Render(glm::vec3 pos) {
+	SetTransform(glm::translate(pos));
+	Render();
 }

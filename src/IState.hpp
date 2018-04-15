@@ -5,7 +5,7 @@
 namespace ex = entityx;
 
 
-//! Game states must implement this abstract class
+//! Game states must implement this interface
 class IState
 {
 protected:

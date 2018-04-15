@@ -1,4 +1,3 @@
-
 #include "ObjFileArrayExtractor.hpp"
 
 void	ObjFileArrayExtractor::Parse_v(std::stringstream &ss)
@@ -78,7 +77,7 @@ ObjFileArrayExtractor::ObjFileArrayExtractor(std::string filename)
 {	
 	std::ifstream file(filename);
 
-	if (!file)
+	if (!file.good())
 	{
 		std::cout << filename << " path was invalid" << std::endl;
 		throw "InvalidFilePath";
