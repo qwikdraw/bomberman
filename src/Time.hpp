@@ -1,5 +1,7 @@
 #pragma once
 
+#include "bomberman.hpp"
+
 //! Time utility class
 class Time
 {

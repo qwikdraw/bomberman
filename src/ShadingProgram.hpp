@@ -1,6 +1,6 @@
 #pragma once
 
-#include "voxGL.hpp"
+#include "bomberman.hpp"
 
 class	ShadingProgram
 {

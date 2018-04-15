@@ -1,7 +1,6 @@
-#ifndef LIGHT_HPP
-#define LIGHT_HPP
+#pragma once
 
-#include "voxGL.hpp"
+#include "bomberman.hpp"
 
 class	Light
 {
@@ -24,5 +23,3 @@ public:
 	Light(glm::vec3 pos, glm::vec3 color, float falloff);
 	~Light(void);
 };
-
-#endif

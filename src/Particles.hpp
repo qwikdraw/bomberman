@@ -1,7 +1,8 @@
 #pragma once
 
-#include "voxGL.hpp"
+#include "bomberman.hpp"
 #include <numeric>
+#include "ShadingProgram.hpp"
 
 #define PARTICLE_VERTEX_SHADER_PATH "src/particleVertex.glsl"
 #define PARTICLE_FRAGMENT_SHADER_PATH "src/particleFrag.glsl"

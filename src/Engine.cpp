@@ -2,14 +2,14 @@
 #include "Engine.hpp"
 #include "IState.hpp"
 
-Engine::Engine(Window& window) : _window(window), isRunning(true) {}
+Engine::Engine(Window& w) : window(w), isRunning(true) {}
 
 Engine::~Engine(void) {
 	for (auto s: _states) {
 		delete s;
 	}
 	_states.clear();
-	_window.Close();
+	window.Close();
 }
 
 void Engine::PushState(IState* state)
@@ -33,10 +33,10 @@ void Engine::ChangeState(IState* state)
 void Engine::Run(void)
 {
 	_time.Step();
-	_states.back()->Update(this, _window, _time.Delta());
-	_states.back()->Draw(this, _window, _time.Delta());
-	_window.Render();
-	if (_window.ShouldClose())
+	window.Clear();
+	_states.back()->Update(_time.Delta());
+	window.Render();
+	if (window.ShouldClose())
 		isRunning = false;
 	GLenum err;
 	if ((err = glGetError()) != GL_NO_ERROR)

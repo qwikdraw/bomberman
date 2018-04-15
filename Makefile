@@ -19,8 +19,8 @@ Camera \
 Particles \
 Engine \
 TestState \
-AnimatedObject \
-ObjFileObject \
+Model \
+ObjFile \
 ObjFileArrayExtractor \
 BMPFileParse \
 Light
@@ -31,11 +31,13 @@ OBJ_DIR = obj
 SRC = $(addsuffix .cpp, $(addprefix src/, $(LIST)))
 OBJ = $(addsuffix .o, $(addprefix $(OBJ_DIR)/, $(LIST)))
 
-CPPFLAGS = -std=c++11 -Wall -Wextra -Werror \
+CPPFLAGS = -std=c++11 -Wall -Wextra -Werror -Wno-unused-parameter \
 $(shell pkg-config --cflags glfw3 glm) \
--g -O3 -march=native \
+-I lib/entityx \
+-g -O3 -march=native
 
-LDFLAGS = -framework OpenGl $(shell pkg-config --libs glfw3 glm)
+LDFLAGS = -framework OpenGl $(shell pkg-config --libs glfw3 glm) \
+-L lib/entityx/entityx -lentityx \
 
 all: $(OBJ_DIR) $(NAME)
 
@@ -58,7 +60,11 @@ fclean:
 	@echo "\033[31;1mFull Cleaning..\033[0m"
 	@rm -rf $(OBJ_DIR)
 	@rm -f $(NAME)
+	@rm -rf lib
 
-re:	fclean all
+re:	fclean deps all
 
-.PHONY: clean fclean all re directories docs
+deps:
+	@./deps.sh
+
+.PHONY: clean fclean all re docs

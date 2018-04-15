@@ -4,6 +4,7 @@
 #include <string>
 #include "Time.hpp"
 #include "Window.hpp"
+#include <entityx/entityx.h>
 
 class IState;
 
@@ -12,8 +13,8 @@ class Engine
 {
 	std::vector<IState*> _states;
 	Time _time;
-	Window& _window;
 public:
+	Window& window;
 	bool isRunning;
 	Engine(Window& window);
 	~Engine(void);

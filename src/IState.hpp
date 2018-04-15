@@ -1,14 +1,16 @@
 #pragma once
 
 #include "Engine.hpp"
+#include <entityx/entityx.h>
+namespace ex = entityx;
 
-//! Game states must implement this abstract class
+
+//! Game states must implement this interface
 class IState
 {
 protected:
 	IState() {}
 public:
 	virtual ~IState(void) {};
-	virtual void Update(Engine* game, Window& window, double dt) = 0;
-	virtual void Draw(Engine* game, Window& window, double dt) = 0;
+	virtual void Update(double dt) = 0;
 };

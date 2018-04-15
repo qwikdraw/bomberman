@@ -1,47 +1,59 @@
-#include "voxGL.hpp"
-
 #include "TestState.hpp"
+#include "ObjFile.hpp"
+#include "components.hpp"
+#include "bomberman.hpp"
 
-TestState::TestState(void) :
-_camera(Camera()),
-_animation(AnimatedObject("src/animationFile"))
+class MovementSystem : public ex::System<MovementSystem> {
+public:
+	MovementSystem(void) {}
+	void update(ex::EntityManager &es, ex::EventManager &events, ex::TimeDelta dt) override {
+		es.each<Position>([dt](ex::Entity, Position& pos) {
+			pos.x += dt;
+		});
+	}
+};
+
+class RenderSystem : public ex::System<RenderSystem> {
+	Camera& _cam;
+public:
+	RenderSystem(Camera& c) : _cam(c) {}
+	void update(ex::EntityManager &es, ex::EventManager &events, ex::TimeDelta dt) override {
+		es.each<Obj, Position>([this](ex::Entity, Obj& r, Position& p) {
+			r.obj->UsePerspective(_cam.Perspective());
+			r.obj->Render(glm::vec3(p.x, p.y, p.z));
+		});
+	}
+};
+
+TestState::TestState(Engine& e) :
+_engine(e), _window(e.window), _camera(Camera())
 {
-	_camera.Move(glm::vec3(-10, 0, 3));
-	for (int i = 0; i < 10; ++i)
-		_lights.push_back(new Light(glm::vec3(0, 0, 4), glm::vec3(1, 1, 1), 2));
-	if (glGetError() != GL_NO_ERROR)
-		std::cerr << "FAIL\n";
+	_camera.Move(glm::vec3(-5, 0, 0));
+	_lights.push_back(new Light(glm::vec3(0, 0, 3), glm::vec3(1, 1, 1), 10));
+	systems.add<MovementSystem>();
+	systems.add<RenderSystem>(_camera);
+	systems.configure();
+	(void)_engine;
+	for (int y = -5; y < 5; ++y)
+	{
+		for (int z = -5; z < 5; ++z)
+		{
+			ex::Entity ent = entities.create();
+			ent.assign<Position>(0,y,z);
+			ent.assign<Obj>(new ObjFile("assets/bomb.obj", "assets/tulips.bmp"));
+		}
+	}
+	glClearColor(0.3, 0.3, 0.3, 1.0);
 }
 
 TestState::~TestState(void)
 {
-	for (auto l: _lights) {
+	for (auto l: _lights)
 		delete l;
-	}
 }
 
-void TestState::Update(Engine* engine, Window& window, double)
+void TestState::Update(double dt)
 {
-	if (window.Key(GLFW_KEY_SPACE)) {
-		window.Clear();
-		window.SetRenderMask(0.25f,0.25f,0.5f,0.5f);
-	} else {
-		window.RemoveRenderMask();
-	}
-	if (window.Key(GLFW_KEY_ESCAPE))
-	{
-		engine->isRunning = false;
-	}
-	if (window.Key(GLFW_KEY_1))
-	{
-		engine->ChangeState(new TestState());
-	}
-}
-
-void TestState::Draw(Engine*, Window& window, double)
-{
-	window.Clear();
-	_camera.SetAspect(window.GetAspect());
-	_animation.UsePerspective(_camera.Perspective());
-	_animation.Render();
+	_camera.SetAspect(_window.GetAspect());
+	systems.update_all(dt);
 }

@@ -1,11 +1,10 @@
-#ifndef SCREENIMAGE_HPP
-#define SCREENIMAGE_HPP
+#pragma once
 
 #define SCREENIMAGE_VERTEX_SHADER_PATH "../LowLevelDraw/screenImageVertex.glsl"
 #define SCREENIMAGE_FRAGMENT_SHADER_PATH "../LowLevelDraw/screenImageFrag.glsl"
 
-#include "voxGL.hpp"
-#include "BMPFileParse.class.hpp"
+#include "bomberman.hpp"
+#include "BMPFileParse.hpp"
 #include <vector>
 
 class	ScreenImage
@@ -30,5 +29,3 @@ public:
 
 	void	Render(void);
 };
-
-#endif

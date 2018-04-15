@@ -1,4 +1,4 @@
-#include "voxGL.hpp"
+#include "Window.hpp"
 #include <stdexcept>
 
 Window::Window(int width, int height, std::string name) :
