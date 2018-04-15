@@ -7,8 +7,8 @@ class MovementSystem : public ex::System<MovementSystem> {
 public:
 	MovementSystem(void) {}
 	void update(ex::EntityManager &es, ex::EventManager &events, ex::TimeDelta dt) override {
-		es.each<CellPosition>([](ex::Entity, CellPosition& pos) {
-			pos.x += 0;
+		es.each<Position>([dt](ex::Entity, Position& pos) {
+			pos.x += dt;
 		});
 	}
 };
@@ -18,9 +18,9 @@ class RenderSystem : public ex::System<RenderSystem> {
 public:
 	RenderSystem(Camera& c) : _cam(c) {}
 	void update(ex::EntityManager &es, ex::EventManager &events, ex::TimeDelta dt) override {
-		es.each<Obj, CellPosition>([this](ex::Entity, Obj& r, CellPosition& p) {
+		es.each<Obj, Position>([this](ex::Entity, Obj& r, Position& p) {
 			r.obj->UsePerspective(_cam.Perspective());
-			r.obj->Render(glm::vec3(p.x, p.y, 0));
+			r.obj->Render(glm::vec3(p.x, p.y, p.z));
 		});
 	}
 };
@@ -34,9 +34,15 @@ _engine(e), _window(e.window), _camera(Camera())
 	systems.add<RenderSystem>(_camera);
 	systems.configure();
 	(void)_engine;
-	ex::Entity ent = entities.create();
-	ent.assign<CellPosition>(0,0);
-	ent.assign<Obj>(new ObjFile("assets/bomb.obj", "assets/tulips.bmp"));
+	for (int y = -5; y < 5; ++y)
+	{
+		for (int z = -5; z < 5; ++z)
+		{
+			ex::Entity ent = entities.create();
+			ent.assign<Position>(0,y,z);
+			ent.assign<Obj>(new ObjFile("assets/bomb.obj", "assets/tulips.bmp"));
+		}
+	}
 	glClearColor(0.3, 0.3, 0.3, 1.0);
 }
 
