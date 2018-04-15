@@ -19,7 +19,7 @@ Camera \
 Particles \
 Engine \
 TestState \
-AnimatedObj \
+Model \
 ObjFile \
 ObjFileArrayExtractor \
 BMPFileParse \
@@ -34,7 +34,6 @@ OBJ = $(addsuffix .o, $(addprefix $(OBJ_DIR)/, $(LIST)))
 CPPFLAGS = -std=c++11 -Wall -Wextra -Werror -Wno-unused-parameter \
 $(shell pkg-config --cflags glfw3 glm) \
 -I lib/entityx \
--I lib \
 -g -O3 -march=native
 
 LDFLAGS = -framework OpenGl $(shell pkg-config --libs glfw3 glm) \

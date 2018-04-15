@@ -36,7 +36,7 @@ _engine(e), _window(e.window), _camera(Camera())
 	(void)_engine;
 	ex::Entity ent = entities.create();
 	ent.assign<CellPosition>(0,0);
-	ent.assign<Obj>(new ObjFile("resources/bomb.obj", "resources/tulips.bmp"));
+	ent.assign<Obj>(new ObjFile("assets/bomb.obj", "assets/tulips.bmp"));
 	glClearColor(0.3, 0.3, 0.3, 1.0);
 }
 

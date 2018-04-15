@@ -1,6 +1,6 @@
-#include "AnimatedObj.hpp"
+#include "Model.hpp"
 
-std::istream	&operator >> (std::istream &is, AnimatedObject::AnimatedPartRaw &lhs)
+std::istream	&operator >> (std::istream &is, Model::AnimatedPartRaw &lhs)
 {
 	std::string junkInfo;
 	
@@ -30,7 +30,7 @@ std::istream	&operator >> (std::istream &is, AnimatedObject::AnimatedPartRaw &lh
 	return is;
 }
 
-AnimatedObject::AnimatedObject(std::string filepath)
+Model::Model(std::string filepath)
 {
 	size_t	pathEnd = filepath.find_last_of("/");	
 	std::string absolutePath = filepath.substr(0, pathEnd);
@@ -65,7 +65,7 @@ AnimatedObject::AnimatedObject(std::string filepath)
 	_totalTime = 0;
 }
 
-AnimatedObject::~AnimatedObject(void)
+Model::~Model(void)
 {
 	for (auto part : _parts)
 		delete part.object;
@@ -73,27 +73,27 @@ AnimatedObject::~AnimatedObject(void)
 
 //________________
 
-void	AnimatedObject::UsePerspective(std::pair<glm::mat4, glm::mat4> p)
+void	Model::UsePerspective(std::pair<glm::mat4, glm::mat4> p)
 {
 	_perspective = p;
 }
 
-void	AnimatedObject::SetTransform(glm::mat4 m)
+void	Model::SetTransform(glm::mat4 m)
 {
 	_transform = m;
 }
 
-void	AnimatedObject::Move(glm::vec3 p)
+void	Model::Move(glm::vec3 p)
 {
 	_pos += p;
 }
 
-void	AnimatedObject::MoveTo(glm::vec3 p)
+void	Model::MoveTo(glm::vec3 p)
 {
 	_pos = p;
 }
 
-glm::mat4	AnimatedObject::InterpolateMatrix(AnimatedPart part)
+glm::mat4	Model::InterpolateMatrix(AnimatedPart part)
 {
 	float cycleTime = fmod(_totalTime, part.animaCycle);
 
@@ -129,7 +129,7 @@ glm::mat4	AnimatedObject::InterpolateMatrix(AnimatedPart part)
 	return x + z * ratio;
 }
 
-void	AnimatedObject::Render(void)
+void	Model::Render(void)
 {
 	_time.Step();
 

@@ -8,7 +8,7 @@
 #include "ObjFile.hpp"
 #include "Time.hpp"
 
-class	AnimatedObject
+class	Model
 {
 public:
 	struct	AnimatedPartRaw
@@ -45,8 +45,8 @@ private:
 
 public:
 
-	AnimatedObject(std::string filepath);
-	~AnimatedObject(void);
+	Model(std::string filepath);
+	~Model(void);
 	void	UsePerspective(std::pair<glm::mat4, glm::mat4>);
 	void	SetTransform(glm::mat4);
 	void	Move(glm::vec3);
@@ -54,4 +54,4 @@ public:
 	void	Render(void);
 };
 
-std::istream	&operator >> (std::istream &is, AnimatedObject::AnimatedPartRaw &lhs);
+std::istream	&operator >> (std::istream &is, Model::AnimatedPartRaw &lhs);
