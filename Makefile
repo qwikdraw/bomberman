@@ -22,8 +22,9 @@ TestState \
 Model \
 ObjFile \
 ObjFileArrayExtractor \
-BMPFileParse \
-Light
+Texture \
+Light \
+lodepng
 
 SRC_DIR = src
 OBJ_DIR = obj
