@@ -5,11 +5,11 @@ in ShapeData {
 	vec3 lightMod;
 } Data;
 
-out vec3 color;
+out vec4 color;
 
 uniform sampler2D tex;
 
 void	main()
 {	
-	color = texture(tex, Data.uv).rgb * Data.lightMod;
+	color = texture(tex, Data.uv).rgba * vec4(Data.lightMod, 1);
 }

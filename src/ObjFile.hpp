@@ -2,7 +2,7 @@
 
 #include "bomberman.hpp"
 #include "ObjFileArrayExtractor.hpp"
-#include "BMPFileParse.hpp"
+#include "Texture.hpp"
 #include "Light.hpp"
 #include "ShadingProgram.hpp"
 
@@ -13,7 +13,7 @@ class	ObjFile
 {
 	ShadingProgram *_program;
 	ObjFileArrayExtractor _objectArrays;
-	BMPFileParse _textureParser;
+	Texture _textureParser;
 	GLuint _uvArrayID;
 	GLuint _normalArrayID;
 	GLuint _vertexArrayID;

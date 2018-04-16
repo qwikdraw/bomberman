@@ -4,7 +4,7 @@
 #include "Camera.hpp"
 #include "Light.hpp"
 #include "IState.hpp"
-#include "ObjFile.hpp"
+#include "Model.hpp"
 #include <entt/entt.hpp>
 
 class TestState : public IState
@@ -14,7 +14,7 @@ class TestState : public IState
 	Camera _camera;
 	std::vector<Light*> _lights;
 	entt::DefaultRegistry _registry;
-	ObjFile* _bomb;
+	Model* _bomb;
 public:
 	TestState(Engine& engine);
 	~TestState(void);

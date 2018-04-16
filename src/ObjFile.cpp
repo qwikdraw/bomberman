@@ -33,11 +33,11 @@ void	ObjFile::Load(void)
 	glBindTexture(GL_TEXTURE_2D, _textureID);
 	glTexImage2D(GL_TEXTURE_2D,
 		     0,
-		     GL_RGB,
+		     GL_RGBA,
 		     _textureParser.Width(),
 		     _textureParser.Height(),
 		     0,
-		     GL_BGR,
+		     GL_RGBA,
 		     GL_UNSIGNED_BYTE,
 		     _textureParser.Data());
 
@@ -128,7 +128,6 @@ void	ObjFile::Render(void)
 			Light::falloffs.size(),
 			&Light::falloffs[0]);
 	}
-	
 	glBindTexture(GL_TEXTURE_2D, _textureID);
 	glActiveTexture(GL_TEXTURE0);
 	glUniform1i(_textureLocationID, 0);
