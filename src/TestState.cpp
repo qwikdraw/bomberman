@@ -3,44 +3,31 @@
 #include "components.hpp"
 #include "bomberman.hpp"
 
-class MovementSystem : public ex::System<MovementSystem> {
-public:
-	MovementSystem(void) {}
-	void update(ex::EntityManager &es, ex::EventManager &events, ex::TimeDelta dt) override {
-		es.each<Position>([dt](ex::Entity, Position& pos) {
-			pos.x += dt;
-		});
+void a_system(entt::DefaultRegistry& registry, double dt, ObjFile* bomb)
+{
+	auto view = registry.view<Position, Renderable>();
+	for (auto entity : view)
+	{
+		auto &pos = view.get<Position>(entity);
+		pos.x += dt;
+		bomb->Render(glm::vec3(pos.x, pos.y, pos.z));
 	}
-};
+}
 
-class RenderSystem : public ex::System<RenderSystem> {
-	Camera& _cam;
-public:
-	RenderSystem(Camera& c) : _cam(c) {}
-	void update(ex::EntityManager &es, ex::EventManager &events, ex::TimeDelta dt) override {
-		es.each<Obj, Position>([this](ex::Entity, Obj& r, Position& p) {
-			r.obj->UsePerspective(_cam.Perspective());
-			r.obj->Render(glm::vec3(p.x, p.y, p.z));
-		});
-	}
-};
 
 TestState::TestState(Engine& e) :
 _engine(e), _window(e.window), _camera(Camera())
 {
 	_camera.Move(glm::vec3(-5, 0, 0));
 	_lights.push_back(new Light(glm::vec3(0, 0, 3), glm::vec3(1, 1, 1), 10));
-	systems.add<MovementSystem>();
-	systems.add<RenderSystem>(_camera);
-	systems.configure();
 	(void)_engine;
+	_bomb = new ObjFile("assets/bomb.obj", "assets/tulips.bmp");
 	for (int y = -5; y < 5; ++y)
 	{
 		for (int z = -5; z < 5; ++z)
 		{
-			ex::Entity ent = entities.create();
-			ent.assign<Position>(0,y,z);
-			ent.assign<Obj>(new ObjFile("assets/bomb.obj", "assets/tulips.bmp"));
+			auto ent = _registry.create(Position{0, (float)y, (float)z});
+			_registry.assign<Renderable>(ent, "bomb");
 		}
 	}
 	glClearColor(0.3, 0.3, 0.3, 1.0);
@@ -55,5 +42,6 @@ TestState::~TestState(void)
 void TestState::Update(double dt)
 {
 	_camera.SetAspect(_window.GetAspect());
-	systems.update_all(dt);
+	_bomb->UsePerspective(_camera.Perspective());
+	a_system(_registry, dt, _bomb);
 }

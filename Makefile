@@ -31,13 +31,12 @@ OBJ_DIR = obj
 SRC = $(addsuffix .cpp, $(addprefix src/, $(LIST)))
 OBJ = $(addsuffix .o, $(addprefix $(OBJ_DIR)/, $(LIST)))
 
-CPPFLAGS = -std=c++11 -Wall -Wextra -Werror -Wno-unused-parameter \
+CPPFLAGS = -std=c++14 -Wall -Wextra -Werror -Wno-unused-parameter \
 $(shell pkg-config --cflags glfw3 glm) \
--I lib/entityx \
+-I lib/entt/src \
 -g -O3 -march=native
 
 LDFLAGS = -framework OpenGl $(shell pkg-config --libs glfw3 glm) \
--L lib/entityx/entityx -lentityx \
 
 all: $(OBJ_DIR) $(NAME)
 
@@ -60,9 +59,8 @@ fclean:
 	@echo "\033[31;1mFull Cleaning..\033[0m"
 	@rm -rf $(OBJ_DIR)
 	@rm -f $(NAME)
-	@rm -rf lib
 
-re:	fclean deps all
+re:	fclean all
 
 deps:
 	@./deps.sh
