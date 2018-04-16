@@ -1,18 +1,21 @@
 #pragma once
 
-#include "ObjFile.hpp"
+#include <string>
 
-struct CellPosition {
-	CellPosition(int x = 0.0f, int y = 0.0f) : x(x), y(y) {}
-	int x, y;
+struct CellPosition
+{
+	int x;
+	int y;
 };
 
-struct Position {
-	Position(float x = 0.0f, float y = 0.0f, float z = 0.0f) : x(x), y(y), z(z) {}
-	float x, y, z;
+struct Position
+{
+	float x;
+	float y;
+	float z;
 };
 
-struct Obj {
-	Obj(ObjFile* o = NULL) : obj(o) {}
-	ObjFile* obj;
+struct Renderable
+{
+	std::string name;
 };

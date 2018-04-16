@@ -4,7 +4,6 @@
 #include <string>
 #include "Time.hpp"
 #include "Window.hpp"
-#include <entityx/entityx.h>
 
 class IState;
 
