@@ -1,5 +1,5 @@
-obj_files/Bomb.obj
-png_files/TheMan.png
+meshes/bomb.obj
+textures/the_man.png
 	Transform:
 	
 	matrix

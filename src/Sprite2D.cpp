@@ -1,21 +1,20 @@
+#include "Sprite2D.hpp"
 
-#include "ScreenImage.hpp"
-
-const	std::vector<float> ScreenImage::_vertexArray = {1, -1, 0,
+const	std::vector<float> Sprite2D::_vertexArray = {1, -1, 0,
                                                         -1, -1, 0,
                                                         1, 1, 0,
                                                         -1, 1, 0,
                                                         -1, -1, 0,
                                                         1, 1, 0};
 
-const	std::vector<float> ScreenImage::_uvArray = {1, 0,
+const	std::vector<float> Sprite2D::_uvArray = {1, 0,
                                                     0, 0,
                                                     1, 1,
                                                     0, 1,
                                                     0, 0,
                                                     1, 1};
 
-ScreenImage::ScreenImage(std::string imagepath) : _textureParser(imagepath)
+Sprite2D::Sprite2D(std::string imagepath) : _textureParser(imagepath)
 {
 	_program = new ShadingProgram(SCREENIMAGE_VERTEX_SHADER_PATH, "",
 				      SCREENIMAGE_FRAGMENT_SHADER_PATH);
@@ -49,23 +48,26 @@ ScreenImage::ScreenImage(std::string imagepath) : _textureParser(imagepath)
 		     GL_UNSIGNED_BYTE,
 		     _textureParser.Data());
 
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+	
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+	glGenerateMipmap(GL_TEXTURE_2D);
 
 	glActiveTexture(GL_TEXTURE0);
 	glUniform1i(_textureLocationID, 0);
 }
 
-ScreenImage::~ScreenImage(void)
+Sprite2D::~Sprite2D(void)
 {
 	glDeleteTextures(1, &_textureID);
 	glDeleteBuffers(1, &_vertexArrayID);
 	glDeleteBuffers(1, &_uvArrayID);
 }
 
-void	ScreenImage::Render(void)
+void	Sprite2D::Render(void)
 {
 	_program->Use();
 

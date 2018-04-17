@@ -6,26 +6,26 @@
 #    By: logan  <logan@42.us.org>                   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/13 10:03:24 by logan             #+#    #+#              #
-#    Updated: 2018/04/08 22:59:25 by twalton          ###   ########.fr        #
+#    Updated: 2018/04/17 15:58:35 by lkaser           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = bomberman
 LIST = main \
-ShadingProgram \
-Time \
 Window \
+Time \
+ShadingProgram \
 Camera \
+Sprite2D \
+ObjFileArrayExtractor \
+ObjFile \
+Texture \
+Model \
+Light \
 Particles \
+systems \
 Engine \
 TestState \
-Model \
-ObjFile \
-ObjFileArrayExtractor \
-Texture \
-Light \
-Systems \
-ScreenImage \
 
 SRC_DIR = src
 OBJ_DIR = obj

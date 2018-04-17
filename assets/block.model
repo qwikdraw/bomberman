@@ -1,5 +1,5 @@
-obj_files/MapBlock.obj
-png_files/TheMan.png
+meshes/block.obj
+textures/the_man.png
 	Transform:
 	
 	matrix

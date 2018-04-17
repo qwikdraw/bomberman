@@ -1,6 +1,8 @@
-#include "Systems.hpp"
+#include "systems.hpp"
 
-//_________________________________________________________________________________________
+namespace c = components;
+
+//! RenderModels
 
 struct	ModelLoader : entt::ResourceLoader<ModelLoader, Model>
 {
@@ -10,15 +12,15 @@ struct	ModelLoader : entt::ResourceLoader<ModelLoader, Model>
 	}
 };
 
-void	Systems::RenderModels(entt::DefaultRegistry &registry, entt::ResourceCache<Model>& cache,
-			      Window &window, Camera &camera)
+void	systems::RenderModels(entt::DefaultRegistry &registry, entt::ResourceCache<Model>& cache,
+		Window &window, Camera &camera)
 {
-	auto entityGroup = registry.view<Part::Model, Part::Position>();
+	auto view = registry.view<c::Model, c::Position>();
 
-	for (auto entity : entityGroup)
+	for (auto entity : view)
 	{
-		auto &modelComp = entityGroup.get<Part::Model>(entity);
-		auto &pos = entityGroup.get<Part::Position>(entity);
+		auto &modelComp = view.get<c::Model>(entity);
+		auto &pos = view.get<c::Position>(entity);
 		const std::string modelPath = ASSET_PATH + modelComp.name + MODEL_PREFIX;
 
 		cache.load<ModelLoader>(entt::HashedString(modelComp.name.c_str()), modelPath);
@@ -35,15 +37,16 @@ void	Systems::RenderModels(entt::DefaultRegistry &registry, entt::ResourceCache<
 	}
 }
 
-//_________________________________________________________________________________________
 
-void	Systems::Decay(entt::DefaultRegistry &registry, double dt)
+//! Decay
+
+void	systems::Decay(entt::DefaultRegistry &registry, double dt)
 {
-	auto entityGroup = registry.view<Part::Decay>();
+	auto view = registry.view<c::Decay>();
 
-	for (auto entity : entityGroup)
+	for (auto entity : view)
 	{
-		auto &decay = entityGroup.get(entity);
+		auto &decay = view.get(entity);
 
 		decay.seconds -= dt;
 		if (decay.seconds <= 0)
@@ -51,28 +54,27 @@ void	Systems::Decay(entt::DefaultRegistry &registry, double dt)
 	}
 }
 
-//_________________________________________________________________________________________
 
-struct	ImageLoader : entt::ResourceLoader<ImageLoader, ScreenImage>
+//! Buttons
+
+struct	ImageLoader : entt::ResourceLoader<ImageLoader, Sprite2D>
 {
-	std::shared_ptr<ScreenImage>  load(const std::string imagePath) const
+	std::shared_ptr<Sprite2D>  load(const std::string imagePath) const
 	{
-		return std::shared_ptr<ScreenImage>(new ScreenImage(imagePath));
+		return std::shared_ptr<Sprite2D>(new Sprite2D(imagePath));
 	}
 };
 
-void	Systems::Buttons(entt::DefaultRegistry &registry,
-			 entt::ResourceCache<ScreenImage> &cache,
-			 Window &window, double dt)
+void	systems::Buttons(entt::DefaultRegistry &registry,
+		entt::ResourceCache<Sprite2D> &cache, Window &window, double dt)
 {
-	auto entityGroup = registry.view<Part::Button>();
+	auto view = registry.view<c::Button>();
 
-	for (auto entity : entityGroup)
+	for (auto entity : view)
 	{
-		auto &button = entityGroup.get(entity);
+		auto &button = view.get(entity);
 
-
-		//render logic:
+		// render logic
 		std::string imagePath;
 
 		if (button.cooldownTimer <= 0)
@@ -86,12 +88,12 @@ void	Systems::Buttons(entt::DefaultRegistry &registry,
 				     (button.topRight.y - button.botLeft.y) / 2);
 
 		cache.load<ImageLoader>(entt::HashedString(imagePath.c_str()), imagePath);
-		const ScreenImage &im = cache.handle(entt::HashedString(imagePath.c_str())).get();
-		const_cast<ScreenImage&>(im).Render();
+		const Sprite2D &im = cache.handle(entt::HashedString(imagePath.c_str())).get();
+		const_cast<Sprite2D&>(im).Render();
 
 		window.RemoveRenderMask();
 
-		//button logic:
+		// button logic
 		button.cooldownTimer -= dt;
 		if (window.MouseClick(0))
 		{
@@ -109,5 +111,3 @@ void	Systems::Buttons(entt::DefaultRegistry &registry,
 		}
 	}
 }
-
-//_________________________________________________________________________________________

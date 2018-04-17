@@ -2,7 +2,8 @@
 
 #include "bomberman.hpp"
 
-namespace Part
+//! It is recommended to alias this namespace like so: `namespace c = components;`
+namespace components
 {
 
 	struct CellPosition

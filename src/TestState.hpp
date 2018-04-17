@@ -5,7 +5,7 @@
 #include "Light.hpp"
 #include "IState.hpp"
 #include "Model.hpp"
-#include "ScreenImage.hpp"
+#include "Sprite2D.hpp"
 #include <entt/entt.hpp>
 
 class TestState : public IState
@@ -16,7 +16,7 @@ class TestState : public IState
 	std::vector<Light*> _lights;
 	entt::DefaultRegistry _registry;
 	entt::ResourceCache<Model> _modelCache;
-	entt::ResourceCache<ScreenImage> _imageCache;
+	entt::ResourceCache<Sprite2D> _imageCache;
 	
 public:
 	TestState(Engine& engine);
