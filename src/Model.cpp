@@ -71,8 +71,6 @@ Model::~Model(void)
 		delete part.object;
 }
 
-//________________
-
 void	Model::UsePerspective(std::pair<glm::mat4, glm::mat4> p)
 {
 	_perspective = p;
@@ -81,11 +79,6 @@ void	Model::UsePerspective(std::pair<glm::mat4, glm::mat4> p)
 void	Model::SetTransform(glm::mat4 m)
 {
 	_transform = m;
-}
-
-void	Model::Move(glm::vec3 p)
-{
-	_pos += p;
 }
 
 void	Model::MoveTo(glm::vec3 p)
@@ -146,4 +139,12 @@ void	Model::Render(void)
 		_parts[i].object->Render();
 	}
 	_totalTime += _time.Delta();
+}
+
+void	Model::Render(std::pair<glm::mat4, glm::mat4> per, glm::mat4 t, glm::vec3 p)
+{
+	UsePerspective(per);
+	SetTransform(t);
+	MoveTo(p);
+	Render();
 }
