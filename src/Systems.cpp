@@ -10,7 +10,8 @@ struct	ModelLoader : entt::ResourceLoader<ModelLoader, Model>
 	}
 };
 
-void	Systems::RenderModels(entt::DefaultRegistry &registry, entt::ResourceCache<Model>& cache, Camera &camera)
+void	Systems::RenderModels(entt::DefaultRegistry &registry, entt::ResourceCache<Model>& cache,
+			      Window &window, Camera &camera)
 {
 	auto entityGroup = registry.view<Part::Model, Part::Position>();
 
@@ -23,7 +24,14 @@ void	Systems::RenderModels(entt::DefaultRegistry &registry, entt::ResourceCache<
 		cache.load<ModelLoader>(entt::HashedString(modelComp.name.c_str()), modelPath);
 		const Model &model = cache.handle(entt::HashedString(modelComp.name.c_str()) ).get();
 
+		window.SetRenderMask((modelComp.botLeft.x + 1) / 2,
+				     (modelComp.botLeft.y + 1) / 2,
+				     (modelComp.topRight.x - modelComp.botLeft.x) / 2,
+				     (modelComp.topRight.y - modelComp.botLeft.y) / 2);
+		
 		const_cast<Model&>(model).Render(camera.Perspective(), modelComp.transform, pos.pos);
+
+		window.RemoveRenderMask();
 	}
 }
 
@@ -45,35 +53,6 @@ void	Systems::Decay(entt::DefaultRegistry &registry, double dt)
 
 //_________________________________________________________________________________________
 
-void	Systems::Clickable(entt::DefaultRegistry &registry, Window &window, double dt)
-{
-	auto entityGroup = registry.view<Part::ScreenArea, Part::ClickCallback>();
-
-	for (auto entity : entityGroup)
-	{
-		auto &screen = entityGroup.get<Part::ScreenArea>(entity);
-		auto &callback = entityGroup.get<Part::ClickCallback>(entity);
-
-		callback.cooldownTimer -= dt;
-		if (window.MouseClick(0))
-		{
-			glm::vec2 pos = window.MousePos();
-
-			if (pos.x >= screen.botLeft.x && pos.x <= screen.topRight.x &&
-			    pos.y >= screen.botLeft.y && pos.y <= screen.topRight.y)
-			{
-				if (callback.cooldownTimer <= 0)
-				{
-					callback.f();
-					callback.cooldownTimer = callback.cooldown;
-				}
-			}
-		}
-	}
-}
-
-//_________________________________________________________________________________________
-
 struct	ImageLoader : entt::ResourceLoader<ImageLoader, ScreenImage>
 {
 	std::shared_ptr<ScreenImage>  load(const std::string imagePath) const
@@ -82,38 +61,52 @@ struct	ImageLoader : entt::ResourceLoader<ImageLoader, ScreenImage>
 	}
 };
 
-void	Systems::RenderButtons(entt::DefaultRegistry &registry,
-			       entt::ResourceCache<ScreenImage> &cache,
-			       Window &window)
+void	Systems::Buttons(entt::DefaultRegistry &registry,
+			 entt::ResourceCache<ScreenImage> &cache,
+			 Window &window, double dt)
 {
-	auto entityGroup = registry.view<Part::ScreenArea,
-					 Part::ClickCallback,
-					 Part::Button>();
+	auto entityGroup = registry.view<Part::Button>();
 
 	for (auto entity : entityGroup)
 	{
-		auto &screen = entityGroup.get<Part::ScreenArea>(entity);
-		auto &callback = entityGroup.get<Part::ClickCallback>(entity);
-		auto &button = entityGroup.get<Part::Button>(entity);
+		auto &button = entityGroup.get(entity);
 
+
+		//render logic:
 		std::string imagePath;
 
-		if (callback.cooldownTimer <= 0)
+		if (button.cooldownTimer <= 0)
 			imagePath = button.imageBefore;
 		else
 			imagePath = button.imageAfter;
 
-		window.SetRenderMask((screen.botLeft.x + 1) / 2,
-				     (screen.botLeft.y + 1) / 2,
-				     (screen.topRight.x - screen.botLeft.x) / 2,
-				     (screen.topRight.y - screen.botLeft.y) / 2);
+		window.SetRenderMask((button.botLeft.x + 1) / 2,
+				     (button.botLeft.y + 1) / 2,
+				     (button.topRight.x - button.botLeft.x) / 2,
+				     (button.topRight.y - button.botLeft.y) / 2);
 
 		cache.load<ImageLoader>(entt::HashedString(imagePath.c_str()), imagePath);
 		const ScreenImage &im = cache.handle(entt::HashedString(imagePath.c_str())).get();
-
 		const_cast<ScreenImage&>(im).Render();
-		
+
 		window.RemoveRenderMask();
+
+		//button logic:
+		button.cooldownTimer -= dt;
+		if (window.MouseClick(0))
+		{
+			glm::vec2 pos = window.MousePos();
+
+			if (pos.x >= button.botLeft.x && pos.x <= button.topRight.x &&
+			    pos.y >= button.botLeft.y && pos.y <= button.topRight.y)
+			{
+				if (button.cooldownTimer <= 0)
+				{
+					button.f();
+					button.cooldownTimer = button.cooldown;
+				}
+			}
+		}
 	}
 }
 

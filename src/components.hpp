@@ -20,6 +20,8 @@ namespace Part
 	{
 		std::string name;
 		glm::mat4 transform;
+		glm::vec2 botLeft = glm::vec2(0, 0);
+		glm::vec2 topRight = glm::vec2(1, 1);
 	};
 
 	struct Decay
@@ -27,22 +29,14 @@ namespace Part
 		float seconds;
 	};
 
-	struct ScreenArea
-	{
-		glm::vec2 botLeft;
-		glm::vec2 topRight;
-	};
-	
-	struct ClickCallback
-	{
-		std::function<void()> f;
-		float cooldown = 0;
-		float cooldownTimer = 0;
-	};
-
 	struct Button
 	{
 		std::string imageBefore;
 		std::string imageAfter;
+		std::function<void()> f;
+		glm::vec2 botLeft;
+		glm::vec2 topRight;
+		float cooldown = 0;
+		float cooldownTimer = 0;
 	};
 };
