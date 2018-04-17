@@ -24,6 +24,7 @@ ObjFile \
 ObjFileArrayExtractor \
 Texture \
 Light \
+Systems \
 lodepng
 
 SRC_DIR = src
@@ -32,7 +33,7 @@ OBJ_DIR = obj
 SRC = $(addsuffix .cpp, $(addprefix src/, $(LIST)))
 OBJ = $(addsuffix .o, $(addprefix $(OBJ_DIR)/, $(LIST)))
 
-CPPFLAGS = -std=c++14 -Wall -Wextra -Werror -Wno-unused-parameter \
+CPPFLAGS = -std=c++14 -Wall -Wextra -Werror -Wno-unused-parameter -Wno-unused-private-field \
 $(shell pkg-config --cflags glfw3 glm) \
 -I lib/entt/src \
 -g -O3 -march=native

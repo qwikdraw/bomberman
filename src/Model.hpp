@@ -42,16 +42,19 @@ private:
 
 	
 	glm::mat4	InterpolateMatrix(AnimatedPart part);
-
+	
+        void    UsePerspective(std::pair<glm::mat4, glm::mat4>);
+        void    SetTransform(glm::mat4);
+        void    MoveTo(glm::vec3);
+	void	Render(void);
+	
 public:
 
 	Model(std::string filepath);
 	~Model(void);
-	void	UsePerspective(std::pair<glm::mat4, glm::mat4>);
-	void	SetTransform(glm::mat4);
-	void	Move(glm::vec3);
-	void	MoveTo(glm::vec3);
-	void	Render(void);
+	void	Render(std::pair<glm::mat4, glm::mat4> perspective,
+		       glm::mat4 transform,
+		       glm::vec3 position);
 };
 
 std::istream	&operator >> (std::istream &is, Model::AnimatedPartRaw &lhs);

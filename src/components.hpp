@@ -1,21 +1,25 @@
 #pragma once
 
-#include <string>
+#include "bomberman.hpp"
 
-struct CellPosition
+namespace Part
 {
-	int x;
-	int y;
-};
 
-struct Position
-{
-	float x;
-	float y;
-	float z;
-};
+	struct CellPosition
+	{
+		int x;
+		int y;
+	};
 
-struct Renderable
-{
-	std::string name;
+	struct Position
+	{
+		glm::vec3 pos;
+	};
+
+	struct Model
+	{
+		std::string name;
+		glm::mat4 transform;
+	};
+
 };
