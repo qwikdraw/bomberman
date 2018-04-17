@@ -40,7 +40,6 @@ void	Systems::Decay(entt::DefaultRegistry &registry, float dt)
 	{
 		auto &decay = entityGroup.get(entity);
 
-		(void)decay;
 		decay.seconds -= dt;
 		if (decay.seconds <= 0)
 			registry.destroy(entity);
@@ -49,4 +48,23 @@ void	Systems::Decay(entt::DefaultRegistry &registry, float dt)
 
 //__________________________________________________________________________________________
 
+void	Systems::Clickable(entt::DefaultRegistry &registry, Window &window)
+{
+	auto entityGroup = registry.view<Part::Clickable>();
 
+	for (auto entity : entityGroup)
+	{
+		auto &c = entityGroup.get(entity);
+
+		if (window.MouseClick(0))
+		{
+			glm::vec2 pos = window.MousePos();
+
+			if (pos.x >= c.botLeft.x && pos.x <= c.topRight.x &&
+			    pos.y >= c.botLeft.y && pos.y <= c.topRight.y)
+			{
+				c.f();
+			}
+		}
+	}
+}

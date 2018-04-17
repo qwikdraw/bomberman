@@ -26,4 +26,11 @@ namespace Part
 	{
 		float seconds;
 	};
+
+	struct Clickable
+	{
+		glm::vec2 botLeft;
+		glm::vec2 topRight;
+		std::function<void()> f;
+	};
 };

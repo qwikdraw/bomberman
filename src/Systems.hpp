@@ -3,6 +3,7 @@
 #include "bomberman.hpp"
 #include "Camera.hpp"
 #include "Model.hpp"
+#include "Engine.hpp"
 #include "components.hpp"
 
 #define ASSET_PATH "assets/"
@@ -15,4 +16,7 @@ namespace Systems
 
 	//! requires: Decay
 	void	Decay(entt::DefaultRegistry&, float dt);
+
+	//! requires: Clickable
+	void	Clickable(entt::DefaultRegistry&, Window &);
 };
