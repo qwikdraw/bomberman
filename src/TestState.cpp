@@ -10,20 +10,42 @@ void	thing(void)
 	std::cout << "this worked" << std::endl;
 }
 
+void	TestStateEntityLoader(entt::DefaultRegistry &r)
+{
+	/*
+	for (int x = 0; x < 10; x++)
+	{
+		for (int y = 0; y < 10; y++)
+		{
+			auto entity = r.create();
+			if ((x % 2) + (y % 2) == 1)
+				r.assign<Part::Model>(entity, "MapBlock", glm::mat4(1));
+			else
+				r.assign<Part::Model>(entity, "MapFloor", glm::mat4(1));
+			r.assign<Part::Position>(entity, glm::vec3(x, y, 0));
+		}
+	}
+	*/
+
+	auto entity = r.create();
+	r.assign<c::Model>(entity, "block", glm::mat4(1));
+	r.assign<c::Position>(entity, glm::vec3(0, 0, 0));
+}
+
 TestState::TestState(Engine& e) :
 _engine(e), _window(e.window)
 {
-	_camera.Move(glm::vec3(-5, 0, 0));
+//	_camera.Rotate(glm::vec3(0, 0, 1), 90);
+//	_camera.Move(glm::vec3(0, 0, 20));
+//	_camera.Rotate(glm::vec3(0, 0, 0), 90);
+
+	_camera.Move(glm::vec3(-3.5, 0, 0));
+	_camera.Rotate(glm::vec3(0, 1, 0), 10);
+	
 	_lights.push_back(new Light(glm::vec3(0, 0, 3), glm::vec3(1, 1, 1), 10));
 
-	auto entity = _registry.create();
-	_registry.assign<c::Model>(entity, "block", glm::mat4(1));
-	_registry.assign<c::Position>(entity, glm::vec3(0, 0, 0));
-	_registry.assign<c::Decay>(entity, 50.0f);
-	_registry.assign<c::Button>(entity,
-		"assets/textures/the_man.png", "assets/textures/alpha_test2.png",
-		thing, glm::vec2(0.7, 0.7), glm::vec2(0.8, 0.8), 0.1f);
-
+	TestStateEntityLoader(_registry);
+       
 	glClearColor(0.2, 0.25, 0.29, 1.0);
 }
 
