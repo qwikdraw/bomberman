@@ -12,4 +12,7 @@ namespace Systems
 {
 	//! requires: Model, Position
 	void	RenderModels(entt::DefaultRegistry&, Camera&);
+
+	//! requires: Decay
+	void	Decay(entt::DefaultRegistry&, float dt);
 };

@@ -22,4 +22,8 @@ namespace Part
 		glm::mat4 transform;
 	};
 
+	struct Decay
+	{
+		float seconds;
+	};
 };

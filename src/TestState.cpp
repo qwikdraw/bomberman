@@ -13,6 +13,7 @@ _engine(e), _window(e.window), _camera(Camera())
 	auto entity = _registry.create();
 	_registry.assign<Part::Model>(entity, "MapBlock", glm::mat4(1));
 	_registry.assign<Part::Position>(entity, glm::vec3(0, 0, 0));
+	_registry.assign<Part::Decay>(entity, 5.0f);
 	
 	glClearColor(0.2, 0.25, 0.29, 1.0);
 }
@@ -26,4 +27,5 @@ TestState::~TestState(void)
 void TestState::Update(double dt)
 {
 	Systems::RenderModels(_registry, _camera);
+	Systems::Decay(_registry, dt);
 }

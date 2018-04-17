@@ -31,3 +31,22 @@ void	Systems::RenderModels(entt::DefaultRegistry &registry, Camera &camera)
 }
 
 //__________________________________________________________________________________________
+
+void	Systems::Decay(entt::DefaultRegistry &registry, float dt)
+{
+	auto entityGroup = registry.view<Part::Decay>();
+
+	for (auto entity : entityGroup)
+	{
+		auto &decay = entityGroup.get(entity);
+
+		(void)decay;
+		decay.seconds -= dt;
+		if (decay.seconds <= 0)
+			registry.destroy(entity);
+	}
+}
+
+//__________________________________________________________________________________________
+
+
