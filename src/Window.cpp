@@ -225,8 +225,8 @@ void	MousePositionCallback(GLFWwindow *glfwWindow, double x, double y)
 	Window *window = reinterpret_cast<Window*>(glfwGetWindowUserPointer(glfwWindow));
 	int width, height;
 	window->GetWindowSize(width, height);
-	window->_mousePosition.x = (x * 2 / width) -1;
-	window->_mousePosition.y = (y * 2 / height) -1;
+	window->_mousePosition.x = (x * 2 / width) - 1;
+	window->_mousePosition.y = (y * -2 / height) + 1;
 }
 
 const glm::vec2& Window::MousePos(void)

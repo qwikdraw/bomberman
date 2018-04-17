@@ -13,14 +13,10 @@
 namespace Systems
 {
 	//! requires: Model, Position
-	void	RenderModels(entt::DefaultRegistry&, entt::ResourceCache<Model>&, Camera&);
+	void	RenderModels(entt::DefaultRegistry&, entt::ResourceCache<Model>&, Window&, Camera&);
 
 	//! requires: Decay
 	void	Decay(entt::DefaultRegistry&, double dt);
 
-	//! requires: ScreenArea, ClickCallback
-	void	Clickable(entt::DefaultRegistry&, Window &, double dt);
-
-	//! requires: ScreenArea, ClickCallback, Button
-	void	RenderButtons(entt::DefaultRegistry&, entt::ResourceCache<ScreenImage>&, Window&);
+	void	Buttons(entt::DefaultRegistry&, entt::ResourceCache<ScreenImage>&, Window&, double dt);
 };
