@@ -14,7 +14,7 @@ class TestState : public IState
 	Camera _camera;
 	std::vector<Light*> _lights;
 	entt::DefaultRegistry _registry;
-	Model* _bomb;
+	entt::ResourceCache<Model> _cache;
 public:
 	TestState(Engine& engine);
 	~TestState(void);

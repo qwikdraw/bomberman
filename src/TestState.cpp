@@ -34,7 +34,7 @@ TestState::~TestState(void)
 
 void TestState::Update(double dt)
 {
-	Systems::RenderModels(_registry, _camera);
+	Systems::RenderModels(_registry, _cache, _camera);
 	Systems::Decay(_registry, dt);
 	Systems::Clickable(_registry, _window, dt);
 	Systems::RenderButtons(_registry, _window);

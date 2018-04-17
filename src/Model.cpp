@@ -35,6 +35,7 @@ Model::Model(std::string filepath)
 	size_t	pathEnd = filepath.find_last_of("/");	
 	std::string absolutePath = filepath.substr(0, pathEnd);
 
+	std::cout << "loaded model" << std::endl;
 	std::ifstream f(filepath);
 	
 	while (f)

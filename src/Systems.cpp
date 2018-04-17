@@ -1,7 +1,4 @@
-
 #include "Systems.hpp"
-
-//__________________________________________________________________________________________
 
 struct	ModelLoader : entt::ResourceLoader<ModelLoader, Model>
 {
@@ -11,7 +8,7 @@ struct	ModelLoader : entt::ResourceLoader<ModelLoader, Model>
 	}
 };
 
-void	Systems::RenderModels(entt::DefaultRegistry &registry, Camera &camera)
+void	Systems::RenderModels(entt::DefaultRegistry &registry, entt::ResourceCache<Model>& cache, Camera &camera)
 {
 	auto entityGroup = registry.view<Part::Model, Part::Position>();
 
@@ -21,8 +18,6 @@ void	Systems::RenderModels(entt::DefaultRegistry &registry, Camera &camera)
 		auto &pos = entityGroup.get<Part::Position>(entity);
 		const std::string modelPath = ASSET_PATH + modelComp.name + MODEL_PREFIX;
 
-		entt::ResourceCache<Model> cache;
-
 		cache.load<ModelLoader>(entt::HashedString(modelComp.name.c_str()), modelPath);
 		const Model &model = cache.handle(entt::HashedString(modelComp.name.c_str()) ).get();
 
@@ -30,9 +25,7 @@ void	Systems::RenderModels(entt::DefaultRegistry &registry, Camera &camera)
 	}
 }
 
-//__________________________________________________________________________________________
-
-void	Systems::Decay(entt::DefaultRegistry &registry, float dt)
+void	Systems::Decay(entt::DefaultRegistry &registry, double dt)
 {
 	auto entityGroup = registry.view<Part::Decay>();
 
@@ -46,9 +39,7 @@ void	Systems::Decay(entt::DefaultRegistry &registry, float dt)
 	}
 }
 
-//__________________________________________________________________________________________
-
-void	Systems::Clickable(entt::DefaultRegistry &registry, Window &window, float dt)
+void	Systems::Clickable(entt::DefaultRegistry &registry, Window &window, double dt)
 {
 	auto entityGroup = registry.view<Part::ScreenArea, Part::ClickCallback>();
 
@@ -74,8 +65,6 @@ void	Systems::Clickable(entt::DefaultRegistry &registry, Window &window, float d
 		}
 	}
 }
-
-//__________________________________________________________________________________________
 
 struct	ImageLoader : entt::ResourceLoader<ImageLoader, ScreenImage>
 {
