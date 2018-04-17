@@ -1,5 +1,5 @@
-bomb.obj
-tulips.bmp
+obj_files/Bomb.obj
+png_files/TheMan.png
 	Transform:
 	
 	matrix

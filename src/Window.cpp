@@ -128,6 +128,10 @@ void	Window::RemoveRenderMask(void)
 
 void	Window::Render(void)
 {
+
+	for (bool &status : _mouseButtonClicked)
+		status = false;
+
 	glfwSwapBuffers(_window);
 	glfwPollEvents();
 }
@@ -170,14 +174,17 @@ GLFWwindow* Window::GetGLWindow(void)
 void	KeyCallback(GLFWwindow *glfwWindow, int key, int, int action, int)
 {
 	Window *window = reinterpret_cast<Window*>(glfwGetWindowUserPointer(glfwWindow));
-	if (action == GLFW_PRESS) {
+	
+	if (action == GLFW_PRESS)
+	{
 		window->_keys[key] = true;
 	}
 	else if (action == GLFW_RELEASE)
 		window->_keys[key] = false;
 }
 
-bool Window::Key(int key) {
+bool Window::Key(int key)
+{
 	if (key >= 0 && key < 512)
 		return _keys[key];
 	else
@@ -187,17 +194,28 @@ bool Window::Key(int key) {
 void	MouseButtonCallback(GLFWwindow *glfwWindow, int button, int action, int)
 {
 	Window *window = reinterpret_cast<Window*>(glfwGetWindowUserPointer(glfwWindow));
-	if (action == GLFW_PRESS) {
+	
+	if (action == GLFW_PRESS)
+	{
 		window->_mouseButtons[button] = true;
+		window->_mouseButtonClicked[button] = true;
 	}
 	else if (action == GLFW_RELEASE)
 		window->_mouseButtons[button] = false;
 }
 
-bool Window::MouseButton(int button)
+bool	Window::MouseButton(int button)
 {
 	if (button >= 0 && button < 8)
 		return _mouseButtons[button];
+	else
+		return false;
+}
+
+bool	Window::MouseClick(int button)
+{
+	if (button >= 0 && button < 8)
+		return _mouseButtonClicked[button];
 	else
 		return false;
 }

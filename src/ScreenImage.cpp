@@ -41,11 +41,11 @@ ScreenImage::ScreenImage(std::string imagepath) : _textureParser(imagepath)
 	glBindTexture(GL_TEXTURE_2D, _textureID);
 	glTexImage2D(GL_TEXTURE_2D,
 		     0,
-		     GL_RGB,
+		     GL_RGBA,
 		     _textureParser.Width(),
 		     _textureParser.Height(),
 		     0,
-		     GL_BGR,
+		     GL_RGBA,
 		     GL_UNSIGNED_BYTE,
 		     _textureParser.Data());
 

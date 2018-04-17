@@ -5,6 +5,7 @@
 #include "Light.hpp"
 #include "IState.hpp"
 #include "Model.hpp"
+#include "ScreenImage.hpp"
 #include <entt/entt.hpp>
 
 class TestState : public IState
@@ -14,7 +15,9 @@ class TestState : public IState
 	Camera _camera;
 	std::vector<Light*> _lights;
 	entt::DefaultRegistry _registry;
-	Model* _bomb;
+	entt::ResourceCache<Model> _modelCache;
+	entt::ResourceCache<ScreenImage> _imageCache;
+	
 public:
 	TestState(Engine& engine);
 	~TestState(void);

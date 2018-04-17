@@ -25,6 +25,7 @@ ObjFileArrayExtractor \
 Texture \
 Light \
 Systems \
+ScreenImage \
 lodepng
 
 SRC_DIR = src

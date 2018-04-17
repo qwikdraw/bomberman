@@ -41,6 +41,9 @@ class	Window
 	//! Array of bools indicating if a mouse button is pressed.
 	bool _mouseButtons[8] = {false};
 
+	//! Array of bools indicating if mouse button was clicked
+	bool _mouseButtonClicked[8] = {false};
+
 	glm::vec2 _mousePosition = glm::vec2(0.0f, 0.0f);
 public:
 
@@ -87,6 +90,9 @@ public:
 
 	//! Check if a mouse button is pressed.
 	bool	MouseButton(int button);
+
+	//! Check if mouse button was clicked.
+	bool	MouseClick(int button);
 
 	//! Get the current mouse position.
 	const glm::vec2& MousePos(void);

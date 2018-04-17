@@ -22,4 +22,27 @@ namespace Part
 		glm::mat4 transform;
 	};
 
+	struct Decay
+	{
+		float seconds;
+	};
+
+	struct ScreenArea
+	{
+		glm::vec2 botLeft;
+		glm::vec2 topRight;
+	};
+	
+	struct ClickCallback
+	{
+		std::function<void()> f;
+		float cooldown = 0;
+		float cooldownTimer = 0;
+	};
+
+	struct Button
+	{
+		std::string imageBefore;
+		std::string imageAfter;
+	};
 };
