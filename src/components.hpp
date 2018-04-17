@@ -33,15 +33,16 @@ namespace Part
 		glm::vec2 topRight;
 	};
 	
-	struct Callback
+	struct ClickCallback
 	{
 		std::function<void()> f;
+		float cooldown = 0;
+		float cooldownTimer = 0;
 	};
 
 	struct Button
 	{
 		std::string imageBefore;
 		std::string imageAfter;
-		float resetTime;
 	};
 };

@@ -48,15 +48,16 @@ void	Systems::Decay(entt::DefaultRegistry &registry, float dt)
 
 //__________________________________________________________________________________________
 
-void	Systems::Clickable(entt::DefaultRegistry &registry, Window &window)
+void	Systems::Clickable(entt::DefaultRegistry &registry, Window &window, float dt)
 {
-	auto entityGroup = registry.view<Part::ScreenArea, Part::Callback>();
+	auto entityGroup = registry.view<Part::ScreenArea, Part::ClickCallback>();
 
 	for (auto entity : entityGroup)
 	{
 		auto &screen = entityGroup.get<Part::ScreenArea>(entity);
-		auto &callback = entityGroup.get<Part::Callback>(entity);
+		auto &callback = entityGroup.get<Part::ClickCallback>(entity);
 
+		callback.cooldownTimer -= dt;
 		if (window.MouseClick(0))
 		{
 			glm::vec2 pos = window.MousePos();
@@ -64,7 +65,11 @@ void	Systems::Clickable(entt::DefaultRegistry &registry, Window &window)
 			if (pos.x >= screen.botLeft.x && pos.x <= screen.topRight.x &&
 			    pos.y >= screen.botLeft.y && pos.y <= screen.topRight.y)
 			{
-				callback.f();
+				if (callback.cooldownTimer <= 0)
+				{
+					callback.f();
+					callback.cooldownTimer = callback.cooldown;
+				}
 			}
 		}
 	}
@@ -72,3 +77,44 @@ void	Systems::Clickable(entt::DefaultRegistry &registry, Window &window)
 
 //__________________________________________________________________________________________
 
+struct	ImageLoader : entt::ResourceLoader<ImageLoader, ScreenImage>
+{
+	std::shared_ptr<ScreenImage>  load(const std::string imagePath) const
+	{
+		return std::shared_ptr<ScreenImage>(new ScreenImage(imagePath));
+	}
+};
+
+void	Systems::RenderButtons(entt::DefaultRegistry &registry, Window &window)
+{
+	auto entityGroup = registry.view<Part::ScreenArea,
+					 Part::ClickCallback,
+					 Part::Button>();
+
+	for (auto entity : entityGroup)
+	{
+		auto &screen = entityGroup.get<Part::ScreenArea>(entity);
+		auto &callback = entityGroup.get<Part::ClickCallback>(entity);
+		auto &button = entityGroup.get<Part::Button>(entity);
+
+		std::string imagePath;
+
+		if (callback.cooldownTimer <= 0)
+			imagePath = button.imageBefore;
+		else
+			imagePath = button.imageAfter;
+
+		window.SetRenderMask((screen.botLeft.x + 1) / 2,
+				     (screen.botLeft.y + 1) / 2,
+				     (screen.topRight.x - screen.botLeft.x) / 2,
+				     (screen.topRight.y - screen.botLeft.y) / 2);
+
+		entt::ResourceCache<ScreenImage> cache;
+		cache.load<ImageLoader>(entt::HashedString(imagePath.c_str()), imagePath);
+		const ScreenImage &im = cache.handle(entt::HashedString(imagePath.c_str())).get();
+
+		const_cast<ScreenImage&>(im).Render();
+		
+		window.RemoveRenderMask();
+	}
+}

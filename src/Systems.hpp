@@ -4,6 +4,7 @@
 #include "Camera.hpp"
 #include "Model.hpp"
 #include "Engine.hpp"
+#include "ScreenImage.hpp"
 #include "components.hpp"
 
 #define ASSET_PATH "assets/"
@@ -17,6 +18,9 @@ namespace Systems
 	//! requires: Decay
 	void	Decay(entt::DefaultRegistry&, float dt);
 
-	//! requires: Clickable
-	void	Clickable(entt::DefaultRegistry&, Window &);
+	//! requires: ScreenArea, ClickCallback
+	void	Clickable(entt::DefaultRegistry&, Window &, float dt);
+
+	//! requires: ScreenArea, ClickCallback, Button
+	void	RenderButtons(entt::DefaultRegistry&, Window&);
 };
