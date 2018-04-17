@@ -13,7 +13,7 @@
 namespace Systems
 {
 	//! requires: Model, Position
-	void	RenderModels(entt::DefaultRegistry&, entt::ResourceCache<Model>& cache, Camera&);
+	void	RenderModels(entt::DefaultRegistry&, entt::ResourceCache<Model>&, Camera&);
 
 	//! requires: Decay
 	void	Decay(entt::DefaultRegistry&, double dt);
@@ -22,5 +22,5 @@ namespace Systems
 	void	Clickable(entt::DefaultRegistry&, Window &, double dt);
 
 	//! requires: ScreenArea, ClickCallback, Button
-	void	RenderButtons(entt::DefaultRegistry&, Window&);
+	void	RenderButtons(entt::DefaultRegistry&, entt::ResourceCache<ScreenImage>&, Window&);
 };

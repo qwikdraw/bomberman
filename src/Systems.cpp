@@ -1,5 +1,7 @@
 #include "Systems.hpp"
 
+//_________________________________________________________________________________________
+
 struct	ModelLoader : entt::ResourceLoader<ModelLoader, Model>
 {
 	std::shared_ptr<Model>	load(const std::string modelPath) const
@@ -25,6 +27,8 @@ void	Systems::RenderModels(entt::DefaultRegistry &registry, entt::ResourceCache<
 	}
 }
 
+//_________________________________________________________________________________________
+
 void	Systems::Decay(entt::DefaultRegistry &registry, double dt)
 {
 	auto entityGroup = registry.view<Part::Decay>();
@@ -38,6 +42,8 @@ void	Systems::Decay(entt::DefaultRegistry &registry, double dt)
 			registry.destroy(entity);
 	}
 }
+
+//_________________________________________________________________________________________
 
 void	Systems::Clickable(entt::DefaultRegistry &registry, Window &window, double dt)
 {
@@ -66,6 +72,8 @@ void	Systems::Clickable(entt::DefaultRegistry &registry, Window &window, double 
 	}
 }
 
+//_________________________________________________________________________________________
+
 struct	ImageLoader : entt::ResourceLoader<ImageLoader, ScreenImage>
 {
 	std::shared_ptr<ScreenImage>  load(const std::string imagePath) const
@@ -74,7 +82,9 @@ struct	ImageLoader : entt::ResourceLoader<ImageLoader, ScreenImage>
 	}
 };
 
-void	Systems::RenderButtons(entt::DefaultRegistry &registry, Window &window)
+void	Systems::RenderButtons(entt::DefaultRegistry &registry,
+			       entt::ResourceCache<ScreenImage> &cache,
+			       Window &window)
 {
 	auto entityGroup = registry.view<Part::ScreenArea,
 					 Part::ClickCallback,
@@ -98,7 +108,6 @@ void	Systems::RenderButtons(entt::DefaultRegistry &registry, Window &window)
 				     (screen.topRight.x - screen.botLeft.x) / 2,
 				     (screen.topRight.y - screen.botLeft.y) / 2);
 
-		entt::ResourceCache<ScreenImage> cache;
 		cache.load<ImageLoader>(entt::HashedString(imagePath.c_str()), imagePath);
 		const ScreenImage &im = cache.handle(entt::HashedString(imagePath.c_str())).get();
 
@@ -107,3 +116,5 @@ void	Systems::RenderButtons(entt::DefaultRegistry &registry, Window &window)
 		window.RemoveRenderMask();
 	}
 }
+
+//_________________________________________________________________________________________
