@@ -50,21 +50,25 @@ void	Systems::Decay(entt::DefaultRegistry &registry, float dt)
 
 void	Systems::Clickable(entt::DefaultRegistry &registry, Window &window)
 {
-	auto entityGroup = registry.view<Part::Clickable>();
+	auto entityGroup = registry.view<Part::ScreenArea, Part::Callback>();
 
 	for (auto entity : entityGroup)
 	{
-		auto &c = entityGroup.get(entity);
+		auto &screen = entityGroup.get<Part::ScreenArea>(entity);
+		auto &callback = entityGroup.get<Part::Callback>(entity);
 
 		if (window.MouseClick(0))
 		{
 			glm::vec2 pos = window.MousePos();
 
-			if (pos.x >= c.botLeft.x && pos.x <= c.topRight.x &&
-			    pos.y >= c.botLeft.y && pos.y <= c.topRight.y)
+			if (pos.x >= screen.botLeft.x && pos.x <= screen.topRight.x &&
+			    pos.y >= screen.botLeft.y && pos.y <= screen.topRight.y)
 			{
-				c.f();
+				callback.f();
 			}
 		}
 	}
 }
+
+//__________________________________________________________________________________________
+

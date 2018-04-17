@@ -27,10 +27,21 @@ namespace Part
 		float seconds;
 	};
 
-	struct Clickable
+	struct ScreenArea
 	{
 		glm::vec2 botLeft;
 		glm::vec2 topRight;
+	};
+	
+	struct Callback
+	{
 		std::function<void()> f;
+	};
+
+	struct Button
+	{
+		std::string imageBefore;
+		std::string imageAfter;
+		float resetTime;
 	};
 };
