@@ -8,7 +8,7 @@
 #include "ShadingProgram.hpp"
 #include <vector>
 
-class	ScreenImage
+class	Sprite2D
 {
 private:
 
@@ -25,8 +25,8 @@ private:
 	
 public:
 
-	ScreenImage(std::string imagepath);
-	virtual ~ScreenImage(void);
+	Sprite2D(std::string imagepath);
+	virtual ~Sprite2D(void);
 
 	void	Render(void);
 };

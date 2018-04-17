@@ -1,5 +1,5 @@
-obj_files/MapFloor.obj
-png_files/AlphaTest2.png
+meshes/floor.obj
+textures/alpha_test2.png
 	Transform:
 	
 	matrix
