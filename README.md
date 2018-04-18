@@ -1,23 +1,13 @@
 # 42 - Bomberman
 
-A simple 3d bomberman clone in 3d with c++ and opengl
+A simple 3D bomberman clone in 3d with c++ and opengl
 
 ## Getting Started
 ...
 
-### Prerequisites
-
-`pkg-config`
-`glm`
-`glfw3`
-
-For example on MacOS..
-```
-brew update && brew install pkg-config glm glfw
-```
-
 ### Building
-`make`
+1. `make deps`
+2. `make`
 ...
 
 ### Documentation
@@ -26,10 +16,12 @@ requires:
 `Python 3.6`
 For example on MacOS..
 ```
-brew update && brew install python doxygen
+brew install python doxygen
 ```
 Then to build the documentation run `./docs.sh`
-documentation is build in the `docs/html` directory.
+documentation is built in the `docs/html` directory.
+On OSX, try `open docs/html/index.html` to get
+started.
 
 ## Authors
 

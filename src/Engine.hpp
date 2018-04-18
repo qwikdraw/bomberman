@@ -21,5 +21,4 @@ public:
 	void PopState(void);
 	void ChangeState(IState* state);
 	void Run(void);
-	void Stop(void);
 };
