@@ -72,6 +72,8 @@ void	Sprite2D::Render(void)
 	_program->Use();
 
 	glDisable(GL_DEPTH_TEST);
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	
 	glBindTexture(GL_TEXTURE_2D, _textureID);
         glActiveTexture(GL_TEXTURE0);
@@ -90,5 +92,6 @@ void	Sprite2D::Render(void)
 	glDisableVertexAttribArray(0);
 	glDisableVertexAttribArray(1);
 
+	glDisable(GL_BLEND);
 	glEnable(GL_DEPTH_TEST);
 }

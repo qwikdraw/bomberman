@@ -58,10 +58,10 @@ void	Camera::SetFOV(float degrees)
 
 std::pair<glm::mat4, glm::mat4>	Camera::Perspective(void)
 {
-	glm::mat4 transform = glm::translate(_rotation, _position);
-	glm::mat4 lookAt = glm::lookAt(glm::vec3(transform * glm::vec4(_basePos, 1)),
-				       glm::vec3(transform * glm::vec4(_forward, 1)),
-				       glm::vec3(transform * glm::vec4(_up, 0)));
+	glm::mat4 translate = glm::translate(_position);
+	glm::mat4 lookAt = glm::lookAt(glm::vec3(translate * _rotation * glm::vec4(_basePos, 1)),
+				       glm::vec3(translate * _rotation * glm::vec4(_forward, 1)),
+				       glm::vec3(translate * _rotation * glm::vec4(_up, 0)));
 	glm::mat4 perspective = glm::perspective(glm::radians(_fov), _aspect, _near, _far);
 
 	return std::pair<glm::mat4, glm::mat4>(lookAt, perspective);

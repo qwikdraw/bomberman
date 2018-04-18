@@ -3,11 +3,11 @@
 
 in vec2 uvCoor;
 
-out vec3 color;
+out vec4 color;
 
 uniform sampler2D tex;
 
 void	main()
 {
-	color = texture(tex, uvCoor).rgb;
+	color = texture(tex, uvCoor).rgba;
 }
