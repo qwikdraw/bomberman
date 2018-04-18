@@ -25,6 +25,7 @@ Light \
 Particles \
 systems \
 Engine \
+MenuState \
 TestState \
 
 SRC_DIR = src
