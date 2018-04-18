@@ -10,10 +10,10 @@
 #define ASSET_PATH "assets/"
 #define MODEL_PREFIX ".model"
 
-#define FACE_UP
-#define FACE_DOWN
-#define FACE_LEFT
-#define FACE_RIGHT
+#define FACE_UP glm::rotate(glm::mat4(1), glm::radians(90.0f), glm::vec3(0, 0, 1))
+#define FACE_DOWN glm::rotate(glm::mat4(1), glm::radians(-90.0f), glm::vec3(0, 0, 1))
+#define FACE_LEFT glm::rotate(glm::mat4(1), glm::radians(180.0f), glm::vec3(0, 0, 1))
+#define FACE_RIGHT glm::mat4(1)
 
 //! It is recommended to alias this namespace like so: `namespace s = systems;
 
