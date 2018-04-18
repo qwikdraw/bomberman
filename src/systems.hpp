@@ -10,7 +10,13 @@
 #define ASSET_PATH "assets/"
 #define MODEL_PREFIX ".model"
 
-//! It is recommended to alias this namespace like so: `namespace s = systems;`
+#define FACE_UP
+#define FACE_DOWN
+#define FACE_LEFT
+#define FACE_RIGHT
+
+//! It is recommended to alias this namespace like so: `namespace s = systems;
+
 namespace systems
 {
 	//! requires: Model, Position

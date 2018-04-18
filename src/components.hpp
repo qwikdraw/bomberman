@@ -17,10 +17,14 @@ namespace components
 		glm::vec3 pos;
 	};
 
+	struct Transform
+	{
+		glm::mat4 transform;
+	};
+	
 	struct Model
 	{
 		std::string name;
-		glm::mat4 transform;
 		glm::vec2 botLeft = glm::vec2(-1, -1);
 		glm::vec2 topRight = glm::vec2(1, 1);
 	};
