@@ -1,5 +1,5 @@
-meshes/bomb.obj
-textures/the_man.png
+meshes/block.obj
+textures/stone_floor.png
 	Transform:
 	
 	matrix
