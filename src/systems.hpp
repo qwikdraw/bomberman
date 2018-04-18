@@ -19,5 +19,12 @@ namespace systems
 	//! requires: Decay
 	void	Decay(entt::DefaultRegistry&, double dt);
 
+	//! requires: Button
 	void	Buttons(entt::DefaultRegistry&, entt::ResourceCache<Sprite2D>&, Window&, double dt);
+
+	//! requires: Player, Position, Velocity
+	void	PlayerEvents(entt::DefaultRegistry&, Window&, double dt);
+
+	//! requires: Position, Velocity
+	void	ApplyMovements(entt::DefaultRegistry&);
 };

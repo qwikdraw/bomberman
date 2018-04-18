@@ -111,3 +111,61 @@ void	systems::Buttons(entt::DefaultRegistry &registry,
 		}
 	}
 }
+
+//! player movement
+
+void	createBomb(entt::DefaultRegistry &r, glm::vec3 pos)
+{
+	auto bomb = r.create();
+	r.assign<c::Model>(bomb, "bomb", glm::mat4(1));
+	r.assign<c::Position>(bomb, pos);
+	r.assign<c::Decay>(bomb, 3.0f);
+}
+
+void	systems::PlayerEvents(entt::DefaultRegistry &registry, Window &window, double dt)
+{
+	auto view = registry.view<c::Player, c::Position, c::Velocity>();
+
+	for (auto entity : view)
+	{
+		auto &player = view.get<c::Player>(entity);
+		auto &move = view.get<c::Velocity>(entity);
+		glm::vec3 &pos = view.get<c::Position>(entity).pos;
+
+		glm::vec3 v(0, 0, 0);
+		
+		if (window.Key('W'))
+			v.y += player.speed * dt;
+		if (window.Key('S'))
+			v.y -= player.speed * dt;
+		if (window.Key('A'))
+			v.x -= player.speed * dt;
+		if (window.Key('D'))
+			v.x += player.speed * dt;
+		if (window.Key(' '))
+		{
+			if (player.bombCooldownTimer <= 0)
+			{
+				createBomb(registry, pos);
+				player.bombCooldownTimer = player.bombCooldown;
+			}
+		}
+		player.bombCooldownTimer -= dt;
+		move.v = v;
+	}
+}
+
+//! ApplyMovements
+
+void	systems::ApplyMovements(entt::DefaultRegistry &registry)
+{
+	auto view = registry.view<c::Velocity, c::Position>();
+
+	for (auto entity : view)
+	{
+		glm::vec3 &moveAmount = view.get<c::Velocity>(entity).v;
+		glm::vec3 &pos = view.get<c::Position>(entity).pos;
+
+		pos += moveAmount;
+	}
+}

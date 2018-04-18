@@ -40,4 +40,21 @@ namespace components
 		float cooldown = 0;
 		float cooldownTimer = 0;
 	};
+
+	struct Player
+	{
+		double speed;
+		double bombCooldown;
+		double bombCooldownTimer = 0;
+	};
+
+	struct Velocity
+	{
+		glm::vec3 v = glm::vec3(0, 0, 0);
+	};
+
+	struct Collide
+	{
+		std::function<bool(glm::vec3, glm::vec3)> f;
+	};
 };
