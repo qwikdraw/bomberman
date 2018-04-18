@@ -15,13 +15,12 @@ struct	ModelLoader : entt::ResourceLoader<ModelLoader, Model>
 void	systems::RenderModels(entt::DefaultRegistry &registry, entt::ResourceCache<Model>& cache,
 		Window &window, Camera &camera)
 {
-	auto view = registry.view<c::Model, c::Position, c::Transform>();
+	auto view = registry.view<c::Model, c::Position>();
 
 	for (auto entity : view)
 	{
 		auto &modelComp = view.get<c::Model>(entity);
 		auto &pos = view.get<c::Position>(entity);
-		glm::mat4 &transform = view.get<c::Transform>(entity).transform;
 		const std::string modelPath = ASSET_PATH + modelComp.name + MODEL_PREFIX;
 
 		cache.load<ModelLoader>(entt::HashedString(modelComp.name.c_str()), modelPath);
@@ -32,7 +31,7 @@ void	systems::RenderModels(entt::DefaultRegistry &registry, entt::ResourceCache<
 				     (modelComp.topRight.x - modelComp.botLeft.x) / 2,
 				     (modelComp.topRight.y - modelComp.botLeft.y) / 2);
 		
-		const_cast<Model&>(model).Render(camera.Perspective(), transform, pos.pos);
+		const_cast<Model&>(model).Render(camera.Perspective(), modelComp.transform, pos.pos);
 
 		window.RemoveRenderMask();
 	}
@@ -118,25 +117,22 @@ void	systems::Buttons(entt::DefaultRegistry &registry,
 void	createBomb(entt::DefaultRegistry &r, glm::vec3 pos)
 {
 	auto bomb = r.create();
-	r.assign<c::Model>(bomb, "bomb");
+	r.assign<c::Model>(bomb, "bomb", glm::mat4(1));
 	r.assign<c::Position>(bomb, pos);
 	r.assign<c::Decay>(bomb, 3.0f);
-	r.assign<c::Transform>(bomb, glm::mat4(1));
 }
 
 void	systems::PlayerEvents(entt::DefaultRegistry &registry, Window &window, double dt)
 {
-	auto view = registry.view<c::Player, c::Position, c::Velocity, c::Transform>();
+	auto view = registry.view<c::Player, c::Position, c::Velocity, c::Model>();
 
 	for (auto entity : view)
 	{
 		auto &player = view.get<c::Player>(entity);
 		auto &move = view.get<c::Velocity>(entity);
 		glm::vec3 &pos = view.get<c::Position>(entity).pos;
-		glm::mat4 &transform = view.get<c::Transform>(entity).transform;
+		glm::mat4 &transform = view.get<c::Model>(entity).transform;
 
-		(void)transform;
-		
 		glm::vec3 v(0, 0, 0);
 		
 		if (window.Key('W'))
