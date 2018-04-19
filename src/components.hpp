@@ -63,6 +63,7 @@ namespace components
 	struct Particles
 	{
 		IParticle *particle;
+//		~Particles(){std::cout << "test" << std::endl;}
 //		~Particles(){delete particle;}  deleting them causes segfault but they do need to be deleted...
 	};
 
