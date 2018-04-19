@@ -27,18 +27,26 @@ vec3	GetLightModifier(vec3 v, vec3 n)
 	{
 		if (lightColor[i] == vec3(0, 0, 0))
 			continue;
-		vec3 ray = lightPos[i] - v;
+		vec3 ray = v - lightPos[i];
 		float intensity = lightFalloff[i] / (lightFalloff[i] + length(ray));
 		
-		ret += max(dot(n, normalize(ray)), 0.2) * lightColor[i] * intensity;
+		ret += max(dot(n, -normalize(ray)), 0.2) * lightColor[i] * intensity;
+
+		vec3 reflect = normalize(ray) - 2 * n * dot(normalize(ray), n);
+		
+		float specular = dot(normalize(reflect), normalize(-v));
+
+		if (specular > 0)
+			ret += pow(specular, 10) * lightColor[i];
+
 	}
 	return ret;
 }
 
 void	main()
 {
-	vec3 actualNormal = normalize(vec3(transform * vec4(normal, 0)));
-	vec3 actualVertex = vec3(transform * vec4(vertex, 1));
+	vec3 actualNormal = normalize(vec3(lookAt * transform * vec4(normal, 0)));
+	vec3 actualVertex = vec3(lookAt * transform * vec4(vertex, 1));
 
 	Data.uv = uv;
 	Data.lightMod = GetLightModifier(actualVertex, actualNormal);
