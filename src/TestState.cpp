@@ -20,6 +20,7 @@ void	TestStateEntityLoader(entt::DefaultRegistry &r)
 			else
 				r.assign<c::Model>(entity, "floor", glm::mat4(1));
 			r.assign<c::Position>(entity, glm::vec3(x, y, 0));
+			r.assign<c::Lighting>(entity, new Light(glm::vec3(x, y, 10), glm::vec3(1, 1, 1), 0.05));
 		}
 	}
 
