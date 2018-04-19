@@ -9,6 +9,7 @@
 #include "bomberman.hpp"
 #include "systems.hpp"
 #include "components.hpp"
+#include "TestParticle.hpp"
 
 namespace c = components;
 

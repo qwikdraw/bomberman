@@ -1,6 +1,7 @@
 #pragma once
 
 #include "bomberman.hpp"
+#include "IParticle.hpp"
 
 //! It is recommended to alias this namespace like so: `namespace c = components;`
 namespace components
@@ -56,5 +57,10 @@ namespace components
 	struct Collide
 	{
 		int group = 0;
+	};
+
+	struct Particles
+	{
+		IParticle *particle;
 	};
 };
