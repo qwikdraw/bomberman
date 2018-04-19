@@ -1,12 +1,16 @@
 #pragma once
 
-#include "bomberman.hpp"
+#include <entt/entt.hpp>
 #include "Camera.hpp"
 #include "Light.hpp"
 #include "IState.hpp"
 #include "Model.hpp"
 #include "Sprite2D.hpp"
-#include <entt/entt.hpp>
+#include "bomberman.hpp"
+#include "systems.hpp"
+#include "components.hpp"
+
+namespace c = components;
 
 class TestState : public IState
 {
@@ -17,7 +21,7 @@ class TestState : public IState
 	entt::DefaultRegistry _registry;
 	entt::ResourceCache<Model> _modelCache;
 	entt::ResourceCache<Sprite2D> _imageCache;
-	
+	systems::Collisions _cells;
 public:
 	TestState(Engine& engine);
 	~TestState(void);

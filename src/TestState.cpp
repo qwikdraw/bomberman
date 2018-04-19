@@ -1,9 +1,4 @@
 #include "TestState.hpp"
-#include "components.hpp"
-#include "bomberman.hpp"
-#include "systems.hpp"
-
-namespace c = components;
 
 void	thing(void)
 {
@@ -20,6 +15,7 @@ void	TestStateEntityLoader(entt::DefaultRegistry &r)
 			if (abs(x % 2) + abs(y % 2) == 2 || x == -2 || x == 12 || y == -2 || y == 12)
 			{
 				r.assign<c::Model>(entity, "block", glm::mat4(1));
+				r.assign<c::Collide>(entity);
 			}
 			else
 				r.assign<c::Model>(entity, "floor", glm::mat4(1));
@@ -28,7 +24,6 @@ void	TestStateEntityLoader(entt::DefaultRegistry &r)
 	}
 
 	auto player = r.create();
-	
 	r.assign<c::Player>(player, 2.0, 1.0);
 	r.assign<c::Model>(player, "block", glm::mat4(1));
 	r.assign<c::Position>(player, glm::vec3(0, 0, 0));
@@ -42,7 +37,7 @@ _engine(e), _window(e.window)
 	_camera.Rotate(glm::vec3(0, 0, 1), 90);
 	_camera.Rotate(glm::vec3(0, 1, 0), 72);
 	
-	_lights.push_back(new Light(glm::vec3(5, 5, 10), glm::vec3(1, 1, 1), 100));
+	_lights.push_back(new Light(glm::vec3(5, 5, 2), glm::vec3(1, 1, 1), 10));
 	
 	TestStateEntityLoader(_registry);
        
@@ -60,6 +55,7 @@ void TestState::Update(double dt)
 	systems::RenderModels(_registry, _modelCache, _window, _camera);
 	systems::Decay(_registry, dt);
 	systems::Buttons(_registry, _imageCache, _window, dt);
-	systems::PlayerEvents(_registry, _window, dt);
-	systems::ApplyMovements(_registry);
+	systems::Player(_registry, _window, _cells, dt);
+	systems::Velocity(_registry);
+	_cells(_registry);
 }

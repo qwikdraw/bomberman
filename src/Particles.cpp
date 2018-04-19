@@ -103,8 +103,10 @@ void	Particles::Sort(void)
 	std::vector<size_t> indices(modifiedPosArray.size());
 	
 	std::iota(indices.begin(), indices.end(), 0);
-	std::sort(indices.begin(), indices.end(),
-		  [&modifiedPosArray](size_t i, size_t j){return modifiedPosArray[i] < modifiedPosArray[j];});
+	std::sort(indices.begin(), indices.end(),[&modifiedPosArray](size_t i, size_t j)
+	{
+		return modifiedPosArray[i] < modifiedPosArray[j];
+	});
 
 	std::vector<float> tempPositions(_positionArray.size());
 	std::vector<float> tempColors(_colorArray.size());

@@ -55,6 +55,6 @@ namespace components
 
 	struct Collide
 	{
-		std::function<bool(glm::vec3, glm::vec3)> f;
+		int group = 0;
 	};
 };

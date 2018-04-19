@@ -65,6 +65,7 @@ Sprite2D::~Sprite2D(void)
 	glDeleteTextures(1, &_textureID);
 	glDeleteBuffers(1, &_vertexArrayID);
 	glDeleteBuffers(1, &_uvArrayID);
+	delete _program;
 }
 
 void	Sprite2D::Render(void)
