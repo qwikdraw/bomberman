@@ -2,6 +2,7 @@
 
 #include "bomberman.hpp"
 #include "IParticle.hpp"
+#include "Light.hpp"
 
 //! It is recommended to alias this namespace like so: `namespace c = components;`
 namespace components
@@ -62,5 +63,12 @@ namespace components
 	struct Particles
 	{
 		IParticle *particle;
+//		~Particles(){delete particle;}  deleting them causes segfault but they do need to be deleted...
+	};
+
+	struct Lighting
+	{
+		Light *light;
+//		~Lighting(){delete light;}
 	};
 };

@@ -20,6 +20,7 @@ void	TestStateEntityLoader(entt::DefaultRegistry &r)
 			else
 				r.assign<c::Model>(entity, "floor", glm::mat4(1));
 			r.assign<c::Position>(entity, glm::vec3(x, y, 0));
+//			r.assign<c::Lighting>(entity, new Light(glm::vec3(x, y, 10), glm::vec3(0.1, 0.1, 0.1), 0.5));
 		}
 	}
 
@@ -38,7 +39,8 @@ _engine(e), _window(e.window)
 	_camera.Rotate(glm::vec3(0, 0, 1), 90);
 	_camera.Rotate(glm::vec3(0, 1, 0), 64);
 	
-	_lights.push_back(new Light(glm::vec3(5, 5, 8), glm::vec3(1, 1, 1), 30));
+	_lights.push_back(new Light(glm::vec3(5, 5, 2), glm::vec3(1, 1, 1), 30));
+//	_lights.push_back(new Light(glm::vec3(5
 	
 	TestStateEntityLoader(_registry);
        
