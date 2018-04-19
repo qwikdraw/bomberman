@@ -122,7 +122,7 @@ void	createBomb(entt::DefaultRegistry &r, glm::vec3 pos)
 	r.assign<c::Decay>(bomb, 3.0f);
 }
 
-void	systems::PlayerEvents(entt::DefaultRegistry &registry, Window &window, double dt)
+void	systems::Player(entt::DefaultRegistry &registry, Window &window, systems::Collisions& cells, double dt)
 {
 	auto view = registry.view<c::Player, c::Position, c::Velocity, c::Model>();
 
@@ -163,14 +163,23 @@ void	systems::PlayerEvents(entt::DefaultRegistry &registry, Window &window, doub
 				player.bombCooldownTimer = player.bombCooldown;
 			}
 		}
+		move.v = glm::vec3(0);
 		player.bombCooldownTimer -= dt;
+		if (v.y > 0 && !cells.isEmpty(pos.x, pos.y + 0.5))
+			continue;
+		if (v.y < 0 && !cells.isEmpty(pos.x, pos.y - 0.5))
+			continue;
+		if (v.x > 0 && !cells.isEmpty(pos.x + 0.5, pos.y))
+			continue;
+		if (v.x < 0 && !cells.isEmpty(pos.x - 0.5, pos.y))
+			continue;
 		move.v = v;
 	}
 }
 
-//! ApplyMovements
+//! Velocity
 
-void	systems::ApplyMovements(entt::DefaultRegistry &registry)
+void	systems::Velocity(entt::DefaultRegistry& registry)
 {
 	auto view = registry.view<c::Velocity, c::Position>();
 
@@ -178,7 +187,41 @@ void	systems::ApplyMovements(entt::DefaultRegistry &registry)
 	{
 		glm::vec3 &moveAmount = view.get<c::Velocity>(entity).v;
 		glm::vec3 &pos = view.get<c::Position>(entity).pos;
-
 		pos += moveAmount;
+	}
+}
+
+//! Collisions
+
+systems::Collisions::Collisions(void) {}
+
+bool	systems::Collisions::isEmpty(float x, float y) const
+{
+	uint32_t xi, yi;
+	xi = round(x);
+	yi = round(y);
+	return _cells.count((uint64_t)xi << 32 | yi) != 1;
+}
+
+uint32_t	systems::Collisions::get(float x, float y)
+{
+	uint32_t xi, yi;
+	xi = round(x);
+	yi = round(y);
+	return _cells[(uint64_t)xi << 32 | yi];
+}
+
+void	systems::Collisions::operator()(entt::DefaultRegistry& registry)
+{
+	_cells.clear();
+	auto view = registry.view<c::Collide, c::Position>();
+
+	uint32_t x, y;
+	for (auto entity : view)
+	{
+		auto& pos = view.get<c::Position>(entity).pos;
+		x = round(pos.x);
+		y = round(pos.y);
+		_cells[(uint64_t)x << 32 | y] = entity;
 	}
 }

@@ -6,6 +6,8 @@
 #include "Engine.hpp"
 #include "Sprite2D.hpp"
 #include "components.hpp"
+#include <cstdint>
+#include <unordered_map>
 
 #define ASSET_PATH "assets/"
 #define MODEL_PREFIX ".model"
@@ -28,9 +30,21 @@ namespace systems
 	//! requires: Button
 	void	Buttons(entt::DefaultRegistry&, entt::ResourceCache<Sprite2D>&, Window&, double dt);
 
-	//! requires: Player, Position, Velocity
-	void	PlayerEvents(entt::DefaultRegistry&, Window&, double dt);
 
 	//! requires: Position, Velocity
-	void	ApplyMovements(entt::DefaultRegistry&);
+	void	Velocity(entt::DefaultRegistry&);
+
+	//! requires: Position, Collide
+	class  Collisions
+	{
+		std::unordered_map<uint64_t, uint32_t> _cells;
+	public:
+		Collisions(void);
+		bool isEmpty(float x, float y) const;
+		uint32_t get(float x, float y);
+		void operator()(entt::DefaultRegistry&);
+	};
+
+	//! requires: Player, Position, Velocity
+	void	Player(entt::DefaultRegistry&, Window&, Collisions&, double dt);
 };
