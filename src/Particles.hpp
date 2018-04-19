@@ -4,8 +4,8 @@
 #include <numeric>
 #include "ShadingProgram.hpp"
 
-#define PARTICLE_VERTEX_SHADER_PATH "src/particleVertex.glsl"
-#define PARTICLE_FRAGMENT_SHADER_PATH "src/particleFrag.glsl"
+#define PARTICLE_VERTEX_SHADER_PATH "src/shaders/particleVertex.glsl"
+#define PARTICLE_FRAGMENT_SHADER_PATH "src/shaders/particleFrag.glsl"
 
 class Particles
 {
