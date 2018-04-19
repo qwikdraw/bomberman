@@ -27,7 +27,7 @@ vec3	GetLightModifier(vec3 v, vec3 n)
 	{
 		if (lightColor[i] == vec3(0, 0, 0))
 			continue;
-		vec3 ray = v - lightPos[i];
+		vec3 ray = v - vec3(lookAt * vec4(lightPos[i], 1));
 		float intensity = lightFalloff[i] / (lightFalloff[i] + length(ray));
 		
 		ret += max(dot(n, -normalize(ray)), 0.2) * lightColor[i] * intensity;
