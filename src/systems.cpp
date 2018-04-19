@@ -123,7 +123,43 @@ void	createBomb(entt::DefaultRegistry &r, glm::vec3 pos)
 	r.assign<c::Decay>(bomb, 3.0f);
 }
 
-void	systems::Player(entt::DefaultRegistry &registry, Window &window, systems::Collisions& cells, Camera& cam, double dt)
+void	checkCollisions(glm::vec3 &pos, glm::vec3 &v, systems::Collisions &cells, double dt)
+{
+	if (v.y > 0 && !cells.isEmpty(pos.x, pos.y + 1))
+	{
+		if (pos.y > roundf(pos.y))
+			v.y = 0;
+	}
+	if (v.y < 0 && !cells.isEmpty(pos.x, pos.y - 1))
+	{
+		if (pos.y < roundf(pos.y))
+			v.y = 0;
+	}
+	if (v.x > 0 && !cells.isEmpty(pos.x + 1, pos.y))
+	{
+		if (pos.x > roundf(pos.x))
+			v.x = 0;
+	}
+	if (v.x < 0 && !cells.isEmpty(pos.x - 1, pos.y))
+	{
+		if (pos.x < roundf(pos.x))
+			v.x = 0;
+	}
+
+	//re-align player
+
+	if (v.x)
+	{
+		v.y = (roundf(pos.y) - pos.y) * dt * 10;
+	}
+	else if (v.y)
+	{
+		v.x = (roundf(pos.x) - pos.x) * dt * 10;
+	}
+}
+
+void	systems::Player(entt::DefaultRegistry &registry, Window &window, systems::Collisions& cells,
+			Camera& cam, double dt)
 {
 	auto view = registry.view<c::Player, c::Position, c::Velocity, c::Model>();
 
@@ -166,14 +202,7 @@ void	systems::Player(entt::DefaultRegistry &registry, Window &window, systems::C
 		}
 		move.v = glm::vec3(0);
 		player.bombCooldownTimer -= dt;
-		if (v.y > 0 && !cells.isEmpty(pos.x, pos.y + 0.5))
-			v.y = 0;
-		if (v.y < 0 && !cells.isEmpty(pos.x, pos.y - 0.5))
-			v.y = 0;
-		if (v.x > 0 && !cells.isEmpty(pos.x + 0.5, pos.y))
-			v.x = 0;
-		if (v.x < 0 && !cells.isEmpty(pos.x - 0.5, pos.y))
-			v.x = 0;
+		checkCollisions(pos, v, cells, dt);
 		cam.Move(v * 0.5);
 		move.v = v;
 	}
