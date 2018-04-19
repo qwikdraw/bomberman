@@ -46,7 +46,7 @@ namespace systems
 	};
 
 	//! requires: Player, Position, Velocity
-	void	Player(entt::DefaultRegistry&, Window&, Collisions&, double dt);
+	void	Player(entt::DefaultRegistry&, Window&, Collisions&, Camera&, double dt);
 
 	//! requires: Particles, Position
 	void	RenderParticles(entt::DefaultRegistry&, Camera&, double dt);

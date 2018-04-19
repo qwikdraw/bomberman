@@ -112,17 +112,18 @@ void	systems::Buttons(entt::DefaultRegistry &registry,
 	}
 }
 
-//! player events
+//! player
 
 void	createBomb(entt::DefaultRegistry &r, glm::vec3 pos)
 {
 	auto bomb = r.create();
 	r.assign<c::Model>(bomb, "bomb", glm::mat4(1));
-	r.assign<c::Position>(bomb, pos);
+	r.assign<c::Position>(bomb, glm::round(pos));
+	r.assign<c::Collide>(bomb);
 	r.assign<c::Decay>(bomb, 3.0f);
 }
 
-void	systems::Player(entt::DefaultRegistry &registry, Window &window, systems::Collisions& cells, double dt)
+void	systems::Player(entt::DefaultRegistry &registry, Window &window, systems::Collisions& cells, Camera& cam, double dt)
 {
 	auto view = registry.view<c::Player, c::Position, c::Velocity, c::Model>();
 
@@ -166,13 +167,14 @@ void	systems::Player(entt::DefaultRegistry &registry, Window &window, systems::C
 		move.v = glm::vec3(0);
 		player.bombCooldownTimer -= dt;
 		if (v.y > 0 && !cells.isEmpty(pos.x, pos.y + 0.5))
-			continue;
+			v.y = 0;
 		if (v.y < 0 && !cells.isEmpty(pos.x, pos.y - 0.5))
-			continue;
+			v.y = 0;
 		if (v.x > 0 && !cells.isEmpty(pos.x + 0.5, pos.y))
-			continue;
+			v.x = 0;
 		if (v.x < 0 && !cells.isEmpty(pos.x - 0.5, pos.y))
-			continue;
+			v.x = 0;
+		cam.Move(v * 0.5);
 		move.v = v;
 	}
 }
