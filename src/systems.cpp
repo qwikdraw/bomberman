@@ -225,3 +225,18 @@ void	systems::Collisions::operator()(entt::DefaultRegistry& registry)
 		_cells[(uint64_t)x << 32 | y] = entity;
 	}
 }
+
+//! Render particles
+
+void	systems::RenderParticles(entt::DefaultRegistry &registry, Camera &cam, double dt)
+{
+	auto view = registry.view<c::Particles, c::Position>();
+
+	for (auto entity : view)
+	{
+		glm::vec3 &pos = view.get<c::Position>(entity).pos;
+		IParticle *particles = view.get<c::Particles>(entity).particle;
+
+		particles->Render(cam.Perspective(), pos, dt);
+	}
+}

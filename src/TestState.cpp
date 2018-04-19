@@ -28,6 +28,7 @@ void	TestStateEntityLoader(entt::DefaultRegistry &r)
 	r.assign<c::Model>(player, "block", glm::mat4(1));
 	r.assign<c::Position>(player, glm::vec3(0, 0, 0));
 	r.assign<c::Velocity>(player);
+	r.assign<c::Particles>(player, new TestParticle());
 }
 
 TestState::TestState(Engine& e) :
@@ -52,10 +53,11 @@ TestState::~TestState(void)
 
 void TestState::Update(double dt)
 {
+	_cells(_registry);
 	systems::RenderModels(_registry, _modelCache, _window, _camera);
 	systems::Decay(_registry, dt);
 	systems::Buttons(_registry, _imageCache, _window, dt);
 	systems::Player(_registry, _window, _cells, dt);
 	systems::Velocity(_registry);
-	_cells(_registry);
+	systems::RenderParticles(_registry, _camera, dt);
 }

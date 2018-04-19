@@ -27,6 +27,7 @@ systems \
 Engine \
 MenuState \
 TestState \
+TestParticle
 
 SRC_DIR = src
 OBJ_DIR = obj
