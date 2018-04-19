@@ -1,5 +1,5 @@
 meshes/block.obj
-textures/metal_sheet.png
+textures/wall.png
 	Transform:
 	
 	matrix
