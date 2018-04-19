@@ -2,7 +2,14 @@
 #include "Engine.hpp"
 #include "IState.hpp"
 
-Engine::Engine(Window& w) : window(w), isRunning(true) {}
+Engine::Engine(Window& w) : window(w), isRunning(true)
+{
+	keyBind.up = 'W';
+	keyBind.down = 'S';
+	keyBind.right = 'D';
+	keyBind.left = 'A';
+	keyBind.bomb = ' ';
+}
 
 Engine::~Engine(void) {
 	for (auto s: _states) {
