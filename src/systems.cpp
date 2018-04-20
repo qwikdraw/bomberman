@@ -15,8 +15,23 @@ struct	ModelLoader : entt::ResourceLoader<ModelLoader, Model>
 void	systems::RenderModels(entt::DefaultRegistry &registry, entt::ResourceCache<Model>& cache,
 		Window &window, Camera &camera)
 {
+
+	std::vector<Light*> lights;
+	
+	auto lightGroup = registry.view<c::Position, c::Lighting>();
+
+	for (auto entity : lightGroup)
+	{
+		glm::vec3 &pos = lightGroup.get<c::Position>(entity).pos;
+		auto &light = lightGroup.get<c::Lighting>(entity);
+
+		lights.push_back(new Light(pos + light.displacement, light.color, light.falloff));
+	}
+	
 	auto view = registry.view<c::Model, c::Position>();
 
+	camera.SetAspect(window.GetAspect());
+	
 	for (auto entity : view)
 	{
 		auto &modelComp = view.get<c::Model>(entity);
@@ -35,6 +50,8 @@ void	systems::RenderModels(entt::DefaultRegistry &registry, entt::ResourceCache<
 
 		window.RemoveRenderMask();
 	}
+	for (auto light : lights)
+		delete light;
 }
 
 

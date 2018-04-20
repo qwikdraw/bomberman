@@ -4,10 +4,15 @@ std::istream	&operator >> (std::istream &is, Model::AnimatedPartRaw &lhs)
 {
 	std::string junkInfo;
 	
-	is >> lhs.objectFile >> lhs.textureFile >> junkInfo;
+	is >> lhs.objectFile >> lhs.textureFile >> junkInfo >> lhs.specular >> junkInfo >> lhs.diffuse
+	   >> junkInfo >> lhs.fog >> junkInfo >> lhs.fogcol.x >> lhs.fogcol.y
+	   >> lhs.fogcol.z >> junkInfo >> junkInfo;
+
 
 	if (!is)
 		throw std::exception();
+	
+	junkInfo = "";
 	
 	std::string s;
 	while (1)
@@ -57,6 +62,7 @@ Model::Model(std::string filepath)
 		processed.partPos = raw.pos;
 		processed.object = new ObjFile(absolutePath + "/" + raw.objectFile,
 						     absolutePath + "/" + raw.textureFile);
+		processed.object->UseMaterial(raw.specular, raw.fog, raw.fogcol, raw.diffuse);
 
 		_parts.push_back(processed);
 	}

@@ -88,6 +88,15 @@ ObjFile::~ObjFile(void)
 	delete _program;
 }
 
+void	ObjFile::UseMaterial(float specular, float fog, glm::vec3 fogcol, float diffuse)
+{
+	GLuint materialID = glGetUniformLocation(_program->ID(), "material");
+	float arr[6] = {specular, fog, fogcol.x, fogcol.y, fogcol.z, diffuse};
+
+	_program->Use();
+	glUniform1fv(materialID, 6, arr);
+}
+
 void	ObjFile::UsePerspective(std::pair<glm::mat4, glm::mat4> p)
 {
 	_program->Use();

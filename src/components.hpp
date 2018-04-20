@@ -69,7 +69,8 @@ namespace components
 
 	struct Lighting
 	{
-		Light *light;
-//		~Lighting(){delete light;}
+		glm::vec3 color;
+		float falloff;
+		glm::vec3 displacement = glm::vec3(0, 0, 0);
 	};
 };

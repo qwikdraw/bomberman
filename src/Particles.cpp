@@ -176,6 +176,9 @@ void	Particles::Render(void)
 	
 	glDrawArraysInstanced(GL_TRIANGLE_STRIP, 0, 4, _amount);
 
+	glVertexAttribDivisor(1, 0);
+	glVertexAttribDivisor(2, 0);
+	
 	glDisable(GL_BLEND);
 	glDisableVertexAttribArray(0);
 	glDisableVertexAttribArray(1);

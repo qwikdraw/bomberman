@@ -15,6 +15,10 @@ public:
 	{
 		std::string objectFile;
 		std::string textureFile;
+		float specular;
+		float fog;
+		glm::vec3 fogcol;
+		float diffuse;
 		std::vector<glm::mat4> transform;
 		std::vector<float> time;
 		float cycle;
