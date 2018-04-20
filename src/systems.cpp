@@ -30,6 +30,8 @@ void	systems::RenderModels(entt::DefaultRegistry &registry, entt::ResourceCache<
 	
 	auto view = registry.view<c::Model, c::Position>();
 
+	camera.SetAspect(window.GetAspect());
+	
 	for (auto entity : view)
 	{
 		auto &modelComp = view.get<c::Model>(entity);

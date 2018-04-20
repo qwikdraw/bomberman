@@ -4,6 +4,7 @@
 #define SPECULAR 200
 #define FOG 4000
 #define FOGCOL vec3(0, 0, 0)
+#define DIFFUSE 0.5
 
 layout(location = 0) in vec3 vertex;
 layout(location = 1) in vec3 normal;
@@ -35,8 +36,10 @@ vec3	GetLightModifier(vec3 v, vec3 n)
 			continue;
 		vec3 ray = v - vec3(lookAt * vec4(lightPos[i], 1));
 		float intensity = pow(lightFalloff[i], 2) / (pow(lightFalloff[i], 2) + length(ray) * length(ray));
-		
-		ret += max(dot(n, -normalize(ray)), 0.2) * lightColor[i] * intensity;
+
+		float diffuse = pow(max(dot(n, -normalize(ray)), 0), DIFFUSE);
+
+		ret += max(diffuse, 0.2) * lightColor[i] * intensity;
 
 		vec3 reflect = normalize(ray) - 2 * n * dot(normalize(ray), n);
 		float error = max(length(reflect * length(v)), 0.001);
