@@ -203,7 +203,7 @@ void	systems::Player(entt::DefaultRegistry &registry, Window &window, systems::C
 		move.v = glm::vec3(0);
 		player.bombCooldownTimer -= dt;
 		checkCollisions(pos, v, cells, dt);
-		cam.Move(v * 0.5);
+		cam.Move(v);
 		move.v = v;
 	}
 }

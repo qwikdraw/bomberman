@@ -6,7 +6,7 @@
 #    By: logan  <logan@42.us.org>                   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/13 10:03:24 by logan             #+#    #+#              #
-#    Updated: 2018/04/17 15:58:35 by lkaser           ###   ########.fr        #
+#    Updated: 2018/04/19 14:05:41 by lkaser           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ Model \
 Light \
 Particles \
 systems \
+generate_level \
 Engine \
 MenuState \
 TestState \
