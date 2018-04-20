@@ -35,6 +35,7 @@ public:
 	ObjFile(std::string objectPath, std::string texturePath);
 	virtual ~ObjFile(void);
 
+	void	UseMaterial(float specular, float fog, glm::vec3 fogcol, float diffuse);
 	void	UsePerspective(std::pair<glm::mat4, glm::mat4>);
 	void	SetTransform(glm::mat4);
 	void	Render(void);

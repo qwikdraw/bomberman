@@ -1,10 +1,6 @@
 #version 410 core
 
 #define MAX_LIGHTS 100
-#define SPECULAR 200
-#define FOG 4000
-#define FOGCOL vec3(0, 0, 0)
-#define DIFFUSE 0.5
 
 layout(location = 0) in vec3 vertex;
 layout(location = 1) in vec3 normal;
@@ -16,7 +12,7 @@ uniform mat4 lookAt;
 uniform vec3 lightPos[MAX_LIGHTS];
 uniform vec3 lightColor[MAX_LIGHTS];
 uniform float lightFalloff[MAX_LIGHTS];
-
+uniform float material[6];
 
 out	ShapeData {
 	vec2 uv;
@@ -25,6 +21,11 @@ out	ShapeData {
 	float fog;
 	vec3 fogcol;
 } Data;
+
+float SPECULAR = material[0];
+float FOG = material[1];
+vec3 FOGCOL = vec3(material[2], material[3], material[4]);
+float DIFFUSE = material[5];
 
 vec3	GetLightModifier(vec3 v, vec3 n)
 {
