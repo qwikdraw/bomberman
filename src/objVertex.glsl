@@ -17,6 +17,7 @@ uniform float lightFalloff[MAX_LIGHTS];
 out	ShapeData {
 	vec2 uv;
 	vec3 lightMod;
+	float dist;
 } Data;
 
 vec3	GetLightModifier(vec3 v, vec3 n)
@@ -48,6 +49,7 @@ void	main()
 	vec3 actualNormal = normalize(vec3(lookAt * transform * vec4(normal, 0)));
 	vec3 actualVertex = vec3(lookAt * transform * vec4(vertex, 1));
 
+	Data.dist = length(actualVertex);
 	Data.uv = uv;
 	Data.lightMod = GetLightModifier(actualVertex, actualNormal);
 	gl_Position = projection * lookAt * transform * vec4(vertex, 1);

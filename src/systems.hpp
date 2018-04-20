@@ -30,10 +30,6 @@ namespace systems
 	//! requires: Button
 	void	Buttons(entt::DefaultRegistry&, entt::ResourceCache<Sprite2D>&, Window&, double dt);
 
-
-	//! requires: Position, Velocity
-	void	Velocity(entt::DefaultRegistry&);
-
 	//! requires: Position, Collide
 	class  Collisions
 	{
@@ -45,9 +41,14 @@ namespace systems
 		void operator()(entt::DefaultRegistry&);
 	};
 
-	//! requires: Player, Position, Velocity
-	void	Player(entt::DefaultRegistry&, Window&, Collisions&, Camera&, double dt);
+	//! requires: Position, Velocity [, Collide]
+	void	Velocity(entt::DefaultRegistry&, systems::Collisions&, double dt);
+
+	//! requires: Player, Position, Velocity, Model
+	void	Player(entt::DefaultRegistry&, Window&, Engine::KeyBind, Camera&, double dt);
 
 	//! requires: Particles, Position
 	void	RenderParticles(entt::DefaultRegistry&, Camera&, double dt);
+
+	
 };
