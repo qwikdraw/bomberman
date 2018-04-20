@@ -20,7 +20,7 @@ static void spawn_player(entt::DefaultRegistry &r, int x, int y)
 {
 	auto player = r.create();
 	r.assign<c::Player>(player, 2.0, 1.0);
-	r.assign<c::Model>(player, "block", glm::mat4(1));
+	r.assign<c::Model>(player, "player", glm::mat4(1));
 	r.assign<c::Position>(player, glm::vec3(x, y, 0));
 	r.assign<c::Velocity>(player);
 	r.assign<c::Collide>(player);
