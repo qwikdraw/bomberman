@@ -77,6 +77,7 @@ _objectArrays(objectPath),  _textureParser(texturePath)
 	_lightPosID = glGetUniformLocation(_program->ID(), "lightPos");
 	_lightColorID = glGetUniformLocation(_program->ID(), "lightColor");
 	_lightFalloffID = glGetUniformLocation(_program->ID(), "lightFalloff");
+	_lightNumID = glGetUniformLocation(_program->ID(), "lightAmount");
 
 	SetTransform(glm::mat4(1));
 	Load();
@@ -125,18 +126,21 @@ void	ObjFile::Render(void)
 {
 	_program->Use();
 
-	if (Light::positions.size())
+	int size = Light::positions.size();
+	if (size)
 	{
 		glUniform3fv(_lightPosID,
-			Light::positions.size(),
+			size,
 			reinterpret_cast<const GLfloat*>(&(Light::positions[0].x)));
 		glUniform3fv(_lightColorID,
-			Light::colors.size(),
+			size,
 			reinterpret_cast<const GLfloat*>(&(Light::colors[0].x)));
 		glUniform1fv(_lightFalloffID,
-			Light::falloffs.size(),
+			size,
 			&Light::falloffs[0]);
 	}
+	glUniform1i(_lightNumID, size);
+		     
 	glBindTexture(GL_TEXTURE_2D, _textureID);
 	glActiveTexture(GL_TEXTURE0);
 	glUniform1i(_textureLocationID, 0);

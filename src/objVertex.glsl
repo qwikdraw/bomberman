@@ -13,6 +13,7 @@ uniform vec3 lightPos[MAX_LIGHTS];
 uniform vec3 lightColor[MAX_LIGHTS];
 uniform float lightFalloff[MAX_LIGHTS];
 uniform float material[6];
+uniform int lightAmount;
 
 out	ShapeData {
 	vec2 uv;
@@ -31,7 +32,7 @@ vec3	GetLightModifier(vec3 v, vec3 n)
 {
 	vec3 ret = vec3(0, 0, 0);
 
-	for (int i = 0; i < MAX_LIGHTS; i++)
+	for (int i = 0; i < lightAmount; i++)
 	{
 		if (lightColor[i] == vec3(0, 0, 0))
 			continue;

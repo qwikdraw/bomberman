@@ -25,6 +25,7 @@ class	ObjFile
 	GLuint _lightPosID;
 	GLuint _lightColorID;
 	GLuint _lightFalloffID;
+	GLuint _lightNumID;
 	
 	glm::mat4 _transform;
 	
