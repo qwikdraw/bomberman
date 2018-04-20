@@ -1,6 +1,9 @@
 #version 410 core
 
 #define MAX_LIGHTS 100
+#define SPECULAR 200
+#define FOG 4000
+#define FOGCOL vec3(0, 0, 0)
 
 layout(location = 0) in vec3 vertex;
 layout(location = 1) in vec3 normal;
@@ -18,6 +21,8 @@ out	ShapeData {
 	vec2 uv;
 	vec3 lightMod;
 	float dist;
+	float fog;
+	vec3 fogcol;
 } Data;
 
 vec3	GetLightModifier(vec3 v, vec3 n)
@@ -29,16 +34,15 @@ vec3	GetLightModifier(vec3 v, vec3 n)
 		if (lightColor[i] == vec3(0, 0, 0))
 			continue;
 		vec3 ray = v - vec3(lookAt * vec4(lightPos[i], 1));
-		float intensity = lightFalloff[i] / (lightFalloff[i] + length(ray));
+		float intensity = pow(lightFalloff[i], 2) / (pow(lightFalloff[i], 2) + length(ray) * length(ray));
 		
 		ret += max(dot(n, -normalize(ray)), 0.2) * lightColor[i] * intensity;
 
 		vec3 reflect = normalize(ray) - 2 * n * dot(normalize(ray), n);
-		
-		float specular = dot(normalize(reflect), normalize(-v));
+		float error = max(length(reflect * length(v)), 0.001);
+		float specular = SPECULAR / pow(error, 2);
 
-		if (specular > 0)
-			ret += pow(specular, 10) * lightColor[i];
+		ret += specular * lightColor[i] * intensity;
 
 	}
 	return ret;
@@ -48,6 +52,9 @@ void	main()
 {
 	vec3 actualNormal = normalize(vec3(lookAt * transform * vec4(normal, 0)));
 	vec3 actualVertex = vec3(lookAt * transform * vec4(vertex, 1));
+
+	Data.fog = FOG;
+	Data.fogcol = FOGCOL;
 
 	Data.dist = length(actualVertex);
 	Data.uv = uv;

@@ -13,16 +13,12 @@ _engine(e), _window(e.window)
 	_camera.Rotate(glm::vec3(0, 0, 1), 90);
 	_camera.Rotate(glm::vec3(0, 1, 0), 64);
 	
-	_lights.push_back(new Light(glm::vec3(5, 5, 10), glm::vec3(1, 1, 1), 30));
-//	_lights.push_back(new Light(glm::vec3(5
 	generate_level(_registry, 10, 10);
 	glClearColor(0.2, 0.25, 0.29, 1.0);
 }
 
 TestState::~TestState(void)
 {
-	for (auto l: _lights)
-		delete l;
 }
 
 void TestState::Update(double dt)
