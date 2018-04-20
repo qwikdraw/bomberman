@@ -166,7 +166,7 @@ void	systems::Player(entt::DefaultRegistry &registry, Window &window, Engine::Ke
 			}
 		}
 		player.bombCooldownTimer -= dt;
-		cam.Move(v * 0.5);
+		cam.Move(v);
 		move.v = v;
 	}
 }
