@@ -24,8 +24,8 @@ namespace systems
 	//! requires: Model, Position
 	void	RenderModels(entt::DefaultRegistry&, entt::ResourceCache<Model>&, Window&, Camera&);
 
-	//! requires: Decay
-	void	Decay(entt::DefaultRegistry&, double dt);
+	//! requires: TimedEffect
+	void	TimedEffect(entt::DefaultRegistry&, double dt);
 
 	//! requires: Button
 	void	Buttons(entt::DefaultRegistry&, entt::ResourceCache<Sprite2D>&, Window&, double dt);
@@ -42,13 +42,15 @@ namespace systems
 	};
 
 	//! requires: Position, Velocity [, Collide]
-	void	Velocity(entt::DefaultRegistry&, systems::Collisions&, double dt);
+	void	Velocity(entt::DefaultRegistry&, Collisions&, double dt);
 
 	//! requires: Player, Position, Velocity, Model
 	void	Player(entt::DefaultRegistry&, Window&, Engine::KeyBind, Camera&, double dt);
 
 	//! requires: Particles, Position
-	void	RenderParticles(entt::DefaultRegistry&, Camera&, double dt);
+	void	RenderParticles(entt::DefaultRegistry&, Camera&, double dt);	
 
-	
+
+	//! requires: Explosion
+	void	Explosion(entt::DefaultRegistry&, Collisions&);
 };

@@ -1,11 +1,11 @@
-meshes/block.obj
-textures/stone_floor.png
+meshes/rock.obj
+textures/rock.png
 
 	Material:
-        200 specular
-        1 diffuse
-        4000 fog
-        0 0 0 fogcol
+        400 specular
+        0.5 diffuse
+        9001 fog
+        1 0 0 fogcol
 
 	Transform:
 	

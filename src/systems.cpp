@@ -50,24 +50,37 @@ void	systems::RenderModels(entt::DefaultRegistry &registry, entt::ResourceCache<
 
 		window.RemoveRenderMask();
 	}
-	for (auto light : lights)
-		delete light;
+	for (auto l : lights)
+	{
+		delete l;
+	}
 }
 
+//! TimedEffect
 
-//! Decay
-
-void	systems::Decay(entt::DefaultRegistry &registry, double dt)
+void	systems::TimedEffect(entt::DefaultRegistry &registry, double dt)
 {
-	auto view = registry.view<c::Decay>();
+	auto view = registry.view<c::TimedEffect>();
 
 	for (auto entity : view)
 	{
-		auto &decay = view.get(entity);
+		auto &te = view.get(entity);
 
-		decay.seconds -= dt;
-		if (decay.seconds <= 0)
-			registry.destroy(entity);
+		te.timeLeft -= dt;
+		if (te.timeLeft <= 0)
+		{
+			switch (te.effectType)
+			{
+				case c::effect::VANISH:
+					registry.destroy(entity);
+					break;
+				case c::effect::EXPLOAD:
+					registry.assign<c::Explosion>(entity, 4);
+					te.timeLeft = 0.2f;
+					te.effectType = c::effect::VANISH;
+					break;
+			}
+		}
 	}
 }
 
@@ -137,7 +150,7 @@ void	createBomb(entt::DefaultRegistry &r, glm::vec3 pos)
 	r.assign<c::Model>(bomb, "bomb", glm::mat4(1));
 	r.assign<c::Position>(bomb, glm::round(pos));
 	r.assign<c::Collide>(bomb);
-	r.assign<c::Decay>(bomb, 3.0f);
+	r.assign<c::TimedEffect>(bomb, 3.0f, c::effect::EXPLOAD);
 }
 
 void	systems::Player(entt::DefaultRegistry &registry, Window &window, Engine::KeyBind bind,
@@ -183,7 +196,8 @@ void	systems::Player(entt::DefaultRegistry &registry, Window &window, Engine::Ke
 			}
 		}
 		player.bombCooldownTimer -= dt;
-		cam.Move(v);
+		auto target = glm::vec3(pos.x, pos.y - 10, 20);
+		cam.Move((target - cam.GetPosition()) * dt);
 		move.v = v;
 	}
 }
@@ -294,5 +308,54 @@ void	systems::RenderParticles(entt::DefaultRegistry &registry, Camera &cam, doub
 		IParticle *particles = view.get<c::Particles>(entity).particle;
 
 		particles->Render(cam.Perspective(), pos, dt);
+	}
+}
+
+//! Explosion
+
+static void	spread_explosion(entt::DefaultRegistry &r, systems::Collisions& cells,
+	int spread, int x, int y, c::Direction d)
+{
+	if (!cells.isEmpty(x, y))
+	{
+		auto e = cells.get(x, y);
+		auto& collided = r.get<c::Collide>(e);
+		if (collided.height > spread)
+			return;
+		spread -= collided.height;
+		r.destroy(e);
+	}
+
+	auto ex = r.create();
+	r.assign<c::Explosion>(ex, spread, d);
+	r.assign<c::Model>(ex, "bomb", glm::mat4(1));
+        r.assign<c::Position>(ex, glm::vec3(x, y, 0));
+	r.assign<c::Lighting>(ex, glm::vec3(1, 0.6, 0), 1.0f, glm::vec3(0, 0, 2));
+	r.assign<c::TimedEffect>(ex, 1.0f);
+	r.assign<c::Collide>(ex);
+}
+
+void	systems::Explosion(entt::DefaultRegistry &registry, systems::Collisions& cells)
+{
+	auto view = registry.view<c::Explosion, c::Position>();
+
+	for (auto entity : view)
+	{
+		auto& ex = view.get<c::Explosion>(entity);
+		glm::vec3 &pos = view.get<c::Position>(entity).pos;
+		if (ex.spread < 1)
+		{
+			registry.remove<c::Explosion>(entity);
+			continue;
+		}
+		ex.spread -= 1;
+		if (ex.dir == c::Direction::NONE || ex.dir == c::Direction::RIGHT)
+			spread_explosion(registry, cells, ex.spread, pos.x + 1, pos.y, c::Direction::RIGHT);
+		if (ex.dir == c::Direction::NONE || ex.dir == c::Direction::LEFT)
+			spread_explosion(registry, cells, ex.spread, pos.x - 1, pos.y, c::Direction::LEFT);
+		if (ex.dir == c::Direction::NONE || ex.dir == c::Direction::UP)
+			spread_explosion(registry, cells, ex.spread, pos.x, pos.y + 1, c::Direction::UP);
+		if (ex.dir == c::Direction::NONE || ex.dir == c::Direction::DOWN)
+			spread_explosion(registry, cells, ex.spread, pos.x, pos.y - 1, c::Direction::DOWN);
 	}
 }

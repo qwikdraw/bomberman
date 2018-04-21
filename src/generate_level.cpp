@@ -23,7 +23,7 @@ static void spawn_player(entt::DefaultRegistry &r, int x, int y)
 	r.assign<c::Model>(player, "player", glm::mat4(1));
 	r.assign<c::Position>(player, glm::vec3(x, y, 0));
 	r.assign<c::Velocity>(player);
-	r.assign<c::Collide>(player);
+	r.assign<c::Collide>(player, 1);
 	r.assign<c::Lighting>(player, glm::vec3(1, 1, 1), 3.0f, glm::vec3(0, 0, 2));
 }
 
@@ -40,7 +40,7 @@ static void spawn_crate(entt::DefaultRegistry &r, int x, int y)
 {
 	auto e = r.create();
 	r.assign<c::Model>(e, "crate", random_direction());
-	r.assign<c::Collide>(e);
+	r.assign<c::Collide>(e, 1);
 	r.assign<c::Position>(e, glm::vec3(x, y, 0));
 }
 
