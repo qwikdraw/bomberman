@@ -72,7 +72,8 @@ void	systems::TimedEffect(entt::DefaultRegistry &registry, double dt)
 			switch (te.effectType)
 			{
 				case c::effect::VANISH:
-					registry.destroy(entity);
+					if (registry.valid(entity))
+						registry.destroy(entity);
 					break;
 				case c::effect::EXPLOAD:
 					registry.assign<c::Explosion>(entity, 4);
@@ -323,7 +324,8 @@ static void	spread_explosion(entt::DefaultRegistry &r, systems::Collisions& cell
 		if (collided.height > spread)
 			return;
 		spread -= collided.height;
-		r.destroy(e);
+		if (r.valid(e))
+			r.destroy(e);
 	}
 
 	auto ex = r.create();
