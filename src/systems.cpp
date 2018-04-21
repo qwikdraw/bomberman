@@ -320,6 +320,8 @@ static void	spread_explosion(entt::DefaultRegistry &r, systems::Collisions& cell
 	if (!cells.isEmpty(x, y))
 	{
 		auto e = cells.get(x, y);
+		if (!r.valid(e))
+			return;
 		auto& collided = r.get<c::Collide>(e);
 		if (collided.height > spread)
 			return;
