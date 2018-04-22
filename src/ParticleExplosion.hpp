@@ -9,6 +9,7 @@ private:
 
 	Particles _particles;
 	std::vector<glm::vec3> _velocity;
+	std::vector<glm::vec3> _colors;
 	float _duration;
 	
 public:
