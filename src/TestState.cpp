@@ -1,5 +1,6 @@
 #include "TestState.hpp"
 #include "generate_level.hpp"
+#include "ParticleExplosion.hpp"
 
 TestState::TestState(Engine& e) :
 _engine(e), _window(e.window)
@@ -9,6 +10,9 @@ _engine(e), _window(e.window)
 	_camera.Rotate(glm::vec3(0, 1, 0), 64);
 	
 	generate_level(_registry, 12, 12);
+
+	_explosion = new ParticleExplosion(1.0f);
+		
 	glClearColor(0.2, 0.25, 0.29, 1.0);
 }
 
@@ -24,6 +28,6 @@ void TestState::Update(double dt)
 	systems::Buttons(_registry, _imageCache, _window, dt);
 	systems::Player(_registry, _window, _engine.keyBind, _camera, dt);
 	systems::Velocity(_registry, _cells, dt);
-	systems::RenderParticles(_registry, _camera, dt);
-	systems::Explosion(_registry, _cells);
+	systems::RenderParticles(_registry, _camera);
+	systems::Explosion(_registry, _cells, _explosion);
 }

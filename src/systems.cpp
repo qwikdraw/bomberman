@@ -299,23 +299,28 @@ void	systems::Collisions::operator()(entt::DefaultRegistry& registry)
 
 //! Render particles
 
-void	systems::RenderParticles(entt::DefaultRegistry &registry, Camera &cam, double dt)
-{
-	auto view = registry.view<c::Particles, c::Position>();
+#include <typeinfo>
 
+void	systems::RenderParticles(entt::DefaultRegistry &registry, Camera &cam)
+{
+	auto view = registry.view<c::Particles, c::Position, c::TimedEffect>();
+	
 	for (auto entity : view)
 	{
 		glm::vec3 &pos = view.get<c::Position>(entity).pos;
 		IParticle *particles = view.get<c::Particles>(entity).particle;
+		float duration = view.get<c::Particles>(entity).duration;
+		float time = view.get<c::TimedEffect>(entity).timeLeft;
 
-		particles->Render(cam.Perspective(), pos, dt);
+		particles->Render(cam.Perspective(), pos, duration - time);
 	}
 }
 
 //! Explosion
 
 static void	spread_explosion(entt::DefaultRegistry &r, systems::Collisions& cells,
-	int spread, int x, int y, c::Direction d)
+				 int spread, int x, int y, c::Direction d,
+				 ParticleExplosion *explosionEffect)
 {
 	if (!cells.isEmpty(x, y))
 	{
@@ -332,14 +337,15 @@ static void	spread_explosion(entt::DefaultRegistry &r, systems::Collisions& cell
 
 	auto ex = r.create();
 	r.assign<c::Explosion>(ex, spread, d);
-	r.assign<c::Model>(ex, "bomb", glm::mat4(1));
+	r.assign<c::Particles>(ex, explosionEffect, 1.0f);
         r.assign<c::Position>(ex, glm::vec3(x, y, 0));
-	r.assign<c::Lighting>(ex, glm::vec3(1, 0.6, 0), 1.0f, glm::vec3(0, 0, 2));
+//	r.assign<c::Lighting>(ex, glm::vec3(1, 0.6, 0), 1.0f, glm::vec3(0, 0, 2));
 	r.assign<c::TimedEffect>(ex, 1.0f);
 	r.assign<c::Collide>(ex);
 }
 
-void	systems::Explosion(entt::DefaultRegistry &registry, systems::Collisions& cells)
+void	systems::Explosion(entt::DefaultRegistry &registry, systems::Collisions& cells,
+			   ParticleExplosion *expl)
 {
 	auto view = registry.view<c::Explosion, c::Position>();
 
@@ -354,12 +360,12 @@ void	systems::Explosion(entt::DefaultRegistry &registry, systems::Collisions& ce
 		}
 		ex.spread -= 1;
 		if (ex.dir == c::Direction::NONE || ex.dir == c::Direction::RIGHT)
-			spread_explosion(registry, cells, ex.spread, pos.x + 1, pos.y, c::Direction::RIGHT);
+			spread_explosion(registry, cells, ex.spread, pos.x + 1, pos.y, c::Direction::RIGHT, expl);
 		if (ex.dir == c::Direction::NONE || ex.dir == c::Direction::LEFT)
-			spread_explosion(registry, cells, ex.spread, pos.x - 1, pos.y, c::Direction::LEFT);
+			spread_explosion(registry, cells, ex.spread, pos.x - 1, pos.y, c::Direction::LEFT, expl);
 		if (ex.dir == c::Direction::NONE || ex.dir == c::Direction::UP)
-			spread_explosion(registry, cells, ex.spread, pos.x, pos.y + 1, c::Direction::UP);
+			spread_explosion(registry, cells, ex.spread, pos.x, pos.y + 1, c::Direction::UP, expl);
 		if (ex.dir == c::Direction::NONE || ex.dir == c::Direction::DOWN)
-			spread_explosion(registry, cells, ex.spread, pos.x, pos.y - 1, c::Direction::DOWN);
+			spread_explosion(registry, cells, ex.spread, pos.x, pos.y - 1, c::Direction::DOWN, expl);
 	}
 }

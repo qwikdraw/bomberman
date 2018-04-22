@@ -66,6 +66,7 @@ namespace components
 	struct Particles
 	{
 		IParticle *particle;
+		float duration;
 	};
 
 	struct Lighting

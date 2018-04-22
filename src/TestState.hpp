@@ -1,6 +1,7 @@
 #pragma once
 
-#include <entt/entt.hpp>
+#include "Particles.hpp"
+#include "bomberman.hpp"
 #include "Camera.hpp"
 #include "Light.hpp"
 #include "IState.hpp"
@@ -18,11 +19,13 @@ class TestState : public IState
 	Engine& _engine;
 	Window& _window;
 	Camera _camera;
-	std::vector<Light*> _lights;
 	entt::DefaultRegistry _registry;
 	entt::ResourceCache<Model> _modelCache;
 	entt::ResourceCache<Sprite2D> _imageCache;
 	systems::Collisions _cells;
+
+	ParticleExplosion *_explosion;
+	
 public:
 	TestState(Engine& engine);
 	~TestState(void);
