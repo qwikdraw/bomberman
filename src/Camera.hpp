@@ -29,6 +29,7 @@ public:
 
 	void	Move(glm::vec3 amount);
 	void	MoveTo(glm::vec3 position);
+	glm::vec3	GetPosition(void);
 	void	RelativeMove(glm::vec3 amount);
 	void	Rotate(glm::vec3 axis, float degrees);
 	void	SetAspect(float aspect);

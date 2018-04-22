@@ -27,9 +27,12 @@ namespace components
 		glm::vec2 topRight = glm::vec2(1, 1);
 	};
 
-	struct Decay
+	enum class effect{EXPLOAD, VANISH};
+	
+	struct TimedEffect
 	{
-		float seconds;
+		float timeLeft = 0.0f;
+		effect effectType = effect::VANISH;
 	};
 
 	struct Button
@@ -57,14 +60,12 @@ namespace components
 
 	struct Collide
 	{
-		int group = 0;
+		int height = 10;
 	};
 
 	struct Particles
 	{
 		IParticle *particle;
-//		~Particles(){std::cout << "test" << std::endl;}
-//		~Particles(){delete particle;}  deleting them causes segfault but they do need to be deleted...
 	};
 
 	struct Lighting
@@ -72,5 +73,13 @@ namespace components
 		glm::vec3 color;
 		float falloff;
 		glm::vec3 displacement = glm::vec3(0, 0, 0);
+	};
+
+	enum class Direction{NONE, UP, RIGHT, DOWN, LEFT};
+
+	struct Explosion
+	{
+		int spread = 0;
+		Direction dir = Direction::NONE;
 	};
 };

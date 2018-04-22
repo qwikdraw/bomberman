@@ -140,7 +140,6 @@ void	ObjFile::Render(void)
 			&Light::falloffs[0]);
 	}
 	glUniform1i(_lightNumID, size);
-		     
 	glBindTexture(GL_TEXTURE_2D, _textureID);
 	glActiveTexture(GL_TEXTURE0);
 	glUniform1i(_textureLocationID, 0);

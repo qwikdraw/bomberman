@@ -31,6 +31,13 @@ void	Camera::RelativeMove(glm::vec3 amount)
 	Move(absolute);
 }
 
+
+glm::vec3	Camera::GetPosition(void)
+{
+	return _position;
+}
+
+
 void	Camera::Rotate(glm::vec3 axis, float degrees)
 {
 	_rotation = glm::rotate(_rotation, glm::radians(degrees), axis);
