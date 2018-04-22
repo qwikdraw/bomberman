@@ -299,10 +299,12 @@ void	systems::Collisions::operator()(entt::DefaultRegistry& registry)
 
 //! Render particles
 
+#include <typeinfo>
+
 void	systems::RenderParticles(entt::DefaultRegistry &registry, Camera &cam)
 {
 	auto view = registry.view<c::Particles, c::Position, c::TimedEffect>();
-
+	
 	for (auto entity : view)
 	{
 		glm::vec3 &pos = view.get<c::Position>(entity).pos;

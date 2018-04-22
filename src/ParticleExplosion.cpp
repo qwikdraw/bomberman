@@ -12,8 +12,8 @@ ParticleExplosion::ParticleExplosion(float duration) : _particles(Particles(PART
 
 	for (auto &v : _velocity)
 	{
-		v = glm::ballRand(1.0f) * glm::linearRand(0.2f, 0.8f);
-		v.z *= 10;
+		v = glm::ballRand(1.0f) * glm::linearRand(0.2f, 0.5f);
+		v.z *= 4;
 	}
 
 	for (auto &p : _startPos)
@@ -52,14 +52,16 @@ void	ParticleExplosion::Render(std::pair<glm::mat4, glm::mat4> perspective,
 	}
 	for (size_t i = 0; i < colorAttrib.size(); i += 4)
 	{
-		glm::vec3 col = _colors[i / 4] * (_duration - time * 0.8) / (_duration);
+		glm::vec3 col = _colors[i / 4] * (_duration - time * 1.05) / (_duration);
+
+		col.y *= sqrt((_duration - time) / _duration);
 		
 		colorAttrib[i] = col.x;
 		colorAttrib[i + 1] = col.y;
 		colorAttrib[i + 2] = col.z;
-		colorAttrib[i + 3] = 0.5 - ( time / _duration ) * 0.5;
+		colorAttrib[i + 3] = 0.9 - ( time / _duration ) * 0.9;
 	}
-	_particles.Sort();
+//	_particles.Sort();
 	_particles.Update();
 	_particles.Render();
 }
