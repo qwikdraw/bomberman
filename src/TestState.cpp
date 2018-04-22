@@ -18,9 +18,6 @@ _engine(e), _window(e.window)
 	
 	
 	glClearColor(0.2, 0.25, 0.29, 1.0);
-
-
-	init_particles();
 }
 
 TestState::~TestState(void)
