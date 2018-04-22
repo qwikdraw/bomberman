@@ -337,7 +337,7 @@ static void	spread_explosion(entt::DefaultRegistry &r, systems::Collisions& cell
 	r.assign<c::Explosion>(ex, spread, d);
 	r.assign<c::Particles>(ex, explosionEffect, 1.0f);
         r.assign<c::Position>(ex, glm::vec3(x, y, 0));
-	r.assign<c::Lighting>(ex, glm::vec3(1, 0.6, 0), 1.0f, glm::vec3(0, 0, 2));
+//	r.assign<c::Lighting>(ex, glm::vec3(1, 0.6, 0), 1.0f, glm::vec3(0, 0, 2));
 	r.assign<c::TimedEffect>(ex, 1.0f);
 	r.assign<c::Collide>(ex);
 }

@@ -12,13 +12,7 @@ _engine(e), _window(e.window)
 	generate_level(_registry, 12, 12);
 
 	_explosion = new ParticleExplosion(1.0f);
-	
-	auto explosion = _registry.create();
-	_registry.assign<c::Particles>(explosion, new ParticleExplosion(1.0f), 1.0f);
-	_registry.assign<c::Position>(explosion, glm::vec3(-4, -5, 0));
-	_registry.assign<c::TimedEffect>(explosion, 1.0f);
-	
-	
+		
 	glClearColor(0.2, 0.25, 0.29, 1.0);
 }
 
