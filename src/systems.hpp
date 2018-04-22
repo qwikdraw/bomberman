@@ -54,4 +54,7 @@ namespace systems
 
 	//! requires: Explosion
 	void	Explosion(entt::DefaultRegistry&, Collisions&, ParticleExplosion*);
+
+	//! making AI
+	void	AI(entt::DefaultRegistry&, Window&, double dt);
 };

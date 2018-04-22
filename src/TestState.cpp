@@ -30,4 +30,5 @@ void TestState::Update(double dt)
 	systems::Velocity(_registry, _cells, dt);
 	systems::RenderParticles(_registry, _camera);
 	systems::Explosion(_registry, _cells, _explosion);
+	systems::AI(_registry, _window, dt);
 }
