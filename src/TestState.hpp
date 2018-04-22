@@ -23,6 +23,9 @@ class TestState : public IState
 	entt::ResourceCache<Model> _modelCache;
 	entt::ResourceCache<Sprite2D> _imageCache;
 	systems::Collisions _cells;
+
+	ParticleExplosion *_explosion;
+	
 public:
 	TestState(Engine& engine);
 	~TestState(void);

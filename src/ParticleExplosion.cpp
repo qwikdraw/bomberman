@@ -37,7 +37,7 @@ void	ParticleExplosion::Render(std::pair<glm::mat4, glm::mat4> perspective,
 		physicalAttrib[i] = endPos.x;
 		physicalAttrib[i + 1] = endPos.y;
 		physicalAttrib[i + 2] = endPos.z;
-		physicalAttrib[i + 3] = 0.05;
+		physicalAttrib[i + 3] = 0.1;
 	}
 	for (size_t i = 0; i < colorAttrib.size(); i += 4)
 	{

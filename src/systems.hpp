@@ -8,6 +8,7 @@
 #include "components.hpp"
 #include <cstdint>
 #include <unordered_map>
+#include "ParticleExplosion.hpp"
 
 #define ASSET_PATH "assets/"
 #define MODEL_PREFIX ".model"
@@ -52,5 +53,5 @@ namespace systems
 
 
 	//! requires: Explosion
-	void	Explosion(entt::DefaultRegistry&, Collisions&);
+	void	Explosion(entt::DefaultRegistry&, Collisions&, ParticleExplosion*);
 };
