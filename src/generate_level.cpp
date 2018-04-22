@@ -31,10 +31,9 @@ static void spawn_wall(entt::DefaultRegistry &r, std::string type, int x, int y)
 {
 	auto wall = r.create();
 	r.assign<c::Model>(wall, type, glm::mat4(1));
-	r.assign<c::Collide>(wall);
+	r.assign<c::Collide>(wall, 100000);
 	r.assign<c::Position>(wall, glm::vec3(x, y, 0));
 }
-
 
 static void spawn_crate(entt::DefaultRegistry &r, int x, int y)
 {
@@ -52,7 +51,6 @@ static void spawn_col(entt::DefaultRegistry &r, std::string type, int x, int y)
 	r.assign<c::Collide>(wall);
 	r.assign<c::Position>(wall, glm::vec3(x, y, 0));
 }
-
 
 static void spawn_floor(entt::DefaultRegistry& r, int x, int y)
 {

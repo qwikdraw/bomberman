@@ -74,6 +74,7 @@ namespace components
 		glm::vec3 color;
 		float falloff;
 		glm::vec3 displacement = glm::vec3(0, 0, 0);
+		float falloffDelta = 0.0f;
 	};
 
 	enum class Direction{NONE, UP, RIGHT, DOWN, LEFT};

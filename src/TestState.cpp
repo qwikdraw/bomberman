@@ -11,7 +11,7 @@ _engine(e), _window(e.window)
 	
 	generate_level(_registry, 12, 12);
 
-	_explosion = new ParticleExplosion(1.0f);
+	_explosion = new ParticleExplosion(2.0f);
 		
 	glClearColor(0.2, 0.25, 0.29, 1.0);
 }
@@ -30,4 +30,5 @@ void TestState::Update(double dt)
 	systems::Velocity(_registry, _cells, dt);
 	systems::RenderParticles(_registry, _camera);
 	systems::Explosion(_registry, _cells, _explosion);
+	systems::Lighting(_registry, dt);
 }
