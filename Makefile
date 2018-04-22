@@ -28,7 +28,7 @@ generate_level \
 Engine \
 MenuState \
 TestState \
-TestParticle
+ParticleExplosion
 
 SRC_DIR = src
 OBJ_DIR = obj

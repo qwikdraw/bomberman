@@ -299,16 +299,18 @@ void	systems::Collisions::operator()(entt::DefaultRegistry& registry)
 
 //! Render particles
 
-void	systems::RenderParticles(entt::DefaultRegistry &registry, Camera &cam, double dt)
+void	systems::RenderParticles(entt::DefaultRegistry &registry, Camera &cam)
 {
-	auto view = registry.view<c::Particles, c::Position>();
+	auto view = registry.view<c::Particles, c::Position, c::TimedEffect>();
 
 	for (auto entity : view)
 	{
 		glm::vec3 &pos = view.get<c::Position>(entity).pos;
 		IParticle *particles = view.get<c::Particles>(entity).particle;
+		float duration = view.get<c::Particles>(entity).duration;
+		float time = view.get<c::TimedEffect>(entity).timeLeft;
 
-		particles->Render(cam.Perspective(), pos, dt);
+		particles->Render(cam.Perspective(), pos, duration - time);
 	}
 }
 
