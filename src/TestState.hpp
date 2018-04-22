@@ -16,6 +16,12 @@ namespace c = components;
 
 class TestState : public IState
 {
+	Particles _particles;
+	std::vector<float> _lifetime;
+	std::vector<float> _speed;
+
+
+
 	Engine& _engine;
 	Window& _window;
 	Camera _camera;
@@ -27,4 +33,8 @@ public:
 	TestState(Engine& engine);
 	~TestState(void);
 	void Update(double dt);
+
+
+	void init_particles();
+	void update_particles();
 };
