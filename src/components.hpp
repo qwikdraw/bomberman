@@ -84,4 +84,11 @@ namespace components
 		int spread = 0;
 		Direction dir = Direction::NONE;
 	};
+
+	struct AI
+	{
+		double speed;
+		double moveCooldown;
+		Direction dir = Direction::NONE;
+	};
 };
