@@ -41,11 +41,11 @@ CPPFLAGS = -std=c++14 -Wall -Wextra -Werror -Wno-unused-parameter -Wno-unused-pr
 $(shell pkg-config --cflags glfw3 glm) \
 -I lib/entt/src \
 -I lib/lodepng \
--g -O3 -march=native
+-g -O3 -march=native \
 
 LDFLAGS = -framework OpenGl \
 $(shell pkg-config --libs glfw3 glm) \
--L lib/lodepng -llodepng
+-L lib/lodepng -llodepng \
 
 all: $(OBJ_DIR) $(NAME)
 

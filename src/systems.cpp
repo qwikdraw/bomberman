@@ -77,7 +77,6 @@ void	systems::TimedEffect(entt::DefaultRegistry &registry, double dt)
 					break;
 				case c::effect::EXPLOAD:
 					registry.assign<c::Explosion>(entity, 4);
-					te.timeLeft = 0.2f;
 					te.effectType = c::effect::VANISH;
 					break;
 			}
@@ -154,7 +153,7 @@ void	createBomb(entt::DefaultRegistry &r, glm::vec3 pos)
 	r.assign<c::TimedEffect>(bomb, 3.0f, c::effect::EXPLOAD);
 }
 
-void	systems::Player(entt::DefaultRegistry &registry, Window &window, Engine::KeyBind bind,
+void	systems::Player(entt::DefaultRegistry& registry, Window& window, Engine::KeyBind bind,
 			Camera& cam, double dt)
 {
 	auto view = registry.view<c::Player, c::Position, c::Velocity, c::Model>();
@@ -203,9 +202,22 @@ void	systems::Player(entt::DefaultRegistry &registry, Window &window, Engine::Ke
 	}
 }
 
+//! Lighting
+
+void	systems::Lighting(entt::DefaultRegistry& r, double dt)
+{
+	auto view = r.view<c::Lighting>();
+
+	for (auto e : view)
+	{
+		auto& light = view.get(e);
+		light.falloff += light.falloffDelta * dt;
+	}
+}
+
 //! Velocity
 
-void    checkCollisions(glm::vec3 &pos, glm::vec3 &v, systems::Collisions &cells, double dt)
+static void    checkCollisions(glm::vec3 &pos, glm::vec3 &v, systems::Collisions &cells, double dt)
 {
         if (v.y > 0 && !cells.isEmpty(pos.x, pos.y + 1))
         {
@@ -268,18 +280,24 @@ systems::Collisions::Collisions(void) {}
 
 bool	systems::Collisions::isEmpty(float x, float y) const
 {
-	uint32_t xi, yi;
+	int32_t xi, yi;
+	uint64_t key;
 	xi = round(x);
 	yi = round(y);
-	return _cells.count((uint64_t)xi << 32 | yi) != 1;
+	std::memmove(&key, &yi, 4);
+	std::memmove((uint32_t*)(&key) + 1, &xi, 4);
+	return _cells.count(key) != 1;
 }
 
 uint32_t	systems::Collisions::get(float x, float y)
 {
-	uint32_t xi, yi;
+	int32_t xi, yi;
+	uint64_t key;
 	xi = round(x);
 	yi = round(y);
-	return _cells[(uint64_t)xi << 32 | yi];
+	std::memmove(&key, &yi, 4);
+	std::memmove((uint32_t*)(&key) + 1, &xi, 4);
+	return _cells[key];
 }
 
 void	systems::Collisions::operator()(entt::DefaultRegistry& registry)
@@ -287,19 +305,20 @@ void	systems::Collisions::operator()(entt::DefaultRegistry& registry)
 	_cells.clear();
 	auto view = registry.view<c::Collide, c::Position>();
 
-	uint32_t x, y;
+	int32_t xi, yi;
 	for (auto entity : view)
 	{
 		auto& pos = view.get<c::Position>(entity).pos;
-		x = round(pos.x);
-		y = round(pos.y);
-		_cells[(uint64_t)x << 32 | y] = entity;
+		uint64_t key;
+		xi = round(pos.x);
+		yi = round(pos.y);
+		std::memmove(&key, &yi, 4);
+		std::memmove((uint32_t*)(&key) + 1, &xi, 4);
+		_cells[key] = entity;
 	}
 }
 
 //! Render particles
-
-#include <typeinfo>
 
 void	systems::RenderParticles(entt::DefaultRegistry &registry, Camera &cam)
 {
@@ -307,11 +326,10 @@ void	systems::RenderParticles(entt::DefaultRegistry &registry, Camera &cam)
 	
 	for (auto entity : view)
 	{
-		glm::vec3 &pos = view.get<c::Position>(entity).pos;
+		glm::vec3 pos = view.get<c::Position>(entity).pos;
 		IParticle *particles = view.get<c::Particles>(entity).particle;
 		float duration = view.get<c::Particles>(entity).duration;
 		float time = view.get<c::TimedEffect>(entity).timeLeft;
-
 		particles->Render(cam.Perspective(), pos, duration - time);
 	}
 }
@@ -334,14 +352,12 @@ static void	spread_explosion(entt::DefaultRegistry &r, systems::Collisions& cell
 		if (r.valid(e))
 			r.destroy(e);
 	}
-
 	auto ex = r.create();
 	r.assign<c::Explosion>(ex, spread, d);
-	r.assign<c::Particles>(ex, explosionEffect, 1.0f);
-        r.assign<c::Position>(ex, glm::vec3(x, y, 0));
-//	r.assign<c::Lighting>(ex, glm::vec3(1, 0.6, 0), 1.0f, glm::vec3(0, 0, 2));
-	r.assign<c::TimedEffect>(ex, 1.0f);
-	r.assign<c::Collide>(ex);
+	r.assign<c::Particles>(ex, explosionEffect, 2.0f);
+	r.assign<c::Position>(ex, glm::vec3(x, y, 0));
+	r.assign<c::Lighting>(ex, glm::vec3(1, 0.6, 0), 2.0f, glm::vec3(0, 0, 2), -1.0f);
+	r.assign<c::TimedEffect>(ex, 2.0f);
 }
 
 void	systems::Explosion(entt::DefaultRegistry &registry, systems::Collisions& cells,
@@ -351,11 +367,13 @@ void	systems::Explosion(entt::DefaultRegistry &registry, systems::Collisions& ce
 
 	for (auto entity : view)
 	{
-		auto& ex = view.get<c::Explosion>(entity);
-		glm::vec3 &pos = view.get<c::Position>(entity).pos;
+		auto ex = view.get<c::Explosion>(entity);
+
+		glm::vec3 pos = view.get<c::Position>(entity).pos;
 		if (ex.spread < 1)
 		{
-			registry.remove<c::Explosion>(entity);
+			if (registry.valid(entity))
+				registry.remove<c::Explosion>(entity);
 			continue;
 		}
 		ex.spread -= 1;
@@ -367,5 +385,7 @@ void	systems::Explosion(entt::DefaultRegistry &registry, systems::Collisions& ce
 			spread_explosion(registry, cells, ex.spread, pos.x, pos.y + 1, c::Direction::UP, expl);
 		if (ex.dir == c::Direction::NONE || ex.dir == c::Direction::DOWN)
 			spread_explosion(registry, cells, ex.spread, pos.x, pos.y - 1, c::Direction::DOWN, expl);
+		if (registry.valid(entity))
+			registry.remove<c::Explosion>(entity);
 	}
 }

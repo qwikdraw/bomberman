@@ -2,7 +2,7 @@ meshes/rock.obj
 textures/rock.png
 
 	Material:
-	200 specular
+	150 specular
 	10 diffuse
 	4000 fog
 	0 0 0 fogcol

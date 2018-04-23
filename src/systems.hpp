@@ -22,7 +22,7 @@
 
 namespace systems
 {
-	//! requires: Model, Position
+	//! requires: Model, Position [Lighting]
 	void	RenderModels(entt::DefaultRegistry&, entt::ResourceCache<Model>&, Window&, Camera&);
 
 	//! requires: TimedEffect
@@ -42,7 +42,10 @@ namespace systems
 		void operator()(entt::DefaultRegistry&);
 	};
 
-	//! requires: Position, Velocity [, Collide]
+	//! requires: Lighting; Applies falloff delta
+	void	Lighting(entt::DefaultRegistry&, double dt);
+
+	//! requires: Position, Velocity [Collide]
 	void	Velocity(entt::DefaultRegistry&, Collisions&, double dt);
 
 	//! requires: Player, Position, Velocity, Model
