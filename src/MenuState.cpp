@@ -3,6 +3,7 @@
 #include "components.hpp"
 #include "bomberman.hpp"
 #include "systems.hpp"
+#include "Text.hpp"
 
 namespace c = components;
 
@@ -26,5 +27,7 @@ MenuState::~MenuState(void) {}
 
 void MenuState::Update(double dt)
 {
+	Text t("abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRZTUVWXYZ 1234567890");
 	systems::Buttons(_registry, _imageCache, _window, dt);
+	t.Render(_window.GetAspect());
 }
