@@ -24,17 +24,15 @@ static void spawn_player(entt::DefaultRegistry &r, int x, int y)
 	r.assign<c::Position>(player, glm::vec3(x, y, 0));
 	r.assign<c::Velocity>(player);
 	r.assign<c::Collide>(player, 1);
-	r.assign<c::Lighting>(player, glm::vec3(1, 1, 1), 3.0f, glm::vec3(0, 0, 2));
 }
 
 static void spawn_wall(entt::DefaultRegistry &r, std::string type, int x, int y)
 {
 	auto wall = r.create();
 	r.assign<c::Model>(wall, type, glm::mat4(1));
-	r.assign<c::Collide>(wall);
+	r.assign<c::Collide>(wall, 100000);
 	r.assign<c::Position>(wall, glm::vec3(x, y, 0));
 }
-
 
 static void spawn_crate(entt::DefaultRegistry &r, int x, int y)
 {
@@ -53,7 +51,6 @@ static void spawn_col(entt::DefaultRegistry &r, std::string type, int x, int y)
 	r.assign<c::Position>(wall, glm::vec3(x, y, 0));
 }
 
-
 static void spawn_floor(entt::DefaultRegistry& r, int x, int y)
 {
 	auto floor = r.create();
@@ -64,8 +61,8 @@ static void spawn_floor(entt::DefaultRegistry& r, int x, int y)
 void spawn_static_lights(entt::DefaultRegistry &r)
 {
 	auto light = r.create();
-	r.assign<c::Position>(light, glm::vec3(5, 5, 20));
-	r.assign<c::Lighting>(light, glm::vec3(1, 1, 1), 10.0f);
+	r.assign<c::Position>(light, glm::vec3(0, 0, 20));
+	r.assign<c::Lighting>(light, glm::vec3(1.3, 1.3, 1.3), 10000.0f);
 }
 
 void	generate_level(entt::DefaultRegistry &r, int w, int h)
@@ -105,5 +102,5 @@ void	generate_level(entt::DefaultRegistry &r, int w, int h)
 		}
 	}
 	spawn_player(r, -w + 1, -h + 1);
-//	spawn_static_lights(r);
+	spawn_static_lights(r);
 }

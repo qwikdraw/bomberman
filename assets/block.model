@@ -2,7 +2,7 @@ meshes/block.obj
 textures/wall.png
 
 	Material:
-	200 specular
+	0 specular
 	1 diffuse
 	4000 fog
 	0 0 0 fogcol
