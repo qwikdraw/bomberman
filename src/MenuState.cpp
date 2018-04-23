@@ -13,7 +13,7 @@ _engine(e), _window(e.window)
 	auto entity = _registry.create();	
 
 	auto nextstate = [this](){
-		_engine.ChangeState(new TestState(_engine));
+		_engine.PushState(new TestState(_engine));
 	};
 	
 	_registry.assign<c::Button>(entity,

@@ -5,14 +5,16 @@
 TestState::TestState(Engine& e) :
 _engine(e), _window(e.window)
 {
+	std::cout << "test" << std::endl;	
 	_camera.Move(glm::vec3(0, -10, 20));
 	_camera.Rotate(glm::vec3(0, 0, 1), 90);
 	_camera.Rotate(glm::vec3(0, 1, 0), 64);
 	
 	generate_level(_registry, 12, 12);
+	std::cout << "gen" << std::endl;
 
 	_explosion = new ParticleExplosion(1.0f);
-		
+
 	glClearColor(0.2, 0.25, 0.29, 1.0);
 }
 
