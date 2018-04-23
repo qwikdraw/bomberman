@@ -52,7 +52,7 @@ void	ParticleExplosion::Render(std::pair<glm::mat4, glm::mat4> perspective,
 	}
 	for (size_t i = 0; i < colorAttrib.size(); i += 4)
 	{
-		glm::vec3 col = _colors[i / 4] * (_duration - time * 1.05) / (_duration);
+		glm::vec3 col = _colors[i / 4] * (_duration - time * 0.9) / (_duration);
 
 		col.y *= sqrt((_duration - time) / _duration);
 		
