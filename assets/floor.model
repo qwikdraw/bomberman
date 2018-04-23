@@ -1,5 +1,5 @@
 meshes/floor.obj
-textures/grass_stones.png
+textures/grass.png
 
 	Material:
         200 specular

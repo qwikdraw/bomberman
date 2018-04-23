@@ -77,7 +77,6 @@ void	systems::TimedEffect(entt::DefaultRegistry &registry, double dt)
 					break;
 				case c::effect::EXPLOAD:
 					registry.assign<c::Explosion>(entity, 4);
-					te.timeLeft = 0.2f;
 					te.effectType = c::effect::VANISH;
 					break;
 			}
@@ -359,7 +358,6 @@ static void	spread_explosion(entt::DefaultRegistry &r, systems::Collisions& cell
 	r.assign<c::Position>(ex, glm::vec3(x, y, 0));
 	r.assign<c::Lighting>(ex, glm::vec3(1, 0.6, 0), 2.0f, glm::vec3(0, 0, 2), -1.0f);
 	r.assign<c::TimedEffect>(ex, 2.0f);
-	r.assign<c::Collide>(ex);
 }
 
 void	systems::Explosion(entt::DefaultRegistry &registry, systems::Collisions& cells,
@@ -371,7 +369,7 @@ void	systems::Explosion(entt::DefaultRegistry &registry, systems::Collisions& ce
 	{
 		auto ex = view.get<c::Explosion>(entity);
 
-		glm::vec3 &pos = view.get<c::Position>(entity).pos;
+		glm::vec3 pos = view.get<c::Position>(entity).pos;
 		if (ex.spread < 1)
 		{
 			if (registry.valid(entity))
