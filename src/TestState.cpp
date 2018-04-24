@@ -21,7 +21,7 @@ TestState::~TestState(void)
 
 void TestState::Update(double dt)
 {
-	_cellQuery.Update();
+	_cellQuery.Update(_registry);
 	
 	systems::RenderModels(_registry, _modelCache, _window, _camera);
 	systems::TimedEffect(_registry, dt);
@@ -32,5 +32,5 @@ void TestState::Update(double dt)
 	systems::Explosion(_registry, _cellQuery, _explosion);
 	systems::AI(_registry, _window, dt);
 	systems::Lighting(_registry, dt);
-
+	systems::DangerCheck(_registry, _cellQuery);
 }

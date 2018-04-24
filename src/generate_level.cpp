@@ -24,6 +24,7 @@ static void spawn_player(entt::DefaultRegistry &r, int x, int y)
 	r.assign<c::Position>(player, glm::vec3(x, y, 0));
 	r.assign<c::Velocity>(player);
 	r.assign<c::Collide>(player, 1);
+	r.assign<c::Vulnerable>(player);
 }
 
 static void spawn_wall(entt::DefaultRegistry &r, std::string type, int x, int y)
@@ -38,8 +39,9 @@ static void spawn_crate(entt::DefaultRegistry &r, int x, int y)
 {
 	auto e = r.create();
 	r.assign<c::Model>(e, "crate", random_direction());
-	r.assign<c::Collide>(e, 1);
+	r.assign<c::Collide>(e, 10);
 	r.assign<c::Position>(e, glm::vec3(x, y, 0));
+	r.assign<c::Vulnerable>(e, 10);
 }
 
 static void spawn_col(entt::DefaultRegistry &r, std::string type, int x, int y)
@@ -47,7 +49,7 @@ static void spawn_col(entt::DefaultRegistry &r, std::string type, int x, int y)
 	auto wall = r.create();
 	glm::mat4 rot(1);
 	r.assign<c::Model>(wall, type, random_direction());
-	r.assign<c::Collide>(wall);
+	r.assign<c::Collide>(wall, 20);
 	r.assign<c::Position>(wall, glm::vec3(x, y, 0));
 }
 

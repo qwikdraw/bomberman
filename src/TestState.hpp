@@ -11,6 +11,7 @@
 #include "systems.hpp"
 #include "components.hpp"
 #include "TestParticle.hpp"
+#include "Cells.hpp"
 
 namespace c = components;
 

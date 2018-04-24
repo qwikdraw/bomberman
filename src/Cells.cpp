@@ -28,7 +28,7 @@ int	systems::Cells::Danger(float x, float y)
 	return _dangerLevel[key];
 }
 
-void	systems::Cells::Update(entt::DefaultRegistry&)
+void	systems::Cells::Update(entt::DefaultRegistry& registry)
 {
 	_collisionHeight.clear();
 	_dangerLevel.clear();
@@ -56,7 +56,7 @@ void	systems::Cells::Update(entt::DefaultRegistry&)
 	for (auto entity : dangerous)
 	{
 		glm::vec3& pos = dangerous.get<c::Position>(entity).pos;
-		int dangerLevel = collidables.get<c::Dangerous>(entity).dangerLevel;
+		int dangerLevel = dangerous.get<c::Dangerous>(entity).dangerLevel;
 		uint64_t key;
 
 		xi = round(pos.x);

@@ -9,6 +9,7 @@
 #include <cstdint>
 #include <unordered_map>
 #include "ParticleExplosion.hpp"
+#include "Cells.hpp"
 
 #define ASSET_PATH "assets/"
 #define MODEL_PREFIX ".model"
@@ -55,7 +56,7 @@ namespace systems
 	void	Lighting(entt::DefaultRegistry&, double dt);
 
 	//! requires: Position, Velocity [Collide]
-	void	Velocity(entt::DefaultRegistry&, Collisions&, double dt);
+	void	Velocity(entt::DefaultRegistry&, Cells&, double dt);
 
 	//! requires: Player, Position, Velocity, Model
 	void	Player(entt::DefaultRegistry&, Window&, Engine::KeyBind, Camera&, double dt);
@@ -65,11 +66,11 @@ namespace systems
 
 
 	//! requires: Explosion
-	void	Explosion(entt::DefaultRegistry&, Collisions&, ParticleExplosion*);
+	void	Explosion(entt::DefaultRegistry&, Cells&, ParticleExplosion*);
 
 	//! making AI
 	void	AI(entt::DefaultRegistry&, Window&, double dt);
 
 	//! requires: Vulnerable, Position [Dangerous]
-	void	DangerCheck(entt::DefaultRegistry&, DangerLevels&);
+	void	DangerCheck(entt::DefaultRegistry&, Cells&);
 };
