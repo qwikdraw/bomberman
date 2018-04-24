@@ -42,6 +42,15 @@ namespace systems
 		void operator()(entt::DefaultRegistry&);
 	};
 
+	class	DangerLevels
+	{
+		std::unordered_map<uint64_t, int> _cells;
+	public:
+		DangerLevels(void);
+		int	get(float x, float y);
+		void	operator()(entt::DefaultRegistry&);
+	};
+	
 	//! requires: Lighting; Applies falloff delta
 	void	Lighting(entt::DefaultRegistry&, double dt);
 
@@ -60,4 +69,7 @@ namespace systems
 
 	//! making AI
 	void	AI(entt::DefaultRegistry&, Window&, double dt);
+
+	//! requires: Vulnerable, Position [Dangerous]
+	void	DangerCheck(entt::DefaultRegistry&, DangerLevels&);
 };

@@ -21,14 +21,15 @@ TestState::~TestState(void)
 
 void TestState::Update(double dt)
 {
-	_cells(_registry);
+	_cellQuery.Update();
+	
 	systems::RenderModels(_registry, _modelCache, _window, _camera);
 	systems::TimedEffect(_registry, dt);
 	systems::Buttons(_registry, _imageCache, _window, dt);
 	systems::Player(_registry, _window, _engine.keyBind, _camera, dt);
-	systems::Velocity(_registry, _cells, dt);
+	systems::Velocity(_registry, _cellQuery, dt);
 	systems::RenderParticles(_registry, _camera);
-	systems::Explosion(_registry, _cells, _explosion);
+	systems::Explosion(_registry, _cellQuery, _explosion);
 	systems::AI(_registry, _window, dt);
 	systems::Lighting(_registry, dt);
 

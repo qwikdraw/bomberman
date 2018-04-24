@@ -22,7 +22,7 @@ class TestState : public IState
 	entt::DefaultRegistry _registry;
 	entt::ResourceCache<Model> _modelCache;
 	entt::ResourceCache<Sprite2D> _imageCache;
-	systems::Collisions _cells;
+	systems::Cells _cellQuery;
 
 	ParticleExplosion *_explosion;
 	

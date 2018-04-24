@@ -217,42 +217,42 @@ void	systems::Lighting(entt::DefaultRegistry& r, double dt)
 
 //! Velocity
 
-static void    checkCollisions(glm::vec3 &pos, glm::vec3 &v, systems::Collisions &cells, double dt)
+static void    checkCollisions(glm::vec3 &pos, glm::vec3 &v, systems::Cells &cells, double dt, int height)
 {
-        if (v.y > 0 && !cells.isEmpty(pos.x, pos.y + 1))
-        {
-                if (pos.y > roundf(pos.y))
-                        v.y = 0;
-        }
-        if (v.y < 0 && !cells.isEmpty(pos.x, pos.y - 1))
-        {
-                if (pos.y < roundf(pos.y))
-                        v.y = 0;
-        }
-        if (v.x > 0 && !cells.isEmpty(pos.x + 1, pos.y))
-        {
-                if (pos.x > roundf(pos.x))
-                        v.x = 0;
-        }
-        if (v.x < 0 && !cells.isEmpty(pos.x - 1, pos.y))
-        {
-                if (pos.x < roundf(pos.x))
-                        v.x = 0;
-        }
+	if (v.y > 0 && height <= cells.Collision(pos.x, pos.y + 1))
+	{
+		if (pos.y > roundf(pos.y))
+			v.y = 0;
+	}
+	if (v.y < 0 && height <= cells.Collision(pos.x, pos.y - 1))
+	{
+		if (pos.y < roundf(pos.y))
+			v.y = 0;
+	}
+	if (v.x > 0 && height <= cells.Collision(pos.x + 1, pos.y))
+	{
+		if (pos.x > roundf(pos.x))
+			v.x = 0;
+	}
+	if (v.x < 0 && height <= cells.Collision(pos.x - 1, pos.y))
+	{
+		if (pos.x < roundf(pos.x))
+			v.x = 0;
+	}
 
-        //re-align
+	//re-align
 
-        if (v.x)
-        {
-                v.y = (roundf(pos.y) - pos.y) * dt * 10;
-        }
-        else if (v.y)
-        {
-                v.x = (roundf(pos.x) - pos.x) * dt * 10;
-        }
+	if (v.x)
+	{
+		v.y = (roundf(pos.y) - pos.y) * dt * 10;
+	}
+	else if (v.y)
+	{
+		v.x = (roundf(pos.x) - pos.x) * dt * 10;
+	}
 }
 
-void	systems::Velocity(entt::DefaultRegistry& registry, systems::Collisions &cells, double dt)
+void	systems::Velocity(entt::DefaultRegistry& registry, systems::Cells &cells, double dt)
 {
 	auto coll = registry.view<c::Velocity, c::Position, c::Collide>();
 
@@ -260,8 +260,9 @@ void	systems::Velocity(entt::DefaultRegistry& registry, systems::Collisions &cel
 	{
 		glm::vec3 &pos = coll.get<c::Position>(entity).pos;
 		glm::vec3 &v = coll.get<c::Velocity>(entity).v;
+		int height = coll.get<c::Collide>(entity).height;
 
-		checkCollisions(pos, v, cells, dt);
+		checkCollisions(pos, v, cells, dt, height);
 	}
 	
 	auto view = registry.view<c::Velocity, c::Position>();
@@ -271,50 +272,6 @@ void	systems::Velocity(entt::DefaultRegistry& registry, systems::Collisions &cel
 		glm::vec3 &moveAmount = view.get<c::Velocity>(entity).v;
 		glm::vec3 &pos = view.get<c::Position>(entity).pos;
 		pos += moveAmount;
-	}
-}
-
-//! Collisions
-
-systems::Collisions::Collisions(void) {}
-
-bool	systems::Collisions::isEmpty(float x, float y) const
-{
-	int32_t xi, yi;
-	uint64_t key;
-	xi = round(x);
-	yi = round(y);
-	std::memmove(&key, &yi, 4);
-	std::memmove((uint32_t*)(&key) + 1, &xi, 4);
-	return _cells.count(key) != 1;
-}
-
-uint32_t	systems::Collisions::get(float x, float y)
-{
-	int32_t xi, yi;
-	uint64_t key;
-	xi = round(x);
-	yi = round(y);
-	std::memmove(&key, &yi, 4);
-	std::memmove((uint32_t*)(&key) + 1, &xi, 4);
-	return _cells[key];
-}
-
-void	systems::Collisions::operator()(entt::DefaultRegistry& registry)
-{
-	_cells.clear();
-	auto view = registry.view<c::Collide, c::Position>();
-
-	int32_t xi, yi;
-	for (auto entity : view)
-	{
-		auto& pos = view.get<c::Position>(entity).pos;
-		uint64_t key;
-		xi = round(pos.x);
-		yi = round(pos.y);
-		std::memmove(&key, &yi, 4);
-		std::memmove((uint32_t*)(&key) + 1, &xi, 4);
-		_cells[key] = entity;
 	}
 }
 
@@ -432,3 +389,21 @@ void	systems::AI(entt::DefaultRegistry &registry, Window &window, double dt)
 	}
 }
 
+// Dangerous and vunerable entity resolution
+
+void	systems::DangerCheck(entt::DefaultRegistry &registry, DangerLevels& dangerLevels)
+{
+	auto view = registry.view<c::Vulnerable, c::Position>();
+
+	for (auto entity : view)
+	{
+		int dangerResist = view.get<c::Vulnerable>(entity).dangerResist;
+		auto& onDeath = view.get<c::Vulnerable>(entity).onDeath;
+		const glm::vec3& pos = view.get<c::Position>(entity).pos;
+
+		if (dangerResist < dangerLevels.get(pos.x, pos.y))
+		{
+			onDeath();
+		}
+	}
+}

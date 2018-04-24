@@ -91,4 +91,15 @@ namespace components
 		double moveCooldown;
 		Direction dir = Direction::NONE;
 	};
+
+	struct Dangerous
+	{
+		int dangerLevel = 1;
+	};
+
+	struct Vulnerable
+	{
+		std::function<void()> onDeath;
+		int dangerResist = 0;
+	};
 };
