@@ -102,4 +102,9 @@ namespace components
 		std::function<void()> onDeath;
 		int dangerResist = 0;
 	};
+
+	struct Powerup
+	{
+		std::function<void(Player&)> effect;
+	};
 };

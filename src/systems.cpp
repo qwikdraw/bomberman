@@ -164,7 +164,7 @@ void	createBomb(entt::DefaultRegistry &r, glm::vec3 pos)
 }
 
 void	systems::Player(entt::DefaultRegistry& registry, Window& window, Engine::KeyBind bind,
-			Camera& cam, double dt)
+			Cells& cells, Camera& cam, double dt)
 {
 	auto view = registry.view<c::Player, c::Position, c::Velocity, c::Model>();
 
@@ -175,6 +175,8 @@ void	systems::Player(entt::DefaultRegistry& registry, Window& window, Engine::Ke
 		glm::vec3 &pos = view.get<c::Position>(entity).pos;
 		glm::mat4 &transform = view.get<c::Model>(entity).transform;
 
+		cells.Powerup(pos.x, pos.y)(player);
+		
 		glm::vec3 v(0, 0, 0);
 		
 		if (window.Key(bind.up))

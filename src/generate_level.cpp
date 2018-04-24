@@ -47,7 +47,6 @@ static void spawn_crate(entt::DefaultRegistry &r, int x, int y, ParticleExplosio
 	
 	auto crateDestruction = [&r, e, expl, x, y]()
 	{
-		r.destroy(e);
 		auto fire = r.create();
 
 		r.assign<c::Position>(fire, glm::vec3(x, y, 0));
@@ -55,6 +54,28 @@ static void spawn_crate(entt::DefaultRegistry &r, int x, int y, ParticleExplosio
 		r.assign<c::Dangerous>(fire, 100);
 		r.assign<c::Particles>(fire, expl, 2.0f);
 		r.assign<c::TimedEffect>(fire, 2.0f);
+
+		//powerup spawn
+		if (glm::linearRand(0.0f, 1.0f) < 0.5f)
+		{
+			r.destroy(e);
+			return;
+		}
+		
+		auto pow = r.create();
+
+		auto effect = [&r, pow](c::Player& p)
+		{
+			p.speed += 1;
+			r.destroy(pow);
+		};
+		
+		r.assign<c::Position>(pow, glm::vec3(x, y, 0));
+		r.assign<c::Lighting>(pow, glm::vec3(0, 1, 0.5), 0.5f);
+		r.assign<c::Powerup>(pow, effect);
+		r.assign<c::Model>(pow, "block", glm::mat4(1));
+		
+		r.destroy(e);
 	};
 	
 	r.assign<c::Model>(e, "crate", random_direction());

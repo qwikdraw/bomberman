@@ -27,7 +27,7 @@ void TestState::Update(double dt)
 	systems::RenderModels(_registry, _modelCache, _window, _camera);
 	systems::TimedEffect(_registry, dt);
 	systems::Buttons(_registry, _imageCache, _window, dt);
-	systems::Player(_registry, _window, _engine.keyBind, _camera, dt);
+	systems::Player(_registry, _window, _engine.keyBind, _cellQuery, _camera, dt);
 	systems::Velocity(_registry, _cellQuery, dt);
 	systems::RenderParticles(_registry, _camera);
 	systems::Explosion(_registry, _cellQuery, _explosion);
