@@ -152,7 +152,7 @@ void	createBomb(entt::DefaultRegistry &r, glm::vec3 pos)
 	{
 		auto ex = r.create();
 		r.assign<c::Explosion>(ex, 4);
-		r.assign<c::Position>(ex, pos);
+		r.assign<c::Position>(ex, glm::round(pos));
 		r.destroy(bomb);
 	};
 	
@@ -297,6 +297,7 @@ void	systems::RenderParticles(entt::DefaultRegistry &registry, Camera &cam)
 		IParticle *particles = view.get<c::Particles>(entity).particle;
 		float duration = view.get<c::Particles>(entity).duration;
 		float time = view.get<c::TimedEffect>(entity).timeLeft;
+
 		particles->Render(cam.Perspective(), pos, duration - time);
 	}
 }
@@ -310,7 +311,7 @@ static void	add_fire(entt::DefaultRegistry &r,
 	auto fire = r.create();
 
 	r.assign<c::Position>(fire, glm::vec3(x, y, 0));
-	r.assign<c::Lighting>(fire, glm::vec3(0.5, 0.2, 0), 2.0f, glm::vec3(0, 0, 2), -2.0f);
+	r.assign<c::Lighting>(fire, glm::vec3(0.5, 0.2, 0), 2.0f, glm::vec3(0, 0, 2), -1.0f);
 	r.assign<c::Dangerous>(fire, 100);
 	r.assign<c::Particles>(fire, expl, 2.0f);
 	r.assign<c::TimedEffect>(fire, 2.0f);

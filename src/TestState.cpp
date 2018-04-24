@@ -9,9 +9,10 @@ _engine(e), _window(e.window)
 	_camera.Rotate(glm::vec3(0, 0, 1), 90);
 	_camera.Rotate(glm::vec3(0, 1, 0), 64);
 	
-	generate_level(_registry, 16, 16);
-
 	_explosion = new ParticleExplosion(2.0f);
+	
+	generate_level(_registry, 16, 16, _explosion);
+
 	glClearColor(0.2, 0.25, 0.29, 1.0);
 }
 

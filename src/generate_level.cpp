@@ -41,13 +41,20 @@ static void spawn_wall(entt::DefaultRegistry &r, std::string type, int x, int y)
 	r.assign<c::Position>(wall, glm::vec3(x, y, 0));
 }
 
-static void spawn_crate(entt::DefaultRegistry &r, int x, int y)
+static void spawn_crate(entt::DefaultRegistry &r, int x, int y, ParticleExplosion *expl)
 {
 	auto e = r.create();
 	
-	auto crateDestruction = [&r, e]()
+	auto crateDestruction = [&r, e, expl, x, y]()
 	{
 		r.destroy(e);
+		auto fire = r.create();
+
+		r.assign<c::Position>(fire, glm::vec3(x, y, 0));
+		r.assign<c::Lighting>(fire, glm::vec3(1, 1, 1), 2.0f, glm::vec3(0, 0, 2), -1.0f);
+		r.assign<c::Dangerous>(fire, 100);
+		r.assign<c::Particles>(fire, expl, 2.0f);
+		r.assign<c::TimedEffect>(fire, 2.0f);
 	};
 	
 	r.assign<c::Model>(e, "crate", random_direction());
@@ -79,7 +86,7 @@ void spawn_static_lights(entt::DefaultRegistry &r)
 	r.assign<c::Lighting>(light, glm::vec3(1.3, 1.3, 1.3), 10000.0f);
 }
 
-void	generate_level(entt::DefaultRegistry &r, int w, int h)
+void	generate_level(entt::DefaultRegistry &r, int w, int h, ParticleExplosion *expl)
 {
 	w /= 2;
 	h /= 2;
@@ -110,7 +117,7 @@ void	generate_level(entt::DefaultRegistry &r, int w, int h)
 			else
 			{
 				if (should_crate(rng) == 0)
-					spawn_crate(r, x, y);
+					spawn_crate(r, x, y, expl);
 			}
 			spawn_floor(r, x, y);
 		}
