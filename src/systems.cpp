@@ -147,10 +147,20 @@ void	systems::Buttons(entt::DefaultRegistry &registry,
 void	createBomb(entt::DefaultRegistry &r, glm::vec3 pos)
 {
 	auto bomb = r.create();
+
+	auto explode = [bomb, &r, pos]()
+	{
+		auto ex = r.create();
+		r.assign<c::Explosion>(ex, 4);
+		r.assign<c::Position>(ex, pos);
+		r.destroy(bomb);
+	};
+	
 	r.assign<c::Model>(bomb, "bomb", glm::mat4(1));
 	r.assign<c::Position>(bomb, glm::round(pos));
 	r.assign<c::Collide>(bomb);
 	r.assign<c::TimedEffect>(bomb, 3.0f, c::effect::EXPLOAD);
+	r.assign<c::Vulnerable>(bomb, explode, 50);
 }
 
 void	systems::Player(entt::DefaultRegistry& registry, Window& window, Engine::KeyBind bind,
@@ -421,13 +431,13 @@ void	systems::DangerCheck(entt::DefaultRegistry &registry, Cells& cells)
 	for (auto entity : view)
 	{
 		int dangerResist = view.get<c::Vulnerable>(entity).dangerResist;
-//		auto& onDeath = view.get<c::Vulnerable>(entity).onDeath;
+		auto& onDeath = view.get<c::Vulnerable>(entity).onDeath;
 		const glm::vec3& pos = view.get<c::Position>(entity).pos;
 
 		if (dangerResist < cells.Danger(pos.x, pos.y))
 		{
-			registry.destroy(entity); // just for testing...
-//			onDeath();
+//			registry.destroy(entity); // just for testing...
+			onDeath();
 		}
 	}
 }

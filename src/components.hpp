@@ -99,8 +99,7 @@ namespace components
 
 	struct Vulnerable
 	{
-//		std::function<void()> onDeath;
-//		function removed for testing...
+		std::function<void()> onDeath;
 		int dangerResist = 0;
 	};
 };
