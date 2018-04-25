@@ -9,6 +9,7 @@
 #include <cstdint>
 #include <unordered_map>
 #include "ParticleExplosion.hpp"
+#include "Cells.hpp"
 
 #define ASSET_PATH "assets/"
 #define MODEL_PREFIX ".model"
@@ -31,33 +32,25 @@ namespace systems
 	//! requires: Button
 	void	Buttons(entt::DefaultRegistry&, entt::ResourceCache<Sprite2D>&, Window&, double dt);
 
-	//! requires: Position, Collide
-	class  Collisions
-	{
-		std::unordered_map<uint64_t, uint32_t> _cells;
-	public:
-		Collisions(void);
-		bool isEmpty(float x, float y) const;
-		uint32_t get(float x, float y);
-		void operator()(entt::DefaultRegistry&);
-	};
-
 	//! requires: Lighting; Applies falloff delta
 	void	Lighting(entt::DefaultRegistry&, double dt);
 
 	//! requires: Position, Velocity [Collide]
-	void	Velocity(entt::DefaultRegistry&, Collisions&, double dt);
+	void	Velocity(entt::DefaultRegistry&, Cells&, double dt);
 
 	//! requires: Player, Position, Velocity, Model
-	void	Player(entt::DefaultRegistry&, Window&, Engine::KeyBind, Camera&, double dt);
+	void	Player(entt::DefaultRegistry&, Window&, Engine::KeyBind, Cells&, Camera&, double dt);
 
 	//! requires: Particles, Position, TimedEffect
 	void	RenderParticles(entt::DefaultRegistry&, Camera&);	
 
 
 	//! requires: Explosion
-	void	Explosion(entt::DefaultRegistry&, Collisions&, ParticleExplosion*);
+	void	Explosion(entt::DefaultRegistry&, Cells&, ParticleExplosion*);
 
 	//! making AI
 	void	AI(entt::DefaultRegistry&, Window&, double dt);
+
+	//! requires: Vulnerable, Position [Dangerous]
+	void	DangerCheck(entt::DefaultRegistry&, Cells&);
 };

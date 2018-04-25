@@ -29,7 +29,8 @@ Engine \
 MenuState \
 TestState \
 ParticleExplosion \
-Text
+Text \
+Cells
 
 SRC_DIR = src
 OBJ_DIR = obj
