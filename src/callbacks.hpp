@@ -8,10 +8,16 @@
 namespace callbacks
 {
 	typedef std::function<void(entt::DefaultRegistry&, uint32_t)> callbackType;
-	
+
 	callbackType	explode(int power);
 
-	callbackType	crateOnDeath(void);
+	callbackType	ignite(void);
 
+	callbackType	bomb(int power);
+
+	callbackType	powerup(float spawnChance);
+	
 	callbackType	destroy(void);
 };
+
+callbacks::callbackType	operator + (callbacks::callbackType, callbacks::callbackType);

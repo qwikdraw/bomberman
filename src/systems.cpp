@@ -132,17 +132,6 @@ void	systems::Buttons(entt::DefaultRegistry &registry,
 
 //! player
 
-void	createBomb(entt::DefaultRegistry &r, glm::vec3 pos, int power)
-{
-	auto bomb = r.create();
-	
-	r.assign<c::Model>(bomb, "bomb", glm::mat4(1));
-	r.assign<c::Position>(bomb, glm::round(pos));
-	r.assign<c::Collide>(bomb);
-	r.assign<c::TimedEffect>(bomb, 3.0f, callbacks::explode(power));
-	r.assign<c::Vulnerable>(bomb, callbacks::explode(power), 50);
-}
-
 void	systems::Player(entt::DefaultRegistry& registry, Window& window, Engine::KeyBind bind,
 			Cells& cells, Camera& cam, double dt)
 {
@@ -183,7 +172,7 @@ void	systems::Player(entt::DefaultRegistry& registry, Window& window, Engine::Ke
 		{
 			if (player.bombCooldownTimer <= 0)
 			{
-				createBomb(registry, pos, player.bombPower);
+				callbacks::bomb(player.bombPower)(registry, entity);
 				player.bombCooldownTimer = player.bombCooldown;
 			}
 		}
