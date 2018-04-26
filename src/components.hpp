@@ -27,12 +27,10 @@ namespace components
 		glm::vec2 topRight = glm::vec2(1, 1);
 	};
 
-	enum class effect{EXPLOAD, VANISH};
-	
 	struct TimedEffect
 	{
-		float timeLeft = 0.0f;
-		effect effectType = effect::VANISH;
+		float timeLeft;
+		std::function<void(entt::DefaultRegistry&, uint32_t)> effect;
 	};
 
 	struct Button
@@ -99,12 +97,12 @@ namespace components
 
 	struct Vulnerable
 	{
-		std::function<void()> onDeath;
+		std::function<void(entt::DefaultRegistry&, uint32_t)> onDeath;
 		int dangerResist = 0;
 	};
 
 	struct Powerup
 	{
-		std::function<void(Player&)> effect;
+		std::function<void(entt::DefaultRegistry&, uint32_t, Player&)> effect;
 	};
 };

@@ -30,7 +30,10 @@ MenuState \
 TestState \
 ParticleExplosion \
 Text \
-Cells
+Cells \
+powerups \
+Effects \
+callbacks
 
 SRC_DIR = src
 OBJ_DIR = obj
