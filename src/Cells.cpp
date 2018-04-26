@@ -30,7 +30,7 @@ int	systems::Cells::Danger(float x, float y)
 	return _dangerLevel[key];
 }
 
-std::function<void(c::Player&)>	systems::Cells::Powerup(float x, float y)
+systems::powerType	systems::Cells::Powerup(float x, float y)
 {
 	int32_t xi, yi;
 	uint64_t key;
@@ -40,7 +40,10 @@ std::function<void(c::Player&)>	systems::Cells::Powerup(float x, float y)
 	std::memmove((uint32_t*)(&key) + 1, &xi, 4);
 
 	if (_powerup.count(key) == 0)
-		return [](c::Player&){};
+	{
+		powerType doNothing = [](entt::DefaultRegistry&, uint32_t){};
+		return doNothing;
+	}
 	return _powerup[key];
 }
 
@@ -89,7 +92,7 @@ void	systems::Cells::Update(entt::DefaultRegistry& registry)
 	for (auto entity : powerups)
 	{
 		glm::vec3& pos = powerups.get<c::Position>(entity).pos;
-		auto &effect = powerups.get<c::Powerup>(entity).effect;
+		auto& effect = powerups.get<c::Powerup>(entity).effect;
 		
 		xi = round(pos.x);
 		yi = round(pos.y);

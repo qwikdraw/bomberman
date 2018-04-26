@@ -12,6 +12,7 @@
 #include "components.hpp"
 #include "TestParticle.hpp"
 #include "Cells.hpp"
+#include "Effects.hpp"
 
 namespace c = components;
 
@@ -24,8 +25,6 @@ class TestState : public IState
 	entt::ResourceCache<Model> _modelCache;
 	entt::ResourceCache<Sprite2D> _imageCache;
 	systems::Cells _cellQuery;
-
-	ParticleExplosion *_explosion;
 	
 public:
 	TestState(Engine& engine);

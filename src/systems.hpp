@@ -10,6 +10,8 @@
 #include <unordered_map>
 #include "ParticleExplosion.hpp"
 #include "Cells.hpp"
+#include "Effects.hpp"
+#include "callbacks.hpp"
 
 #define ASSET_PATH "assets/"
 #define MODEL_PREFIX ".model"
@@ -44,9 +46,8 @@ namespace systems
 	//! requires: Particles, Position, TimedEffect
 	void	RenderParticles(entt::DefaultRegistry&, Camera&);	
 
-
 	//! requires: Explosion
-	void	Explosion(entt::DefaultRegistry&, Cells&, ParticleExplosion*);
+	void	Explosion(entt::DefaultRegistry&, Cells&);
 
 	//! making AI
 	void	AI(entt::DefaultRegistry&, Window&, double dt);
