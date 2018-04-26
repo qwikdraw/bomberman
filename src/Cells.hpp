@@ -9,7 +9,7 @@ namespace c = components;
 
 namespace systems
 {
-	typedef std::function<void(entt::DefaultRegistry&, uint32_t, c::Player&)> powerType;
+	typedef std::function<void(entt::DefaultRegistry&, uint32_t)> powerType;
 	class	Cells
 	{
 		std::unordered_map<uint64_t, int> _collisionHeight;

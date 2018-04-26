@@ -41,7 +41,7 @@ systems::powerType	systems::Cells::Powerup(float x, float y)
 
 	if (_powerup.count(key) == 0)
 	{
-		powerType doNothing = [](entt::DefaultRegistry&, uint32_t, c::Player&){};
+		powerType doNothing = [](entt::DefaultRegistry&, uint32_t){};
 		return doNothing;
 	}
 	return _powerup[key];

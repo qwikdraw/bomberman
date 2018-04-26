@@ -9,9 +9,9 @@ namespace callbacks
 {
 	typedef std::function<void(entt::DefaultRegistry&, uint32_t)> callbackType;
 	
-	callbackType	explode(int x, int y);
+	callbackType	explode(int power);
 
-	callbackType	crateOnDeath(int x, int y);
+	callbackType	crateOnDeath(void);
 
 	callbackType	destroy(void);
 };

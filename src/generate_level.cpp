@@ -43,7 +43,7 @@ static void spawn_crate(entt::DefaultRegistry &r, int x, int y)
 	r.assign<c::Model>(e, "crate", random_direction());
 	r.assign<c::Collide>(e, 10);
 	r.assign<c::Position>(e, glm::vec3(x, y, 0));
-	r.assign<c::Vulnerable>(e, callbacks::crateOnDeath(x, y), 10);
+	r.assign<c::Vulnerable>(e, callbacks::crateOnDeath(), 10);
 }
 
 static void spawn_col(entt::DefaultRegistry &r, std::string type, int x, int y)

@@ -5,5 +5,7 @@
 
 namespace powerups
 {
-	void	randomPowerup(entt::DefaultRegistry&, int x, int y);
+	void	randomPowerup(entt::DefaultRegistry&, glm::vec3 pos);
+
+	void	speedBoost(entt::DefaultRegistry&, glm::vec3 pos);
 };

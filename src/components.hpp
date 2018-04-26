@@ -48,6 +48,7 @@ namespace components
 	{
 		double speed;
 		double bombCooldown;
+		int bombPower = 1;
 		double bombCooldownTimer = 0;
 	};
 
@@ -80,7 +81,6 @@ namespace components
 	struct Explosion
 	{
 		int spread = 0;
-		Direction dir = Direction::NONE;
 	};
 
 	struct AI
@@ -103,6 +103,6 @@ namespace components
 
 	struct Powerup
 	{
-		std::function<void(entt::DefaultRegistry&, uint32_t, Player&)> effect;
+		std::function<void(entt::DefaultRegistry&, uint32_t)> effect;
 	};
 };

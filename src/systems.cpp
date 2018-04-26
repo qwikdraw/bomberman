@@ -132,16 +132,15 @@ void	systems::Buttons(entt::DefaultRegistry &registry,
 
 //! player
 
-void	createBomb(entt::DefaultRegistry &r, glm::vec3 pos)
+void	createBomb(entt::DefaultRegistry &r, glm::vec3 pos, int power)
 {
 	auto bomb = r.create();
-	auto explosion = callbacks::explode(glm::round(pos.x), glm::round(pos.y));
 	
 	r.assign<c::Model>(bomb, "bomb", glm::mat4(1));
 	r.assign<c::Position>(bomb, glm::round(pos));
 	r.assign<c::Collide>(bomb);
-	r.assign<c::TimedEffect>(bomb, 3.0f, explosion);
-	r.assign<c::Vulnerable>(bomb, explosion, 50);
+	r.assign<c::TimedEffect>(bomb, 3.0f, callbacks::explode(power));
+	r.assign<c::Vulnerable>(bomb, callbacks::explode(power), 50);
 }
 
 void	systems::Player(entt::DefaultRegistry& registry, Window& window, Engine::KeyBind bind,
@@ -156,7 +155,7 @@ void	systems::Player(entt::DefaultRegistry& registry, Window& window, Engine::Ke
 		glm::vec3 &pos = view.get<c::Position>(entity).pos;
 		glm::mat4 &transform = view.get<c::Model>(entity).transform;
 
-		cells.Powerup(pos.x, pos.y)(registry, entity, player);
+		cells.Powerup(pos.x, pos.y)(registry, entity);
 
 		glm::vec3 v(0, 0, 0);
 		
@@ -184,7 +183,7 @@ void	systems::Player(entt::DefaultRegistry& registry, Window& window, Engine::Ke
 		{
 			if (player.bombCooldownTimer <= 0)
 			{
-				createBomb(registry, pos);
+				createBomb(registry, pos, player.bombPower);
 				player.bombCooldownTimer = player.bombCooldown;
 			}
 		}
