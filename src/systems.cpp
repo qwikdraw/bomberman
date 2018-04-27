@@ -68,19 +68,7 @@ void	systems::TimedEffect(entt::DefaultRegistry &registry, double dt)
 
 		te.timeLeft -= dt;
 		if (te.timeLeft <= 0)
-		{
-			switch (te.effectType)
-			{
-				case c::effect::VANISH:
-					if (registry.valid(entity))
-						registry.destroy(entity);
-					break;
-				case c::effect::EXPLOAD:
-					registry.assign<c::Explosion>(entity, 4);
-					te.effectType = c::effect::VANISH;
-					break;
-			}
-		}
+			te.effect(registry, entity);
 	}
 }
 
@@ -144,25 +132,6 @@ void	systems::Buttons(entt::DefaultRegistry &registry,
 
 //! player
 
-void	createBomb(entt::DefaultRegistry &r, glm::vec3 pos)
-{
-	auto bomb = r.create();
-
-	auto explode = [bomb, &r, pos]()
-	{
-		auto ex = r.create();
-		r.assign<c::Explosion>(ex, 4);
-		r.assign<c::Position>(ex, glm::round(pos));
-		r.destroy(bomb);
-	};
-	
-	r.assign<c::Model>(bomb, "bomb", glm::mat4(1));
-	r.assign<c::Position>(bomb, glm::round(pos));
-	r.assign<c::Collide>(bomb);
-	r.assign<c::TimedEffect>(bomb, 3.0f, c::effect::EXPLOAD);
-	r.assign<c::Vulnerable>(bomb, explode, 50);
-}
-
 void	systems::Player(entt::DefaultRegistry& registry, Window& window, Engine::KeyBind bind,
 			Cells& cells, Camera& cam, double dt)
 {
@@ -175,8 +144,8 @@ void	systems::Player(entt::DefaultRegistry& registry, Window& window, Engine::Ke
 		glm::vec3 &pos = view.get<c::Position>(entity).pos;
 		glm::mat4 &transform = view.get<c::Model>(entity).transform;
 
-		cells.Powerup(pos.x, pos.y)(player);
-		
+		cells.Powerup(pos.x, pos.y)(registry, entity);
+
 		glm::vec3 v(0, 0, 0);
 		
 		if (window.Key(bind.up))
@@ -203,7 +172,7 @@ void	systems::Player(entt::DefaultRegistry& registry, Window& window, Engine::Ke
 		{
 			if (player.bombCooldownTimer <= 0)
 			{
-				createBomb(registry, pos);
+				callbacks::bomb(player.bombPower)(registry, entity);
 				player.bombCooldownTimer = player.bombCooldown;
 			}
 		}
@@ -306,17 +275,15 @@ void	systems::RenderParticles(entt::DefaultRegistry &registry, Camera &cam)
 
 //! Explosion
 
-static void	add_fire(entt::DefaultRegistry &r,
-			 int x, int y,
-			 ParticleExplosion *expl)
+static void	add_fire(entt::DefaultRegistry &r, int x, int y)
 {
 	auto fire = r.create();
 
 	r.assign<c::Position>(fire, glm::vec3(x, y, 0));
 	r.assign<c::Lighting>(fire, glm::vec3(0.5, 0.2, 0), 2.0f, glm::vec3(0, 0, 2), -1.0f);
 	r.assign<c::Dangerous>(fire, 100);
-	r.assign<c::Particles>(fire, expl, 2.0f);
-	r.assign<c::TimedEffect>(fire, 2.0f);
+	r.assign<c::Particles>(fire, Effects::explosion, 2.0f);
+	r.assign<c::TimedEffect>(fire, 2.0f, callbacks::destroy());
 }
 
 static void	add_invisible_fire(entt::DefaultRegistry &r, int x, int y)
@@ -326,11 +293,10 @@ static void	add_invisible_fire(entt::DefaultRegistry &r, int x, int y)
 	r.assign<c::Position>(fire, glm::vec3(x, y, 0));
 	r.assign<c::Lighting>(fire, glm::vec3(0.5, 0.2, 0), 2.0f, glm::vec3(0, 0, 2), 1.2f);
 	r.assign<c::Dangerous>(fire, 100);
-	r.assign<c::TimedEffect>(fire, 0.1f);
+	r.assign<c::TimedEffect>(fire, 0.1f, callbacks::destroy());
 }
 
-void	systems::Explosion(entt::DefaultRegistry &registry, systems::Cells& cells,
-			   ParticleExplosion *expl)
+void	systems::Explosion(entt::DefaultRegistry &registry, systems::Cells& cells)
 {
 	constexpr int explosionHeight = 10;
 	
@@ -343,7 +309,7 @@ void	systems::Explosion(entt::DefaultRegistry &registry, systems::Cells& cells,
 		
 		registry.destroy(entity);
 
-		add_fire(registry, pos.x, pos.y, expl);
+		add_fire(registry, pos.x, pos.y);
 		for (int up = 1; up <= spread; up++)
 		{
 			if (explosionHeight <= cells.Collision(pos.x, pos.y + up))
@@ -351,7 +317,7 @@ void	systems::Explosion(entt::DefaultRegistry &registry, systems::Cells& cells,
 				add_invisible_fire(registry, pos.x, pos.y + up);
 				break;
 			}
-			add_fire(registry, pos.x, pos.y + up, expl);
+			add_fire(registry, pos.x, pos.y + up);
 		}
 		for (int down = 1; down <= spread; down++)
 		{
@@ -360,7 +326,7 @@ void	systems::Explosion(entt::DefaultRegistry &registry, systems::Cells& cells,
 				add_invisible_fire(registry, pos.x, pos.y - down);
 				break;
 			}
-			add_fire(registry,pos.x, pos.y - down, expl);
+			add_fire(registry,pos.x, pos.y - down);
 		}
 		for (int left = 1; left <= spread; left++)
 		{
@@ -369,7 +335,7 @@ void	systems::Explosion(entt::DefaultRegistry &registry, systems::Cells& cells,
 				add_invisible_fire(registry, pos.x - left, pos.y);
 				break;
 			}
-			add_fire(registry, pos.x - left, pos.y, expl);
+			add_fire(registry, pos.x - left, pos.y);
 		}
 		for (int right = 1; right <= spread; right++)
 		{
@@ -378,7 +344,7 @@ void	systems::Explosion(entt::DefaultRegistry &registry, systems::Cells& cells,
 				add_invisible_fire(registry, pos.x + right, pos.y);
 				break;
 			}
-			add_fire(registry, pos.x + right, pos.y, expl);
+			add_fire(registry, pos.x + right, pos.y);
 		}
 	}
 }
@@ -439,8 +405,7 @@ void	systems::DangerCheck(entt::DefaultRegistry &registry, Cells& cells)
 
 		if (dangerResist < cells.Danger(pos.x, pos.y))
 		{
-//			registry.destroy(entity); // just for testing...
-			onDeath();
+			onDeath(registry, entity);
 		}
 	}
 }
