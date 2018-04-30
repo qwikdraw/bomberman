@@ -1,5 +1,5 @@
-meshes/crate.obj
-textures/player.png
+meshes/powerup.obj
+textures/speed_boost.png
 
 	Material:
         200 specular

@@ -13,7 +13,7 @@ void	powerups::speedBoost(entt::DefaultRegistry& r, glm::vec3 pos)
 
 	auto effect = [powerup](entt::DefaultRegistry& reg, uint32_t e)
 	{
-		auto &player = reg.get<c::Player>(e);
+		auto &player = reg.get<c::Player>();
 
 		player.speed += 0.5;
 		reg.destroy(powerup);
