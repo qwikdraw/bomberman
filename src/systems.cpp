@@ -2,6 +2,9 @@
 
 namespace c = components;
 
+namespace systems
+{
+
 //! RenderModels
 
 struct	ModelLoader : entt::ResourceLoader<ModelLoader, Model>
@@ -12,7 +15,7 @@ struct	ModelLoader : entt::ResourceLoader<ModelLoader, Model>
 	}
 };
 
-void	systems::RenderModels(entt::DefaultRegistry &registry, entt::ResourceCache<Model>& cache,
+void	RenderModels(entt::DefaultRegistry &registry, entt::ResourceCache<Model>& cache,
 		Window &window, Camera &camera)
 {
 
@@ -58,7 +61,7 @@ void	systems::RenderModels(entt::DefaultRegistry &registry, entt::ResourceCache<
 
 //! TimedEffect
 
-void	systems::TimedEffect(entt::DefaultRegistry &registry, double dt)
+void	TimedEffect(entt::DefaultRegistry &registry, double dt)
 {
 	auto view = registry.view<c::TimedEffect>();
 
@@ -83,7 +86,7 @@ struct	ImageLoader : entt::ResourceLoader<ImageLoader, Sprite2D>
 	}
 };
 
-void	systems::Buttons(entt::DefaultRegistry &registry,
+void	Buttons(entt::DefaultRegistry &registry,
 		entt::ResourceCache<Sprite2D> &cache, Window &window, double dt)
 {
 	auto view = registry.view<c::Button>();
@@ -132,60 +135,60 @@ void	systems::Buttons(entt::DefaultRegistry &registry,
 
 //! player
 
-void	systems::Player(entt::DefaultRegistry& registry, Window& window, Engine::KeyBind bind,
+void	Player(entt::DefaultRegistry& r, Window& window, Engine::KeyBind bind,
 			Cells& cells, Camera& cam, double dt)
 {
-	auto view = registry.view<c::Player, c::Position, c::Velocity, c::Model>();
+	if (!r.has<c::Player>())
+		return;
+	auto entity = r.attachee<c::Player>();
+	if (!r.has<c::Position, c::Velocity, c::Model>(entity))
+		return;
+	auto &player = r.get<c::Player>();
+	auto &move = r.get<c::Velocity>(entity);
+	glm::vec3 &pos = r.get<c::Position>(entity).pos;
+	glm::mat4 &transform = r.get<c::Model>(entity).transform;
 
-	for (auto entity : view)
-	{
-		auto &player = view.get<c::Player>(entity);
-		auto &move = view.get<c::Velocity>(entity);
-		glm::vec3 &pos = view.get<c::Position>(entity).pos;
-		glm::mat4 &transform = view.get<c::Model>(entity).transform;
+	cells.Powerup(pos.x, pos.y)(r, entity);
 
-		cells.Powerup(pos.x, pos.y)(registry, entity);
-
-		glm::vec3 v(0, 0, 0);
+	glm::vec3 v(0, 0, 0);
 		
-		if (window.Key(bind.up))
-		{
-			transform = FACE_UP;
-			v.y += player.speed * dt;
-		}
-		if (window.Key(bind.down))
-		{
-			transform = FACE_DOWN;
-			v.y -= player.speed * dt;
-		}
-		if (window.Key(bind.left))
-		{
-			transform = FACE_LEFT;
-			v.x -= player.speed * dt;
-		}
-		if (window.Key(bind.right))
-		{
-			transform = FACE_RIGHT;
-			v.x += player.speed * dt;
-		}
-		if (window.Key(bind.bomb))
-		{
-			if (player.bombCooldownTimer <= 0)
-			{
-				callbacks::bomb(player.bombPower)(registry, entity);
-				player.bombCooldownTimer = player.bombCooldown;
-			}
-		}
-		player.bombCooldownTimer -= dt;
-		auto target = glm::vec3(pos.x, pos.y - 10, 20);
-		cam.Move((target - cam.GetPosition()) * dt);
-		move.v = v;
+	if (window.Key(bind.up))
+	{
+		transform = FACE_UP;
+		v.y += player.speed * dt;
 	}
+	if (window.Key(bind.down))
+	{
+		transform = FACE_DOWN;
+		v.y -= player.speed * dt;
+	}
+	if (window.Key(bind.left))
+	{
+		transform = FACE_LEFT;
+		v.x -= player.speed * dt;
+	}
+	if (window.Key(bind.right))
+	{
+		transform = FACE_RIGHT;
+		v.x += player.speed * dt;
+	}
+	if (window.Key(bind.bomb))
+	{
+		if (player.bombCooldownTimer <= 0)
+		{
+			callbacks::bomb(player.bombPower)(r, entity);
+			player.bombCooldownTimer = player.bombCooldown;
+		}
+	}
+	player.bombCooldownTimer -= dt;
+	auto target = glm::vec3(pos.x, pos.y - 10, 20);
+	cam.Move((target - cam.GetPosition()) * dt);
+	move.v = v;
 }
 
 //! Lighting
 
-void	systems::Lighting(entt::DefaultRegistry& r, double dt)
+void	Lighting(entt::DefaultRegistry& r, double dt)
 {
 	auto view = r.view<c::Lighting>();
 
@@ -198,7 +201,7 @@ void	systems::Lighting(entt::DefaultRegistry& r, double dt)
 
 //! Velocity
 
-static void    checkCollisions(glm::vec3 &pos, glm::vec3 &v, systems::Cells &cells, double dt, int height)
+static void    checkCollisions(glm::vec3 &pos, glm::vec3 &v, Cells &cells, double dt, int height)
 {
 	if (v.y > 0 && height <= cells.Collision(pos.x, pos.y + 1))
 	{
@@ -233,7 +236,7 @@ static void    checkCollisions(glm::vec3 &pos, glm::vec3 &v, systems::Cells &cel
 	}
 }
 
-void	systems::Velocity(entt::DefaultRegistry& registry, systems::Cells &cells, double dt)
+void	Velocity(entt::DefaultRegistry& registry, Cells &cells, double dt)
 {
 	auto coll = registry.view<c::Velocity, c::Position, c::Collide>();
 
@@ -258,7 +261,7 @@ void	systems::Velocity(entt::DefaultRegistry& registry, systems::Cells &cells, d
 
 //! Render particles
 
-void	systems::RenderParticles(entt::DefaultRegistry &registry, Camera &cam)
+void	RenderParticles(entt::DefaultRegistry &registry, Camera &cam)
 {
 	auto view = registry.view<c::Particles, c::Position, c::TimedEffect>();
 	
@@ -296,7 +299,7 @@ static void	add_invisible_fire(entt::DefaultRegistry &r, int x, int y)
 	r.assign<c::TimedEffect>(fire, 0.1f, callbacks::destroy());
 }
 
-void	systems::Explosion(entt::DefaultRegistry &registry, systems::Cells& cells)
+void	Explosion(entt::DefaultRegistry &registry, Cells& cells)
 {
 	constexpr int explosionHeight = 10;
 	
@@ -350,7 +353,7 @@ void	systems::Explosion(entt::DefaultRegistry &registry, systems::Cells& cells)
 }
 
 // AI monster
-void	systems::AI(entt::DefaultRegistry &registry, Window &window, double dt)
+void	AI(entt::DefaultRegistry &registry, Window &window, double dt)
 {
 	auto view = registry.view<c::AI, c::Position, c::Velocity, c::Model>();
 
@@ -393,7 +396,7 @@ void	systems::AI(entt::DefaultRegistry &registry, Window &window, double dt)
 
 // Dangerous and vunerable entity resolution
 
-void	systems::DangerCheck(entt::DefaultRegistry &registry, Cells& cells)
+void	DangerCheck(entt::DefaultRegistry &registry, Cells& cells)
 {
 	auto view = registry.view<c::Vulnerable, c::Position>();
 
@@ -408,4 +411,6 @@ void	systems::DangerCheck(entt::DefaultRegistry &registry, Cells& cells)
 			onDeath(registry, entity);
 		}
 	}
+}
+
 }
