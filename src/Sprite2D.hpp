@@ -1,7 +1,7 @@
 #pragma once
 
-#define SCREENIMAGE_VERTEX_SHADER_PATH "src/screenImageVertex.glsl"
-#define SCREENIMAGE_FRAGMENT_SHADER_PATH "src/screenImageFrag.glsl"
+#define SCREENIMAGE_VERTEX_SHADER_PATH "src/shaders/screenImageVertex.glsl"
+#define SCREENIMAGE_FRAGMENT_SHADER_PATH "src/shaders/screenImageFrag.glsl"
 
 #include "bomberman.hpp"
 #include "Texture.hpp"

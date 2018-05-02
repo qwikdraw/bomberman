@@ -4,8 +4,8 @@
 #include "ShadingProgram.hpp"
 #include "Texture.hpp"
 
-#define TEXT_VERTEX_SHADER_PATH "src/textVertex.glsl"
-#define TEXT_FRAGMENT_SHADER_PATH "src/textFrag.glsl"
+#define TEXT_VERTEX_SHADER_PATH "src/shaders/textVertex.glsl"
+#define TEXT_FRAGMENT_SHADER_PATH "src/shaders/textFrag.glsl"
 
 #define FONT_FILE "assets/textures/game_font.png"
 
@@ -13,23 +13,25 @@ class	Text
 {
 private:
 
-	ShadingProgram *_program;
-	Texture _textureParser;
-	std::string _message;
-	std::vector<float> _square;
-	std::vector<float> _uv;
+	static ShadingProgram *_program;
 	
-	GLuint _squareID;
-	GLuint _UVID;
-	GLuint _textureID;
-	GLuint _textureLocationID;
+	std::string _message;
+	
+	static std::vector<float> _square;
+	static std::vector<float> _uv;
+	
+	static GLuint _squareID;
+	static GLuint _UVID;
+	static GLuint _textureID;
+	static GLuint _textureLocationID;
 
+	static bool _init;
+	
 	void	RenderChar(char c, glm::vec2 topleft, glm::vec2 botright);
 	
 public:
 
 	Text(std::string message);
-	~Text(void);
 	
 	void	Render(float aspect);
 };

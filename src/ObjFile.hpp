@@ -6,8 +6,8 @@
 #include "Light.hpp"
 #include "ShadingProgram.hpp"
 
-#define OBJ_VERTEX_SHADER_PATH "src/objVertex.glsl"
-#define OBJ_FRAGMENT_SHADER_PATH "src/objFrag.glsl"
+#define OBJ_VERTEX_SHADER_PATH "src/shaders/objVertex.glsl"
+#define OBJ_FRAGMENT_SHADER_PATH "src/shaders/objFrag.glsl"
 
 class	ObjFile
 {
