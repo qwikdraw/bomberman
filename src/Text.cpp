@@ -1,16 +1,26 @@
 #include "Text.hpp"
 
-Text::Text(std::string message) : _textureParser(FONT_FILE)
+ShadingProgram		*Text::_program = nullptr;
+std::vector<float>	Text::_square;
+std::vector<float>	Text::_uv;
+GLuint			Text::_squareID;
+GLuint			Text::_UVID;
+GLuint			Text::_textureID;
+GLuint			Text::_textureLocationID;
+bool			Text::_init = false;
+
+Text::Text(std::string message)
 {
+
+	_message = message;
+	if (_init)
+		return;
 
 	_program = new ShadingProgram(TEXT_VERTEX_SHADER_PATH, "",
 				      TEXT_FRAGMENT_SHADER_PATH);
 	
-	_message = message;
-	
 	_square.resize(12);
 	_uv.resize(12);
-
 
 	_textureLocationID = glGetUniformLocation(_program->ID(), "tex");
 	glUseProgram(_program->ID());
@@ -29,38 +39,30 @@ Text::Text(std::string message) : _textureParser(FONT_FILE)
 		     NULL,
 		     GL_STREAM_DRAW);
 
+	Texture textureParser(FONT_FILE);
+	
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 	glGenTextures(1, &_textureID);
 	glBindTexture(GL_TEXTURE_2D, _textureID);
 	glTexImage2D(GL_TEXTURE_2D,
 		     0,
 		     GL_RGBA,
-		     _textureParser.Width(),
-		     _textureParser.Height(),
+		     textureParser.Width(),
+		     textureParser.Height(),
 		     0,
 		     GL_RGBA,
 		     GL_UNSIGNED_BYTE,
-		     _textureParser.Data());
+		     textureParser.Data());
 
-//	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-//	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-
 	glGenerateMipmap(GL_TEXTURE_2D);
-
 	glActiveTexture(GL_TEXTURE0);
 	glUniform1i(_textureLocationID, 0);
-	
-}
 
-Text::~Text(void)
-{
-	glDeleteTextures(1, &_textureID);
-	glDeleteBuffers(1, &_squareID);
-	glDeleteBuffers(1, &_UVID);
-	delete _program;
+	_init = true;
 }
 
 void	Text::RenderChar(char c, glm::vec2 topleft, glm::vec2 botright)
@@ -111,13 +113,8 @@ void	Text::RenderChar(char c, glm::vec2 topleft, glm::vec2 botright)
 	glEnableVertexAttribArray(1);
 	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, 0);
 	
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
 	glDrawArrays(GL_TRIANGLES, 0, 6);
 
-	glDisable(GL_BLEND);
-	
 	glDisableVertexAttribArray(0);
 	glDisableVertexAttribArray(1);
 }
