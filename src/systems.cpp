@@ -283,10 +283,10 @@ static void	add_fire(entt::DefaultRegistry &r, int x, int y)
 	auto fire = r.create();
 
 	r.assign<c::Position>(fire, glm::vec3(x, y, 0));
-	r.assign<c::Lighting>(fire, glm::vec3(0.5, 0.2, 0), 2.0f, glm::vec3(0, 0, 2), -1.0f);
+	r.assign<c::Lighting>(fire, glm::vec3(0.5, 0.2, 0), 1.0f, glm::vec3(0, 0, 2), -1.0f);
 	r.assign<c::Dangerous>(fire, 100);
-	r.assign<c::Particles>(fire, Effects::explosion, 2.0f);
-	r.assign<c::TimedEffect>(fire, 2.0f, callbacks::destroy());
+	r.assign<c::Particles>(fire, Effects::explosion, 1.0f);
+	r.assign<c::TimedEffect>(fire, 1.0f, callbacks::destroy());
 }
 
 static void	add_invisible_fire(entt::DefaultRegistry &r, int x, int y)
