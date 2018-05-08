@@ -403,7 +403,6 @@ void	AI(entt::DefaultRegistry &registry, Window &window, double dt)
 	}
 }
 
-
 // Dangerous and vunerable entity resolution
 
 void	DangerCheck(entt::DefaultRegistry &registry, Cells& cells)
@@ -421,6 +420,4 @@ void	DangerCheck(entt::DefaultRegistry &registry, Cells& cells)
 			onDeath(registry, entity);
 		}
 	}
-}
-
 }

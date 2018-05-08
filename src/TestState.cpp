@@ -34,8 +34,6 @@ _engine(e), _window(e.window)
 	_registry.assign<c::AI>(enemy_v, 2.0, 1.0, c::AI_type::VERT);
 	_registry.assign<c::Dangerous>(enemy_v, 10);
 	_registry.assign<c::Vulnerable>(enemy_v, callbacks::explode(3) + callbacks::destroy(), 11);
-
-
 }
 
 TestState::~TestState(void)
