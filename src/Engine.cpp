@@ -26,13 +26,13 @@ void Engine::PushState(IState* state)
 
 void Engine::PopState(void)
 {
-	delete _states.back();
+	_deleteMe = _states.back();
 	_states.pop_back();
 }
 
 void Engine::ChangeState(IState* state)
 {
-	delete _states.back();
+	_deleteMe = _states.back();
 	_states.pop_back();
 	_states.push_back(state);
 }
@@ -41,7 +41,15 @@ void Engine::Run(void)
 {
 	_time.Step();
 	window.Clear();
+	
 	_states.back()->Update(_time.Delta());
+
+	if (_deleteMe)
+	{
+		delete _deleteMe;
+		_deleteMe = nullptr;
+	}
+	
 	window.Render();
 	if (window.ShouldClose())
 		isRunning = false;
