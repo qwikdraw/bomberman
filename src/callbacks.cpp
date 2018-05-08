@@ -41,6 +41,7 @@ callbacks::callbackType	callbacks::bomb(int power)
 		r.assign<c::Position>(bomb, glm::round(pos));
 		r.assign<c::Model>(bomb, "bomb", glm::mat4(1));
 		r.assign<c::Collide>(bomb);
+		r.assign<c::Lighting>(bomb, glm::vec3(-10, -10, -10), 0.2f, glm::vec3(0, 0, 0.1));
 		r.assign<c::TimedEffect>(bomb, 3.0f, explode(power) + destroy());
 		r.assign<c::Vulnerable>(bomb, explode(power) + destroy(), 50);
 	};
