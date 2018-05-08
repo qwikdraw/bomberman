@@ -25,7 +25,7 @@ void TestState::Update(double dt)
 {
 	_cellQuery.Update(_registry);
 	
-	systems::RenderModels(_registry, _modelCache, _window, _camera);
+	systems::RenderModels(_registry, _modelCache, _window, _camera, dt);
 	systems::TimedEffect(_registry, dt);
 	systems::Buttons(_registry, _imageCache, _window, dt);
 	systems::Player(_registry, _window, _engine.keyBind, _cellQuery, _camera, dt);

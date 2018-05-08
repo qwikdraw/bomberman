@@ -16,7 +16,7 @@ struct	ModelLoader : entt::ResourceLoader<ModelLoader, Model>
 };
 
 void	RenderModels(entt::DefaultRegistry &registry, entt::ResourceCache<Model>& cache,
-		Window &window, Camera &camera)
+		     Window &window, Camera &camera, double dt)
 {
 
 	std::vector<Light*> lights;
@@ -49,9 +49,13 @@ void	RenderModels(entt::DefaultRegistry &registry, entt::ResourceCache<Model>& c
 				     (modelComp.topRight.x - modelComp.botLeft.x) / 2,
 				     (modelComp.topRight.y - modelComp.botLeft.y) / 2);
 		
-		const_cast<Model&>(model).Render(camera.Perspective(), modelComp.transform, pos.pos);
+		const_cast<Model&>(model).Render(camera.Perspective(),
+						 modelComp.transform,
+						 pos.pos,
+						 modelComp.time);
 
 		window.RemoveRenderMask();
+		modelComp.time += dt;
 	}
 	for (auto l : lights)
 	{
