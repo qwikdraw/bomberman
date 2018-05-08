@@ -69,6 +69,24 @@ callbacks::callbackType	callbacks::destroy(void)
 	return f;
 }
 
+callbacks::callbackType	callbacks::change_state(StateType st, Engine& engine)
+{
+	switch (st)
+	{
+	case StateType::Level1:
+		return [&engine](entt::DefaultRegistry& r, uint32_t e)
+		{
+			engine.ChangeState(new TestState(engine));
+		};
+	case StateType::DeathScreen:
+		return [&engine](entt::DefaultRegistry& r, uint32_t e)
+		{
+			//engine.ChangeState(new DeathState(engine));
+			engine.ChangeState(new TestState(engine));
+		};
+	}
+}
+
 callbacks::callbackType	operator + (callbacks::callbackType a, callbacks::callbackType b)
 {
 	auto f = [a, b](entt::DefaultRegistry& r, uint32_t e)

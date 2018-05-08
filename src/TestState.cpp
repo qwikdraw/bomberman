@@ -41,7 +41,7 @@ _engine(e), _window(e.window)
 	_registry.assign<c::Vulnerable>(enemy_r, callbacks::explode(3) + callbacks::destroy(), 11);
 
 
-	generate_level(_registry, 16, 16);
+	generate_level(_registry, 16, 16, _engine);
 
 	glClearColor(0.2, 0.25, 0.29, 1.0);
 }
