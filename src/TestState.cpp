@@ -9,8 +9,6 @@ _engine(e), _window(e.window)
 	_camera.Rotate(glm::vec3(0, 0, 1), 90);
 	_camera.Rotate(glm::vec3(0, 1, 0), 64);
 
-	Effects::explosion = new ParticleExplosion(1.0f);
-
 // create AI test
 
 	auto enemy = _registry.create();
@@ -48,7 +46,6 @@ _engine(e), _window(e.window)
 
 TestState::~TestState(void)
 {
-	Effects::CleanUp();
 }
 
 void TestState::Update(double dt)
