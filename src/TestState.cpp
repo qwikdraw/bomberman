@@ -13,13 +13,27 @@ _engine(e), _window(e.window)
 
 //generating test ai
 
-	auto ai = _registry.create();
-	_registry.assign<c::Model>(ai, "player", glm::mat4(1));
-	_registry.assign<c::Velocity>(ai);
-	_registry.assign<c::Collide>(ai);
-	_registry.assign<c::AI>(ai, 2.0, 0.5);
-	_registry.assign<c::Position>(ai, glm::vec3(0, 0, 0));
-	
+	auto rand_ai = _registry.create();
+	_registry.assign<c::Model>(rand_ai, "player", glm::mat4(1));
+	_registry.assign<c::Velocity>(rand_ai);
+	_registry.assign<c::Collide>(rand_ai);
+	_registry.assign<c::AI>(rand_ai, 3.0, 0.5);
+	_registry.assign<c::Position>(rand_ai, glm::vec3(0, 0, 0));
+
+	auto horz_ai = _registry.create();
+	_registry.assign<c::Model>(horz_ai, "player", glm::mat4(1));
+	_registry.assign<c::Velocity>(horz_ai);
+	_registry.assign<c::Collide>(horz_ai);
+	_registry.assign<c::AI>(horz_ai, 2.0, 0.5);
+	_registry.assign<c::Position>(horz_ai, glm::vec3(0, 0, 0));
+
+	auto vert_ai = _registry.create();
+	_registry.assign<c::Model>(vert_ai, "player", glm::mat4(1));
+	_registry.assign<c::Velocity>(vert_ai);
+	_registry.assign<c::Collide>(vert_ai);
+	_registry.assign<c::AI>(vert_ai, 1.0, 0.5);
+	_registry.assign<c::Position>(vert_ai, glm::vec3(0, 0, 0));
+
 	_explosion = new ParticleExplosion(2.0f);
 	glClearColor(0.2, 0.25, 0.29, 1.0);
 }
@@ -38,7 +52,9 @@ void TestState::Update(double dt)
 	systems::Velocity(_registry, _cells, dt);
 	systems::RenderParticles(_registry, _camera);
 	systems::Explosion(_registry, _cells, _explosion);
-	systems::AI(_registry, _window, dt);
+	systems::rand_AI(_registry, _window, dt);
+	systems::horz_AI(_registry, _window, dt);
+	systems::vert_AI(_registry, _window, dt);
 	systems::Lighting(_registry, dt);
 
 }

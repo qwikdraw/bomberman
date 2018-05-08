@@ -391,7 +391,7 @@ void	systems::Explosion(entt::DefaultRegistry &registry, systems::Collisions& ce
 }
 
 // AI monster
-void	systems::AI(entt::DefaultRegistry &registry, Window &window, double dt)
+void	systems::rand_AI(entt::DefaultRegistry &registry, Window &window, double dt)
 {
 	auto view = registry.view<c::AI, c::Position, c::Velocity, c::Model>();
 
@@ -432,3 +432,66 @@ void	systems::AI(entt::DefaultRegistry &registry, Window &window, double dt)
 	}
 }
 
+void	systems::horz_AI(entt::DefaultRegistry &registry, Window &window, double dt)
+{
+	auto view = registry.view<c::AI, c::Position, c::Velocity, c::Model>();
+
+	for (auto entity : view)
+	{
+		auto &ai = view.get<c::AI>(entity);
+		auto &move = view.get<c::Velocity>(entity);
+		glm::mat4 &transform = view.get<c::Model>(entity).transform;
+
+		glm::vec3 v(0, 0, 0);
+		if (ai.moveCooldown <= 0.0)
+		{
+			ai.dir = static_cast<c::Direction>(std::rand() % 2 == 0 ? 2 : 4);
+			if (ai.dir == c::Direction::RIGHT)
+				transform = FACE_RIGHT;
+			if (ai.dir == c::Direction::LEFT)
+				transform = FACE_LEFT;
+			ai.moveCooldown = 1.0;
+		}
+		else
+		{
+			if (ai.dir == c::Direction::RIGHT)
+				v.x += ai.speed * dt;
+			if (ai.dir == c::Direction::LEFT)
+				v.x -= ai.speed * dt;
+		}
+		ai.moveCooldown -= dt;
+		move.v = v;
+	}
+}
+
+void	systems::vert_AI(entt::DefaultRegistry &registry, Window &window, double dt)
+{
+	auto view = registry.view<c::AI, c::Position, c::Velocity, c::Model>();
+
+	for (auto entity : view)
+	{
+		auto &ai = view.get<c::AI>(entity);
+		auto &move = view.get<c::Velocity>(entity);
+		glm::mat4 &transform = view.get<c::Model>(entity).transform;
+
+		glm::vec3 v(0, 0, 0);
+		if (ai.moveCooldown <= 0.0)
+		{
+			ai.dir = static_cast<c::Direction>(std::rand() % 2 == 0 ? 1 : 3);
+			if (ai.dir == c::Direction::UP)
+				transform = FACE_UP;
+			if (ai.dir == c::Direction::DOWN)
+				transform = FACE_DOWN;
+			ai.moveCooldown = 1.0;
+		}
+		else
+		{
+			if (ai.dir == c::Direction::UP)
+				v.y += ai.speed * dt;
+			if (ai.dir == c::Direction::DOWN)
+				v.y -= ai.speed * dt;
+		}
+		ai.moveCooldown -= dt;
+		move.v = v;
+	}
+}

@@ -59,5 +59,7 @@ namespace systems
 	void	Explosion(entt::DefaultRegistry&, Collisions&, ParticleExplosion*);
 
 	//! making AI
-	void	AI(entt::DefaultRegistry&, Window&, double dt);
+	void	rand_AI(entt::DefaultRegistry&, Window&, double dt);
+	void	horz_AI(entt::DefaultRegistry&, Window&, double dt);
+	void	vert_AI(entt::DefaultRegistry&, Window&, double dt);
 };
