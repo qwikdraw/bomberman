@@ -84,10 +84,14 @@ namespace components
 		int spread = 0;
 	};
 
+	enum class AI_type{RAND, HORZ, VERT};
+
 	struct AI
 	{
 		double speed;
 		double moveCooldown;
+		AI_type type;
+		double moveCooldownTimer = 0.0;
 		Direction dir = Direction::NONE;
 	};
 
