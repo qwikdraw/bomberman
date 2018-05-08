@@ -370,7 +370,12 @@ void	AI(entt::DefaultRegistry &registry, Window &window, double dt)
 		glm::vec3 v(0, 0, 0);
 		if (ai.moveCooldown <= 0.0)
 		{
-			ai.dir = static_cast<c::Direction>(std::rand() % 5);
+			if (ai.type == c::AI_type::RAND)
+				ai.dir = static_cast<c::Direction>(std::rand() % 5);
+			else if (ai.type == c::AI_type::HORZ)
+				ai.dir = static_cast<c::Direction>(std::rand() % 2 == 0 ? 2 : 4);
+			else if (ai.type == c::AI_type::VERT)
+				ai.dir = static_cast<c::Direction>(std::rand() % 2 == 0 ? 1 : 3);
 			if (ai.dir == c::Direction::UP)
 				transform = FACE_UP;
 			if (ai.dir == c::Direction::RIGHT)
@@ -397,6 +402,7 @@ void	AI(entt::DefaultRegistry &registry, Window &window, double dt)
 		move.v = v;
 	}
 }
+
 
 // Dangerous and vunerable entity resolution
 
