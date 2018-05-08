@@ -12,6 +12,7 @@ class Engine
 {	
 	std::vector<IState*> _states;
 	Time _time;
+	IState *_deleteMe;
 public:
 
 	struct KeyBind

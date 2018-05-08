@@ -24,7 +24,7 @@ static void spawn_player(entt::DefaultRegistry &r, int x, int y)
 	r.assign<c::Model>(player, "player", glm::mat4(1));
 	r.assign<c::Position>(player, glm::vec3(x, y, 0));
 	r.assign<c::Velocity>(player);
-	r.assign<c::Collide>(player, 1);
+	r.assign<c::Collide>(player, 4);
 	r.assign<c::Vulnerable>(player, callbacks::destroy());
 }
 
