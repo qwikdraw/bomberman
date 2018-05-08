@@ -68,7 +68,6 @@ Model::Model(std::string filepath)
 	}
 	_pos = glm::vec3(0, 0, 0);
 	_transform = glm::mat4(1);
-	_totalTime = 0;
 }
 
 Model::~Model(void)
@@ -92,9 +91,9 @@ void	Model::MoveTo(glm::vec3 p)
 	_pos = p;
 }
 
-glm::mat4	Model::InterpolateMatrix(AnimatedPart part)
+glm::mat4	Model::InterpolateMatrix(AnimatedPart part, float time)
 {
-	float cycleTime = fmod(_totalTime, part.animaCycle);
+	float cycleTime = fmod(time, part.animaCycle);
 
 	unsigned int i = 0;
 	while (i < part.animaTime.size())
@@ -128,13 +127,12 @@ glm::mat4	Model::InterpolateMatrix(AnimatedPart part)
 	return x + z * ratio;
 }
 
-void	Model::Render(void)
+void	Model::Render(float time)
 {
-	_time.Step();
 
 	for (unsigned i = 0; i < _parts.size(); i++)
 	{
-		glm::mat4 matrix = InterpolateMatrix(_parts[i]);
+		glm::mat4 matrix = InterpolateMatrix(_parts[i], time);
 		glm::mat4 translate1 = glm::translate(_parts[i].partPos);
 		glm::mat4 translate2 = glm::translate(_pos);
 
@@ -144,13 +142,12 @@ void	Model::Render(void)
 		_parts[i].object->UsePerspective(_perspective);
 		_parts[i].object->Render();
 	}
-	_totalTime += _time.Delta();
 }
 
-void	Model::Render(std::pair<glm::mat4, glm::mat4> per, glm::mat4 t, glm::vec3 p)
+void	Model::Render(std::pair<glm::mat4, glm::mat4> per, glm::mat4 t, glm::vec3 p, float time)
 {
 	UsePerspective(per);
 	SetTransform(t);
 	MoveTo(p);
-	Render();
+	Render(time);
 }

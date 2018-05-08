@@ -26,7 +26,7 @@
 namespace systems
 {
 	//! requires: Model, Position [Lighting]
-	void	RenderModels(entt::DefaultRegistry&, entt::ResourceCache<Model>&, Window&, Camera&);
+	void	RenderModels(entt::DefaultRegistry&, entt::ResourceCache<Model>&, Window&, Camera&, double dt);
 
 	//! requires: TimedEffect
 	void	TimedEffect(entt::DefaultRegistry&, double dt);
