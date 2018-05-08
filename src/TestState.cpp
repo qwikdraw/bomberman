@@ -9,7 +9,7 @@ _engine(e), _window(e.window)
 	_camera.Rotate(glm::vec3(0, 0, 1), 90);
 	_camera.Rotate(glm::vec3(0, 1, 0), 64);
 
-	Effects::explosion = new ParticleExplosion(2.0f);
+	Effects::explosion = new ParticleExplosion(1.0f);
 	
 	generate_level(_registry, 16, 16);
 

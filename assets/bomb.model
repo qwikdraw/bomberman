@@ -1,8 +1,8 @@
-meshes/rock.obj
-textures/rock.png
+meshes/bomb.obj
+textures/bomb.png
 
 	Material:
-        400 specular
+        200 specular
         0.5 diffuse
         9001 fog
         1 0 0 fogcol
@@ -17,8 +17,48 @@ textures/rock.png
 	
 	0.0
 
-	Cycle:
+	matrix
+	1.1 0 0 0
+	0 1.1 0 0
+	0 0 1 0
+	0 0 0 1
+	
 	1.0
+
+	Cycle:
+	2.0
+
+	Position:
+	0 0 0
+meshes/fuse.obj
+textures/fuse.png
+
+	Material:
+        200 specular
+        0.5 diffuse
+        9001 fog
+        1 0 0 fogcol
+
+	Transform:
+	
+	matrix
+	1 0 0 0
+	0 1 0 0
+	0 0 1 0
+	0 0 0 1
+	
+	0.0
+
+	matrix
+        1 0 0 0
+        0 1 0 0
+        0 0 1 0
+        0 0 -1 1
+
+	3.0
+
+	Cycle:
+	10.0
 
 	Position:
 	0 0 0
