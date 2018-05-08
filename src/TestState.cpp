@@ -10,30 +10,40 @@ _engine(e), _window(e.window)
 	_camera.Rotate(glm::vec3(0, 1, 0), 64);
 
 	Effects::explosion = new ParticleExplosion(1.0f);
-	
-	generate_level(_registry, 16, 16);
-
-	glClearColor(0.2, 0.25, 0.29, 1.0);
 
 // create AI test
 
 	auto enemy = _registry.create();
-	_registry.assign<c::Position>(enemy, glm::vec3(0, 3, 0));
-	_registry.assign<c::Model>(enemy, "crate", glm::mat4(1));
+	_registry.assign<c::Position>(enemy, glm::vec3(1, 3, 0));
+	_registry.assign<c::Model>(enemy, "player", glm::mat4(1));
 	_registry.assign<c::Velocity>(enemy);
-	_registry.assign<c::Collide>(enemy, 0);
+	_registry.assign<c::Collide>(enemy, 1);
 	_registry.assign<c::AI>(enemy, 2.0, 1.0, c::AI_type::HORZ);
 	_registry.assign<c::Dangerous>(enemy, 10);
 	_registry.assign<c::Vulnerable>(enemy, callbacks::explode(3) + callbacks::destroy(), 11);
 
 	auto enemy_v = _registry.create();
-	_registry.assign<c::Position>(enemy_v, glm::vec3(3, 0, 0));
-	_registry.assign<c::Model>(enemy_v, "crate", glm::mat4(1));
+	_registry.assign<c::Position>(enemy_v, glm::vec3(3, 1, 0));
+	_registry.assign<c::Model>(enemy_v, "player", glm::mat4(1));
 	_registry.assign<c::Velocity>(enemy_v);
-	_registry.assign<c::Collide>(enemy_v, 0);
+	_registry.assign<c::Collide>(enemy_v, 1);
 	_registry.assign<c::AI>(enemy_v, 2.0, 1.0, c::AI_type::VERT);
 	_registry.assign<c::Dangerous>(enemy_v, 10);
 	_registry.assign<c::Vulnerable>(enemy_v, callbacks::explode(3) + callbacks::destroy(), 11);
+
+	auto enemy_r = _registry.create();
+	_registry.assign<c::Position>(enemy_r, glm::vec3(-3, -3, 0));
+	_registry.assign<c::Model>(enemy_r, "player", glm::mat4(1));
+	_registry.assign<c::Velocity>(enemy_r);
+	_registry.assign<c::Collide>(enemy_r, 1);
+	_registry.assign<c::AI>(enemy_r, 2.0, 1.0, c::AI_type::RAND);
+	_registry.assign<c::Dangerous>(enemy_r, 10);
+	_registry.assign<c::Vulnerable>(enemy_r, callbacks::explode(3) + callbacks::destroy(), 11);
+
+
+	generate_level(_registry, 16, 16);
+
+	glClearColor(0.2, 0.25, 0.29, 1.0);
 }
 
 TestState::~TestState(void)

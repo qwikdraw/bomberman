@@ -91,6 +91,7 @@ namespace components
 		double speed;
 		double moveCooldown;
 		AI_type type;
+		double moveCooldownTimer = 0.0;
 		Direction dir = Direction::NONE;
 	};
 

@@ -359,7 +359,7 @@ void	Explosion(entt::DefaultRegistry &registry, Cells& cells)
 // AI monster
 void	AI(entt::DefaultRegistry &registry, Window &window, double dt)
 {
-	auto view = registry.view<c::AI, c::Position, c::Velocity, c::Model>();
+	auto view = registry.view<c::AI, c::Velocity, c::Model>();
 
 	for (auto entity : view)
 	{
@@ -368,7 +368,7 @@ void	AI(entt::DefaultRegistry &registry, Window &window, double dt)
 		glm::mat4 &transform = view.get<c::Model>(entity).transform;
 
 		glm::vec3 v(0, 0, 0);
-		if (ai.moveCooldown <= 0.0)
+		if (ai.moveCooldownTimer <= 0.0)
 		{
 			if (ai.type == c::AI_type::RAND)
 				ai.dir = static_cast<c::Direction>(std::rand() % 5);
@@ -378,27 +378,27 @@ void	AI(entt::DefaultRegistry &registry, Window &window, double dt)
 				ai.dir = static_cast<c::Direction>(std::rand() % 2 == 0 ? 1 : 3);
 			if (ai.dir == c::Direction::UP)
 				transform = FACE_UP;
-			if (ai.dir == c::Direction::RIGHT)
+			else if (ai.dir == c::Direction::RIGHT)
 				transform = FACE_RIGHT;
-			if (ai.dir == c::Direction::DOWN)
+			else if (ai.dir == c::Direction::DOWN)
 				transform = FACE_DOWN;
-			if (ai.dir == c::Direction::LEFT)
+			else if (ai.dir == c::Direction::LEFT)
 				transform = FACE_LEFT;
 			if (ai.dir != c::Direction::NONE)
-				ai.moveCooldown = 1.0;
+				ai.moveCooldownTimer = ai.moveCooldown;
 		}
-		else
-		{
+		//else
+		//{
 			if (ai.dir == c::Direction::UP)
-				v.y += ai.speed * dt;
-			if (ai.dir == c::Direction::RIGHT)
-				v.x += ai.speed * dt;
-			if (ai.dir == c::Direction::DOWN)
-				v.y -= ai.speed * dt;
-			if (ai.dir == c::Direction::LEFT)
-				v.x -= ai.speed * dt;
-		}
-		ai.moveCooldown -= dt;
+				v.y = ai.speed * dt;
+			else if (ai.dir == c::Direction::RIGHT)
+				v.x = ai.speed * dt;
+			else if (ai.dir == c::Direction::DOWN)
+				v.y = -ai.speed * dt;
+			else if (ai.dir == c::Direction::LEFT)
+				v.x = -ai.speed * dt;
+		//}
+		ai.moveCooldownTimer -= dt;
 		move.v = v;
 	}
 }
@@ -420,4 +420,6 @@ void	DangerCheck(entt::DefaultRegistry &registry, Cells& cells)
 			onDeath(registry, entity);
 		}
 	}
+}
+
 }
