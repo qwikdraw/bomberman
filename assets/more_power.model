@@ -1,5 +1,5 @@
-meshes/crate.obj
-textures/metal_sheet.png
+meshes/powerup.obj
+textures/fire_boost.png
 
 	Material:
         200 specular
