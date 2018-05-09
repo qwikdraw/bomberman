@@ -115,7 +115,7 @@ struct	ImageLoader : entt::ResourceLoader<ImageLoader, Sprite2D>
 
 void	Images(entt::DefaultRegistry& r, entt::ResourceCache<Sprite2D>& cache, Window& window)
 {
-	auto view = registry.view<c::Image>();
+	auto view = r.view<c::Image>();
 
 	for (auto entity : view)
 	{
@@ -154,22 +154,22 @@ void	Player(entt::DefaultRegistry& r, Window& window, Engine::KeyBind bind,
 	if (window.Key(bind.up))
 	{
 		transform = FACE_UP;
-		v.y += player.speed * dt;
+		v.y += player.speed;
 	}
 	if (window.Key(bind.down))
 	{
 		transform = FACE_DOWN;
-		v.y -= player.speed * dt;
+		v.y -= player.speed;
 	}
 	if (window.Key(bind.left))
 	{
 		transform = FACE_LEFT;
-		v.x -= player.speed * dt;
+		v.x -= player.speed;
 	}
 	if (window.Key(bind.right))
 	{
 		transform = FACE_RIGHT;
-		v.x += player.speed * dt;
+		v.x += player.speed;
 	}
 	if (window.Key(bind.bomb))
 	{
@@ -238,6 +238,10 @@ static void    checkCollisions(glm::vec3 &pos, glm::vec3 &v, Cells &cells, doubl
 
 void	Velocity(entt::DefaultRegistry& registry, Cells &cells, double dt)
 {
+
+	if (dt > 0.2) // to stop lag spikes breaking physics
+		dt = 0.2;
+	
 	auto coll = registry.view<c::Velocity, c::Position, c::Collide>();
 
 	for (auto entity : coll)
@@ -246,6 +250,7 @@ void	Velocity(entt::DefaultRegistry& registry, Cells &cells, double dt)
 		glm::vec3 &v = coll.get<c::Velocity>(entity).v;
 		int height = coll.get<c::Collide>(entity).height;
 
+		v *= dt;
 		checkCollisions(pos, v, cells, dt, height);
 	}
 	
@@ -386,13 +391,13 @@ void	AI(entt::DefaultRegistry &registry, Window &window, double dt)
 		//else
 		//{
 			if (ai.dir == c::Direction::UP)
-				v.y = ai.speed * dt;
+				v.y = ai.speed;
 			else if (ai.dir == c::Direction::RIGHT)
-				v.x = ai.speed * dt;
+				v.x = ai.speed;
 			else if (ai.dir == c::Direction::DOWN)
-				v.y = -ai.speed * dt;
+				v.y = -ai.speed;
 			else if (ai.dir == c::Direction::LEFT)
-				v.x = -ai.speed * dt;
+				v.x = -ai.speed;
 		//}
 		ai.moveCooldownTimer -= dt;
 		move.v = v;

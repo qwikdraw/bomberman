@@ -54,8 +54,6 @@ namespace components
 		double bombCooldown;
 		int bombPower = 1;
 		double bombCooldownTimer = 0;
-
-		~Player(){std::cout << "test" << std::endl;}
 	};
 
 	struct Velocity
