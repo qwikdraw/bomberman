@@ -36,21 +36,26 @@ namespace components
 
 	struct Button
 	{
-		std::string imageBefore;
-		std::string imageAfter;
-		std::function<void()> f;
-		glm::vec2 botLeft;
-		glm::vec2 topRight;
-		float cooldown = 0;
-		float cooldownTimer = 0;
+                std::function<void(entt::DefaultRegistry&, uint32_t)> onClick;
+		glm::vec2 botLeft = glm::vec2(-1, -1);
+		glm::vec2 topRight = glm::vec2(1, 1);
 	};
 
+	struct Image
+	{		
+		std::string name;
+		glm::vec2 botLeft = glm::vec2(-1, -1);
+		glm::vec2 topRight = glm::vec2(1, 1);
+	};
+	
 	struct Player
 	{
 		double speed;
 		double bombCooldown;
 		int bombPower = 1;
 		double bombCooldownTimer = 0;
+
+		~Player(){std::cout << "test" << std::endl;}
 	};
 
 	struct Velocity

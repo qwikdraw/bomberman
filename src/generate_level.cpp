@@ -26,7 +26,7 @@ static void spawn_player(entt::DefaultRegistry &r, int x, int y, Engine& engine)
 	r.assign<c::Velocity>(player);
 	r.assign<c::Collide>(player, 4);
 	r.assign<c::Vulnerable>(player,
-				callbacks::change_state(callbacks::StateType::Level1, engine) +
+				callbacks::change_state(callbacks::StateType::DeathScreen, engine) +
 				callbacks::destroy());
 }
 

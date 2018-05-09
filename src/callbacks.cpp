@@ -81,8 +81,7 @@ callbacks::callbackType	callbacks::change_state(StateType st, Engine& engine)
 	case StateType::DeathScreen:
 		return [&engine](entt::DefaultRegistry& r, uint32_t e)
 		{
-			//engine.ChangeState(new DeathState(engine));
-			engine.ChangeState(new TestState(engine));
+			engine.ChangeState(new DeathState(engine));
 		};
 	}
 }

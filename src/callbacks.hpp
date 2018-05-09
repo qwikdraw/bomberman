@@ -7,7 +7,7 @@
 #include "Engine.hpp"
 
 #include "TestState.hpp"
-//#include "DeathState.hpp"
+#include "DeathState.hpp"
 
 namespace callbacks
 {
