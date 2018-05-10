@@ -11,6 +11,7 @@ class	DeathState : public IState
 	Engine& _engine;
 	Window& _window;
 	entt::DefaultRegistry _registry;
+	entt::ResourceCache<Sprite2D> _imageCache;
 
 public:
 	DeathState(Engine& engine);

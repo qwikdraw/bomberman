@@ -19,11 +19,6 @@ namespace callbacks
 	callbackType	powerup(float spawnChance);
 	callbackType	destroy(void);
 
-	enum class StateType
-	{
-		Level1,
-		DeathScreen
-	};
 	callbackType	change_state(StateType st, Engine& engine);
 };
 

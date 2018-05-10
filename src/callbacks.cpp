@@ -73,6 +73,11 @@ callbacks::callbackType	callbacks::change_state(StateType st, Engine& engine)
 {
 	switch (st)
 	{
+	case StateType::Menu:
+		return [&engine](entt::DefaultRegistry& r, uint32_t e)
+		{
+			engine.ChangeState(new TestState(engine));
+		};
 	case StateType::Level1:
 		return [&engine](entt::DefaultRegistry& r, uint32_t e)
 		{
