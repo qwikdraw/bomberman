@@ -6,7 +6,7 @@
 #    By: logan  <logan@42.us.org>                   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/13 10:03:24 by logan             #+#    #+#              #
-#    Updated: 2018/04/19 14:05:41 by lkaser           ###   ########.fr        #
+#    Updated: 2018/05/08 18:59:19 by twalton          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ generate_level \
 Engine \
 MenuState \
 TestState \
+DeathState \
 ParticleExplosion \
 Text \
 Cells \
@@ -47,12 +48,12 @@ $(shell pkg-config --cflags glfw3 glm) \
 -I lib/entt/src \
 -I lib/lodepng \
 -g -O3 -march=native \
-# -fsanitize=undefined -fsanitized=address
+-fsanitize=undefined -fsanitize=address
 
 LDFLAGS = -framework OpenGl \
 $(shell pkg-config --libs glfw3 glm) \
 -L lib/lodepng -llodepng \
-# -fsanitize=undefined -fsanitized=address
+-g -fsanitize=undefined -fsanitize=address
 
 all: $(OBJ_DIR) $(NAME)
 

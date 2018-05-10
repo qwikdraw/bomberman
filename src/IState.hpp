@@ -11,3 +11,10 @@ public:
 	virtual ~IState(void) {};
 	virtual void Update(double dt) = 0;
 };
+
+enum class StateType
+{
+	Menu,
+	Level1,
+	DeathScreen
+};

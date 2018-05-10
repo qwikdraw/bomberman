@@ -32,8 +32,11 @@ namespace systems
 	void	TimedEffect(entt::DefaultRegistry&, double dt);
 
 	//! requires: Button
-	void	Buttons(entt::DefaultRegistry&, entt::ResourceCache<Sprite2D>&, Window&, double dt);
+	void	Buttons(entt::DefaultRegistry&, Window&);
 
+	//! requires: Image
+	void	Images(entt::DefaultRegistry&, entt::ResourceCache<Sprite2D>&, Window&);
+	
 	//! requires: Lighting; Applies falloff delta
 	void	Lighting(entt::DefaultRegistry&, double dt);
 

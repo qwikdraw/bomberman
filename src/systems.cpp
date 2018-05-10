@@ -64,7 +64,7 @@ void	RenderModels(entt::DefaultRegistry &registry, entt::ResourceCache<Model>& c
 }
 
 //! TimedEffect
-
+	
 void	TimedEffect(entt::DefaultRegistry &registry, double dt)
 {
 	auto view = registry.view<c::TimedEffect>();
@@ -82,6 +82,29 @@ void	TimedEffect(entt::DefaultRegistry &registry, double dt)
 
 //! Buttons
 
+void	Buttons(entt::DefaultRegistry &r, Window& window)
+{
+	auto view = r.view<c::Button>();
+
+	for (auto entity : view)
+	{
+		auto& button = view.get(entity);
+
+		if (window.MouseClick(0))
+		{
+			glm::vec2 pos = window.MousePos();
+
+			if (pos.x >= button.botLeft.x && pos.x <= button.topRight.x &&
+			    pos.y >= button.botLeft.y && pos.y <= button.topRight.y)
+			{
+				button.onClick(r, entity);
+			}
+		}
+	}
+}
+
+//! Images
+	
 struct	ImageLoader : entt::ResourceLoader<ImageLoader, Sprite2D>
 {
 	std::shared_ptr<Sprite2D>  load(const std::string imagePath) const
@@ -90,50 +113,24 @@ struct	ImageLoader : entt::ResourceLoader<ImageLoader, Sprite2D>
 	}
 };
 
-void	Buttons(entt::DefaultRegistry &registry,
-		entt::ResourceCache<Sprite2D> &cache, Window &window, double dt)
+void	Images(entt::DefaultRegistry& r, entt::ResourceCache<Sprite2D>& cache, Window& window)
 {
-	auto view = registry.view<c::Button>();
+	auto view = r.view<c::Image>();
 
 	for (auto entity : view)
 	{
-		auto &button = view.get(entity);
+		auto &image = view.get(entity);
 
-		// render logic
-		std::string imagePath;
-
-		if (button.cooldownTimer <= 0)
-			imagePath = button.imageBefore;
-		else
-			imagePath = button.imageAfter;
-
-		window.SetRenderMask((button.botLeft.x + 1) / 2,
-				     (button.botLeft.y + 1) / 2,
-				     (button.topRight.x - button.botLeft.x) / 2,
-				     (button.topRight.y - button.botLeft.y) / 2);
-
-		cache.load<ImageLoader>(entt::HashedString(imagePath.c_str()), imagePath);
-		const Sprite2D &im = cache.handle(entt::HashedString(imagePath.c_str())).get();
+		window.SetRenderMask((image.botLeft.x + 1) / 2,
+				     (image.botLeft.y + 1) / 2,
+				     (image.topRight.x - image.botLeft.x) / 2,
+				     (image.topRight.y - image.botLeft.y) / 2);
+		
+		cache.load<ImageLoader>(entt::HashedString(image.name.c_str()), image.name);
+		const Sprite2D &im = cache.handle(entt::HashedString(image.name.c_str())).get();
 		const_cast<Sprite2D&>(im).Render();
 
 		window.RemoveRenderMask();
-
-		// button logic
-		button.cooldownTimer -= dt;
-		if (window.MouseClick(0))
-		{
-			glm::vec2 pos = window.MousePos();
-
-			if (pos.x >= button.botLeft.x && pos.x <= button.topRight.x &&
-			    pos.y >= button.botLeft.y && pos.y <= button.topRight.y)
-			{
-				if (button.cooldownTimer <= 0)
-				{
-					button.f();
-					button.cooldownTimer = button.cooldown;
-				}
-			}
-		}
 	}
 }
 
@@ -152,29 +149,27 @@ void	Player(entt::DefaultRegistry& r, Window& window, Engine::KeyBind bind,
 	glm::vec3 &pos = r.get<c::Position>(entity).pos;
 	glm::mat4 &transform = r.get<c::Model>(entity).transform;
 
-	cells.Powerup(pos.x, pos.y)(r, entity);
-
 	glm::vec3 v(0, 0, 0);
 		
 	if (window.Key(bind.up))
 	{
 		transform = FACE_UP;
-		v.y += player.speed * dt;
+		v.y += player.speed;
 	}
 	if (window.Key(bind.down))
 	{
 		transform = FACE_DOWN;
-		v.y -= player.speed * dt;
+		v.y -= player.speed;
 	}
 	if (window.Key(bind.left))
 	{
 		transform = FACE_LEFT;
-		v.x -= player.speed * dt;
+		v.x -= player.speed;
 	}
 	if (window.Key(bind.right))
 	{
 		transform = FACE_RIGHT;
-		v.x += player.speed * dt;
+		v.x += player.speed;
 	}
 	if (window.Key(bind.bomb))
 	{
@@ -188,6 +183,7 @@ void	Player(entt::DefaultRegistry& r, Window& window, Engine::KeyBind bind,
 	auto target = glm::vec3(pos.x, pos.y - 10, 20);
 	cam.Move((target - cam.GetPosition()) * dt);
 	move.v = v;
+	cells.Powerup(pos.x, pos.y)(r, entity);
 }
 
 //! Lighting
@@ -207,22 +203,22 @@ void	Lighting(entt::DefaultRegistry& r, double dt)
 
 static void    checkCollisions(glm::vec3 &pos, glm::vec3 &v, Cells &cells, double dt, int height)
 {
-	if (v.y > 0 && height <= cells.Collision(pos.x, pos.y + 1))
+	if (v.y > 0 && height < cells.Collision(pos.x, pos.y + 1))
 	{
 		if (pos.y > roundf(pos.y))
 			v.y = 0;
 	}
-	if (v.y < 0 && height <= cells.Collision(pos.x, pos.y - 1))
+	if (v.y < 0 && height < cells.Collision(pos.x, pos.y - 1))
 	{
 		if (pos.y < roundf(pos.y))
 			v.y = 0;
 	}
-	if (v.x > 0 && height <= cells.Collision(pos.x + 1, pos.y))
+	if (v.x > 0 && height < cells.Collision(pos.x + 1, pos.y))
 	{
 		if (pos.x > roundf(pos.x))
 			v.x = 0;
 	}
-	if (v.x < 0 && height <= cells.Collision(pos.x - 1, pos.y))
+	if (v.x < 0 && height < cells.Collision(pos.x - 1, pos.y))
 	{
 		if (pos.x < roundf(pos.x))
 			v.x = 0;
@@ -242,6 +238,10 @@ static void    checkCollisions(glm::vec3 &pos, glm::vec3 &v, Cells &cells, doubl
 
 void	Velocity(entt::DefaultRegistry& registry, Cells &cells, double dt)
 {
+
+	if (dt > 0.2) // to stop lag spikes breaking physics
+		dt = 0.2;
+	
 	auto coll = registry.view<c::Velocity, c::Position, c::Collide>();
 
 	for (auto entity : coll)
@@ -250,6 +250,7 @@ void	Velocity(entt::DefaultRegistry& registry, Cells &cells, double dt)
 		glm::vec3 &v = coll.get<c::Velocity>(entity).v;
 		int height = coll.get<c::Collide>(entity).height;
 
+		v *= dt;
 		checkCollisions(pos, v, cells, dt, height);
 	}
 	
@@ -390,13 +391,13 @@ void	AI(entt::DefaultRegistry &registry, Window &window, double dt)
 		//else
 		//{
 			if (ai.dir == c::Direction::UP)
-				v.y = ai.speed * dt;
+				v.y = ai.speed;
 			else if (ai.dir == c::Direction::RIGHT)
-				v.x = ai.speed * dt;
+				v.x = ai.speed;
 			else if (ai.dir == c::Direction::DOWN)
-				v.y = -ai.speed * dt;
+				v.y = -ai.speed;
 			else if (ai.dir == c::Direction::LEFT)
-				v.x = -ai.speed * dt;
+				v.x = -ai.speed;
 		//}
 		ai.moveCooldownTimer -= dt;
 		move.v = v;

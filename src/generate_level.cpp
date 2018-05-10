@@ -16,7 +16,7 @@ static glm::mat4 random_direction()
 	return dirs[pick_dir(rng)];
 }
 
-static void spawn_player(entt::DefaultRegistry &r, int x, int y)
+static void spawn_player(entt::DefaultRegistry &r, int x, int y, Engine& engine)
 {
 	auto player = r.create();
 	
@@ -25,7 +25,9 @@ static void spawn_player(entt::DefaultRegistry &r, int x, int y)
 	r.assign<c::Position>(player, glm::vec3(x, y, 0));
 	r.assign<c::Velocity>(player);
 	r.assign<c::Collide>(player, 4);
-	r.assign<c::Vulnerable>(player, callbacks::destroy());
+	r.assign<c::Vulnerable>(player,
+				callbacks::change_state(StateType::DeathScreen, engine) +
+				callbacks::destroy());
 }
 
 static void spawn_wall(entt::DefaultRegistry &r, std::string type, int x, int y)
@@ -73,7 +75,7 @@ void spawn_static_lights(entt::DefaultRegistry &r)
 	r.assign<c::Lighting>(light, glm::vec3(1.3, 1.3, 1.3), 10000.0f);
 }
 
-void	generate_level(entt::DefaultRegistry &r, int w, int h)
+void	generate_level(entt::DefaultRegistry &r, int w, int h, Engine& engine)
 {
 	w /= 2;
 	h /= 2;
@@ -109,6 +111,6 @@ void	generate_level(entt::DefaultRegistry &r, int w, int h)
 			spawn_floor(r, x, y);
 		}
 	}
-	spawn_player(r, -w + 1, -h + 1);
+	spawn_player(r, -w + 1, -h + 1, engine);
 	spawn_static_lights(r);
 }
