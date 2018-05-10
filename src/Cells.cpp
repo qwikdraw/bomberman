@@ -2,96 +2,56 @@
 
 namespace c = components;
 
+static inline uint64_t hash(float x, float y)
+{
+	int a = round(x);
+	int b = round(y);
+	return ((uint64_t)a) << 32 | (uint32_t)b;
+}
+
 namespace systems
 {
 
-static uint64_t	keyHash(float x, float y)
+int	Cells::Collision(entt::DefaultRegistry& r, float x, float y)
 {
-	uint64_t key;
-	int32_t ix = round(x);
-	int32_t iy = round(y);
-
-	std::memmove(&key, &iy, sizeof(int32_t));
-	std::memmove((int32_t*)&key + 1, &ix, sizeof(int32_t));
-	return key;
-}
-	
-int	Cells::Collision(float x, float y)
-{
-	uint64_t key = keyHash(x, y);
-	
-	if (_collisionHeight.count(key) == 0)
-		return 0;
-	return _collisionHeight[key];
+	auto entities = getEntities(x, y);
+	int max_height = 0;
+	for (auto e : entities)
+		if (r.valid(e) && r.has<c::Collide>(e))
+			max_height= std::max(r.get<c::Collide>(e).height, max_height);
+	return max_height;
 }
 
-int	Cells::Danger(float x, float y)
+int	Cells::Danger(entt::DefaultRegistry& r, float x, float y)
 {
-	uint64_t key = keyHash(x, y);
-	
-	if (_dangerLevel.count(key) == 0)
-		return 0;
-	return _dangerLevel[key];
+	auto entities = getEntities(x, y);
+	int max_danger = 0;
+	for (auto e : entities)
+		if (r.valid(e) && r.has<c::Dangerous>(e))
+			max_danger= std::max(r.get<c::Dangerous>(e).dangerLevel, max_danger);
+	return max_danger;
 }
 
-systems::powerType	Cells::Powerup(float x, float y)
+systems::powerType	Cells::Powerup(entt::DefaultRegistry& r, float x, float y)
 {
-	uint64_t key = keyHash(x, y);
-
-	if (_powerup.count(key) == 0)
-	{
-		powerType doNothing = [](entt::DefaultRegistry&, uint32_t){};
-		return doNothing;
-	}
-	return _powerup[key];
+	auto entities = getEntities(x, y);
+	for (auto e : entities)
+		if (r.valid(e) && r.has<c::Powerup>(e))
+			return r.get<c::Powerup>(e).effect;
+	return [](entt::DefaultRegistry&, uint32_t){};
 }
 
-void	Cells::Update(entt::DefaultRegistry& registry)
+std::vector<uint32_t>& Cells::getEntities(float x, float y)
 {
-	_collisionHeight.clear();
-	_dangerLevel.clear();
-	_powerup.clear();
+	return _map[hash(x, y)];
+}
 
-	uint64_t key;
-	
-	auto collidables = registry.view<c::Collide, c::Position>();
-	for (auto entity : collidables)
-	{
-		glm::vec3& pos = collidables.get<c::Position>(entity).pos;
-		int height = collidables.get<c::Collide>(entity).height;
-
-		key = keyHash(pos.x, pos.y);
-
-		if (_collisionHeight.count(key) > 0)
-			_collisionHeight[key] = std::max(_collisionHeight[key], height);
-		else
-			_collisionHeight[key] = height;
-	}
-	
-	auto dangerous = registry.view<c::Dangerous, c::Position>();	
-	for (auto entity : dangerous)
-	{
-		glm::vec3& pos = dangerous.get<c::Position>(entity).pos;
-		int dangerLevel = dangerous.get<c::Dangerous>(entity).dangerLevel;
-
-		key = keyHash(pos.x, pos.y);
-
-		if (_dangerLevel.count(key) > 0)
-			_dangerLevel[key] = std::max(_dangerLevel[key], dangerLevel);
-		else
-			_dangerLevel[key] = dangerLevel;
-	}
-
-	auto powerups = registry.view<c::Powerup, c::Position>();
-	for (auto entity : powerups)
-	{
-		glm::vec3& pos = powerups.get<c::Position>(entity).pos;
-		auto& effect = powerups.get<c::Powerup>(entity).effect;
-
-		key = keyHash(pos.x, pos.y);
-
-		_powerup[key] = effect;
-	}
+void	Cells::Update(entt::DefaultRegistry& r)
+{
+	_map.clear();
+	r.view<c::Position>().each([this](auto entity, auto& p){
+		_map[hash(p.pos.x, p.pos.y)].push_back(entity);
+	});
 }
 
 }

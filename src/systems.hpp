@@ -25,6 +25,14 @@
 
 namespace systems
 {
+	struct	ModelLoader : entt::ResourceLoader<ModelLoader, Model>
+	{
+		std::shared_ptr<Model>	load(const std::string modelPath) const
+		{
+			return std::shared_ptr<Model>(new Model(modelPath));
+		}
+	};
+
 	//! requires: Model, Position [Lighting]
 	void	RenderModels(entt::DefaultRegistry&, entt::ResourceCache<Model>&, Window&, Camera&, double dt);
 

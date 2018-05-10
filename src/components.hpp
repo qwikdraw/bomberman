@@ -8,12 +8,6 @@
 namespace components
 {
 
-	struct CellPosition
-	{
-		int x;
-		int y;
-	};
-
 	struct Position
 	{
 		glm::vec3 pos;
