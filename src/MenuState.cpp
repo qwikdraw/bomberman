@@ -26,6 +26,10 @@ _engine(e), _window(e.window)
 				   "assets/textures/metal_sheet.png",
 				   glm::vec2(-0.1, -0.1),
 				   glm::vec2(0.1, 0.1));
+
+	_registry.assign<c::Text>(entity, "Start",
+				  glm::vec2(-0.08, -0.08),
+				  glm::vec2(0.08, 0.08));
 	
 	glClearColor(0.2, 0.25, 0.29, 1.0);
 }
@@ -36,4 +40,5 @@ void MenuState::Update(double dt)
 {
 	systems::Buttons(_registry, _window);
 	systems::Images(_registry, _imageCache, _window);
+	systems::Texts(_registry, _window);
 }

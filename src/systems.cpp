@@ -126,6 +126,29 @@ void	Images(entt::DefaultRegistry& r, entt::ResourceCache<Sprite2D>& cache, Wind
 	}
 }
 
+//! Texts
+
+void	Texts(entt::DefaultRegistry& r, Window& window)
+{
+	auto view = r.view<c::Text>();
+
+	for (auto entity : view)
+	{
+		auto& text = view.get(entity);
+
+		Text t(text.words);
+
+		window.SetRenderMask((text.botLeft.x + 1) / 2,
+				     (text.botLeft.y + 1) / 2,
+				     (text.topRight.x - text.botLeft.x) / 2,
+				     (text.topRight.y- text.botLeft.y) / 2);
+
+		t.Render(window.GetAspect());
+
+		window.RemoveRenderMask();
+	}
+}
+	
 //! player
 
 void	Player(entt::DefaultRegistry& r, Window& window, Engine::KeyBind bind,
