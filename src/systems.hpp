@@ -12,6 +12,7 @@
 #include "Cells.hpp"
 #include "Effects.hpp"
 #include "callbacks.hpp"
+#include "Text.hpp"
 
 #define ASSET_PATH "assets/"
 #define MODEL_PREFIX ".model"
@@ -44,6 +45,9 @@ namespace systems
 
 	//! requires: Image
 	void	Images(entt::DefaultRegistry&, entt::ResourceCache<Sprite2D>&, Window&);
+
+	//! requires: Text
+	void	Texts(entt::DefaultRegistry&, Window&);
 	
 	//! requires: Lighting; Applies falloff delta
 	void	Lighting(entt::DefaultRegistry&, double dt);
