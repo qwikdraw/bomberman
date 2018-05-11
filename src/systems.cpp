@@ -7,14 +7,6 @@ namespace systems
 
 //! RenderModels
 
-struct	ModelLoader : entt::ResourceLoader<ModelLoader, Model>
-{
-	std::shared_ptr<Model>	load(const std::string modelPath) const
-	{
-		return std::shared_ptr<Model>(new Model(modelPath));
-	}
-};
-
 void	RenderModels(entt::DefaultRegistry &registry, entt::ResourceCache<Model>& cache,
 		     Window &window, Camera &camera, double dt)
 {
@@ -183,7 +175,7 @@ void	Player(entt::DefaultRegistry& r, Window& window, Engine::KeyBind bind,
 	auto target = glm::vec3(pos.x, pos.y - 10, 20);
 	cam.Move((target - cam.GetPosition()) * dt);
 	move.v = v;
-	cells.Powerup(pos.x, pos.y)(r, entity);
+	cells.Powerup(r, pos.x, pos.y)(r, entity);
 }
 
 //! Lighting
@@ -201,24 +193,25 @@ void	Lighting(entt::DefaultRegistry& r, double dt)
 
 //! Velocity
 
-static void    checkCollisions(glm::vec3 &pos, glm::vec3 &v, Cells &cells, double dt, int height)
+static void    checkCollisions(entt::DefaultRegistry& r,
+	glm::vec3 &pos, glm::vec3 &v, Cells &cells, double dt, int height)
 {
-	if (v.y > 0 && height < cells.Collision(pos.x, pos.y + 1))
+	if (v.y > 0 && height < cells.Collision(r, pos.x, pos.y + 1))
 	{
 		if (pos.y > roundf(pos.y))
 			v.y = 0;
 	}
-	if (v.y < 0 && height < cells.Collision(pos.x, pos.y - 1))
+	if (v.y < 0 && height < cells.Collision(r, pos.x, pos.y - 1))
 	{
 		if (pos.y < roundf(pos.y))
 			v.y = 0;
 	}
-	if (v.x > 0 && height < cells.Collision(pos.x + 1, pos.y))
+	if (v.x > 0 && height < cells.Collision(r, pos.x + 1, pos.y))
 	{
 		if (pos.x > roundf(pos.x))
 			v.x = 0;
 	}
-	if (v.x < 0 && height < cells.Collision(pos.x - 1, pos.y))
+	if (v.x < 0 && height < cells.Collision(r, pos.x - 1, pos.y))
 	{
 		if (pos.x < roundf(pos.x))
 			v.x = 0;
@@ -236,13 +229,9 @@ static void    checkCollisions(glm::vec3 &pos, glm::vec3 &v, Cells &cells, doubl
 	}
 }
 
-void	Velocity(entt::DefaultRegistry& registry, Cells &cells, double dt)
+void	Velocity(entt::DefaultRegistry& r, Cells &cells, double dt)
 {
-
-	if (dt > 0.2) // to stop lag spikes breaking physics
-		dt = 0.2;
-	
-	auto coll = registry.view<c::Velocity, c::Position, c::Collide>();
+	auto coll = r.view<c::Velocity, c::Position, c::Collide>();
 
 	for (auto entity : coll)
 	{
@@ -251,10 +240,10 @@ void	Velocity(entt::DefaultRegistry& registry, Cells &cells, double dt)
 		int height = coll.get<c::Collide>(entity).height;
 
 		v *= dt;
-		checkCollisions(pos, v, cells, dt, height);
+		checkCollisions(r, pos, v, cells, dt, height);
 	}
 	
-	auto view = registry.view<c::Velocity, c::Position>();
+	auto view = r.view<c::Velocity, c::Position>();
 
 	for (auto entity : view)
 	{
@@ -304,55 +293,55 @@ static void	add_invisible_fire(entt::DefaultRegistry &r, int x, int y)
 	r.assign<c::TimedEffect>(fire, 0.1f, callbacks::destroy());
 }
 
-void	Explosion(entt::DefaultRegistry &registry, Cells& cells)
+void	Explosion(entt::DefaultRegistry &r, Cells& cells)
 {
 	constexpr int explosionHeight = 10;
 	
-	auto view = registry.view<c::Explosion, c::Position>();
+	auto view = r.view<c::Explosion, c::Position>();
 
 	for (auto entity : view)
 	{
 		int spread = view.get<c::Explosion>(entity).spread;
 		glm::vec3 pos = view.get<c::Position>(entity).pos;
 		
-		registry.destroy(entity);
+		r.destroy(entity);
 
-		add_fire(registry, pos.x, pos.y);
+		add_fire(r, pos.x, pos.y);
 		for (int up = 1; up <= spread; up++)
 		{
-			if (explosionHeight <= cells.Collision(pos.x, pos.y + up))
+			if (explosionHeight <= cells.Collision(r, pos.x, pos.y + up))
 			{
-				add_invisible_fire(registry, pos.x, pos.y + up);
+				add_invisible_fire(r, pos.x, pos.y + up);
 				break;
 			}
-			add_fire(registry, pos.x, pos.y + up);
+			add_fire(r, pos.x, pos.y + up);
 		}
 		for (int down = 1; down <= spread; down++)
 		{
-			if (explosionHeight <= cells.Collision(pos.x, pos.y - down))
+			if (explosionHeight <= cells.Collision(r, pos.x, pos.y - down))
 			{
-				add_invisible_fire(registry, pos.x, pos.y - down);
+				add_invisible_fire(r, pos.x, pos.y - down);
 				break;
 			}
-			add_fire(registry,pos.x, pos.y - down);
+			add_fire(r, pos.x, pos.y - down);
 		}
 		for (int left = 1; left <= spread; left++)
 		{
-			if (explosionHeight <= cells.Collision(pos.x - left, pos.y))
+			if (explosionHeight <= cells.Collision(r, pos.x - left, pos.y))
 			{
-				add_invisible_fire(registry, pos.x - left, pos.y);
+				add_invisible_fire(r, pos.x - left, pos.y);
 				break;
 			}
-			add_fire(registry, pos.x - left, pos.y);
+			add_fire(r, pos.x - left, pos.y);
 		}
 		for (int right = 1; right <= spread; right++)
 		{
-			if (explosionHeight <= cells.Collision(pos.x + right, pos.y))
+			if (explosionHeight <= cells.Collision(r, pos.x + right, pos.y))
 			{
-				add_invisible_fire(registry, pos.x + right, pos.y);
+				add_invisible_fire(r, pos.x + right, pos.y);
 				break;
 			}
-			add_fire(registry, pos.x + right, pos.y);
+			add_fire(r, pos.x + right, pos.y);
 		}
 	}
 }
@@ -406,9 +395,9 @@ void	AI(entt::DefaultRegistry &registry, Window &window, double dt)
 
 // Dangerous and vunerable entity resolution
 
-void	DangerCheck(entt::DefaultRegistry &registry, Cells& cells)
+void	DangerCheck(entt::DefaultRegistry &r, Cells& cells)
 {
-	auto view = registry.view<c::Vulnerable, c::Position>();
+	auto view = r.view<c::Vulnerable, c::Position>();
 
 	for (auto entity : view)
 	{
@@ -416,10 +405,8 @@ void	DangerCheck(entt::DefaultRegistry &registry, Cells& cells)
 		auto& onDeath = view.get<c::Vulnerable>(entity).onDeath;
 		const glm::vec3& pos = view.get<c::Position>(entity).pos;
 
-		if (dangerResist < cells.Danger(pos.x, pos.y))
-		{
-			onDeath(registry, entity);
-		}
+		if (dangerResist < cells.Danger(r, pos.x, pos.y))
+			onDeath(r, entity);
 	}
 }
 

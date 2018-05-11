@@ -12,15 +12,14 @@ namespace systems
 	typedef std::function<void(entt::DefaultRegistry&, uint32_t)> powerType;
 	class	Cells
 	{
-		std::unordered_map<uint64_t, int> _collisionHeight;
-		std::unordered_map<uint64_t, int> _dangerLevel;
-		std::unordered_map<uint64_t, powerType > _powerup;
+		std::unordered_map<uint64_t, std::vector<uint32_t>> _map;
 
 	public:
 
-		int	Collision(float x, float y);
-		int	Danger(float x, float y);
-		powerType	Powerup(float x, float y);
+		int	Collision(entt::DefaultRegistry&, float x, float y);
+		int	Danger(entt::DefaultRegistry&, float x, float y);
+		powerType	Powerup(entt::DefaultRegistry&, float x, float y);
+		std::vector<uint32_t>& getEntities(float x, float y);
 		void	Update(entt::DefaultRegistry&);
 	};
 }

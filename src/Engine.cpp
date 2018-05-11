@@ -42,7 +42,7 @@ void Engine::Run(void)
 	_time.Step();
 	window.Clear();
 	
-	_states.back()->Update(_time.Delta());
+	_states.back()->Update(std::min(_time.Delta(), 0.2));
 
 	if (_deleteMe)
 	{

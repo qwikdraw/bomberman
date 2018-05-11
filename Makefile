@@ -53,7 +53,7 @@ $(shell pkg-config --cflags glfw3 glm) \
 LDFLAGS = -framework OpenGl \
 $(shell pkg-config --libs glfw3 glm) \
 -L lib/lodepng -llodepng \
--g -fsanitize=undefined -fsanitize=address
+-fsanitize=undefined -fsanitize=address
 
 all: $(OBJ_DIR) $(NAME)
 

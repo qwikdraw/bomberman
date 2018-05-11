@@ -41,6 +41,7 @@ _engine(e), _window(e.window)
 
 	generate_level(_registry, 16, 16, _engine);
 
+	_modelCache.load<systems::ModelLoader>(entt::HashedString("bomb"), "assets/bomb.model");
 	glClearColor(0.2, 0.25, 0.29, 1.0);
 }
 
