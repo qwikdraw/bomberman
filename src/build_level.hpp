@@ -9,4 +9,4 @@
 
 namespace c = components;
 
-void	generate_level(entt::DefaultRegistry &r, int w, int h, Engine& engine);
+void	build_level(entt::DefaultRegistry &r, std::string level, Engine& engine);

@@ -32,7 +32,7 @@ int	Cells::Danger(entt::DefaultRegistry& r, float x, float y)
 	return max_danger;
 }
 
-systems::powerType	Cells::Powerup(entt::DefaultRegistry& r, float x, float y)
+callback Cells::Powerup(entt::DefaultRegistry& r, float x, float y)
 {
 	auto entities = getEntities(x, y);
 	for (auto e : entities)

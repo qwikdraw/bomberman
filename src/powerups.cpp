@@ -2,7 +2,10 @@
 
 namespace c = components;
 
-void	powerups::randomPowerup(entt::DefaultRegistry& r, glm::vec3 pos)
+namespace powerups
+{
+
+void	randomPowerup(entt::DefaultRegistry& r, glm::vec3 pos)
 {
 	//might want to rework if we end up with a ton of powerups
 	if (glm::linearRand(0.0f, 1.0f) <= 0.5)
@@ -11,7 +14,7 @@ void	powerups::randomPowerup(entt::DefaultRegistry& r, glm::vec3 pos)
 		bombPower(r, pos);
 }
 
-void	powerups::speedBoost(entt::DefaultRegistry& r, glm::vec3 pos)
+void	speedBoost(entt::DefaultRegistry& r, glm::vec3 pos)
 {
 	auto powerup = r.create();
 
@@ -28,7 +31,7 @@ void	powerups::speedBoost(entt::DefaultRegistry& r, glm::vec3 pos)
 	r.assign<c::Powerup>(powerup, effect);
 }
 
-void	powerups::bombPower(entt::DefaultRegistry& r, glm::vec3 pos)
+void	bombPower(entt::DefaultRegistry& r, glm::vec3 pos)
 {
 	auto powerup = r.create();
 
@@ -43,4 +46,6 @@ void	powerups::bombPower(entt::DefaultRegistry& r, glm::vec3 pos)
 	r.assign<c::Position>(powerup, pos);
 	r.assign<c::Model>(powerup, "more_power", glm::mat4(1));
 	r.assign<c::Powerup>(powerup, effect);
+}
+
 }
