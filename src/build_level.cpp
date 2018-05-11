@@ -36,7 +36,7 @@ static std::function<void(entt::DefaultRegistry& r, int x, int y)> spawn[128] = 
 		r.assign<c::Position>(column, glm::vec3(x, y, 0));
 	},
 
-	['s'] = [](entt::DefaultRegistry &r, int x, int y)
+	['p'] = [](entt::DefaultRegistry &r, int x, int y)
 	{
 		auto player = r.create();
 
@@ -72,10 +72,22 @@ static std::function<void(entt::DefaultRegistry& r, int x, int y)> spawn[128] = 
 		r.assign<c::Position>(enemy, glm::vec3(x, y, 0));
 		r.assign<c::Model>(enemy, "player", glm::mat4(1));
 		r.assign<c::Velocity>(enemy);
-		r.assign<c::Collide>(enemy, 1);
+		r.assign<c::Collide>(enemy, 5);
 		r.assign<c::AI>(enemy, 2.0, 1.0, c::AI_type::HORZ);
 		r.assign<c::Dangerous>(enemy, 10);
-		r.assign<c::Vulnerable>(enemy, callbacks::explode(3) + callbacks::destroy(), 11);
+		r.assign<c::Vulnerable>(enemy, callbacks::destroy(), 11);
+	},
+
+	['^'] = [](entt::DefaultRegistry &r, int x, int y)
+	{
+		auto enemy = r.create();
+		r.assign<c::Position>(enemy, glm::vec3(x, y, 0));
+		r.assign<c::Model>(enemy, "player", glm::mat4(1));
+		r.assign<c::Velocity>(enemy);
+		r.assign<c::Collide>(enemy, 5);
+		r.assign<c::AI>(enemy, 2.0, 1.0, c::AI_type::VERT);
+		r.assign<c::Dangerous>(enemy, 10);
+		r.assign<c::Vulnerable>(enemy, callbacks::destroy(), 11);
 	}
 };
 
