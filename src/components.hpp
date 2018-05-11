@@ -3,6 +3,7 @@
 #include "bomberman.hpp"
 #include "IParticle.hpp"
 #include "Light.hpp"
+#include "Engine.hpp"
 
 //! It is recommended to alias this namespace like so: `namespace c = components;`
 namespace components
@@ -113,5 +114,10 @@ namespace components
 	struct Powerup
 	{
 		std::function<void(entt::DefaultRegistry&, uint32_t)> effect;
+	};
+
+	struct EngineTag
+	{
+		Engine& ref;
 	};
 };

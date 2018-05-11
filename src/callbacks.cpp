@@ -1,10 +1,14 @@
+#include <entt/entt.hpp>
 #include "callbacks.hpp"
 
 namespace c = components;
 
-callbacks::callbackType	callbacks::explode(int power)
+namespace callbacks
 {
-	auto f = [power](entt::DefaultRegistry& r, uint32_t e)
+
+callback	explode(int power)
+{
+	return [power](entt::DefaultRegistry& r, uint32_t e)
 	{
 		auto ex = r.create();
 		glm::vec3 &pos = r.get<c::Position>(e).pos;
@@ -12,12 +16,11 @@ callbacks::callbackType	callbacks::explode(int power)
 		r.assign<c::Explosion>(ex, power);
 		r.assign<c::Position>(ex, pos);
 	};
-	return f;
 }
 
-callbacks::callbackType	callbacks::ignite(void)
+callback	ignite(void)
 {
-	auto f = [](entt::DefaultRegistry& r, uint32_t e)
+	return [](entt::DefaultRegistry& r, uint32_t e)
 	{
 		auto fire = r.create();
 		glm::vec3& pos = r.get<c::Position>(e).pos;
@@ -28,12 +31,11 @@ callbacks::callbackType	callbacks::ignite(void)
 		r.assign<c::TimedEffect>(fire, 2.0f, destroy());
 		r.assign<c::Particles>(fire, Effects::explosion, 2.0f);
 	};
-	return f;
 }
 
-callbacks::callbackType	callbacks::bomb(int power)
+callback	bomb(int power)
 {
-	auto f = [power](entt::DefaultRegistry& r, uint32_t e)
+	return [power](entt::DefaultRegistry& r, uint32_t e)
 	{
 		auto bomb = r.create();
 		glm::vec3& pos = r.get<c::Position>(e).pos;
@@ -45,32 +47,30 @@ callbacks::callbackType	callbacks::bomb(int power)
 		r.assign<c::TimedEffect>(bomb, 3.0f, explode(power) + destroy());
 		r.assign<c::Vulnerable>(bomb, explode(power) + destroy(), 50);
 	};
-	return f;
 }
 
-callbacks::callbackType	callbacks::powerup(float spawnChance)
+callback	powerup(float spawnChance)
 {
-	auto f = [spawnChance](entt::DefaultRegistry& r, uint32_t e)
+	return [spawnChance](entt::DefaultRegistry& r, uint32_t e)
 	{
 		glm::vec3& pos = r.get<c::Position>(e).pos;
 
 		if (glm::linearRand(0.0f, 1.0f) <= spawnChance)
 			powerups::randomPowerup(r, pos);
 	};
-	return f;
 }
 
-callbacks::callbackType	callbacks::destroy(void)
+callback	destroy(void)
 {
-	auto f = [](entt::DefaultRegistry& r, uint32_t e)
+	return [](entt::DefaultRegistry& r, uint32_t e)
 	{
 		r.destroy(e);
 	};
-	return f;
 }
 
-callbacks::callbackType	callbacks::change_state(StateType st, Engine& engine)
+callback	change_state(entt::DefaultRegistry& r, StateType st)
 {
+	auto& engine = r.get<c::EngineTag>().ref;
 	switch (st)
 	{
 	case StateType::Menu:
@@ -90,8 +90,9 @@ callbacks::callbackType	callbacks::change_state(StateType st, Engine& engine)
 		};
 	}
 }
+}
 
-callbacks::callbackType	operator + (callbacks::callbackType a, callbacks::callbackType b)
+callbacks::callback	operator + (callbacks::callback a, callbacks::callback b)
 {
 	auto f = [a, b](entt::DefaultRegistry& r, uint32_t e)
 	{

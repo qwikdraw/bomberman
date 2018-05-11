@@ -325,7 +325,7 @@ void	Explosion(entt::DefaultRegistry &r, Cells& cells)
 	for (auto entity : view)
 	{
 		int spread = view.get<c::Explosion>(entity).spread;
-		glm::vec3 pos = view.get<c::Position>(entity).pos;
+		glm::vec3 pos = glm::round(view.get<c::Position>(entity).pos);
 		
 		r.destroy(entity);
 
@@ -386,9 +386,9 @@ void	AI(entt::DefaultRegistry &registry, Window &window, double dt)
 			if (ai.type == c::AI_type::RAND)
 				ai.dir = static_cast<c::Direction>(std::rand() % 5);
 			else if (ai.type == c::AI_type::HORZ)
-				ai.dir = static_cast<c::Direction>(std::rand() % 2 == 0 ? 2 : 4);
+				ai.dir = static_cast<c::Direction>(std::rand() % 2 ? 2 : 4);
 			else if (ai.type == c::AI_type::VERT)
-				ai.dir = static_cast<c::Direction>(std::rand() % 2 == 0 ? 1 : 3);
+				ai.dir = static_cast<c::Direction>(std::rand() % 2 ? 1 : 3);
 			if (ai.dir == c::Direction::UP)
 				transform = FACE_UP;
 			else if (ai.dir == c::Direction::RIGHT)

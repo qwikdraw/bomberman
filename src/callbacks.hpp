@@ -11,15 +11,14 @@
 
 namespace callbacks
 {
-	typedef std::function<void(entt::DefaultRegistry&, uint32_t)> callbackType;
+	typedef std::function<void(entt::DefaultRegistry&, uint32_t)> callback;
 
-	callbackType	explode(int power);
-	callbackType	ignite(void);
-	callbackType	bomb(int power);
-	callbackType	powerup(float spawnChance);
-	callbackType	destroy(void);
-
-	callbackType	change_state(StateType st, Engine& engine);
+	callback explode(int power);
+	callback ignite(void);
+	callback bomb(int power);
+	callback powerup(float spawnChance);
+	callback destroy(void);
+	callback change_state(entt::DefaultRegistry& r, StateType st);
 };
 
-callbacks::callbackType	operator + (callbacks::callbackType, callbacks::callbackType);
+callbacks::callback	operator+ (callbacks::callback, callbacks::callback);

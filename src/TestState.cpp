@@ -1,6 +1,6 @@
 #include "TestState.hpp"
-#include "generate_level.hpp"
 #include "ParticleExplosion.hpp"
+#include "build_level.hpp"
 
 TestState::TestState(Engine& e) :
 _engine(e), _window(e.window)
@@ -11,6 +11,7 @@ _engine(e), _window(e.window)
 
 // create AI test
 
+	/*
 	auto enemy = _registry.create();
 	_registry.assign<c::Position>(enemy, glm::vec3(1, 3, 0));
 	_registry.assign<c::Model>(enemy, "player", glm::mat4(1));
@@ -37,10 +38,9 @@ _engine(e), _window(e.window)
 	_registry.assign<c::AI>(enemy_r, 2.0, 1.0, c::AI_type::RAND);
 	_registry.assign<c::Dangerous>(enemy_r, 10);
 	_registry.assign<c::Vulnerable>(enemy_r, callbacks::explode(3) + callbacks::destroy(), 11);
+	*/
 
-
-	generate_level(_registry, 16, 16, _engine);
-
+	build_level(_registry, "01", _engine);
 	_modelCache.load<systems::ModelLoader>(entt::HashedString("bomb"), "assets/bomb.model");
 	glClearColor(0.2, 0.25, 0.29, 1.0);
 }
