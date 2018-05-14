@@ -139,9 +139,9 @@ void	Texts(entt::DefaultRegistry& r, Window& window)
 		Text t(text.words);
 
 		window.SetRenderMask((text.botLeft.x + 1) / 2,
-				     (text.botLeft.y + 1) / 2,
-				     (text.topRight.x - text.botLeft.x) / 2,
-				     (text.topRight.y- text.botLeft.y) / 2);
+			(text.botLeft.y + 1) / 2,
+			(text.topRight.x - text.botLeft.x) / 2,
+			(text.topRight.y- text.botLeft.y) / 2);
 
 		t.Render(window.GetAspect());
 
@@ -224,7 +224,7 @@ static void    checkCollisions(entt::DefaultRegistry& r,
 		if (pos.y > roundf(pos.y))
 			v.y = 0;
 	}
-	if (v.y < 0 && height < cells.Collision(r, pos.x, pos.y - 1))
+	else if (v.y < 0 && height < cells.Collision(r, pos.x, pos.y - 1))
 	{
 		if (pos.y < roundf(pos.y))
 			v.y = 0;
@@ -234,22 +234,18 @@ static void    checkCollisions(entt::DefaultRegistry& r,
 		if (pos.x > roundf(pos.x))
 			v.x = 0;
 	}
-	if (v.x < 0 && height < cells.Collision(r, pos.x - 1, pos.y))
+	else if (v.x < 0 && height < cells.Collision(r, pos.x - 1, pos.y))
 	{
 		if (pos.x < roundf(pos.x))
 			v.x = 0;
 	}
 
-	//re-align
+	// Re-align
 
 	if (v.x)
-	{
-		v.y = (roundf(pos.y) - pos.y) * dt * 10;
-	}
+		v.y = (roundf(pos.y) - pos.y) * 10;
 	else if (v.y)
-	{
-		v.x = (roundf(pos.x) - pos.x) * dt * 10;
-	}
+		v.x = (roundf(pos.x) - pos.x) * 10;
 }
 
 void	Velocity(entt::DefaultRegistry& r, Cells &cells, double dt)
@@ -262,17 +258,16 @@ void	Velocity(entt::DefaultRegistry& r, Cells &cells, double dt)
 		glm::vec3 &v = coll.get<c::Velocity>(entity).v;
 		int height = coll.get<c::Collide>(entity).height;
 
-		v *= dt;
 		checkCollisions(r, pos, v, cells, dt, height);
 	}
-	
+
 	auto view = r.view<c::Velocity, c::Position>();
 
 	for (auto entity : view)
 	{
 		glm::vec3 &moveAmount = view.get<c::Velocity>(entity).v;
 		glm::vec3 &pos = view.get<c::Position>(entity).pos;
-		pos += moveAmount;
+		pos += moveAmount * dt;
 	}
 }
 
@@ -295,78 +290,51 @@ void	RenderParticles(entt::DefaultRegistry &registry, Camera &cam)
 
 //! Explosion
 
-static void	add_fire(entt::DefaultRegistry &r, int x, int y)
+static void	spawn_explosion(entt::DefaultRegistry &r, Cells& cells, int spread, int x, int y, c::Direction dir)
 {
-	auto fire = r.create();
-
-	r.assign<c::Position>(fire, glm::vec3(x, y, 0));
-	r.assign<c::Lighting>(fire, glm::vec3(0.5, 0.2, 0), 1.0f, glm::vec3(0, 0, 2), -1.0f);
-	r.assign<c::Dangerous>(fire, 100);
-	r.assign<c::Particles>(fire, Effects::explosion, 1.0f);
-	r.assign<c::TimedEffect>(fire, 1.0f, callbacks::destroy());
+	if (cells.Collision(r, x, y) && !cells.Vulnerable(r, x, y))
+		return;
+	auto ex = r.create();
+	r.assign<c::Position>(ex, glm::vec3(x, y, 0));
+	r.assign<c::Lighting>(ex, glm::vec3(0.5, 0.2, 0), 1.0f, glm::vec3(0, 0, 2), -1.0f);
+	r.assign<c::Dangerous>(ex, 100);
+	r.assign<c::Particles>(ex, Effects::explosion, 1.0f);
+	r.assign<c::Explosion>(ex, spread, dir);
+	r.assign<c::TimedEffect>(ex, 0.8f, callbacks::destroy());
 }
 
-static void	add_invisible_fire(entt::DefaultRegistry &r, int x, int y)
-{
-	auto fire = r.create();
-
-	r.assign<c::Position>(fire, glm::vec3(x, y, 0));
-	r.assign<c::Lighting>(fire, glm::vec3(0.5, 0.2, 0), 2.0f, glm::vec3(0, 0, 2), 1.2f);
-	r.assign<c::Dangerous>(fire, 100);
-	r.assign<c::TimedEffect>(fire, 0.1f, callbacks::destroy());
-}
 
 void	Explosion(entt::DefaultRegistry &r, Cells& cells)
 {
-	constexpr int explosionHeight = 10;
-	
-	auto view = r.view<c::Explosion, c::Position>();
-
-	for (auto entity : view)
-	{
-		int spread = view.get<c::Explosion>(entity).spread;
-		glm::vec3 pos = glm::round(view.get<c::Position>(entity).pos);
-		
-		r.destroy(entity);
-
-		add_fire(r, pos.x, pos.y);
-		for (int up = 1; up <= spread; up++)
+	r.view<c::Explosion, c::Position>().each([&r, &cells](auto entity, auto ex, auto p){
+		auto pos = glm::round(p.pos);
+		if (ex.spread < 1)
+			return r.remove<c::Explosion>(entity);
+		ex.spread -= 1;
+		switch (ex.dir)
 		{
-			if (explosionHeight <= cells.Collision(r, pos.x, pos.y + up))
-			{
-				add_invisible_fire(r, pos.x, pos.y + up);
+			case (c::Direction::NONE):
+				spawn_explosion(r, cells, 0, pos.x, pos.y, c::Direction::NONE);
+				spawn_explosion(r, cells, ex.spread, pos.x, pos.y + 1, c::Direction::UP);
+				spawn_explosion(r, cells, ex.spread, pos.x, pos.y - 1, c::Direction::DOWN);
+				spawn_explosion(r, cells, ex.spread, pos.x - 1, pos.y, c::Direction::LEFT);
+				spawn_explosion(r, cells, ex.spread, pos.x + 1, pos.y, c::Direction::RIGHT);
 				break;
-			}
-			add_fire(r, pos.x, pos.y + up);
-		}
-		for (int down = 1; down <= spread; down++)
-		{
-			if (explosionHeight <= cells.Collision(r, pos.x, pos.y - down))
-			{
-				add_invisible_fire(r, pos.x, pos.y - down);
+			case (c::Direction::UP):
+				spawn_explosion(r, cells, ex.spread, pos.x, pos.y + 1, c::Direction::UP);
 				break;
-			}
-			add_fire(r, pos.x, pos.y - down);
-		}
-		for (int left = 1; left <= spread; left++)
-		{
-			if (explosionHeight <= cells.Collision(r, pos.x - left, pos.y))
-			{
-				add_invisible_fire(r, pos.x - left, pos.y);
+			case (c::Direction::DOWN):
+				spawn_explosion(r, cells, ex.spread, pos.x, pos.y - 1, c::Direction::DOWN);
 				break;
-			}
-			add_fire(r, pos.x - left, pos.y);
-		}
-		for (int right = 1; right <= spread; right++)
-		{
-			if (explosionHeight <= cells.Collision(r, pos.x + right, pos.y))
-			{
-				add_invisible_fire(r, pos.x + right, pos.y);
+			case (c::Direction::LEFT):
+				spawn_explosion(r, cells, ex.spread, pos.x - 1, pos.y, c::Direction::LEFT);
 				break;
-			}
-			add_fire(r, pos.x + right, pos.y);
+			case (c::Direction::RIGHT):
+				spawn_explosion(r, cells, ex.spread, pos.x + 1, pos.y, c::Direction::RIGHT);
+				break;
 		}
-	}
+		r.remove<c::Explosion>(entity);
+	});
 }
 
 // AI monster

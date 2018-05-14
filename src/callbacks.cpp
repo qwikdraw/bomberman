@@ -18,21 +18,6 @@ callback	explode(int power)
 	};
 }
 
-callback	ignite(void)
-{
-	return [](entt::DefaultRegistry& r, uint32_t e)
-	{
-		auto fire = r.create();
-		glm::vec3& pos = r.get<c::Position>(e).pos;
-
-		r.assign<c::Position>(fire, pos);
-		r.assign<c::Lighting>(fire, glm::vec3(1, 0.5, 0.5), 2.0f, glm::vec3(0, 0, 2), -1.0f);
-		r.assign<c::Dangerous>(fire, 100);
-		r.assign<c::TimedEffect>(fire, 2.0f, destroy());
-		r.assign<c::Particles>(fire, Effects::explosion, 2.0f);
-	};
-}
-
 callback	bomb(int power)
 {
 	return [power](entt::DefaultRegistry& r, uint32_t e)

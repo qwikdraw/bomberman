@@ -17,8 +17,9 @@ namespace systems
 	public:
 		int Collision(entt::DefaultRegistry&, float x, float y);
 		int Danger(entt::DefaultRegistry&, float x, float y);
+		bool Vulnerable(entt::DefaultRegistry& r, float x, float y);
 		callback Powerup(entt::DefaultRegistry&, float x, float y);
 		std::vector<uint32_t>& getEntities(float x, float y);
-		void Update(entt::DefaultRegistry&);
+		void operator() (entt::DefaultRegistry&);
 	};
 }

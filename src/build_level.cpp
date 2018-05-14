@@ -44,7 +44,7 @@ static std::function<void(entt::DefaultRegistry& r, int x, int y)> spawn[128] = 
 		r.assign<c::Model>(player, "player", glm::mat4(1));
 		r.assign<c::Position>(player, glm::vec3(x, y, 0));
 		r.assign<c::Velocity>(player);
-		r.assign<c::Collide>(player, 4);
+		r.assign<c::Collide>(player, 5);
 		r.assign<c::Vulnerable>(player,
 			callbacks::change_state(r, StateType::DeathScreen) +
 			callbacks::destroy()
@@ -59,7 +59,6 @@ static std::function<void(entt::DefaultRegistry& r, int x, int y)> spawn[128] = 
 		r.assign<c::Collide>(e, 10);
 		r.assign<c::Position>(e, glm::vec3(x, y, 0));
 		r.assign<c::Vulnerable>(e,
-			callbacks::ignite() +
 			callbacks::powerup(0.5) +
 			callbacks::destroy(),
 			10
@@ -102,6 +101,11 @@ void	build_level(entt::DefaultRegistry &r, std::string level, Engine& engine)
 	auto light = r.create();
 	r.assign<c::Position>(light, glm::vec3(0, 0, 20));
 	r.assign<c::Lighting>(light, glm::vec3(1.3, 1.3, 1.3), 10000.0f);
+
+	// Baseplate
+	auto base = r.create();
+	r.assign<c::Position>(base, glm::vec3(0, 0, 0));
+	r.assign<c::Model>(base, "floor", glm::mat4(1));
 
 	// Read level data
 	std::ifstream file("assets/levels/" + level + ".lvl");

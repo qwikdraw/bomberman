@@ -32,6 +32,15 @@ int	Cells::Danger(entt::DefaultRegistry& r, float x, float y)
 	return max_danger;
 }
 
+bool Cells::Vulnerable(entt::DefaultRegistry& r, float x, float y)
+{
+	auto entities = getEntities(x, y);
+	for (auto e : entities)
+		if (r.valid(e) && r.has<c::Vulnerable>(e))
+			return true;
+	return false;
+}
+
 callback Cells::Powerup(entt::DefaultRegistry& r, float x, float y)
 {
 	auto entities = getEntities(x, y);
@@ -46,7 +55,7 @@ std::vector<uint32_t>& Cells::getEntities(float x, float y)
 	return _map[hash(x, y)];
 }
 
-void	Cells::Update(entt::DefaultRegistry& r)
+void	Cells::operator()(entt::DefaultRegistry& r)
 {
 	_map.clear();
 	r.view<c::Position>().each([this](auto entity, auto& p){

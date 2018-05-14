@@ -51,7 +51,7 @@ TestState::~TestState(void)
 
 void TestState::Update(double dt)
 {
-	_cellQuery.Update(_registry);
+	_cellQuery(_registry);
 	
 	systems::RenderModels(_registry, _modelCache, _window, _camera, dt);
 	systems::TimedEffect(_registry, dt);

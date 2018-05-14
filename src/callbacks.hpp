@@ -14,7 +14,6 @@ namespace callbacks
 	typedef std::function<void(entt::DefaultRegistry&, uint32_t)> callback;
 
 	callback explode(int power);
-	callback ignite(void);
 	callback bomb(int power);
 	callback powerup(float spawnChance);
 	callback destroy(void);
