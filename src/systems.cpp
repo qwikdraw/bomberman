@@ -31,20 +31,24 @@ void	RenderModels(entt::DefaultRegistry &registry, entt::ResourceCache<Model>& c
 	{
 		auto &modelComp = view.get<c::Model>(entity);
 		auto &pos = view.get<c::Position>(entity);
-		const std::string modelPath = ASSET_PATH + modelComp.name + MODEL_PREFIX;
+		const std::string modelPath = ASSET_PATH + modelComp.name + ".model";
 
 		cache.load<ModelLoader>(entt::HashedString(modelComp.name.c_str()), modelPath);
 		const Model &model = cache.handle(entt::HashedString(modelComp.name.c_str()) ).get();
 
-		window.SetRenderMask((modelComp.botLeft.x + 1) / 2,
-				     (modelComp.botLeft.y + 1) / 2,
-				     (modelComp.topRight.x - modelComp.botLeft.x) / 2,
-				     (modelComp.topRight.y - modelComp.botLeft.y) / 2);
-		
-		const_cast<Model&>(model).Render(camera.Perspective(),
-						 modelComp.transform,
-						 pos.pos,
-						 modelComp.time);
+		window.SetRenderMask(
+			(modelComp.botLeft.x + 1) / 2,
+			(modelComp.botLeft.y + 1) / 2,
+			(modelComp.topRight.x - modelComp.botLeft.x) / 2,
+			(modelComp.topRight.y - modelComp.botLeft.y) / 2
+		);
+
+		const_cast<Model&>(model).Render(
+			camera.Perspective(),
+			modelComp.transform,
+			pos.pos,
+			modelComp.time
+		);
 
 		window.RemoveRenderMask();
 		modelComp.time += dt;
@@ -55,48 +59,25 @@ void	RenderModels(entt::DefaultRegistry &registry, entt::ResourceCache<Model>& c
 	}
 }
 
-//! TimedEffect
-	
-void	TimedEffect(entt::DefaultRegistry &registry, double dt)
+//! Render particles
+
+void	RenderParticles(entt::DefaultRegistry &registry, Camera &cam)
 {
-	auto view = registry.view<c::TimedEffect>();
+	auto view = registry.view<c::Particles, c::Position, c::TimedEffect>();
 
 	for (auto entity : view)
 	{
-		auto &te = view.get(entity);
+		glm::vec3 pos = view.get<c::Position>(entity).pos;
+		IParticle *particles = view.get<c::Particles>(entity).particle;
+		float duration = view.get<c::Particles>(entity).duration;
+		float time = view.get<c::TimedEffect>(entity).timeLeft;
 
-		te.timeLeft -= dt;
-		if (te.timeLeft <= 0)
-			te.effect(registry, entity);
-	}
-}
-
-
-//! Buttons
-
-void	Buttons(entt::DefaultRegistry &r, Window& window)
-{
-	auto view = r.view<c::Button>();
-
-	for (auto entity : view)
-	{
-		auto& button = view.get(entity);
-
-		if (window.MouseClick(0))
-		{
-			glm::vec2 pos = window.MousePos();
-
-			if (pos.x >= button.botLeft.x && pos.x <= button.topRight.x &&
-			    pos.y >= button.botLeft.y && pos.y <= button.topRight.y)
-			{
-				button.onClick(r, entity);
-			}
-		}
+		particles->Render(cam.Perspective(), pos, duration - time);
 	}
 }
 
 //! Images
-	
+
 struct	ImageLoader : entt::ResourceLoader<ImageLoader, Sprite2D>
 {
 	std::shared_ptr<Sprite2D>  load(const std::string imagePath) const
@@ -148,6 +129,47 @@ void	Texts(entt::DefaultRegistry& r, Window& window)
 		window.RemoveRenderMask();
 	}
 }
+
+
+//! TimedEffect
+
+void	TimedEffect(entt::DefaultRegistry &registry, double dt)
+{
+	auto view = registry.view<c::TimedEffect>();
+
+	for (auto entity : view)
+	{
+		auto &te = view.get(entity);
+
+		te.timeLeft -= dt;
+		if (te.timeLeft <= 0)
+			te.effect(registry, entity);
+	}
+}
+
+
+//! Buttons
+
+void	Buttons(entt::DefaultRegistry &r, Window& window)
+{
+	auto view = r.view<c::Button>();
+
+	for (auto entity : view)
+	{
+		auto& button = view.get(entity);
+
+		if (window.MouseClick(0))
+		{
+			glm::vec2 pos = window.MousePos();
+
+			if (pos.x >= button.botLeft.x && pos.x <= button.topRight.x &&
+			    pos.y >= button.botLeft.y && pos.y <= button.topRight.y)
+			{
+				button.onClick(r, entity);
+			}
+		}
+	}
+}
 	
 //! player
 
@@ -190,7 +212,7 @@ void	Player(entt::DefaultRegistry& r, Window& window, Engine::KeyBind bind,
 	{
 		if (player.bombCooldownTimer <= 0)
 		{
-			callbacks::bomb(player.bombPower)(r, entity);
+			scripts::bomb(player.bombPower)(r, entity);
 			player.bombCooldownTimer = player.bombCooldown;
 		}
 	}
@@ -271,23 +293,6 @@ void	Velocity(entt::DefaultRegistry& r, Cells &cells, double dt)
 	}
 }
 
-//! Render particles
-
-void	RenderParticles(entt::DefaultRegistry &registry, Camera &cam)
-{
-	auto view = registry.view<c::Particles, c::Position, c::TimedEffect>();
-	
-	for (auto entity : view)
-	{
-		glm::vec3 pos = view.get<c::Position>(entity).pos;
-		IParticle *particles = view.get<c::Particles>(entity).particle;
-		float duration = view.get<c::Particles>(entity).duration;
-		float time = view.get<c::TimedEffect>(entity).timeLeft;
-
-		particles->Render(cam.Perspective(), pos, duration - time);
-	}
-}
-
 //! Explosion
 
 static void	spawn_explosion(entt::DefaultRegistry &r, Cells& cells, int spread, int x, int y, c::Direction dir)
@@ -300,7 +305,7 @@ static void	spawn_explosion(entt::DefaultRegistry &r, Cells& cells, int spread, 
 	r.assign<c::Dangerous>(ex, 100);
 	r.assign<c::Particles>(ex, Effects::explosion, 1.0f);
 	r.assign<c::Explosion>(ex, spread, dir);
-	r.assign<c::TimedEffect>(ex, 0.8f, callbacks::destroy());
+	r.assign<c::TimedEffect>(ex, 0.8f, scripts::destroy());
 }
 
 
@@ -386,7 +391,7 @@ void	AI(entt::DefaultRegistry &registry, Window &window, double dt)
 
 // Dangerous and vunerable entity resolution
 
-void	DangerCheck(entt::DefaultRegistry &r, Cells& cells)
+void	Danger(entt::DefaultRegistry &r, Cells& cells)
 {
 	auto view = r.view<c::Vulnerable, c::Position>();
 

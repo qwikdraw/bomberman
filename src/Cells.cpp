@@ -41,7 +41,7 @@ bool Cells::Vulnerable(entt::DefaultRegistry& r, float x, float y)
 	return false;
 }
 
-callback Cells::Powerup(entt::DefaultRegistry& r, float x, float y)
+script Cells::Powerup(entt::DefaultRegistry& r, float x, float y)
 {
 	auto entities = getEntities(x, y);
 	for (auto e : entities)

@@ -5,18 +5,15 @@
 
 int	main(void)
 {
-	Window window(1024, 1024, "bomberman");
+	Window window(1920, 1080, "bomberman");
 	Engine engine(window);
 
 	Effects::explosion = new ParticleExplosion(1.0f);
-	
+
 	engine.PushState(new MenuState(engine));
 	while (engine.isRunning)
-	{
 		engine.Run();
-	}
 
 	Effects::CleanUp();
-	
 	return 0;
 }

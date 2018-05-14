@@ -7,7 +7,7 @@
 
 namespace c = components;
 
-typedef std::function<void(entt::DefaultRegistry&, uint32_t)> callback;
+typedef std::function<void(entt::DefaultRegistry&, uint32_t)> script;
 
 namespace systems
 {
@@ -18,7 +18,7 @@ namespace systems
 		int Collision(entt::DefaultRegistry&, float x, float y);
 		int Danger(entt::DefaultRegistry&, float x, float y);
 		bool Vulnerable(entt::DefaultRegistry& r, float x, float y);
-		callback Powerup(entt::DefaultRegistry&, float x, float y);
+		script Powerup(entt::DefaultRegistry&, float x, float y);
 		std::vector<uint32_t>& getEntities(float x, float y);
 		void operator() (entt::DefaultRegistry&);
 	};

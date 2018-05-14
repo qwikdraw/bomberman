@@ -1,12 +1,11 @@
-#include <entt/entt.hpp>
-#include "callbacks.hpp"
+#include "scripts.hpp"
 
 namespace c = components;
 
-namespace callbacks
+namespace scripts
 {
 
-callback	explode(int power)
+script	explode(int power)
 {
 	return [power](entt::DefaultRegistry& r, uint32_t e)
 	{
@@ -18,7 +17,7 @@ callback	explode(int power)
 	};
 }
 
-callback	bomb(int power)
+script	bomb(int power)
 {
 	return [power](entt::DefaultRegistry& r, uint32_t e)
 	{
@@ -34,7 +33,7 @@ callback	bomb(int power)
 	};
 }
 
-callback	powerup(float spawnChance)
+script	powerup(float spawnChance)
 {
 	return [spawnChance](entt::DefaultRegistry& r, uint32_t e)
 	{
@@ -45,7 +44,7 @@ callback	powerup(float spawnChance)
 	};
 }
 
-callback	destroy(void)
+script	destroy(void)
 {
 	return [](entt::DefaultRegistry& r, uint32_t e)
 	{
@@ -53,7 +52,7 @@ callback	destroy(void)
 	};
 }
 
-callback	change_state(entt::DefaultRegistry& r, StateType st)
+script	change_state(entt::DefaultRegistry& r, StateType st)
 {
 	auto& engine = r.get<c::EngineTag>().ref;
 	switch (st)
@@ -61,12 +60,12 @@ callback	change_state(entt::DefaultRegistry& r, StateType st)
 	case StateType::Menu:
 		return [&engine](entt::DefaultRegistry& r, uint32_t e)
 		{
-			engine.ChangeState(new TestState(engine));
+			engine.ChangeState(new GameState(engine));
 		};
 	case StateType::Level1:
 		return [&engine](entt::DefaultRegistry& r, uint32_t e)
 		{
-			engine.ChangeState(new TestState(engine));
+			engine.ChangeState(new GameState(engine));
 		};
 	case StateType::DeathScreen:
 		return [&engine](entt::DefaultRegistry& r, uint32_t e)
@@ -77,7 +76,7 @@ callback	change_state(entt::DefaultRegistry& r, StateType st)
 }
 }
 
-callbacks::callback	operator + (callbacks::callback a, callbacks::callback b)
+scripts::script	operator + (scripts::script a, scripts::script b)
 {
 	auto f = [a, b](entt::DefaultRegistry& r, uint32_t e)
 	{

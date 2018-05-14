@@ -1,5 +1,5 @@
 #include "MenuState.hpp"
-#include "TestState.hpp"
+#include "GameState.hpp"
 #include "components.hpp"
 #include "bomberman.hpp"
 #include "systems.hpp"
@@ -14,7 +14,7 @@ _engine(e), _window(e.window)
 
 	auto nextstate = [this](entt::DefaultRegistry& r, uint32_t e)
 	{
-		_engine.PushState(new TestState(_engine));
+		_engine.PushState(new GameState(_engine));
 	};
 	
 	_registry.assign<c::Button>(entity,

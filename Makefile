@@ -27,14 +27,14 @@ systems \
 build_level \
 Engine \
 MenuState \
-TestState \
+GameState \
 DeathState \
 ParticleExplosion \
 Text \
 Cells \
 powerups \
 Effects \
-callbacks
+scripts
 
 SRC_DIR = src
 OBJ_DIR = obj
@@ -48,12 +48,12 @@ $(shell pkg-config --cflags glfw3 glm) \
 -I lib/entt/src \
 -I lib/lodepng \
 -g -O3 -march=native \
--fsanitize=undefined -fsanitize=address
+#-fsanitize=undefined -fsanitize=address
 
 LDFLAGS = -framework OpenGl \
 $(shell pkg-config --libs glfw3 glm) \
 -L lib/lodepng -llodepng \
--fsanitize=undefined -fsanitize=address
+#-fsanitize=undefined -fsanitize=address
 
 all: $(OBJ_DIR) $(NAME)
 

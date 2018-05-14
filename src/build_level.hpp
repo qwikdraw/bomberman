@@ -4,7 +4,7 @@
 #include "components.hpp"
 #include "ParticleExplosion.hpp"
 #include "Effects.hpp"
-#include "callbacks.hpp"
+#include "scripts.hpp"
 #include "Engine.hpp"
 
 namespace c = components;

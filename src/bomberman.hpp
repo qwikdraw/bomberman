@@ -8,10 +8,11 @@
 #include <fstream>
 #include <iostream>
 #include <vector>
-#include <regex>
 #include <algorithm>
 #include <array>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/ext.hpp>
 #include <entt/entt.hpp>
+
+#define ASSET_PATH "assets/"

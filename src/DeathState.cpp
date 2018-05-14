@@ -9,11 +9,11 @@ _engine(engine), _window(engine.window)
 	auto entity = _registry.create();
 
 	_registry.assign<c::Button>(entity,
-		callbacks::change_state(_registry, StateType::Level1)
+		scripts::change_state(_registry, StateType::Level1)
 	);
 
 	_registry.assign<c::Image>(entity,
-		"assets/textures/metal_sheet.png"
+		"assets/textures/death.png"
 	);
 }
 
