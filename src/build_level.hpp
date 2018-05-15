@@ -4,9 +4,9 @@
 #include "components.hpp"
 #include "ParticleExplosion.hpp"
 #include "Effects.hpp"
-#include "callbacks.hpp"
+#include "scripts.hpp"
 #include "Engine.hpp"
 
 namespace c = components;
 
-void	build_level(entt::DefaultRegistry &r, std::string level, Engine& engine);
+void	build_level(entt::DefaultRegistry &r, Engine& engine, std::string level);

@@ -1,5 +1,6 @@
 #include <random>
 #include <deque>
+#include "bomberman.hpp"
 #include "build_level.hpp"
 
 static glm::mat4 random_direction()
@@ -36,21 +37,6 @@ static std::function<void(entt::DefaultRegistry& r, int x, int y)> spawn[128] = 
 		r.assign<c::Position>(column, glm::vec3(x, y, 0));
 	},
 
-	['p'] = [](entt::DefaultRegistry &r, int x, int y)
-	{
-		auto player = r.create();
-
-		r.attach<c::Player>(player, 2.0, 1.0);
-		r.assign<c::Model>(player, "player", glm::mat4(1));
-		r.assign<c::Position>(player, glm::vec3(x, y, 0));
-		r.assign<c::Velocity>(player);
-		r.assign<c::Collide>(player, 4);
-		r.assign<c::Vulnerable>(player,
-			callbacks::change_state(r, StateType::DeathScreen) +
-			callbacks::destroy()
-		);
-	},
-
 	['c'] = [](entt::DefaultRegistry &r, int x, int y)
 	{
 		auto e = r.create();
@@ -59,9 +45,8 @@ static std::function<void(entt::DefaultRegistry& r, int x, int y)> spawn[128] = 
 		r.assign<c::Collide>(e, 10);
 		r.assign<c::Position>(e, glm::vec3(x, y, 0));
 		r.assign<c::Vulnerable>(e,
-			callbacks::ignite() +
-			callbacks::powerup(0.5) +
-			callbacks::destroy(),
+			scripts::powerup(0.5) +
+			scripts::destroy(),
 			10
 		);
 	},
@@ -75,7 +60,7 @@ static std::function<void(entt::DefaultRegistry& r, int x, int y)> spawn[128] = 
 		r.assign<c::Collide>(enemy, 5);
 		r.assign<c::AI>(enemy, 2.0, 1.0, c::AI_type::HORZ);
 		r.assign<c::Dangerous>(enemy, 10);
-		r.assign<c::Vulnerable>(enemy, callbacks::destroy(), 11);
+		r.assign<c::Vulnerable>(enemy, scripts::destroy(), 11);
 	},
 
 	['^'] = [](entt::DefaultRegistry &r, int x, int y)
@@ -87,14 +72,14 @@ static std::function<void(entt::DefaultRegistry& r, int x, int y)> spawn[128] = 
 		r.assign<c::Collide>(enemy, 5);
 		r.assign<c::AI>(enemy, 2.0, 1.0, c::AI_type::VERT);
 		r.assign<c::Dangerous>(enemy, 10);
-		r.assign<c::Vulnerable>(enemy, callbacks::destroy(), 11);
+		r.assign<c::Vulnerable>(enemy, scripts::destroy(), 11);
 	}
 };
 
 
-void	build_level(entt::DefaultRegistry &r, std::string level, Engine& engine)
+void	build_level(entt::DefaultRegistry &r, Engine& engine, std::string level)
 {
-	// Engine Tag for callbacks
+	// Engine Tag for scripts
 	auto e = r.create();
 	r.attach<c::EngineTag>(e, engine);
 
@@ -104,12 +89,34 @@ void	build_level(entt::DefaultRegistry &r, std::string level, Engine& engine)
 	r.assign<c::Lighting>(light, glm::vec3(1.3, 1.3, 1.3), 10000.0f);
 
 	// Read level data
-	std::ifstream file("assets/levels/" + level + ".lvl");
+	std::ifstream file(ASSET_PATH "levels/" + level + ".lvl");
 	std::deque<std::string> level_data;
 	std::string line;
+	std::string next_level;
+	std::string baseplate;
+	std::getline(file, next_level);
+	spawn[(int)'g'] = [next_level](entt::DefaultRegistry &r, int x, int y)
+	{
+		auto goal = r.create();
+		r.assign<c::Position>(goal, glm::vec3(x, y, 0));
+		r.assign<c::Model>(goal, "speed_boost", glm::mat4(1));
+		r.assign<c::Powerup>(goal, scripts::switch_level(next_level));
+	};
+	spawn[(int)'p'] = [level](entt::DefaultRegistry &r, int x, int y)
+	{
+		auto player = r.create();
+		r.attach<c::Player>(player, 2.0, 1.0);
+		r.assign<c::Model>(player, "player", glm::mat4(1));
+		r.assign<c::Position>(player, glm::vec3(x, y, 0));
+		r.assign<c::Velocity>(player);
+		r.assign<c::Collide>(player, 5);
+		r.assign<c::Vulnerable>(player, scripts::death(level));
+	};
+	std::getline(file, baseplate);
 	while (std::getline(file, line))
 		level_data.push_front(line);
 	int y = 0;
+	int width = 0;
 	for (auto& row : level_data)
 	{
 		int x = 0;
@@ -118,7 +125,14 @@ void	build_level(entt::DefaultRegistry &r, std::string level, Engine& engine)
 			if (spawn[(int)piece])
 				spawn[(int)piece](r, x, y);
 			++x;
+			if (x > width)
+				width = x;
 		}
 		++y;
 	}
+
+	// Baseplate
+	auto base = r.create();
+	r.assign<c::Position>(base, glm::vec3(width / 2.0, y / 2.0, 0));
+	r.assign<c::Model>(base, baseplate, glm::mat4(1));
 }

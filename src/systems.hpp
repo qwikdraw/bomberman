@@ -6,16 +6,11 @@
 #include "Engine.hpp"
 #include "Sprite2D.hpp"
 #include "components.hpp"
-#include <cstdint>
-#include <unordered_map>
 #include "ParticleExplosion.hpp"
 #include "Cells.hpp"
 #include "Effects.hpp"
-#include "callbacks.hpp"
+#include "scripts.hpp"
 #include "Text.hpp"
-
-#define ASSET_PATH "assets/"
-#define MODEL_PREFIX ".model"
 
 #define FACE_UP glm::rotate(glm::mat4(1), glm::radians(90.0f), glm::vec3(0, 0, 1))
 #define FACE_DOWN glm::rotate(glm::mat4(1), glm::radians(-90.0f), glm::vec3(0, 0, 1))
@@ -37,14 +32,17 @@ namespace systems
 	//! requires: Model, Position [Lighting]
 	void	RenderModels(entt::DefaultRegistry&, entt::ResourceCache<Model>&, Window&, Camera&, double dt);
 
+	//! requires: Particles, Position, TimedEffect
+	void	RenderParticles(entt::DefaultRegistry&, Camera&);
+
+	//! requires: Image
+	void	Images(entt::DefaultRegistry&, entt::ResourceCache<Sprite2D>&, Window&);
+
 	//! requires: TimedEffect
 	void	TimedEffect(entt::DefaultRegistry&, double dt);
 
 	//! requires: Button
 	void	Buttons(entt::DefaultRegistry&, Window&);
-
-	//! requires: Image
-	void	Images(entt::DefaultRegistry&, entt::ResourceCache<Sprite2D>&, Window&);
 
 	//! requires: Text
 	void	Texts(entt::DefaultRegistry&, Window&);
@@ -58,9 +56,6 @@ namespace systems
 	//! requires: Player, Position, Velocity, Model
 	void	Player(entt::DefaultRegistry&, Window&, Engine::KeyBind, Cells&, Camera&, double dt);
 
-	//! requires: Particles, Position, TimedEffect
-	void	RenderParticles(entt::DefaultRegistry&, Camera&);	
-
 	//! requires: Explosion
 	void	Explosion(entt::DefaultRegistry&, Cells&);
 
@@ -68,5 +63,5 @@ namespace systems
 	void	AI(entt::DefaultRegistry&, Window&, double dt);
 
 	//! requires: Vulnerable, Position [Dangerous]
-	void	DangerCheck(entt::DefaultRegistry&, Cells&);
+	void	Danger(entt::DefaultRegistry&, Cells&);
 };

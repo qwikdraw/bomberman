@@ -14,7 +14,7 @@ class	DeathState : public IState
 	entt::ResourceCache<Sprite2D> _imageCache;
 
 public:
-	DeathState(Engine& engine);
+	DeathState(Engine& engine, std::string level);
 	~DeathState(void);
 	void	Update(double dt);
 };

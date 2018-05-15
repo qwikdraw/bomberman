@@ -37,7 +37,9 @@ vec3	GetLightModifier(vec3 v, vec3 n)
 		if (lightColor[i] == vec3(0, 0, 0))
 			continue;
 		vec3 ray = v - vec3(lookAt * vec4(lightPos[i], 1));
-		float intensity = pow(lightFalloff[i], 2) / (pow(lightFalloff[i], 2) + length(ray) * length(ray));
+		float fall = pow(lightFalloff[i], 2);
+		float distance = length(ray);
+		float intensity = fall / (fall + distance * distance);
 
 		float diffuse = pow(max(dot(n, -normalize(ray)), 0), DIFFUSE);
 
