@@ -1,5 +1,4 @@
 #include "scripts.hpp"
-
 namespace c = components;
 
 namespace scripts
@@ -52,36 +51,30 @@ script	destroy(void)
 	};
 }
 
-script	change_state(entt::DefaultRegistry& r, StateType st)
+script	switch_level(std::string level)
 {
-	auto& engine = r.get<c::EngineTag>().ref;
-	switch (st)
+	return [level](entt::DefaultRegistry& r, uint32_t e)
 	{
-	case StateType::Menu:
-		return [&engine](entt::DefaultRegistry& r, uint32_t e)
-		{
-			engine.ChangeState(new GameState(engine));
-		};
-	case StateType::Level1:
-		return [&engine](entt::DefaultRegistry& r, uint32_t e)
-		{
-			engine.ChangeState(new GameState(engine));
-		};
-	case StateType::DeathScreen:
-		return [&engine](entt::DefaultRegistry& r, uint32_t e)
-		{
-			engine.ChangeState(new DeathState(engine));
-		};
-	}
+		auto& engine = r.get<c::EngineTag>().ref;
+		engine.ChangeState(new GameState(engine, level));
+	};
+}
+
+script	death(std::string level)
+{
+	return [level](entt::DefaultRegistry& r, uint32_t e)
+	{
+		auto& engine = r.get<c::EngineTag>().ref;
+		engine.ChangeState(new DeathState(engine, level));
+	};
 }
 }
 
-scripts::script	operator + (scripts::script a, scripts::script b)
+scripts::script	operator+(scripts::script a, scripts::script b)
 {
-	auto f = [a, b](entt::DefaultRegistry& r, uint32_t e)
+	return [a, b](entt::DefaultRegistry& r, uint32_t e)
 	{
 		a(r, e);
 		b(r, e);
 	};
-	return f;
 }

@@ -1,6 +1,6 @@
 #include "DeathState.hpp"
 
-DeathState::DeathState(Engine& engine) :
+DeathState::DeathState(Engine& engine, std::string level) :
 _engine(engine), _window(engine.window)
 {
 	auto e = _registry.create();
@@ -9,7 +9,7 @@ _engine(engine), _window(engine.window)
 	auto entity = _registry.create();
 
 	_registry.assign<c::Button>(entity,
-		scripts::change_state(_registry, StateType::Level1)
+		scripts::switch_level(level)
 	);
 
 	_registry.assign<c::Image>(entity,

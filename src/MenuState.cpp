@@ -14,7 +14,7 @@ _engine(e), _window(e.window)
 
 	auto nextstate = [this](entt::DefaultRegistry& r, uint32_t e)
 	{
-		_engine.PushState(new GameState(_engine));
+		_engine.PushState(new GameState(_engine, "01"));
 	};
 	
 	_registry.assign<c::Button>(entity,

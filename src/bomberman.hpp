@@ -16,3 +16,8 @@
 #include <entt/entt.hpp>
 
 #define ASSET_PATH "assets/"
+
+namespace scripts
+{
+	typedef std::function<void(entt::DefaultRegistry&, uint32_t)> script;
+}

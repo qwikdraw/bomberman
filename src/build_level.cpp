@@ -37,21 +37,6 @@ static std::function<void(entt::DefaultRegistry& r, int x, int y)> spawn[128] = 
 		r.assign<c::Position>(column, glm::vec3(x, y, 0));
 	},
 
-	['p'] = [](entt::DefaultRegistry &r, int x, int y)
-	{
-		auto player = r.create();
-
-		r.attach<c::Player>(player, 2.0, 1.0);
-		r.assign<c::Model>(player, "player", glm::mat4(1));
-		r.assign<c::Position>(player, glm::vec3(x, y, 0));
-		r.assign<c::Velocity>(player);
-		r.assign<c::Collide>(player, 5);
-		r.assign<c::Vulnerable>(player,
-			scripts::change_state(r, StateType::DeathScreen) +
-			scripts::destroy()
-		);
-	},
-
 	['c'] = [](entt::DefaultRegistry &r, int x, int y)
 	{
 		auto e = r.create();
@@ -92,7 +77,7 @@ static std::function<void(entt::DefaultRegistry& r, int x, int y)> spawn[128] = 
 };
 
 
-void	build_level(entt::DefaultRegistry &r, std::string level, Engine& engine)
+void	build_level(entt::DefaultRegistry &r, Engine& engine, std::string level)
 {
 	// Engine Tag for scripts
 	auto e = r.create();
@@ -110,6 +95,23 @@ void	build_level(entt::DefaultRegistry &r, std::string level, Engine& engine)
 	std::string next_level;
 	std::string baseplate;
 	std::getline(file, next_level);
+	spawn[(int)'g'] = [next_level](entt::DefaultRegistry &r, int x, int y)
+	{
+		auto goal = r.create();
+		r.assign<c::Position>(goal, glm::vec3(x, y, 0));
+		r.assign<c::Model>(goal, "speed_boost", glm::mat4(1));
+		r.assign<c::Powerup>(goal, scripts::switch_level(next_level));
+	};
+	spawn[(int)'p'] = [level](entt::DefaultRegistry &r, int x, int y)
+	{
+		auto player = r.create();
+		r.attach<c::Player>(player, 2.0, 1.0);
+		r.assign<c::Model>(player, "player", glm::mat4(1));
+		r.assign<c::Position>(player, glm::vec3(x, y, 0));
+		r.assign<c::Velocity>(player);
+		r.assign<c::Collide>(player, 5);
+		r.assign<c::Vulnerable>(player, scripts::death(level));
+	};
 	std::getline(file, baseplate);
 	while (std::getline(file, line))
 		level_data.push_front(line);

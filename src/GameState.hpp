@@ -26,7 +26,7 @@ class GameState : public IState
 	systems::Cells _cells;
 	
 public:
-	GameState(Engine& engine);
+	GameState(Engine& engine, std::string level);
 	~GameState(void);
 	void Update(double dt);
 };
