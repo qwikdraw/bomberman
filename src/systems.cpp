@@ -527,4 +527,21 @@ void	BindCheck(entt::DefaultRegistry& r, Window& window, Engine& engine)
 	}
 }
 	
+void	Sound(entt::DefaultRegistry &registry, double dt)
+{
+	auto view = registry.view<c::Sound>();
+	auto &engine = registry.get<c::EngineTag>().ref;
+
+	for (auto entity : view)
+	{
+		auto &s = view.get(entity);
+
+		s.timePassed += dt;
+		if (s.timePassed >= s.frequency)
+		{
+			engine.sound.play2D(s.soundFile.c_str());	
+			s.timePassed = 0;
+		}
+	}
+}
 }

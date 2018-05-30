@@ -30,6 +30,7 @@ script	bomb(int power, ISoundEngine& sound)
 		r.assign<c::Lighting>(bomb, glm::vec3(-10, -10, -10), 0.2f, glm::vec3(0, 0, 0.1));
 		r.assign<c::TimedEffect>(bomb, 3.0f, explode(power, sound) + destroy());
 		r.assign<c::Vulnerable>(bomb, explode(power, sound) + destroy(), 50);
+		r.assign<c::Sound>(bomb, "assets/bomb_tick.mp3", 1.0f);
 	};
 }
 

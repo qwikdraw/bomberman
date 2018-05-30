@@ -67,4 +67,7 @@ namespace systems
 
 	//! requires: Text, KeyBind
 	void	BindCheck(entt::DefaultRegistry&, Window&, Engine&);
+	
+	//! requires: Sound
+	void	Sound(entt::DefaultRegistry&, double dt);
 };

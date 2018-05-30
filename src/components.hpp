@@ -121,6 +121,8 @@ namespace components
 	struct Sound
 	{
 		std::string soundFile;
+		float frequency;
+		float timePassed = 0;
 	};
 
 	struct EngineTag

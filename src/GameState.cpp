@@ -106,7 +106,7 @@ void GameState::Update(double dt)
 	systems::AI(_registry, _window, dt);
 	systems::Lighting(_registry, dt);
 	systems::Danger(_registry, _cells);
-	systems::Sound(_registry, dt);	
 	systems::Images(_registry, _imageCache, _window);
 	systems::Texts(_registry, _window);
+	systems::Sound(_registry, dt);
 }
