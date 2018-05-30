@@ -6,7 +6,7 @@
 #    By: logan  <logan@42.us.org>                   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/13 10:03:24 by logan             #+#    #+#              #
-#    Updated: 2018/05/08 18:59:19 by twalton          ###   ########.fr        #
+#    Updated: 2018/05/28 19:42:07 by ihodge           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,12 +50,14 @@ CPPFLAGS = -std=c++14 -Wall -Wextra -Werror -Wno-unused-parameter -Wno-unused-pr
 $(shell pkg-config --cflags glfw3 glm) \
 -I lib/entt/src \
 -I lib/lodepng \
+-I lib/irrlkang/include \
 -g -O3 -march=native \
 #-fsanitize=undefined -fsanitize=address
 
 LDFLAGS = -framework OpenGl \
 $(shell pkg-config --libs glfw3 glm) \
 -L lib/lodepng -llodepng \
+-L lib/irrlkang -lirrklang -rpath lib/irrlkang -pthread \
 #-fsanitize=undefined -fsanitize=address
 
 all: $(OBJ_DIR) $(NAME)

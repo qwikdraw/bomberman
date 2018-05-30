@@ -11,8 +11,8 @@
 
 namespace scripts
 {
-	script explode(int power);
-	script bomb(int power);
+	script explode(int power, ISoundEngine& sound);
+	script bomb(int power, ISoundEngine& sound);
 	script powerup(float spawnChance);
 	script destroy(void);
 	script switch_level(std::string level);

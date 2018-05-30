@@ -183,7 +183,7 @@ void	Buttons(entt::DefaultRegistry &r, Window& window)
 //! player
 
 void	Player(entt::DefaultRegistry& r, Window& window, Engine::KeyBind bind,
-			Cells& cells, Camera& cam, double dt)
+			Cells& cells, Camera& cam, double dt, ISoundEngine &sound)
 {
 	if (!r.has<c::Player>())
 		return;
@@ -221,7 +221,7 @@ void	Player(entt::DefaultRegistry& r, Window& window, Engine::KeyBind bind,
 	{
 		if (player.bombCooldownTimer <= 0)
 		{
-			scripts::bomb(player.bombPower)(r, entity);
+			scripts::bomb(player.bombPower, sound)(r, entity);
 			player.bombCooldownTimer = player.bombCooldown;
 		}
 	}

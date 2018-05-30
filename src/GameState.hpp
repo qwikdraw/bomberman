@@ -24,6 +24,7 @@ class GameState : public IState
 	entt::ResourceCache<Model> _modelCache;
 	entt::ResourceCache<Sprite2D> _imageCache;
 	systems::Cells _cells;
+	ISoundEngine *_sound;
 	
 public:
 	GameState(Engine& engine, std::string level);
