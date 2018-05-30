@@ -118,6 +118,11 @@ namespace components
 		std::function<void(entt::DefaultRegistry&, uint32_t)> effect;
 	};
 
+	struct Sound
+	{
+		std::string soundFile;
+	};
+
 	struct EngineTag
 	{
 		Engine& ref;

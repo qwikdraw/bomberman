@@ -62,7 +62,7 @@ static void	generate_ui(entt::DefaultRegistry& reg, Engine& engine, std::string 
 }
 
 GameState::GameState(Engine& e, std::string level) :
-_engine(e), _window(e.window)
+_engine(e), _window(e.window), _sound(e.sound)
 {
 	_camera.Move(glm::vec3(0, -10, 20));
 	_camera.Rotate(glm::vec3(0, 0, 1), 90);
@@ -98,7 +98,8 @@ void GameState::Update(double dt)
 	systems::RenderModels(_registry, _modelCache, _window, _camera, dt);
 	systems::TimedEffect(_registry, dt);
 	systems::Buttons(_registry, _window);
-	systems::Player(_registry, _window, _engine.keyBind, _cells, _camera, dt, *_sound);
+	systems::Images(_registry, _imageCache, _window);
+	systems::Player(_registry, _window, _engine.keyBind, _cells, _camera, dt, _sound);
 	systems::Velocity(_registry, _cells, dt);
 	systems::RenderParticles(_registry, _camera);
 	systems::Explosion(_registry, _cells);

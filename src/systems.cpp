@@ -183,7 +183,7 @@ void	Buttons(entt::DefaultRegistry &r, Window& window)
 //! player
 
 void	Player(entt::DefaultRegistry& r, Window& window, Engine::KeyBind bind,
-			Cells& cells, Camera& cam, double dt, ISoundEngine &sound)
+			Cells& cells, Camera& cam, double dt, ISoundEngine& sound)
 {
 	if (!r.has<c::Player>())
 		return;
@@ -221,6 +221,7 @@ void	Player(entt::DefaultRegistry& r, Window& window, Engine::KeyBind bind,
 	{
 		if (player.bombCooldownTimer <= 0)
 		{
+			sound.play2D(ASSET_PATH "place_bomb.mp3");
 			scripts::bomb(player.bombPower, sound)(r, entity);
 			player.bombCooldownTimer = player.bombCooldown;
 		}

@@ -25,9 +25,10 @@ public:
 	};	
 	
 	Window& window;
+	ISoundEngine& sound;
 	bool isRunning;
 	KeyBind keyBind;
-	Engine(Window& window);
+	Engine(Window& window, ISoundEngine& sound);
 	~Engine(void);
 	void PushState(IState* state);
 	void PopState(void);
