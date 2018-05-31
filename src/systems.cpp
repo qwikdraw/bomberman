@@ -85,15 +85,24 @@ struct	ImageLoader : entt::ResourceLoader<ImageLoader, Sprite2D>
 		return std::shared_ptr<Sprite2D>(new Sprite2D(imagePath));
 	}
 };
-
+	
 void	Images(entt::DefaultRegistry& r, entt::ResourceCache<Sprite2D>& cache, Window& window)
 {
 	auto view = r.view<c::Image>();
 
-	for (auto entity : view)
-	{
-		auto &image = view.get(entity);
+	std::vector<c::Image> images;
 
+	for (auto entity : view)
+		images.push_back(view.get(entity));
+
+	std::sort(images.begin(), images.end(),
+		  [](c::Image& a, c::Image& b)
+		  {
+			  return a.priority < b.priority;
+		  });
+	
+	for (auto &image : images)
+	{
 		window.SetRenderMask((image.botLeft.x + 1) / 2,
 				     (image.botLeft.y + 1) / 2,
 				     (image.topRight.x - image.botLeft.x) / 2,

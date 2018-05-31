@@ -59,7 +59,7 @@ static void	keybind_button(entt::DefaultRegistry& r,
 			r.assign<c::KeyBind>(e, action);
 	};
 	r.assign<c::Button>(bind, event, botleft, topright);
-	r.assign<c::Image>(bind, imagePath, botleft, topright);	
+	r.assign<c::Image>(bind, imagePath, botleft, topright, 1);	
 	r.assign<c::Text>(bind,
 			  keyToString(keyFromAction(action, engine)),
 			  botleft + 0.1 * (topright - botleft),
@@ -100,7 +100,7 @@ static void	resolution_button(entt::DefaultRegistry& r,
 					     0, 0, MinW, MinH, GLFW_DONT_CARE);
 	};
 	r.assign<c::Button>(reso, event, botleft, topright);
-	r.assign<c::Image>(reso, imagePath, botleft, topright);
+	r.assign<c::Image>(reso, imagePath, botleft, topright, 1);
 	r.assign<c::Text>(reso,
 			  text,
 			  botleft + 0.1 * (topright - botleft),
@@ -125,84 +125,56 @@ _engine(e), _window(e.window)
 	};
 	_registry.assign<c::Button>(menuButton,
 				    gotoMenu,
-				    glm::vec2(-0.2, -0.9),
-				    glm::vec2(0.2, -0.7));
+				    glm::vec2(-0.7, -0.8),
+				    glm::vec2(-0.25, -0.6));
 	_registry.assign<c::Image>(menuButton,
-				   "assets/textures/metal_sheet.png",
-				   glm::vec2(-0.2, -0.9),
-				   glm::vec2(0.2, -0.7));
+				   "assets/textures/blue_button.png",
+				   glm::vec2(-0.7, -0.8),
+				   glm::vec2(-0.25, -0.6));
 	_registry.assign<c::Text>(menuButton,
 				  "BACK",
-				  glm::vec2(-0.16, -0.88),
-				  glm::vec2(0.16, -0.72));
+				  glm::vec2(-0.65, -0.76),
+				  glm::vec2(-0.3, -0.64));
 
 //creating a keybind buttons
 
 	keybind_button(_registry,
-		       glm::vec2(-0.6, 0.7),
-		       glm::vec2(-0.4, 0.8),
-		       "assets/textures/metal_sheet.png",
+		       glm::vec2(-0.6, 0.5),
+		       glm::vec2(-0.4, 0.6),
+		       "assets/textures/blue_button.png",
 		       c::BOMB_ACTION,
 		       _engine);
 	keybind_button(_registry,
-		       glm::vec2(-0.6, 0.55),
-		       glm::vec2(-0.4, 0.65),
-		       "assets/textures/metal_sheet.png",
+		       glm::vec2(-0.6, 0.33),
+		       glm::vec2(-0.4, 0.43),
+		       "assets/textures/blue_button.png",
 		       c::UP_ACTION,
 		       _engine);
 	keybind_button(_registry,
-		       glm::vec2(-0.6, 0.4),
-		       glm::vec2(-0.4, 0.5),
-		       "assets/textures/metal_sheet.png",
+		       glm::vec2(-0.6, 0.135),
+		       glm::vec2(-0.4, 0.235),
+		       "assets/textures/blue_button.png",
 		       c::DOWN_ACTION,
 		       _engine);
 	keybind_button(_registry,
-		       glm::vec2(-0.6, 0.25),
-		       glm::vec2(-0.4, 0.35),
-		       "assets/textures/metal_sheet.png",
-		       c::RIGHT_ACTION,
-		       _engine);
-	keybind_button(_registry,
-		       glm::vec2(-0.6, 0.1),
-		       glm::vec2(-0.4, 0.2),
-		       "assets/textures/metal_sheet.png",
+		       glm::vec2(-0.6, -0.05),
+		       glm::vec2(-0.4, 0.05),
+		       "assets/textures/blue_button.png",
 		       c::LEFT_ACTION,
 		       _engine);
-
-//creating text to accompany keybind buttons
-
-	auto bombText = _registry.create();
-	_registry.assign<c::Text>(bombText,
-				  "place bomb:",
-				  glm::vec2(-0.85, 0.7),
-				  glm::vec2(-0.6, 0.8));
-	auto upText = _registry.create();
-	_registry.assign<c::Text>(upText,
-				  "move up:",
-				  glm::vec2(-0.85, 0.55),
-				  glm::vec2(-0.6, 0.65));
-	auto downText = _registry.create();
-	_registry.assign<c::Text>(downText,
-				  "move down:",
-				  glm::vec2(-0.85, 0.4),
-				  glm::vec2(-0.6, 0.5));
-	auto rightText = _registry.create();
-	_registry.assign<c::Text>(rightText,
-				  "move right:",
-				  glm::vec2(-0.85, 0.25),
-				  glm::vec2(-0.6, 0.35));
-	auto leftText = _registry.create();
-	_registry.assign<c::Text>(leftText,
-				  "move left:",
-				  glm::vec2(-0.85, 0.1),
-				  glm::vec2(-0.6, 0.2));
+	keybind_button(_registry,
+		       glm::vec2(-0.6, -0.24),
+		       glm::vec2(-0.4, -0.14),
+		       "assets/textures/blue_button.png",
+		       c::RIGHT_ACTION,
+		       _engine);
 
 //create resolution buttons
 
 	resolution_button(_registry,
-                          glm::vec2(0.6, 0.7),
-                          glm::vec2(0.85, 0.8),
-                          "assets/textures/metal_sheet.png",
+                          glm::vec2(0.1, 0.4),
+                          glm::vec2(0.35, 0.55),
+                          "assets/textures/blue_button.png",
                           1200,
                           675,
                           false,
@@ -210,9 +182,9 @@ _engine(e), _window(e.window)
                           "1200 X 675");
 	
 	resolution_button(_registry,
-			  glm::vec2(0.6, 0.55),
-			  glm::vec2(0.85, 0.65),
-			  "assets/textures/metal_sheet.png",
+			  glm::vec2(0.1, 0.2),
+			  glm::vec2(0.35, 0.35),
+			  "assets/textures/blue_button.png",
 			  1600,
 			  900,
 			  false,
@@ -220,9 +192,9 @@ _engine(e), _window(e.window)
 			  "1600 X 900");
 
         resolution_button(_registry,
-                          glm::vec2(0.6, 0.4),
-                          glm::vec2(0.85, 0.5),
-                          "assets/textures/metal_sheet.png",
+                          glm::vec2(0.55, 0.4),
+                          glm::vec2(0.8, 0.55),
+                          "assets/textures/blue_button.png",
                           2400,
                           1350,
                           false,
@@ -230,9 +202,9 @@ _engine(e), _window(e.window)
 			  "2400 X 1350");
 
 	resolution_button(_registry,
-                          glm::vec2(0.6, 0.25),
-                          glm::vec2(0.85, 0.35),
-                          "assets/textures/metal_sheet.png",
+                          glm::vec2(0.55, 0.2),
+                          glm::vec2(0.8, 0.35),
+                          "assets/textures/blue_button.png",
                           4000,
                           2250,
                           false,
@@ -240,9 +212,9 @@ _engine(e), _window(e.window)
                           "4000 X 2250");
 	
 	resolution_button(_registry,
-                          glm::vec2(0.6, 0.1),
-                          glm::vec2(0.85, 0.2),
-                          "assets/textures/metal_sheet.png",
+                          glm::vec2(0.3, -0.02),
+                          glm::vec2(0.6, 0.12),
+                          "assets/textures/blue_button.png",
                           100000,
                           100000,
                           true,

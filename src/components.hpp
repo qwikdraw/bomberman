@@ -41,6 +41,7 @@ namespace components
 		std::string name;
 		glm::vec2 botLeft = glm::vec2(-1, -1);
 		glm::vec2 topRight = glm::vec2(1, 1);
+		int priority = 0;
 	};
 
 	struct Text
