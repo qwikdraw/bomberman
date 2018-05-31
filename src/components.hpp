@@ -121,4 +121,11 @@ namespace components
 	{
 		Engine& ref;
 	};
+
+	enum ActionType{BOMB_ACTION, UP_ACTION, DOWN_ACTION, LEFT_ACTION, RIGHT_ACTION};
+	
+	struct KeyBind
+	{
+		ActionType action;
+	};
 };

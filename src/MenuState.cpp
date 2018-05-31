@@ -4,6 +4,7 @@
 #include "bomberman.hpp"
 #include "systems.hpp"
 #include "Text.hpp"
+#include "SettingState.hpp"
 
 namespace c = components;
 
@@ -32,6 +33,25 @@ _engine(e), _window(e.window)
 				  glm::vec2(0.08, 0.08));
 	
 	glClearColor(0.2, 0.25, 0.29, 1.0);
+
+//creating settings button
+	auto settingButton = _registry.create();
+	auto settingState = [this](entt::DefaultRegistry& r, uint32_t e)
+	{
+		_engine.PushState(new SettingState(_engine));
+	};
+	_registry.assign<c::Button>(settingButton,
+				    settingState,
+				    glm::vec2(-0.1, -0.4),
+				    glm::vec2(0.1, -0.2));
+	_registry.assign<c::Image>(settingButton,
+				   "assets/textures/metal_sheet.png",
+				   glm::vec2(-0.1, -0.4),
+				   glm::vec2(0.1, -0.2));
+	_registry.assign<c::Text>(settingButton,
+				  "Settings",
+				  glm::vec2(-0.1, -0.4),
+				  glm::vec2(0.1, -0.2));
 }
 
 MenuState::~MenuState(void) {}

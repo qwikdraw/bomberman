@@ -64,4 +64,7 @@ namespace systems
 
 	//! requires: Vulnerable, Position [Dangerous]
 	void	Danger(entt::DefaultRegistry&, Cells&);
+
+	//! requires: Text, KeyBind
+	void	BindCheck(entt::DefaultRegistry&, Window&, Engine&);
 };
