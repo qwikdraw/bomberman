@@ -35,7 +35,8 @@ Cells \
 powerups \
 Effects \
 scripts \
-SettingState
+SettingState \
+PauseState
 
 SRC_DIR = src
 OBJ_DIR = obj
