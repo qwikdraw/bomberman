@@ -99,7 +99,7 @@ void GameState::Update(double dt)
 	systems::TimedEffect(_registry, dt);
 	systems::Buttons(_registry, _window);
 	systems::Images(_registry, _imageCache, _window);
-	systems::Player(_registry, _window, _engine.keyBind, _cells, _camera, dt, _sound);
+	systems::Player(_registry, _window, _engine.keyBind, _cells, _camera, dt);
 	systems::Velocity(_registry, _cells, dt);
 	systems::RenderParticles(_registry, _camera);
 	systems::Explosion(_registry, _cells);

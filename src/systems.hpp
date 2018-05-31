@@ -54,7 +54,7 @@ namespace systems
 	void	Velocity(entt::DefaultRegistry&, Cells&, double dt);
 
 	//! requires: Player, Position, Velocity, Model
-	void	Player(entt::DefaultRegistry&, Window&, Engine::KeyBind, Cells&, Camera&, double dt, ISoundEngine& sound);
+	void	Player(entt::DefaultRegistry&, Window&, Engine::KeyBind, Cells&, Camera&, double dt);
 
 	//! requires: Explosion
 	void	Explosion(entt::DefaultRegistry&, Cells&);
