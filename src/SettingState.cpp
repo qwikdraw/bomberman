@@ -66,10 +66,56 @@ static void	keybind_button(entt::DefaultRegistry& r,
 			  topright - 0.1 * (topright - botleft));
 }
 
+static void	resolution_button(entt::DefaultRegistry& r,
+				  glm::vec2 botleft,
+				  glm::vec2 topright,
+				  std::string imagePath,
+				  int width,
+				  int height,
+				  bool fullscreen,
+				  Window& window,
+				  std::string text)
+{
+	auto reso = r.create();
+	auto event = [&window, width, height, fullscreen](entt::DefaultRegistry& r, uint32_t e)
+	{
+		const GLFWvidmode *mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+
+		int MinW = std::min(width, mode->width);
+		int MinH = std::min(height, mode->height);
+
+		if (MinW * 9 > MinH * 16)
+			MinW = MinH * 16 / 9;
+		else
+			MinH = MinW * 9 / 16;
+		
+		if (fullscreen)
+		{
+			glfwSetWindowMonitor(window.GetGLWindow(),
+					     glfwGetPrimaryMonitor(),
+					     0, 0, MinW, MinH, mode->refreshRate);
+		}
+		else
+			glfwSetWindowMonitor(window.GetGLWindow(), NULL,
+					     0, 0, MinW, MinH, GLFW_DONT_CARE);
+	};
+	r.assign<c::Button>(reso, event, botleft, topright);
+	r.assign<c::Image>(reso, imagePath, botleft, topright);
+	r.assign<c::Text>(reso,
+			  text,
+			  botleft + 0.1 * (topright - botleft),
+			  topright - 0.1 * (topright - botleft));
+}
+
 SettingState::SettingState(Engine& e) :
 _engine(e), _window(e.window)
 {
 
+//create the settings backdrop
+
+	auto settingMenu = _registry.create();
+	_registry.assign<c::Image>(settingMenu, "assets/textures/setting_menu.png");
+	
 //creating a button to go back to menu
 	
 	auto menuButton = _registry.create();
@@ -150,6 +196,59 @@ _engine(e), _window(e.window)
 				  "move left:",
 				  glm::vec2(-0.85, 0.1),
 				  glm::vec2(-0.6, 0.2));
+
+//create resolution buttons
+
+	resolution_button(_registry,
+                          glm::vec2(0.6, 0.7),
+                          glm::vec2(0.85, 0.8),
+                          "assets/textures/metal_sheet.png",
+                          1200,
+                          675,
+                          false,
+                          _window,
+                          "1200 X 675");
+	
+	resolution_button(_registry,
+			  glm::vec2(0.6, 0.55),
+			  glm::vec2(0.85, 0.65),
+			  "assets/textures/metal_sheet.png",
+			  1600,
+			  900,
+			  false,
+			  _window,
+			  "1600 X 900");
+
+        resolution_button(_registry,
+                          glm::vec2(0.6, 0.4),
+                          glm::vec2(0.85, 0.5),
+                          "assets/textures/metal_sheet.png",
+                          2400,
+                          1350,
+                          false,
+                          _window,
+			  "2400 X 1350");
+
+	resolution_button(_registry,
+                          glm::vec2(0.6, 0.25),
+                          glm::vec2(0.85, 0.35),
+                          "assets/textures/metal_sheet.png",
+                          4000,
+                          2250,
+                          false,
+                          _window,
+                          "4000 X 2250");
+	
+	resolution_button(_registry,
+                          glm::vec2(0.6, 0.1),
+                          glm::vec2(0.85, 0.2),
+                          "assets/textures/metal_sheet.png",
+                          100000,
+                          100000,
+                          true,
+                          _window,
+			  "Fullscreen");
+
 }
 
 SettingState::~SettingState(void) {}
