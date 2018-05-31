@@ -1,6 +1,7 @@
 #include "GameState.hpp"
 #include "ParticleExplosion.hpp"
 #include "build_level.hpp"
+#include "PauseState.hpp"
 
 GameState::GameState(Engine& e, std::string level) :
 _engine(e), _window(e.window)
@@ -20,6 +21,9 @@ GameState::~GameState(void)
 
 void GameState::Update(double dt)
 {
+	if (_window.Key(GLFW_KEY_ESCAPE))
+		_engine.PushState(new PauseState(_engine));
+	
 	_cells(_registry);
 	
 	systems::RenderModels(_registry, _modelCache, _window, _camera, dt);
