@@ -4,7 +4,7 @@ DeathState::DeathState(Engine& engine, std::string level) :
 _engine(engine), _window(engine.window)
 {
 	auto e = _registry.create();
-	_registry.attach<c::EngineTag>(e, engine);
+	_registry.assign<c::EngineTag>(entt::tag_t{}, e, engine);
 
 	auto entity = _registry.create();
 
