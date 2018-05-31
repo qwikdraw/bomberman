@@ -81,7 +81,7 @@ void	build_level(entt::DefaultRegistry &r, Engine& engine, std::string level)
 {
 	// Engine Tag for scripts
 	auto e = r.create();
-	r.attach<c::EngineTag>(e, engine);
+	r.assign<c::EngineTag>(entt::tag_t{}, e, engine);
 
 	// Global Lighting
 	auto light = r.create();
@@ -105,7 +105,7 @@ void	build_level(entt::DefaultRegistry &r, Engine& engine, std::string level)
 	spawn[(int)'p'] = [level](entt::DefaultRegistry &r, int x, int y)
 	{
 		auto player = r.create();
-		r.attach<c::Player>(player, 2.0, 1.0);
+		r.assign<c::Player>(entt::tag_t{}, player, 2.0, 1.0);
 		r.assign<c::Model>(player, "player", glm::mat4(1));
 		r.assign<c::Position>(player, glm::vec3(x, y, 0));
 		r.assign<c::Velocity>(player);
