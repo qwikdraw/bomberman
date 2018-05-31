@@ -41,6 +41,7 @@ namespace components
 		std::string name;
 		glm::vec2 botLeft = glm::vec2(-1, -1);
 		glm::vec2 topRight = glm::vec2(1, 1);
+		int priority = 0;
 	};
 
 	struct Text
@@ -120,5 +121,12 @@ namespace components
 	struct EngineTag
 	{
 		Engine& ref;
+	};
+
+	enum ActionType{BOMB_ACTION, UP_ACTION, DOWN_ACTION, LEFT_ACTION, RIGHT_ACTION};
+	
+	struct KeyBind
+	{
+		ActionType action;
 	};
 };

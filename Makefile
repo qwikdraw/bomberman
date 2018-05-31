@@ -34,7 +34,8 @@ Text \
 Cells \
 powerups \
 Effects \
-scripts
+scripts \
+SettingState
 
 SRC_DIR = src
 OBJ_DIR = obj

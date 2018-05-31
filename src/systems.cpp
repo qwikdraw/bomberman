@@ -85,15 +85,24 @@ struct	ImageLoader : entt::ResourceLoader<ImageLoader, Sprite2D>
 		return std::shared_ptr<Sprite2D>(new Sprite2D(imagePath));
 	}
 };
-
+	
 void	Images(entt::DefaultRegistry& r, entt::ResourceCache<Sprite2D>& cache, Window& window)
 {
 	auto view = r.view<c::Image>();
 
-	for (auto entity : view)
-	{
-		auto &image = view.get(entity);
+	std::vector<c::Image> images;
 
+	for (auto entity : view)
+		images.push_back(view.get(entity));
+
+	std::sort(images.begin(), images.end(),
+		  [](c::Image& a, c::Image& b)
+		  {
+			  return a.priority < b.priority;
+		  });
+	
+	for (auto &image : images)
+	{
 		window.SetRenderMask((image.botLeft.x + 1) / 2,
 				     (image.botLeft.y + 1) / 2,
 				     (image.topRight.x - image.botLeft.x) / 2,
@@ -406,4 +415,115 @@ void	Danger(entt::DefaultRegistry &r, Cells& cells)
 	}
 }
 
+// BindCheck used for the settings menu
+
+static int	get_new_bind(Window& window)
+{
+	int out = -1;
+	for (int i = 0; i < 512; i++)
+		if (window.Key(i))
+			out = i;
+
+	if (std::isalnum(out) ||
+	    out == GLFW_KEY_RIGHT ||
+	    out == GLFW_KEY_LEFT ||
+	    out == GLFW_KEY_UP ||
+	    out == GLFW_KEY_DOWN ||
+	    out == ' ')
+	{
+		return out;
+	}
+	return -1;
+}
+
+static int      keyFromAction(c::ActionType action, Engine& engine)
+{
+        switch (action)
+        {
+        case (c::BOMB_ACTION):
+                return engine.keyBind.bomb;
+        case (c::UP_ACTION):
+                return engine.keyBind.up;
+        case (c::LEFT_ACTION):
+                return engine.keyBind.left;
+        case (c::RIGHT_ACTION):
+                return engine.keyBind.right;
+        case (c::DOWN_ACTION):
+                return engine.keyBind.down;
+        }
+        return 0;
+}
+
+static std::string      keyToString(int key)
+{
+        std::string out;
+
+	if (key == ' ')
+		out += "space";
+	else if (key == GLFW_KEY_RIGHT)
+		out += "right arrow";
+	else if (key == GLFW_KEY_LEFT)
+		out += "left arrow";
+	else if (key == GLFW_KEY_UP)
+		out += "up arrow";
+	else if (key == GLFW_KEY_DOWN)
+		out += "down arrow";
+	else
+		out += (char)key;
+	
+        return out;
+}
+
+void	BindCheck(entt::DefaultRegistry& r, Window& window, Engine& engine)
+{
+	auto view = r.view<c::KeyBind, c::Text>();
+
+	if (window.MouseClick(0))
+	{
+		for (auto entity : view)
+		{
+			auto action = view.get<c::KeyBind>(entity).action;
+			std::string& words = view.get<c::Text>(entity).words;
+			
+			words = keyToString(keyFromAction(action, engine));
+			r.remove<c::KeyBind>(entity);
+		}
+		return;
+	}
+
+	int key	= get_new_bind(window);
+	if (key == -1)
+		return;
+
+	for (auto entity : view)
+	{
+		auto action = view.get<c::KeyBind>(entity).action;
+		std::string& words = view.get<c::Text>(entity).words;
+		switch (action)
+		{
+		case (c::BOMB_ACTION):
+			engine.keyBind.bomb = key;
+			words = keyToString(key);
+			break;
+		case (c::UP_ACTION):
+			engine.keyBind.up = key;
+			words = keyToString(key);
+			break;
+		case (c::DOWN_ACTION):
+			engine.keyBind.down = key;
+			words = keyToString(key);
+			break;
+		case (c::LEFT_ACTION):
+			engine.keyBind.left = key;
+			words = keyToString(key);
+			break;
+		case (c::RIGHT_ACTION):
+			engine.keyBind.right = key;
+			words = keyToString(key);
+			break;
+		}
+		r.remove<c::KeyBind>(entity);
+	}
+}
+	
 }
