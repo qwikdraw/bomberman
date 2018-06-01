@@ -79,7 +79,26 @@ _engine(e), _window(e.window)
 	}
 	auto background = _registry.create();
 	_registry.assign<c::Image>(background, "assets/textures/rock.png");
-	
+
+// create back button
+	auto menuButton = _registry.create();
+	auto gotoMenu = [this](entt::DefaultRegistry& r, uint32_t e)
+	{
+		_engine.PopState();
+	};
+	_registry.assign<c::Button>(menuButton,
+				    gotoMenu,
+				    glm::vec2(-0.7, -0.9),
+				    glm::vec2(-0.25, -0.7));
+	_registry.assign<c::Image>(menuButton,
+				   "assets/textures/blue_button.png",
+				   glm::vec2(-0.7, -0.9),
+				   glm::vec2(-0.25, -0.7),
+				   1);
+	_registry.assign<c::Text>(menuButton,
+				  "BACK",
+				  glm::vec2(-0.65, -0.86),
+				  glm::vec2(-0.3, -0.74));	
 }
 
 LevelSelectState::~LevelSelectState(void) {}
