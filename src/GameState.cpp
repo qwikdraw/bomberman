@@ -5,7 +5,7 @@
 
 static void	generate_ui(entt::DefaultRegistry& reg, Engine& engine, std::string level)
 {
-//generate text for speed
+// generate text for speed
 	auto speedText = reg.create();
 	auto speedUpdate = [](entt::DefaultRegistry& r, uint32_t e)
 	{
@@ -27,7 +27,7 @@ static void	generate_ui(entt::DefaultRegistry& reg, Engine& engine, std::string 
 			    glm::vec2(0.72, -0.845));
 	reg.assign<c::TimedEffect>(speedText, 0.0f, speedUpdate);
 
-//generate text for bomb power
+// generate text for bomb power
 	auto bombText = reg.create();
 	auto bombUpdate = [](entt::DefaultRegistry& r, uint32_t e)
 	{
@@ -49,20 +49,20 @@ static void	generate_ui(entt::DefaultRegistry& reg, Engine& engine, std::string 
 			    glm::vec2(-0.315, -0.845));
 	reg.assign<c::TimedEffect>(bombText, 0.0f, bombUpdate);
 
-//create current level text
+// create current level text
 	auto levelText = reg.create();
 	reg.assign<c::Text>(levelText,
 			    level,
 			    glm::vec2(-0.05, 0.835),
 			    glm::vec2(0.15, 0.965));
 	
-//create ui texture
+// create ui texture
 	auto UI = reg.create();
 	reg.assign<c::Image>(UI, "assets/textures/UI.png");
 }
 
 GameState::GameState(Engine& e, std::string level) :
-_engine(e), _window(e.window)
+_engine(e), _window(e.window), _sound(e.sound)
 {
 	_camera.Move(glm::vec3(0, -10, 20));
 	_camera.Rotate(glm::vec3(0, 0, 1), 90);
@@ -97,6 +97,7 @@ void GameState::Update(double dt)
 	systems::RenderModels(_registry, _modelCache, _window, _camera, dt);
 	systems::TimedEffect(_registry, dt);
 	systems::Buttons(_registry, _window);
+	systems::Images(_registry, _imageCache, _window);
 	systems::Player(_registry, _window, _engine.keyBind, _cells, _camera, dt);
 	systems::Velocity(_registry, _cells, dt);
 	systems::RenderParticles(_registry, _camera);
@@ -106,4 +107,5 @@ void GameState::Update(double dt)
 	systems::Danger(_registry, _cells);
 	systems::Images(_registry, _imageCache, _window);
 	systems::Texts(_registry, _window);
+	systems::Sound(_registry, dt);
 }

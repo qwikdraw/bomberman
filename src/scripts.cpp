@@ -10,9 +10,11 @@ script	explode(int power)
 	{
 		auto ex = r.create();
 		glm::vec3 &pos = r.get<c::Position>(e).pos;
+		auto &sound = r.get<c::EngineTag>().ref.sound;
 		
 		r.assign<c::Explosion>(ex, power);
 		r.assign<c::Position>(ex, pos);
+		sound.play2D(ASSET_PATH "sounds/explosion.wav");
 	};
 }
 
@@ -22,13 +24,16 @@ script	bomb(int power)
 	{
 		auto bomb = r.create();
 		glm::vec3& pos = r.get<c::Position>(e).pos;
+		auto &sound = r.get<c::EngineTag>().ref.sound;
 
+		sound.play2D(ASSET_PATH "sounds/place_bomb.wav");
 		r.assign<c::Position>(bomb, glm::round(pos));
 		r.assign<c::Model>(bomb, "bomb", glm::mat4(1));
 		r.assign<c::Collide>(bomb);
 		r.assign<c::Lighting>(bomb, glm::vec3(-10, -10, -10), 0.2f, glm::vec3(0, 0, 0.1));
 		r.assign<c::TimedEffect>(bomb, 3.0f, explode(power) + destroy());
 		r.assign<c::Vulnerable>(bomb, explode(power) + destroy(), 50);
+		r.assign<c::Sound>(bomb, ASSET_PATH "sounds/bomb_tick.wav", 0.5f);
 	};
 }
 

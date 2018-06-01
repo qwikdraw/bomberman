@@ -15,8 +15,12 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/ext.hpp>
 #include <entt/entt.hpp>
+//#include "../lib/irrlkang/include/irrKlang.h"
+#include <irrKlang.h>
 
 #define ASSET_PATH "assets/"
+
+namespace i = irrklang;
 
 namespace scripts
 {

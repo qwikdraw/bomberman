@@ -221,6 +221,7 @@ void	Player(entt::DefaultRegistry& r, Window& window, Engine::KeyBind bind,
 	{
 		if (player.bombCooldownTimer <= 0)
 		{
+			//sound.play2D(ASSET_PATH "sounds/place_bomb.wav");
 			scripts::bomb(player.bombPower)(r, entity);
 			player.bombCooldownTimer = player.bombCooldown;
 		}
@@ -526,4 +527,22 @@ void	BindCheck(entt::DefaultRegistry& r, Window& window, Engine& engine)
 	}
 }
 	
+//! Sounds
+void	Sound(entt::DefaultRegistry &registry, double dt)
+{
+	auto view = registry.view<c::Sound>();
+	auto &engine = registry.get<c::EngineTag>().ref;
+
+	for (auto entity : view)
+	{
+		auto &s = view.get(entity);
+
+		s.timePassed += dt;
+		if (s.timePassed >= s.frequency)
+		{
+			engine.sound.play2D(s.soundFile.c_str());	
+			s.timePassed = 0;
+		}
+	}
+}
 }

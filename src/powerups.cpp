@@ -21,7 +21,9 @@ void	speedBoost(entt::DefaultRegistry& r, glm::vec3 pos)
 	auto effect = [powerup](entt::DefaultRegistry& reg, uint32_t e)
 	{
 		auto &player = reg.get<c::Player>();
+		auto &engine = reg.get<c::EngineTag>().ref;
 
+		engine.sound.play2D(ASSET_PATH "sounds/powerup.wav");
 		player.speed += 0.5;
 		reg.destroy(powerup);
 	};
@@ -38,7 +40,9 @@ void	bombPower(entt::DefaultRegistry& r, glm::vec3 pos)
 	auto effect = [powerup](entt::DefaultRegistry& reg, uint32_t e)
 	{
 		auto &player = reg.get<c::Player>();
+		auto &engine = reg.get<c::EngineTag>().ref;
 
+		engine.sound.play2D(ASSET_PATH "sounds/powerup.wav");
 		player.bombPower++;
 		reg.destroy(powerup);
 	};
