@@ -36,7 +36,8 @@ powerups \
 Effects \
 scripts \
 SettingState \
-PauseState
+PauseState \
+WaterSheet
 
 SRC_DIR = src
 OBJ_DIR = obj

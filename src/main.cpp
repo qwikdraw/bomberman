@@ -9,6 +9,7 @@ int	main(void)
 	Engine engine(window);
 
 	Effects::explosion = new ParticleExplosion(1.0f);
+	Effects::water = new WaterSheet(80, 80);
 
 	engine.PushState(new MenuState(engine));
 	while (engine.isRunning)

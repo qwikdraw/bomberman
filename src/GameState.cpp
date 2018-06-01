@@ -13,6 +13,14 @@ _engine(e), _window(e.window)
 	build_level(_registry, _engine, level);
 	_modelCache.load<systems::ModelLoader>(entt::HashedString("bomb"), ASSET_PATH "bomb.model");
 	glClearColor(0.2, 0.25, 0.29, 1.0);
+
+	if (level == "01" || level == "01")
+	{
+		auto waterSheet = _registry.create();
+		_registry.assign<c::Position>(waterSheet, glm::vec3(0, 0, 0));
+		_registry.assign<c::TimedEffect>(waterSheet, 100000.0f, scripts::destroy());
+		_registry.assign<c::Particles>(waterSheet, Effects::water, 100000.0f);
+	}
 }
 
 GameState::~GameState(void)
