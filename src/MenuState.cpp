@@ -6,6 +6,7 @@
 #include "Text.hpp"
 #include "SettingState.hpp"
 #include "PauseState.hpp"
+#include "LevelSelectState.hpp"
 
 namespace c = components;
 
@@ -53,6 +54,25 @@ _engine(e), _window(e.window)
 				  "Settings",
 				  glm::vec2(-0.1, -0.4),
 				  glm::vec2(0.1, -0.2));
+
+//creating level select button
+	auto levelSelect = _registry.create();
+	auto selectState = [this](entt::DefaultRegistry& r, uint32_t e)
+	{
+		_engine.PushState(new LevelSelectState(_engine));
+	};
+	_registry.assign<c::Button>(levelSelect,
+				    selectState,
+				    glm::vec2(-0.1, -0.8),
+				    glm::vec2(0.1, -0.6));
+	_registry.assign<c::Image>(levelSelect,
+				   "assets/textures/metal_sheet.png",
+				   glm::vec2(-0.1, -0.8),
+				   glm::vec2(0.1, -0.6));
+	_registry.assign<c::Text>(levelSelect,
+				   "Level Select",
+				   glm::vec2(-0.1, -0.8),
+				   glm::vec2(0.1, -0.6));
 }
 
 MenuState::~MenuState(void) {}

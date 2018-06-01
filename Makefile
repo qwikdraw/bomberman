@@ -38,7 +38,8 @@ scripts \
 SettingState \
 PauseState \
 Sparkles \
-save
+save \
+LevelSelectState
 
 SRC_DIR = src
 OBJ_DIR = obj
