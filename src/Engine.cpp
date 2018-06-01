@@ -2,7 +2,7 @@
 #include "Engine.hpp"
 #include "IState.hpp"
 
-Engine::Engine(Window& w, ISoundEngine& s) : window(w), sound(s), isRunning(true)
+Engine::Engine(Window& w, i::ISoundEngine& s) : window(w), sound(s), isRunning(true)
 {
 	keyBind.up = 'W';
 	keyBind.down = 'S';

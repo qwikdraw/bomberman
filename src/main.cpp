@@ -6,7 +6,7 @@
 int	main(void)
 {
 	Window window(1920, 1080, "bomberman");
-	ISoundEngine *sound = createIrrKlangDevice();
+	i::ISoundEngine *sound = i::createIrrKlangDevice();
 	Engine engine(window, *sound);
 
 	Effects::explosion = new ParticleExplosion(1.0f);

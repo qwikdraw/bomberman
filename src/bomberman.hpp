@@ -20,7 +20,7 @@
 
 #define ASSET_PATH "assets/"
 
-using namespace irrklang;
+namespace i = irrklang;
 
 namespace scripts
 {

@@ -81,7 +81,6 @@ _engine(e), _window(e.window), _sound(e.sound)
 	}
 
 	generate_ui(_registry, _engine, level);
-	_sound = createIrrKlangDevice();
 }
 
 GameState::~GameState(void)

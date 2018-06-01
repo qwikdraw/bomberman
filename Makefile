@@ -63,9 +63,9 @@ $(shell pkg-config --libs glfw3 glm) \
 all: $(OBJ_DIR) $(NAME)
 
 $(NAME): lib/lodepng/liblodepng.a $(OBJ)
-	@echo "\033[32;1mLinking.. \033[0m"
+	@printf "\e[32;1mLinking.. \e[0m\n"
 	@clang++ $(LDFLAGS) -o $@ $^
-	@echo "\033[32;1mCreated:\033[0m "$(NAME)
+	@printf "\e[32;1mCreated:\e[0m %s\n" $(NAME)
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
@@ -73,21 +73,21 @@ $(OBJ_DIR):
 -include $(DEP)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
-	@echo "\033[34;1mCompiling: \033[0m"$<
+	@printf "\e[34;1mCompiling: \e[0m%s\n" $<
 	@clang++ $(CPPFLAGS) -MMD -c $< -o $@
 
 lib/lodepng/liblodepng.a: lib/lodepng/lodepng.cpp
-	@echo "\033[35;1mCompiling Dependency: \033[0m"$<
+	@printf "\e[35;1mCompiling Dependency: \e[0m%s\n" $<
 	@clang++ $(CPPFLAGS) -c -o lib/lodepng/lodepng.o $<
 	@ar rcs $@ lib/lodepng/lodepng.o
 
 clean:
-	@echo "\033[31;1mCleaning..\033[0m"
+	@printf "\e[31;1mCleaning..\e[0m\n"
 	@rm -f $(OBJ)
 	@rm -f lib/lodepng/lodepng.o
 
 fclean:
-	@echo "\033[31;1mFull Cleaning..\033[0m"
+	@printf "\e[31;1mFull Cleaning..\e[0m\n"
 	@rm -rf $(OBJ_DIR)
 	@rm -f $(NAME)
 	@rm -f lib/lodepng/liblodepng.a
