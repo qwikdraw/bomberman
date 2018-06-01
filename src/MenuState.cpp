@@ -5,6 +5,7 @@
 #include "systems.hpp"
 #include "Text.hpp"
 #include "SettingState.hpp"
+#include "PauseState.hpp"
 
 namespace c = components;
 
