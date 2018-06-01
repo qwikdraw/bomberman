@@ -16,10 +16,10 @@ _engine(e), _window(e.window)
 
 	if (level == "01" || level == "01")
 	{
-		auto waterSheet = _registry.create();
-		_registry.assign<c::Position>(waterSheet, glm::vec3(0, 0, 0));
-		_registry.assign<c::TimedEffect>(waterSheet, 100000.0f, scripts::destroy());
-		_registry.assign<c::Particles>(waterSheet, Effects::water, 100000.0f);
+		auto sparkles = _registry.create();
+		_registry.assign<c::Position>(sparkles, glm::vec3(0, 0, 0));
+		_registry.assign<c::TimedEffect>(sparkles, 100000.0f, scripts::destroy());
+		_registry.assign<c::Particles>(sparkles, Effects::sparkles, 100000.0f);
 	}
 }
 

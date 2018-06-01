@@ -2,12 +2,12 @@
 
 #include "bomberman.hpp"
 #include "ParticleExplosion.hpp"
-#include "WaterSheet.hpp"
+#include "Sparkles.hpp"
 
 struct	Effects
 {
 	static ParticleExplosion *explosion;
-	static WaterSheet *water;
+	static Sparkles *sparkles;
 	
 	static void	CleanUp(void);
 };

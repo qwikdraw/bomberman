@@ -37,7 +37,7 @@ Effects \
 scripts \
 SettingState \
 PauseState \
-WaterSheet
+Sparkles
 
 SRC_DIR = src
 OBJ_DIR = obj

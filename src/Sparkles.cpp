@@ -1,6 +1,6 @@
-#include "WaterSheet.hpp"
+#include "Sparkles.hpp"
 
-WaterSheet::WaterSheet(float width, float height) : _particles(Particles(width * height * 3))
+Sparkles::Sparkles(float width, float height) : _particles(Particles(width * height * 3))
 {
 	_amount = width * height * 3;
 	_colors.resize(_amount);
@@ -16,7 +16,7 @@ WaterSheet::WaterSheet(float width, float height) : _particles(Particles(width *
 		col = glm::linearRand(col1, col2);
 }
 
-void	WaterSheet::Render(std::pair<glm::mat4, glm::mat4> perspective,
+void	Sparkles::Render(std::pair<glm::mat4, glm::mat4> perspective,
 			   glm::vec3 position,
 			   float time)
 {
