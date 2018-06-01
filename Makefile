@@ -37,7 +37,8 @@ Effects \
 scripts \
 SettingState \
 PauseState \
-Sparkles
+Sparkles \
+save
 
 SRC_DIR = src
 OBJ_DIR = obj
