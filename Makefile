@@ -50,14 +50,14 @@ CPPFLAGS = -std=c++14 -Wall -Wextra -Werror -Wno-unused-parameter -Wno-unused-pr
 $(shell pkg-config --cflags glfw3 glm) \
 -I lib/entt/src \
 -I lib/lodepng \
--I lib/irrlkang/include \
+-I lib/irrklang/include \
 -g -O3 -march=native \
 #-fsanitize=undefined -fsanitize=address
 
 LDFLAGS = -framework OpenGl \
 $(shell pkg-config --libs glfw3 glm) \
 -L lib/lodepng -llodepng \
--L lib/irrlkang -lirrklang -rpath lib/irrlkang -pthread \
+-L lib/irrklang -lirrklang -rpath '@executable_path/lib/irrklang' -pthread \
 #-fsanitize=undefined -fsanitize=address
 
 all: $(OBJ_DIR) $(NAME)

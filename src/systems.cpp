@@ -221,7 +221,7 @@ void	Player(entt::DefaultRegistry& r, Window& window, Engine::KeyBind bind,
 	{
 		if (player.bombCooldownTimer <= 0)
 		{
-			//sound.play2D(ASSET_PATH "place_bomb.mp3");
+			//sound.play2D(ASSET_PATH "sounds/place_bomb.wav");
 			scripts::bomb(player.bombPower)(r, entity);
 			player.bombCooldownTimer = player.bombCooldown;
 		}
