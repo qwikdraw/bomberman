@@ -1,5 +1,5 @@
 meshes/floor.obj
-textures/grass.png
+textures/black.png
 
 	Material:
         250 specular
@@ -10,9 +10,9 @@ textures/grass.png
 	Transform:
 	
 	matrix
-	1 0 0 0
-	0 1 0 0
-	0 0 1 0
+	2 0 0 0
+	0 2 0 0
+	0 0 2 0
 	0 0 0 1
 	
 	0.0

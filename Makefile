@@ -36,7 +36,8 @@ powerups \
 Effects \
 scripts \
 SettingState \
-PauseState
+PauseState \
+Sparkles
 
 SRC_DIR = src
 OBJ_DIR = obj
