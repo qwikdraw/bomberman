@@ -2,6 +2,7 @@
 #include "ParticleExplosion.hpp"
 #include "build_level.hpp"
 #include "PauseState.hpp"
+#include "save.hpp"
 
 static void	generate_ui(entt::DefaultRegistry& reg, Engine& engine, std::string level)
 {
@@ -81,6 +82,7 @@ _engine(e), _window(e.window)
 	}
 
 	generate_ui(_registry, _engine, level);
+	save::updateLevel(level);
 }
 
 GameState::~GameState(void)
