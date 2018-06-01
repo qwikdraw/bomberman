@@ -130,7 +130,8 @@ _engine(e), _window(e.window)
 	_registry.assign<c::Image>(menuButton,
 				   "assets/textures/blue_button.png",
 				   glm::vec2(-0.7, -0.8),
-				   glm::vec2(-0.25, -0.6));
+				   glm::vec2(-0.25, -0.6),
+				   1);
 	_registry.assign<c::Text>(menuButton,
 				  "BACK",
 				  glm::vec2(-0.65, -0.76),
