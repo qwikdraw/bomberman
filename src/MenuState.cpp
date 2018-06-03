@@ -26,7 +26,7 @@ _engine(e), _window(e.window)
 				    glm::vec2(0.1, 0.1));
 
 	_registry.assign<c::Image>(entity,
-				   "assets/textures/metal_sheet.png",
+				   "assets/textures/blue_button.png",
 				   glm::vec2(-0.1, -0.1),
 				   glm::vec2(0.1, 0.1));
 
@@ -47,7 +47,7 @@ _engine(e), _window(e.window)
 				    glm::vec2(-0.1, -0.4),
 				    glm::vec2(0.1, -0.2));
 	_registry.assign<c::Image>(settingButton,
-				   "assets/textures/metal_sheet.png",
+				   "assets/textures/blue_button.png",
 				   glm::vec2(-0.1, -0.4),
 				   glm::vec2(0.1, -0.2));
 	_registry.assign<c::Text>(settingButton,
@@ -66,7 +66,7 @@ _engine(e), _window(e.window)
 				    glm::vec2(-0.1, -0.8),
 				    glm::vec2(0.1, -0.6));
 	_registry.assign<c::Image>(levelSelect,
-				   "assets/textures/metal_sheet.png",
+				   "assets/textures/blue_button.png",
 				   glm::vec2(-0.1, -0.8),
 				   glm::vec2(0.1, -0.6));
 	_registry.assign<c::Text>(levelSelect,
