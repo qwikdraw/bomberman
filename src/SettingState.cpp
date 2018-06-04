@@ -107,6 +107,28 @@ static void	resolution_button(entt::DefaultRegistry& r,
 			  topright - 0.1 * (topright - botleft));
 }
 
+
+static void	sound_button(entt::DefaultRegistry& r,
+				  glm::vec2 botleft,
+				  glm::vec2 topright,
+				  std::string imagePath,
+				  int volume,
+				  i::ISoundEngine& sound,
+				  std::string text)
+{
+	auto s = r.create();
+	auto event = [&sound, volume](entt::DefaultRegistry& r, uint32_t e)
+	{
+		sound.setSoundVolume(volume);
+	};
+	r.assign<c::Button>(s, event, botleft, topright);
+	r.assign<c::Image>(s, imagePath, botleft, topright, 1);
+	r.assign<c::Text>(s,
+			  text,
+			  botleft + 0.1 * (topright - botleft),
+			  topright - 0.1 * (topright - botleft));
+}
+
 SettingState::SettingState(Engine& e) :
 _engine(e), _window(e.window)
 {
@@ -221,6 +243,24 @@ _engine(e), _window(e.window)
                           true,
                           _window,
 			  "Fullscreen");
+
+//create sound buttons
+
+	sound_button(_registry,
+                          glm::vec2(0.1, -0.8),
+                          glm::vec2(0.35, -0.6),
+                          "assets/textures/blue_button.png",
+                          1,
+                          _engine.sound,
+						  "On");
+
+	sound_button(_registry,
+                          glm::vec2(0.55, -0.8),
+                          glm::vec2(0.8, -0.6),
+                          "assets/textures/blue_button.png",
+                          0,
+                          _engine.sound,
+						  "Off");
 
 }
 
