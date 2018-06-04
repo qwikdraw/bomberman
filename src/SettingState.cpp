@@ -111,15 +111,33 @@ static void	resolution_button(entt::DefaultRegistry& r,
 static void	sound_button(entt::DefaultRegistry& r,
 				  glm::vec2 botleft,
 				  glm::vec2 topright,
-				  std::string imagePath,
-				  int volume,
-				  i::ISoundEngine& sound,
-				  std::string text)
+				  i::ISoundEngine& sound)
 {
+	std::string text;
+	std::string imagePath;
 	auto s = r.create();
-	auto event = [&sound, volume](entt::DefaultRegistry& r, uint32_t e)
+	int	volume = sound.getSoundVolume();
+
+	text = volume ? "On" : "Off"; 
+	imagePath = volume ? "assets/textures/blue_button.png" :
+		"assets/textures/dark_blue_button.png";
+	auto event = [&sound](entt::DefaultRegistry& r, uint32_t e)
 	{
-		sound.setSoundVolume(volume);
+		int	vol = sound.getSoundVolume();
+		auto &text = r.get<c::Text>(e);
+		auto &image = r.get<c::Image>(e);
+		if (vol)
+		{
+			image.name = "assets/textures/dark_blue_button.png";
+			text.words = "Off";
+			sound.setSoundVolume(0);
+		}
+		else
+		{
+			image.name = "assets/textures/blue_button.png";
+			text.words = "On";
+			sound.setSoundVolume(1);
+		}
 	};
 	r.assign<c::Button>(s, event, botleft, topright);
 	r.assign<c::Image>(s, imagePath, botleft, topright, 1);
@@ -244,24 +262,12 @@ _engine(e), _window(e.window)
                           _window,
 			  "Fullscreen");
 
-//create sound buttons
+//create sound button
 
 	sound_button(_registry,
-                          glm::vec2(0.1, -0.8),
-                          glm::vec2(0.35, -0.6),
-                          "assets/textures/blue_button.png",
-                          1,
-                          _engine.sound,
-						  "On");
-
-	sound_button(_registry,
-                          glm::vec2(0.55, -0.8),
-                          glm::vec2(0.8, -0.6),
-                          "assets/textures/blue_button.png",
-                          0,
-                          _engine.sound,
-						  "Off");
-
+                          glm::vec2(0.35, -0.7),
+                          glm::vec2(0.55, -0.6),
+                          _engine.sound);
 }
 
 SettingState::~SettingState(void) {}
