@@ -65,6 +65,7 @@ static void	generate_ui(entt::DefaultRegistry& reg, Engine& engine, std::string 
 GameState::GameState(Engine& e, std::string level) :
 _engine(e), _window(e.window), _sound(e.sound)
 {
+	_sound.stopAllSounds();
 	_camera.Move(glm::vec3(0, -10, 20));
 	_camera.Rotate(glm::vec3(0, 0, 1), 90);
 	_camera.Rotate(glm::vec3(0, 1, 0), 64);
