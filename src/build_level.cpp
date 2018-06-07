@@ -77,7 +77,8 @@ static std::function<void(entt::DefaultRegistry& r, int x, int y)> spawn[128] = 
 };
 
 
-void	build_level(entt::DefaultRegistry &r, Engine& engine, std::string level)
+void	build_level(entt::DefaultRegistry &r, Engine& engine, std::string level,
+		i::ISound **_music)
 {
 	// Engine Tag for scripts
 	auto e = r.create();
@@ -94,6 +95,7 @@ void	build_level(entt::DefaultRegistry &r, Engine& engine, std::string level)
 	std::string line;
 	std::string next_level;
 	std::string baseplate;
+	std::string soundFile;
 	std::getline(file, next_level);
 	spawn[(int)'g'] = [next_level](entt::DefaultRegistry &r, int x, int y)
 	{
@@ -112,6 +114,8 @@ void	build_level(entt::DefaultRegistry &r, Engine& engine, std::string level)
 		r.assign<c::Collide>(player, 5);
 		r.assign<c::Vulnerable>(player, scripts::death(level));
 	};
+	std::getline(file, soundFile);
+	*_music = engine.sound.play2D(soundFile.c_str(), true, false, true);
 	std::getline(file, baseplate);
 	while (std::getline(file, line))
 		level_data.push_front(line);

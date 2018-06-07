@@ -82,6 +82,7 @@ void MenuState::Update(double dt)
 {
 	if (_music && _music->isFinished())
 	{
+		_engine.sound.stopAllSounds();
 		free(_music);
 		_music = _engine.sound.play2D(ASSET_PATH "sounds/menu.wav", true, false, true);
 	}
