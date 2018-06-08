@@ -20,7 +20,7 @@ class GameState : public IState
 	Engine& _engine;
 	Window& _window;
 	Camera _camera;
-	i::ISoundEngine& _sound;
+	i::ISound *_music;
 	entt::DefaultRegistry _registry;
 	entt::ResourceCache<Model> _modelCache;
 	entt::ResourceCache<Sprite2D> _imageCache;

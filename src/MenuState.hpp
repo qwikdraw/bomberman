@@ -13,6 +13,7 @@ class MenuState : public IState
 	Engine& _engine;
 	Window& _window;
 	Camera _camera;
+	i::ISound *_music;
 	entt::DefaultRegistry _registry;
 	entt::ResourceCache<Sprite2D> _imageCache;
 	

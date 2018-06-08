@@ -14,6 +14,7 @@ MenuState::MenuState(Engine& e) :
 _engine(e), _window(e.window)
 {
 	auto entity = _registry.create();	
+	_music = _engine.sound.play2D(ASSET_PATH "sounds/menu.wav", true, false, true);
 
 	auto nextstate = [this](entt::DefaultRegistry& r, uint32_t e)
 	{
@@ -79,6 +80,12 @@ MenuState::~MenuState(void) {}
 
 void MenuState::Update(double dt)
 {
+	if (_music && _music->isFinished())
+	{
+		_engine.sound.stopAllSounds();
+		free(_music);
+		_music = _engine.sound.play2D(ASSET_PATH "sounds/menu.wav", true, false, true);
+	}
 	systems::Buttons(_registry, _window);
 	systems::Images(_registry, _imageCache, _window);
 	systems::Texts(_registry, _window);

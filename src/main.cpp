@@ -17,5 +17,6 @@ int	main(void)
 		engine.Run();
 
 	Effects::CleanUp();
+	sound->drop();
 	return 0;
 }

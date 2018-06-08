@@ -9,4 +9,5 @@
 
 namespace c = components;
 
-void	build_level(entt::DefaultRegistry &r, Engine& engine, std::string level);
+void	build_level(entt::DefaultRegistry &r, Engine& engine, std::string level,
+		i::ISound **_music);

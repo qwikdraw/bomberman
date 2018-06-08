@@ -63,13 +63,14 @@ static void	generate_ui(entt::DefaultRegistry& reg, Engine& engine, std::string 
 }
 
 GameState::GameState(Engine& e, std::string level) :
-_engine(e), _window(e.window), _sound(e.sound)
+_engine(e), _window(e.window)
 {
+	_engine.sound.stopAllSounds();
 	_camera.Move(glm::vec3(0, -10, 20));
 	_camera.Rotate(glm::vec3(0, 0, 1), 90);
 	_camera.Rotate(glm::vec3(0, 1, 0), 64);
 
-	build_level(_registry, _engine, level);
+	build_level(_registry, _engine, level, &_music);
 	_modelCache.load<systems::ModelLoader>(entt::HashedString("bomb"), ASSET_PATH "bomb.model");
 	glClearColor(0.2, 0.25, 0.29, 1.0);
 
@@ -85,15 +86,18 @@ _engine(e), _window(e.window), _sound(e.sound)
 	save::updateLevel(level);
 }
 
-GameState::~GameState(void)
-{
-}
+GameState::~GameState(void) {}
 
 void GameState::Update(double dt)
 {
+	if (_music && _music->getIsPaused())
+		_music->setIsPaused(false);
 	if (_window.Key(GLFW_KEY_ESCAPE))
+	{
+		if (_music)
+			_music->setIsPaused(true);
 		_engine.PushState(new PauseState(_engine));
-	
+	}
 	_cells(_registry);
 	
 	systems::RenderModels(_registry, _modelCache, _window, _camera, dt);

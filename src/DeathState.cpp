@@ -3,6 +3,8 @@
 DeathState::DeathState(Engine& engine, std::string level) :
 _engine(engine), _window(engine.window)
 {
+	_engine.sound.stopAllSounds();
+	_engine.sound.play2D(ASSET_PATH "sounds/game_over.wav", true, false, true);
 	auto e = _registry.create();
 	_registry.assign<c::EngineTag>(entt::tag_t{}, e, engine);
 
