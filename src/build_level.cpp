@@ -55,7 +55,7 @@ static std::function<void(entt::DefaultRegistry& r, int x, int y)> spawn[128] = 
 	{
 		auto enemy = r.create();
 		r.assign<c::Position>(enemy, glm::vec3(x, y, 0));
-		r.assign<c::Model>(enemy, "player", glm::mat4(1));
+		r.assign<c::Model>(enemy, "enemy", glm::mat4(1));
 		r.assign<c::Velocity>(enemy);
 		r.assign<c::Collide>(enemy, 5);
 		r.assign<c::AI>(enemy, 2.0, 1.0, c::AI_type::HORZ);
@@ -67,7 +67,7 @@ static std::function<void(entt::DefaultRegistry& r, int x, int y)> spawn[128] = 
 	{
 		auto enemy = r.create();
 		r.assign<c::Position>(enemy, glm::vec3(x, y, 0));
-		r.assign<c::Model>(enemy, "player", glm::mat4(1));
+		r.assign<c::Model>(enemy, "enemy", glm::mat4(1));
 		r.assign<c::Velocity>(enemy);
 		r.assign<c::Collide>(enemy, 5);
 		r.assign<c::AI>(enemy, 2.0, 1.0, c::AI_type::VERT);
@@ -99,7 +99,7 @@ void	build_level(entt::DefaultRegistry &r, Engine& engine, std::string level)
 	{
 		auto goal = r.create();
 		r.assign<c::Position>(goal, glm::vec3(x, y, 0));
-		r.assign<c::Model>(goal, "speed_boost", glm::mat4(1));
+		r.assign<c::Model>(goal, "flag", glm::mat4(1));
 		r.assign<c::Powerup>(goal, scripts::switch_level(next_level));
 	};
 	spawn[(int)'p'] = [level](entt::DefaultRegistry &r, int x, int y)
