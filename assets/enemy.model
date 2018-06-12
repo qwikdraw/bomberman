@@ -1,5 +1,5 @@
 meshes/enemy.obj
-textures/player.png
+textures/EnemyTexture.png
 
 	Material:
         200 specular
