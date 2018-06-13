@@ -322,8 +322,8 @@ void	Explosion(entt::DefaultRegistry &r, Cells& cells)
 {
 	r.view<c::Explosion, c::Position>().each([&r, &cells](auto entity, auto ex, auto p){
 		auto pos = glm::round(p.pos);
-		if (ex.spread < 1)
-			return r.remove<c::Explosion>(entity);
+		if (ex.spread < 1 || !r.valid(entity))
+			return r.reset<c::Explosion>(entity);
 		ex.spread -= 1;
 		switch (ex.dir)
 		{
@@ -347,7 +347,7 @@ void	Explosion(entt::DefaultRegistry &r, Cells& cells)
 				spawn_explosion(r, cells, ex.spread, pos.x + 1, pos.y, c::Direction::RIGHT);
 				break;
 		}
-		r.remove<c::Explosion>(entity);
+		r.reset<c::Explosion>(entity);
 	});
 }
 

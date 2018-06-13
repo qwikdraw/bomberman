@@ -9,6 +9,7 @@ lib
 *.dSYM
 # Prerequisites
 *.d
+*.swp
 docs/xml
 docs/html
 *__pycache__
