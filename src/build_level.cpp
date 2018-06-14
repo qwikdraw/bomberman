@@ -32,7 +32,7 @@ static std::function<void(entt::DefaultRegistry& r, int x, int y)> spawn[128] = 
 	{
 		auto column = r.create();
 		glm::mat4 rot(1);
-		r.assign<c::Model>(column, "rock", random_direction());
+		r.assign<c::Model>(column, "column", random_direction());
 		r.assign<c::Collide>(column, 20);
 		r.assign<c::Position>(column, glm::vec3(x, y, 0));
 	},
