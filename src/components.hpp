@@ -88,7 +88,6 @@ namespace components
 	struct Explosion
 	{
 		int spread = 0;
-		Direction dir = Direction::NONE;
 	};
 
 	enum class AI_type{RAND, HORZ, VERT};

@@ -54,13 +54,13 @@ $(shell pkg-config --cflags glfw3 glm) \
 -I lib/lodepng \
 -I lib/irrklang/include \
 -g -O3 -march=native \
--fsanitize=undefined -fsanitize=address
+#-fsanitize=undefined -fsanitize=address
 
 LDFLAGS = -framework OpenGl \
 $(shell pkg-config --libs glfw3 glm) \
 -L lib/lodepng -llodepng \
 -L lib/irrklang -lirrklang -rpath '@executable_path/lib/irrklang' -pthread \
--fsanitize=undefined -fsanitize=address
+#-fsanitize=undefined -fsanitize=address
 
 all: $(OBJ_DIR) $(NAME)
 
