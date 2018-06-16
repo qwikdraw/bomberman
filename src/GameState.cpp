@@ -107,10 +107,10 @@ void GameState::Update(double dt)
 	systems::Player(_registry, _window, _engine.keyBind, _cells, _camera, dt);
 	systems::Velocity(_registry, _cells, dt);
 	systems::RenderParticles(_registry, _camera);
+	systems::Danger(_registry, _cells);
 	systems::Explosion(_registry, _cells);
 	systems::AI(_registry, _window, dt);
 	systems::Lighting(_registry, dt);
-	systems::Danger(_registry, _cells);
 	systems::Images(_registry, _imageCache, _window);
 	systems::Texts(_registry, _window);
 	systems::Sound(_registry, dt);

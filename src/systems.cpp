@@ -304,7 +304,7 @@ void	Velocity(entt::DefaultRegistry& r, Cells &cells, double dt)
 
 //! Explosion
 
-static void	spawn_explosion(entt::DefaultRegistry &r, Cells& cells, int spread, int x, int y, c::Direction dir)
+static void	spawn_explosion(entt::DefaultRegistry &r, Cells& cells, int x, int y)
 {
 	if (cells.Collision(r, x, y) && !cells.Vulnerable(r, x, y))
 		return;
@@ -313,42 +313,27 @@ static void	spawn_explosion(entt::DefaultRegistry &r, Cells& cells, int spread, 
 	r.assign<c::Lighting>(ex, glm::vec3(0.5, 0.2, 0), 1.0f, glm::vec3(0, 0, 2), -1.0f);
 	r.assign<c::Dangerous>(ex, 100);
 	r.assign<c::Particles>(ex, Effects::explosion, 1.0f);
-	r.assign<c::Explosion>(ex, spread, dir);
 	r.assign<c::TimedEffect>(ex, 0.8f, scripts::destroy());
 }
 
-
 void	Explosion(entt::DefaultRegistry &r, Cells& cells)
 {
-	r.view<c::Explosion, c::Position>().each([&r, &cells](auto entity, auto ex, auto p){
-		auto pos = glm::round(p.pos);
-		if (ex.spread < 1)
-			return r.remove<c::Explosion>(entity);
-		ex.spread -= 1;
-		switch (ex.dir)
-		{
-			case (c::Direction::NONE):
-				spawn_explosion(r, cells, 0, pos.x, pos.y, c::Direction::NONE);
-				spawn_explosion(r, cells, ex.spread, pos.x, pos.y + 1, c::Direction::UP);
-				spawn_explosion(r, cells, ex.spread, pos.x, pos.y - 1, c::Direction::DOWN);
-				spawn_explosion(r, cells, ex.spread, pos.x - 1, pos.y, c::Direction::LEFT);
-				spawn_explosion(r, cells, ex.spread, pos.x + 1, pos.y, c::Direction::RIGHT);
-				break;
-			case (c::Direction::UP):
-				spawn_explosion(r, cells, ex.spread, pos.x, pos.y + 1, c::Direction::UP);
-				break;
-			case (c::Direction::DOWN):
-				spawn_explosion(r, cells, ex.spread, pos.x, pos.y - 1, c::Direction::DOWN);
-				break;
-			case (c::Direction::LEFT):
-				spawn_explosion(r, cells, ex.spread, pos.x - 1, pos.y, c::Direction::LEFT);
-				break;
-			case (c::Direction::RIGHT):
-				spawn_explosion(r, cells, ex.spread, pos.x + 1, pos.y, c::Direction::RIGHT);
-				break;
-		}
-		r.remove<c::Explosion>(entity);
-	});
+	auto view = r.view<c::Explosion, c::Position>();
+	for (auto entity : view)
+	{
+		int spread = view.get<c::Explosion>(entity).spread;
+		glm::vec3 pos = view.get<c::Position>(entity).pos;
+		r.destroy(entity);
+		spawn_explosion(r, cells, pos.x, pos.y);
+		for (int up = 1; up <= spread; up++)
+			spawn_explosion(r, cells, pos.x, pos.y + up);
+		for (int down = 1; down <= spread; down++)
+			spawn_explosion(r, cells, pos.x, pos.y - down);
+		for (int left = 1; left <= spread; left++)
+			spawn_explosion(r, cells, pos.x - left, pos.y);
+		for (int right = 1; right <= spread; right++)
+			spawn_explosion(r, cells, pos.x + right, pos.y);
+	}
 }
 
 // AI monster
