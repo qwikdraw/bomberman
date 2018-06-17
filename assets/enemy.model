@@ -1,20 +1,20 @@
-meshes/lv2/floor.obj
-textures/lv2/floor.png
+meshes/enemy.obj
+textures/EnemyTexture.png
 
 	Material:
-        250 specular
+        200 specular
         1 diffuse
         4000 fog
         0 0 0 fogcol
 
 	Transform:
-	
+
 	matrix
-	2 0 0 0
-	0 2 0 0
-	0 0 2 0
+	1 0 0 0
+	0 1 0 0
+	0 0 1 0
 	0 0 0 1
-	
+
 	0.0
 
 	Cycle:
@@ -22,3 +22,4 @@ textures/lv2/floor.png
 
 	Position:
 	0 0 0
+

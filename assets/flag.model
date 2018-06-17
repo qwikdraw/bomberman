@@ -1,12 +1,12 @@
-meshes/rock.obj
-textures/rock.png
+meshes/flag.obj
+textures/flag.png
 
 	Material:
-	150 specular
-	10 diffuse
+	0 specular
+	1 diffuse
 	4000 fog
 	0 0 0 fogcol
-
+	
 	Transform:
 	
 	matrix
@@ -18,7 +18,7 @@ textures/rock.png
 	0.0
 
 	Cycle:
-	1.0
+	1
 
 	Position:
 	0 0 0
