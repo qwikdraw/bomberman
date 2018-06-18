@@ -1,5 +1,5 @@
-meshes/lv1/column.obj
-textures/lv1/column.png
+meshes/column.obj
+textures/column.png
 
 	Material:
 	50 specular
@@ -8,13 +8,13 @@ textures/lv1/column.png
 	0 0 0 fogcol
 
 	Transform:
-	
+
 	matrix
 	1 0 0 0
 	0 1 0 0
 	0 0 1 0
 	0 0 0 1
-	
+
 	0.0
 
 	Cycle:

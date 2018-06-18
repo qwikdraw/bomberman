@@ -1,5 +1,5 @@
-meshes/lv1/floor.obj
-textures/lv1/floor.png
+meshes/floor.obj
+textures/floor.png
 
 	Material:
         250 specular
@@ -8,13 +8,13 @@ textures/lv1/floor.png
         0 0 0 fogcol
 
 	Transform:
-	
+
 	matrix
 	2 0 0 0
 	0 2 0 0
 	0 0 2 0
 	0 0 0 1
-	
+
 	0.0
 
 	Cycle:

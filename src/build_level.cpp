@@ -18,30 +18,30 @@ static glm::mat4 random_direction()
 	return dirs[pick_dir(rng)];
 }
 
-static std::function<void(entt::DefaultRegistry& r, int x, int y)> spawn[128] = {
+static std::function<void(entt::DefaultRegistry& r, int x, int y, std::string level)> spawn[128] = {
 
-	['#'] = [](entt::DefaultRegistry &r, int x, int y)
+	['#'] = [](entt::DefaultRegistry &r, int x, int y, std::string level)
 	{
 		auto wall = r.create();
-		r.assign<c::Model>(wall, "block", glm::mat4(1));
+		r.assign<c::Model>(wall, "models/common/block", glm::mat4(1));
 		r.assign<c::Collide>(wall, 100000);
 		r.assign<c::Position>(wall, glm::vec3(x, y, 0));
 	},
 
-	['+'] = [](entt::DefaultRegistry &r, int x, int y)
+	['+'] = [](entt::DefaultRegistry &r, int x, int y, std::string level)
 	{
 		auto column = r.create();
 		glm::mat4 rot(1);
-		r.assign<c::Model>(column, "column", random_direction());
+		r.assign<c::Model>(column, "models/" + level + "/column", random_direction());
 		r.assign<c::Collide>(column, 20);
 		r.assign<c::Position>(column, glm::vec3(x, y, 0));
 	},
 
-	['c'] = [](entt::DefaultRegistry &r, int x, int y)
+	['c'] = [](entt::DefaultRegistry &r, int x, int y, std::string level)
 	{
 		auto e = r.create();
 
-		r.assign<c::Model>(e, "crate", random_direction());
+		r.assign<c::Model>(e, "models/" + level + "/crate", random_direction());
 		r.assign<c::Collide>(e, 10);
 		r.assign<c::Position>(e, glm::vec3(x, y, 0));
 		r.assign<c::Vulnerable>(e,
@@ -51,11 +51,11 @@ static std::function<void(entt::DefaultRegistry& r, int x, int y)> spawn[128] = 
 		);
 	},
 
-	['>'] = [](entt::DefaultRegistry &r, int x, int y)
+	['>'] = [](entt::DefaultRegistry &r, int x, int y, std::string level)
 	{
 		auto enemy = r.create();
 		r.assign<c::Position>(enemy, glm::vec3(x, y, 0));
-		r.assign<c::Model>(enemy, "enemy", glm::mat4(1));
+		r.assign<c::Model>(enemy, "models/common/enemy", glm::mat4(1));
 		r.assign<c::Velocity>(enemy);
 		r.assign<c::Collide>(enemy, 5);
 		r.assign<c::AI>(enemy, 2.0, 1.0, c::AI_type::HORZ);
@@ -63,11 +63,11 @@ static std::function<void(entt::DefaultRegistry& r, int x, int y)> spawn[128] = 
 		r.assign<c::Vulnerable>(enemy, scripts::destroy(), 11);
 	},
 
-	['^'] = [](entt::DefaultRegistry &r, int x, int y)
+	['^'] = [](entt::DefaultRegistry &r, int x, int y, std::string level)
 	{
 		auto enemy = r.create();
 		r.assign<c::Position>(enemy, glm::vec3(x, y, 0));
-		r.assign<c::Model>(enemy, "enemy", glm::mat4(1));
+		r.assign<c::Model>(enemy, "models/common/enemy", glm::mat4(1));
 		r.assign<c::Velocity>(enemy);
 		r.assign<c::Collide>(enemy, 5);
 		r.assign<c::AI>(enemy, 2.0, 1.0, c::AI_type::VERT);
@@ -97,18 +97,18 @@ void	build_level(entt::DefaultRegistry &r, Engine& engine, std::string level,
 	std::string baseplate;
 	std::string soundFile;
 	std::getline(file, next_level);
-	spawn[(int)'g'] = [next_level](entt::DefaultRegistry &r, int x, int y)
+	spawn[(int)'g'] = [next_level](entt::DefaultRegistry &r, int x, int y, std::string level)
 	{
 		auto goal = r.create();
 		r.assign<c::Position>(goal, glm::vec3(x, y, 0));
-		r.assign<c::Model>(goal, "flag", glm::mat4(1));
+		r.assign<c::Model>(goal, "models/common/flag", glm::mat4(1));
 		r.assign<c::Powerup>(goal, scripts::switch_level(next_level));
 	};
-	spawn[(int)'p'] = [level](entt::DefaultRegistry &r, int x, int y)
+	spawn[(int)'p'] = [level](entt::DefaultRegistry &r, int x, int y, std::string level)
 	{
 		auto player = r.create();
 		r.assign<c::Player>(entt::tag_t{}, player, 2.0, 1.0);
-		r.assign<c::Model>(player, "player", glm::mat4(1));
+		r.assign<c::Model>(player, "models/common/player", glm::mat4(1));
 		r.assign<c::Position>(player, glm::vec3(x, y, 0));
 		r.assign<c::Velocity>(player);
 		r.assign<c::Collide>(player, 5);
@@ -127,7 +127,7 @@ void	build_level(entt::DefaultRegistry &r, Engine& engine, std::string level,
 		for (auto& piece : row)
 		{
 			if (spawn[(int)piece])
-				spawn[(int)piece](r, x, y);
+				spawn[(int)piece](r, x, y, level);
 			++x;
 			if (x > width)
 				width = x;

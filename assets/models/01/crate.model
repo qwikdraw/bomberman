@@ -1,5 +1,5 @@
-meshes/lv1/crate.obj
-textures/lv1/crate.png
+meshes/crate.obj
+textures/crate.png
 
 	Material:
 	100 specular
@@ -8,13 +8,13 @@ textures/lv1/crate.png
 	0 0 0 fogcol
 
 	Transform:
-	
+
 	matrix
 	1 0 0 0
 	0 1 0 0
 	0 0 1 0
 	0 0 0 1
-	
+
 	0.0
 
 	Cycle:

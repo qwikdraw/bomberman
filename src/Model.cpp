@@ -3,7 +3,7 @@
 std::istream	&operator >> (std::istream &is, Model::AnimatedPartRaw &lhs)
 {
 	std::string junkInfo;
-	
+
 	is >> lhs.objectFile >> lhs.textureFile >> junkInfo >> lhs.specular >> junkInfo >> lhs.diffuse
 	   >> junkInfo >> lhs.fog >> junkInfo >> lhs.fogcol.x >> lhs.fogcol.y
 	   >> lhs.fogcol.z >> junkInfo >> junkInfo;
@@ -11,9 +11,9 @@ std::istream	&operator >> (std::istream &is, Model::AnimatedPartRaw &lhs)
 
 	if (!is)
 		throw std::exception();
-	
+
 	junkInfo = "";
-	
+
 	std::string s;
 	while (1)
 	{
@@ -21,27 +21,27 @@ std::istream	&operator >> (std::istream &is, Model::AnimatedPartRaw &lhs)
 		is >> s;
 		if (s != "matrix")
 			break;
-		
-		glm::mat4 matrix;		
+
+		glm::mat4 matrix;
 		for (int i = 0; i < 16; i++)
 			is >> matrix[i / 4][i % 4];
 		lhs.transform.push_back(matrix);
-		
+
 		float t;
 		is >> t;
 		lhs.time.push_back(t);
 	}
-	is >> lhs.cycle >> junkInfo >> lhs.pos[0] >> lhs.pos[1] >> lhs.pos[2];	
+	is >> lhs.cycle >> junkInfo >> lhs.pos[0] >> lhs.pos[1] >> lhs.pos[2];
 	return is;
 }
 
 Model::Model(std::string filepath)
 {
-	size_t	pathEnd = filepath.find_last_of("/");	
+	size_t	pathEnd = filepath.find_last_of("/");
 	std::string absolutePath = filepath.substr(0, pathEnd);
 
 	std::ifstream f(filepath);
-	
+
 	while (f)
 	{
 		AnimatedPartRaw raw;
@@ -53,7 +53,7 @@ Model::Model(std::string filepath)
 		{
 			break;
 		}
-	
+
 		AnimatedPart processed;
 
 		processed.animaTransform = raw.transform;
