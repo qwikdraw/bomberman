@@ -58,7 +58,7 @@ static std::function<void(entt::DefaultRegistry& r, int x, int y, std::string le
 		r.assign<c::Model>(enemy, "models/common/enemy", glm::mat4(1));
 		r.assign<c::Velocity>(enemy);
 		r.assign<c::Collide>(enemy, 5);
-		r.assign<c::AI>(enemy, 2.0, 1.0, c::AI_type::HORZ);
+		r.assign<c::AI>(enemy, 1.5, c::AI_type::HORZ);
 		r.assign<c::Dangerous>(enemy, 10);
 		r.assign<c::Vulnerable>(enemy, scripts::destroy(), 11);
 	},
@@ -70,9 +70,19 @@ static std::function<void(entt::DefaultRegistry& r, int x, int y, std::string le
 		r.assign<c::Model>(enemy, "models/common/enemy", glm::mat4(1));
 		r.assign<c::Velocity>(enemy);
 		r.assign<c::Collide>(enemy, 5);
-		r.assign<c::AI>(enemy, 2.0, 1.0, c::AI_type::VERT);
+		r.assign<c::AI>(enemy, 1.5, c::AI_type::VERT);
 		r.assign<c::Dangerous>(enemy, 10);
 		r.assign<c::Vulnerable>(enemy, scripts::destroy(), 11);
+	},
+	['p'] = [](entt::DefaultRegistry &r, int x, int y, std::string level)
+	{
+		auto player = r.create();
+		r.assign<c::Player>(entt::tag_t{}, player, 2.0, 1.0);
+		r.assign<c::Model>(player, "models/common/player", glm::mat4(1));
+		r.assign<c::Position>(player, glm::vec3(x, y, 0));
+		r.assign<c::Velocity>(player);
+		r.assign<c::Collide>(player, 5);
+		r.assign<c::Vulnerable>(player, scripts::death(level));
 	}
 };
 
@@ -103,16 +113,6 @@ void	build_level(entt::DefaultRegistry &r, Engine& engine, std::string level,
 		r.assign<c::Position>(goal, glm::vec3(x, y, 0));
 		r.assign<c::Model>(goal, "models/common/flag", glm::mat4(1));
 		r.assign<c::Powerup>(goal, scripts::switch_level(next_level));
-	};
-	spawn[(int)'p'] = [level](entt::DefaultRegistry &r, int x, int y, std::string level)
-	{
-		auto player = r.create();
-		r.assign<c::Player>(entt::tag_t{}, player, 2.0, 1.0);
-		r.assign<c::Model>(player, "models/common/player", glm::mat4(1));
-		r.assign<c::Position>(player, glm::vec3(x, y, 0));
-		r.assign<c::Velocity>(player);
-		r.assign<c::Collide>(player, 5);
-		r.assign<c::Vulnerable>(player, scripts::death(level));
 	};
 	std::getline(file, soundFile);
 	*_music = engine.sound.play2D(soundFile.c_str(), true, false, true);

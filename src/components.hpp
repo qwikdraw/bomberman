@@ -90,15 +90,15 @@ namespace components
 		int spread = 0;
 	};
 
-	enum class AI_type{RAND, HORZ, VERT};
+	enum class AI_type{SMART, HORZ, VERT};
 
 	struct AI
 	{
-		double speed;
-		double moveCooldown;
-		AI_type type;
-		double moveCooldownTimer = 0.0;
+		double speed = 1.0;
+		AI_type type = AI_type::SMART;
 		Direction dir = Direction::NONE;
+		double moveCooldown = 0.0;
+		double moveCooldownTimer = 0.0;
 	};
 
 	struct Dangerous

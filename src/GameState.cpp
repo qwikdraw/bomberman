@@ -72,6 +72,8 @@ _engine(e), _window(e.window)
 
 	build_level(_registry, _engine, level, &_music);
 	_modelCache.load<systems::ModelLoader>(entt::HashedString("bomb"), ASSET_PATH "bomb.model");
+	_modelCache.load<systems::ModelLoader>(entt::HashedString("bomb"), ASSET_PATH "speed_boost.model");
+	_modelCache.load<systems::ModelLoader>(entt::HashedString("bomb"), ASSET_PATH "more_power.model");
 	glClearColor(0.2, 0.25, 0.29, 1.0);
 
 	if (level == "01" || level == "01")
