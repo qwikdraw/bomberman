@@ -13,11 +13,11 @@ models/01/floor
 #                               #
 #   p                           #
 #                               #
-# cc   cc    cc  cc  cc      cc #
-# cc   cc    cc  cc  ccc     cc #
-# cc   cc    cc  cc  cc cc   cc #
-# cc   cc    cc  cc  cc  cc  cc #
-# cc   cc    cc  cc  cc   cc cc #
+# cc   ccc   cc  cc  cc      cc #
+# cc   ccc   cc  cc  ccc     cc #
+# cc   ccc   cc  cc  cc cc   cc #
+# cc   ccc   cc  cc  cc  cc  cc #
+# cc   ccc   cc  cc  cc   cc cc #
 #  cc cc cc cc   cc  cc    cccc #
 #   ccc   ccc    cc  cc     ccc #
 #################################
