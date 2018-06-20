@@ -127,6 +127,7 @@ void	ObjFile::Render(void)
 	_program->Use();
 
 	int size = Light::positions.size();
+	size = std::min(size, 99);
 	if (size)
 	{
 		glUniform3fv(_lightPosID,
