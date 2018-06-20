@@ -366,8 +366,6 @@ void	AI(entt::DefaultRegistry &registry, Window &window, double dt)
 					}
 				}
 				break;
-			case (c::AI_type::SMART):
-				break;
 		}
 		switch (ai.dir)
 		{
