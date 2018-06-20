@@ -333,52 +333,6 @@ void	Explosion(entt::DefaultRegistry &r, Cells& cells)
 	}
 }
 
-/*
-// AI monster
-void	AI(entt::DefaultRegistry &registry, Window &window, double dt)
-{
-	auto view = registry.view<c::AI, c::Velocity, c::Model>();
-
-	for (auto entity : view)
-	{
-		auto &ai = view.get<c::AI>(entity);
-		auto &move = view.get<c::Velocity>(entity);
-		glm::mat4 &transform = view.get<c::Model>(entity).transform;
-
-		glm::vec3 v(0, 0, 0);
-		if (ai.moveCooldownTimer <= 0.0)
-		{
-			if (ai.type == c::AI_type::RAND)
-				ai.dir = static_cast<c::Direction>(std::rand() % 5);
-			else if (ai.type == c::AI_type::HORZ)
-				ai.dir = static_cast<c::Direction>(std::rand() % 2 ? 2 : 4);
-			else if (ai.type == c::AI_type::VERT)
-				ai.dir = static_cast<c::Direction>(std::rand() % 2 ? 1 : 3);
-			if (ai.dir == c::Direction::UP)
-				transform = FACE_UP;
-			else if (ai.dir == c::Direction::RIGHT)
-				transform = FACE_RIGHT;
-			else if (ai.dir == c::Direction::DOWN)
-				transform = FACE_DOWN;
-			else if (ai.dir == c::Direction::LEFT)
-				transform = FACE_LEFT;
-			if (ai.dir != c::Direction::NONE)
-				ai.moveCooldownTimer = ai.moveCooldown;
-		}
-		if (ai.dir == c::Direction::UP)
-			v.y = ai.speed;
-		else if (ai.dir == c::Direction::RIGHT)
-			v.x = ai.speed;
-		else if (ai.dir == c::Direction::DOWN)
-			v.y = -ai.speed;
-		else if (ai.dir == c::Direction::LEFT)
-			v.x = -ai.speed;
-		ai.moveCooldownTimer -= dt;
-		move.v = v;
-	}
-}
-*/
-
 // AI monster
 void	AI(entt::DefaultRegistry &registry, Window &window, double dt)
 {
@@ -415,20 +369,14 @@ void	AI(entt::DefaultRegistry &registry, Window &window, double dt)
 			case (c::AI_type::SMART):
 				break;
 		}
-		/*
 		switch (ai.dir)
 		{
-			case ():
+			case (c::Direction::UP): transform = FACE_UP; break;
+			case (c::Direction::RIGHT): transform = FACE_RIGHT; break;
+			case (c::Direction::DOWN): transform = FACE_DOWN; break;
+			case (c::Direction::LEFT): transform = FACE_LEFT; break;
+			default: break;
 		}
-		*/
-		if (ai.dir == c::Direction::UP)
-			transform = FACE_UP;
-		else if (ai.dir == c::Direction::RIGHT)
-			transform = FACE_RIGHT;
-		else if (ai.dir == c::Direction::DOWN)
-			transform = FACE_DOWN;
-		else if (ai.dir == c::Direction::LEFT)
-			transform = FACE_LEFT;
 	}
 }
 
