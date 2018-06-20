@@ -1,17 +1,23 @@
 01
 assets/sounds/04_music.wav
-floor
-########
-#g     #
-#+++   #
-#      #
-#      #
-#    ++#
-#c ^p  #
-#++++  #
-#>   ^^#
-#cc++++#
-#>     #
-#+++++ #
-#      #
-########
+models/01/floor
+#################################
+# cc    cc   ccc    cc     cc   #
+#  cc  cc   cc cc   cc     cc   #
+#   cccc   cc   cc  cc     cc   #
+#    cc   cc     cc cc     cc   #
+#    cc   cc     cc cc     cc   #
+#    cc    cc   cc   cc   cc    #
+#    cc     cc cc     cc cc     #
+#    cc      ccc       ccc      #
+#                               #
+#   p                           #
+#                               #
+# cc   ccc   cc  cc  cc      cc #
+# cc   ccc   cc  cc  ccc     cc #
+# cc   ccc   cc  cc  cc cc   cc #
+# cc   ccc   cc  cc  cc  cc  cc #
+# cc   ccc   cc  cc  cc   cc cc #
+#  cc cc cc cc   cc  cc    cccc #
+#   ccc   ccc    cc  cc     ccc #
+#################################

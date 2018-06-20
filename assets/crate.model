@@ -1,5 +1,5 @@
-meshes/lv2/crate.obj
-textures/lv2/crate.png
+meshes/lv1/crate.obj
+textures/lv1/crate.png
 
 	Material:
 	100 specular

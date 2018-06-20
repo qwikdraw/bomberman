@@ -1,5 +1,5 @@
-meshes/lv2/floor.obj
-textures/lv2/floor.png
+meshes/lv1/floor.obj
+textures/lv1/floor.png
 
 	Material:
         250 specular

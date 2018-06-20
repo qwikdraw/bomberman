@@ -1,0 +1,49 @@
+meshes/PlayerModel.obj
+textures/PlayerModelTexture.png
+
+	Material:
+        200 specular
+        1 diffuse
+        4000 fog
+        0 0 0 fogcol
+
+	Transform:
+
+	matrix
+	1 0 0 0
+	0 1 0 0
+	0 0 1 0
+	0 0 0 1
+
+	0.0
+
+	Cycle:
+	1.0
+
+	Position:
+	0 0 0
+
+meshes/PlayerModelBase.obj
+textures/PlayerModelBaseTexture.png
+
+	Material:
+		200 specular
+		1 diffuse
+		4000 fog
+		0 0 0 fogcol
+
+	Transform:
+
+	matrix
+	1 0 0 0
+	0 1 0 0
+	0 0 1 0
+	0 0 0 1
+
+	0.0
+
+	Cycle:
+	1.0
+
+	Position:
+	0 0 0
