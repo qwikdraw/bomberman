@@ -3,6 +3,7 @@
 #include "IParticle.hpp"
 #include "Particles.hpp"
 
+//! a type of particle system that looks like an explosion
 class	ParticleExplosion : public IParticle
 {
 private:

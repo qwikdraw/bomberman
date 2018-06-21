@@ -7,6 +7,7 @@
 #define PARTICLE_VERTEX_SHADER_PATH "src/shaders/particleVertex.glsl"
 #define PARTICLE_FRAGMENT_SHADER_PATH "src/shaders/particleFrag.glsl"
 
+//! particle renderer
 class Particles
 {
 

@@ -8,6 +8,7 @@
 #include "ObjFile.hpp"
 #include "Time.hpp"
 
+//! Used for rendering .model files
 class	Model
 {
 public:
@@ -52,8 +53,13 @@ private:
 	
 public:
 
+	//! Loads the model from the file
 	Model(std::string filepath);
 	~Model(void);
+	//! Renders the model to the current render zone
+	/*! perspective is from the camera, transform and position decide where
+	the model is rendered, and time decides what cycle of the animation to display	
+	 */
 	void	Render(std::pair<glm::mat4, glm::mat4> perspective,
 		       glm::mat4 transform,
 		       glm::vec3 position,
