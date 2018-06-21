@@ -21,7 +21,7 @@ _engine(engine), _window(engine.window)
 
 DeathState::~DeathState(void) {}
 
-void	DeathState::Update(double dt)
+void	DeathState::Update(double)
 {
 	systems::Buttons(_registry, _window);
 	systems::Images(_registry, _imageCache, _window);

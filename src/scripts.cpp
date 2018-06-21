@@ -58,7 +58,7 @@ script	destroy(void)
 
 script	switch_level(std::string level)
 {
-	return [level](entt::DefaultRegistry& r, uint32_t e)
+	return [level](entt::DefaultRegistry& r, uint32_t)
 	{
 		auto& engine = r.get<c::EngineTag>().ref;
 		if (level == "end")
@@ -70,7 +70,7 @@ script	switch_level(std::string level)
 
 script	death(std::string level)
 {
-	return [level](entt::DefaultRegistry& r, uint32_t e)
+	return [level](entt::DefaultRegistry& r, uint32_t)
 	{
 		auto& engine = r.get<c::EngineTag>().ref;
 		engine.ChangeState(new DeathState(engine, level));
