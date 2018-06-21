@@ -63,7 +63,7 @@ static void	generate_ui(entt::DefaultRegistry& reg, Engine& engine, std::string 
 }
 
 GameState::GameState(Engine& e, std::string level) :
-_engine(e), _window(e.window)
+_engine(e), _window(e.window), _lorePannel(level, e.window)
 {
 	_engine.sound.stopAllSounds();
 	_camera.Move(glm::vec3(0, -10, 20));
@@ -76,7 +76,7 @@ _engine(e), _window(e.window)
 	_modelCache.load<systems::ModelLoader>(entt::HashedString("bomb"), ASSET_PATH "more_power.model");
 	glClearColor(0.2, 0.25, 0.29, 1.0);
 
-	if (level == "01" || level == "01")
+	if (level == "01" || level == "08")
 	{
 		auto sparkles = _registry.create();
 		_registry.assign<c::Position>(sparkles, glm::vec3(0, 0, 0));
@@ -100,6 +100,13 @@ void GameState::Update(double dt)
 			_music->setIsPaused(true);
 		_engine.PushState(new PauseState(_engine));
 	}
+
+	if (_lorePannel.ShouldDisplay())
+	{
+		_lorePannel.Render();
+		return;
+	}
+	
 	_cells(_registry);
 	
 	systems::RenderModels(_registry, _modelCache, _window, _camera, dt);

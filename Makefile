@@ -39,7 +39,9 @@ SettingState \
 PauseState \
 Sparkles \
 save \
-LevelSelectState
+LevelSelectState \
+LoreDisplay \
+CreditState
 
 SRC_DIR = src
 OBJ_DIR = obj
