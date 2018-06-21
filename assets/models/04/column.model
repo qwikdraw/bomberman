@@ -3,7 +3,7 @@ textures/column.png
 
 	Material:
 	50 specular
-	1 diffuse
+	0.5 diffuse
 	4000 fog
 	0 0 0 fogcol
 

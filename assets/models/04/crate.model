@@ -2,8 +2,8 @@ meshes/crate.obj
 textures/crate.png
 
 	Material:
-	100 specular
-	10 diffuse
+	30 specular
+	1 diffuse
 	4000 fog
 	0 0 0 fogcol
 
