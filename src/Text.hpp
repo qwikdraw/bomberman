@@ -9,6 +9,7 @@
 
 #define FONT_FILE "assets/textures/game_font.png"
 
+//! Used for drawing 2D text
 class	Text
 {
 private:
@@ -31,7 +32,9 @@ private:
 	
 public:
 
+	//! initialize the text with given string
 	Text(std::string message);
-	
+
+	//! render the string to fill up as much of the render zone as possible with given aspect ratio
 	void	Render(float aspect);
 };

@@ -4,6 +4,7 @@
 #include "Particles.hpp"
 #include "bomberman.hpp"
 
+//! A type of particle system that looks like sparkles...
 class	Sparkles : public IParticle
 {
 	Particles _particles;
