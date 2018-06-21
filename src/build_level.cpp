@@ -74,6 +74,7 @@ static std::function<void(entt::DefaultRegistry& r, int x, int y, std::string le
 		r.assign<c::Dangerous>(enemy, 10);
 		r.assign<c::Vulnerable>(enemy, scripts::destroy(), 11);
 	},
+	
 	['p'] = [](entt::DefaultRegistry &r, int x, int y, std::string level)
 	{
 		auto player = r.create();
@@ -83,8 +84,7 @@ static std::function<void(entt::DefaultRegistry& r, int x, int y, std::string le
 		r.assign<c::Velocity>(player);
 		r.assign<c::Collide>(player, 5);
 		r.assign<c::Vulnerable>(player, scripts::death(level));
-=======
->>>>>>> 7e44e6c5289c551ad3ccb9500129fa2c14d931e2
+	}
 
 	['F'] = [](entt::DefaultRegistry &r, int x, int y, std::string level)
 	{
