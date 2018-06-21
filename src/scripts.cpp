@@ -61,7 +61,10 @@ script	switch_level(std::string level)
 	return [level](entt::DefaultRegistry& r, uint32_t e)
 	{
 		auto& engine = r.get<c::EngineTag>().ref;
-		engine.ChangeState(new GameState(engine, level));
+		if (level == "end")
+			engine.ChangeState(new CreditState(engine));
+		else
+			engine.ChangeState(new GameState(engine, level));
 	};
 }
 

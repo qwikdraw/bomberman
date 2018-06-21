@@ -1,4 +1,4 @@
-01
+end
 assets/sounds/04_music.wav
 models/01/floor
 #################################
@@ -11,7 +11,7 @@ models/01/floor
 #    cc     cc cc     cc cc     #
 #    cc      ccc       ccc      #
 #                               #
-#   p                           #
+#   p                         g #
 #                               #
 # cc   ccc   cc  cc  cc      cc #
 # cc   ccc   cc  cc  ccc     cc #

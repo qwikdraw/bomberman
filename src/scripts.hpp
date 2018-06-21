@@ -8,6 +8,7 @@
 
 #include "GameState.hpp"
 #include "DeathState.hpp"
+#include "CreditState.hpp"
 
 //! a list of functions that return custom scripts
 namespace scripts
