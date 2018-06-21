@@ -304,16 +304,17 @@ void	Velocity(entt::DefaultRegistry& r, Cells &cells, double dt)
 
 //! Explosion
 
-static void	spawn_explosion(entt::DefaultRegistry &r, Cells& cells, int x, int y)
+static bool	spawn_explosion(entt::DefaultRegistry &r, Cells& cells, int x, int y)
 {
 	if (cells.Collision(r, x, y) && !cells.Vulnerable(r, x, y))
-		return;
+		return false;
 	auto ex = r.create();
 	r.assign<c::Position>(ex, glm::vec3(x, y, 0));
 	r.assign<c::Lighting>(ex, glm::vec3(0.5, 0.2, 0), 1.0f, glm::vec3(0, 0, 2), -1.0f);
 	r.assign<c::Dangerous>(ex, 100);
 	r.assign<c::Particles>(ex, Effects::explosion, 1.0f);
 	r.assign<c::TimedEffect>(ex, 0.8f, scripts::destroy());
+	return true;
 }
 
 void	Explosion(entt::DefaultRegistry &r, Cells& cells)
@@ -325,14 +326,10 @@ void	Explosion(entt::DefaultRegistry &r, Cells& cells)
 		glm::vec3 pos = view.get<c::Position>(entity).pos;
 		r.destroy(entity);
 		spawn_explosion(r, cells, pos.x, pos.y);
-		for (int up = 1; up <= spread; up++)
-			spawn_explosion(r, cells, pos.x, pos.y + up);
-		for (int down = 1; down <= spread; down++)
-			spawn_explosion(r, cells, pos.x, pos.y - down);
-		for (int left = 1; left <= spread; left++)
-			spawn_explosion(r, cells, pos.x - left, pos.y);
-		for (int right = 1; right <= spread; right++)
-			spawn_explosion(r, cells, pos.x + right, pos.y);
+		for (int up = 1; up <= spread && spawn_explosion(r, cells, pos.x, pos.y + up); ++up);
+		for (int down = 1; down <= spread && spawn_explosion(r, cells, pos.x, pos.y - down); ++down);
+		for (int left = 1; left <= spread && spawn_explosion(r, cells, pos.x - left, pos.y); ++left);
+		for (int right = 1; right <= spread && spawn_explosion(r, cells, pos.x + right, pos.y); ++right);
 	}
 }
 
@@ -340,46 +337,44 @@ void	Explosion(entt::DefaultRegistry &r, Cells& cells)
 void	AI(entt::DefaultRegistry &registry, Window &window, double dt)
 {
 	auto view = registry.view<c::AI, c::Velocity, c::Model>();
-
 	for (auto entity : view)
 	{
 		auto &ai = view.get<c::AI>(entity);
-		auto &move = view.get<c::Velocity>(entity);
+		auto &v = view.get<c::Velocity>(entity).v;
 		glm::mat4 &transform = view.get<c::Model>(entity).transform;
-
-		glm::vec3 v(0, 0, 0);
-		if (ai.moveCooldownTimer <= 0.0)
+		switch (ai.type)
 		{
-			if (ai.type == c::AI_type::RAND)
-				ai.dir = static_cast<c::Direction>(std::rand() % 5);
-			else if (ai.type == c::AI_type::HORZ)
-				ai.dir = static_cast<c::Direction>(std::rand() % 2 ? 2 : 4);
-			else if (ai.type == c::AI_type::VERT)
-				ai.dir = static_cast<c::Direction>(std::rand() % 2 ? 1 : 3);
-			if (ai.dir == c::Direction::UP)
-				transform = FACE_UP;
-			else if (ai.dir == c::Direction::RIGHT)
-				transform = FACE_RIGHT;
-			else if (ai.dir == c::Direction::DOWN)
-				transform = FACE_DOWN;
-			else if (ai.dir == c::Direction::LEFT)
-				transform = FACE_LEFT;
-			if (ai.dir != c::Direction::NONE)
-				ai.moveCooldownTimer = ai.moveCooldown;
+			case (c::AI_type::HORZ):
+				if (fabs(v.x) <= 0.001) {
+					ai.moveCooldownTimer -= dt;
+					if (ai.moveCooldownTimer <= 0.001)
+					{
+						ai.moveCooldownTimer = 0.5;
+						ai.dir = (ai.dir == c::Direction::LEFT ? c::Direction::RIGHT : c::Direction::LEFT);
+						v.x = (ai.dir == c::Direction::RIGHT ? ai.speed : -ai.speed);
+					}
+				}
+				break;
+			case (c::AI_type::VERT):
+				if (fabs(v.y) <= 0.001) {
+					ai.moveCooldownTimer -= dt;
+					if (ai.moveCooldownTimer <= 0.001)
+					{
+						ai.moveCooldownTimer = 0.5;
+						ai.dir = (ai.dir == c::Direction::UP ? c::Direction::DOWN : c::Direction::UP);
+						v.y = (ai.dir == c::Direction::UP ? ai.speed : -ai.speed);
+					}
+				}
+				break;
 		}
-		//else
-		//{
-			if (ai.dir == c::Direction::UP)
-				v.y = ai.speed;
-			else if (ai.dir == c::Direction::RIGHT)
-				v.x = ai.speed;
-			else if (ai.dir == c::Direction::DOWN)
-				v.y = -ai.speed;
-			else if (ai.dir == c::Direction::LEFT)
-				v.x = -ai.speed;
-		//}
-		ai.moveCooldownTimer -= dt;
-		move.v = v;
+		switch (ai.dir)
+		{
+			case (c::Direction::UP): transform = FACE_UP; break;
+			case (c::Direction::RIGHT): transform = FACE_RIGHT; break;
+			case (c::Direction::DOWN): transform = FACE_DOWN; break;
+			case (c::Direction::LEFT): transform = FACE_LEFT; break;
+			default: break;
+		}
 	}
 }
 
