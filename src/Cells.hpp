@@ -9,8 +9,7 @@ namespace c = components;
 
 namespace systems
 {
-	//! The Cell class
-	
+	//! The Cell class location based querying system.
 	class	Cells
 	{
 		std::unordered_map<uint64_t, std::vector<uint32_t>> _map;

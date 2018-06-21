@@ -20,7 +20,7 @@ static glm::mat4 random_direction()
 
 static std::function<void(entt::DefaultRegistry& r, int x, int y, std::string level)> spawn[128] = {
 
-	['#'] = [](entt::DefaultRegistry &r, int x, int y, std::string level)
+	['#'] = [](entt::DefaultRegistry &r, int x, int y, std::string)
 	{
 		auto wall = r.create();
 		r.assign<c::Model>(wall, "models/common/block", glm::mat4(1));
@@ -51,7 +51,7 @@ static std::function<void(entt::DefaultRegistry& r, int x, int y, std::string le
 		);
 	},
 
-	['>'] = [](entt::DefaultRegistry &r, int x, int y, std::string level)
+	['>'] = [](entt::DefaultRegistry &r, int x, int y, std::string)
 	{
 		auto enemy = r.create();
 		r.assign<c::Position>(enemy, glm::vec3(x, y, 0));
@@ -63,7 +63,7 @@ static std::function<void(entt::DefaultRegistry& r, int x, int y, std::string le
 		r.assign<c::Vulnerable>(enemy, scripts::destroy(), 11);
 	},
 
-	['^'] = [](entt::DefaultRegistry &r, int x, int y, std::string level)
+	['^'] = [](entt::DefaultRegistry &r, int x, int y, std::string)
 	{
 		auto enemy = r.create();
 		r.assign<c::Position>(enemy, glm::vec3(x, y, 0));
@@ -86,7 +86,7 @@ static std::function<void(entt::DefaultRegistry& r, int x, int y, std::string le
 		r.assign<c::Vulnerable>(player, scripts::death(level));
 	},
 
-	['F'] = [](entt::DefaultRegistry &r, int x, int y, std::string level)
+	['F'] = [](entt::DefaultRegistry &r, int x, int y, std::string)
 	{
 		auto flashing_wall = r.create();
 		r.assign<c::Position>(flashing_wall, glm::vec3(x, y, 0));
@@ -96,7 +96,7 @@ static std::function<void(entt::DefaultRegistry& r, int x, int y, std::string le
 		r.assign<c::TimedEffect>(flashing_wall, 3.0f, remove_wall);
 	},
 
-	['f'] = [](entt::DefaultRegistry &r, int x, int y, std::string level)
+	['f'] = [](entt::DefaultRegistry &r, int x, int y, std::string)
 	{
 		auto flashing_wall = r.create();
 		r.assign<c::Position>(flashing_wall, glm::vec3(x, y, 0));
@@ -145,7 +145,7 @@ void	build_level(entt::DefaultRegistry &r, Engine& engine, std::string level,
 	std::string baseplate;
 	std::string soundFile;
 	std::getline(file, next_level);
-	spawn[(int)'g'] = [next_level](entt::DefaultRegistry &r, int x, int y, std::string level)
+	spawn[(int)'g'] = [next_level](entt::DefaultRegistry &r, int x, int y, std::string)
 	{
 		auto goal = r.create();
 		r.assign<c::Position>(goal, glm::vec3(x, y, 0));

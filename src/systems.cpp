@@ -248,7 +248,7 @@ void	Lighting(entt::DefaultRegistry& r, double dt)
 //! Velocity
 
 static void    checkCollisions(entt::DefaultRegistry& r,
-	glm::vec3 &pos, glm::vec3 &v, Cells &cells, double dt, int height)
+	glm::vec3 &pos, glm::vec3 &v, Cells &cells, int height)
 {
 	if (v.y > 0 && height < cells.Collision(r, pos.x, pos.y + 1))
 	{
@@ -289,7 +289,7 @@ void	Velocity(entt::DefaultRegistry& r, Cells &cells, double dt)
 		glm::vec3 &v = coll.get<c::Velocity>(entity).v;
 		int height = coll.get<c::Collide>(entity).height;
 
-		checkCollisions(r, pos, v, cells, dt, height);
+		checkCollisions(r, pos, v, cells, height);
 	}
 
 	auto view = r.view<c::Velocity, c::Position>();
@@ -334,18 +334,20 @@ void	Explosion(entt::DefaultRegistry &r, Cells& cells)
 }
 
 // AI monster
-void	AI(entt::DefaultRegistry &registry, Window &window, double dt)
+void	AI(entt::DefaultRegistry &registry, Cells& cells, double dt)
 {
-	auto view = registry.view<c::AI, c::Velocity, c::Model>();
+	auto view = registry.view<c::AI, c::Velocity, c::Model, c::Position>();
 	for (auto entity : view)
 	{
 		auto &ai = view.get<c::AI>(entity);
 		auto &v = view.get<c::Velocity>(entity).v;
 		glm::mat4 &transform = view.get<c::Model>(entity).transform;
+		glm::vec3 pos = view.get<c::Position>(entity).pos;
 		switch (ai.type)
 		{
 			case (c::AI_type::HORZ):
-				if (fabs(v.x) <= 0.001) {
+				if (fabs(v.x) <= 0.001)
+				{
 					ai.moveCooldownTimer -= dt;
 					if (ai.moveCooldownTimer <= 0.001)
 					{
@@ -354,9 +356,15 @@ void	AI(entt::DefaultRegistry &registry, Window &window, double dt)
 						v.x = (ai.dir == c::Direction::RIGHT ? ai.speed : -ai.speed);
 					}
 				}
+				if (cells.Danger(registry, pos.x + v.x, pos.y))
+				{
+					ai.dir = (ai.dir == c::Direction::LEFT ? c::Direction::RIGHT : c::Direction::LEFT);
+					v.x = (ai.dir == c::Direction::RIGHT ? ai.speed : -ai.speed);
+				}
 				break;
 			case (c::AI_type::VERT):
-				if (fabs(v.y) <= 0.001) {
+				if (fabs(v.y) <= 0.001)
+				{
 					ai.moveCooldownTimer -= dt;
 					if (ai.moveCooldownTimer <= 0.001)
 					{
@@ -364,6 +372,11 @@ void	AI(entt::DefaultRegistry &registry, Window &window, double dt)
 						ai.dir = (ai.dir == c::Direction::UP ? c::Direction::DOWN : c::Direction::UP);
 						v.y = (ai.dir == c::Direction::UP ? ai.speed : -ai.speed);
 					}
+				}
+				if (cells.Danger(registry, pos.x, pos.y + v.y))
+				{
+					ai.dir = (ai.dir == c::Direction::UP ? c::Direction::DOWN : c::Direction::UP);
+					v.y = (ai.dir == c::Direction::UP ? ai.speed : -ai.speed);
 				}
 				break;
 		}

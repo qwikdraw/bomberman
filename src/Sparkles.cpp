@@ -17,7 +17,7 @@ Sparkles::Sparkles(float width, float height) : _particles(Particles(width * hei
 }
 
 void	Sparkles::Render(std::pair<glm::mat4, glm::mat4> perspective,
-			   glm::vec3 position,
+			   glm::vec3,
 			   float time)
 {
 	time /= 5;

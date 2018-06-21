@@ -4,7 +4,7 @@
 #include "PauseState.hpp"
 #include "save.hpp"
 
-static void	generate_ui(entt::DefaultRegistry& reg, Engine& engine, std::string level)
+static void	generate_ui(entt::DefaultRegistry& reg, std::string level)
 {
 // generate text for speed
 	auto speedText = reg.create();
@@ -84,7 +84,7 @@ _engine(e), _window(e.window), _lorePannel(level, e.window)
 		_registry.assign<c::Particles>(sparkles, Effects::sparkles, 100000.0f);
 	}
 
-	generate_ui(_registry, _engine, level);
+	generate_ui(_registry, level);
 	save::updateLevel(level);
 }
 
@@ -118,7 +118,7 @@ void GameState::Update(double dt)
 	systems::RenderParticles(_registry, _camera);
 	systems::Danger(_registry, _cells);
 	systems::Explosion(_registry, _cells);
-	systems::AI(_registry, _window, dt);
+	systems::AI(_registry, _cells, dt);
 	systems::Lighting(_registry, dt);
 	systems::Images(_registry, _imageCache, _window);
 	systems::Texts(_registry, _window);

@@ -32,7 +32,7 @@ static void	create_level_button(entt::DefaultRegistry& r, Engine& engine, size_t
 	level[1] = i + '1';
 	
 	auto button = r.create();
-	auto event = [&engine, level](entt::DefaultRegistry& r, uint32_t e)
+	auto event = [&engine, level](entt::DefaultRegistry&, uint32_t)
 	{
 		engine.ChangeState(new GameState(engine, level));
 	};
@@ -82,7 +82,7 @@ _engine(e), _window(e.window)
 
 // create back button
 	auto menuButton = _registry.create();
-	auto gotoMenu = [this](entt::DefaultRegistry& r, uint32_t e)
+	auto gotoMenu = [this](entt::DefaultRegistry&, uint32_t)
 	{
 		_engine.PopState();
 	};
@@ -103,7 +103,7 @@ _engine(e), _window(e.window)
 
 LevelSelectState::~LevelSelectState(void) {}
 
-void	LevelSelectState::Update(double dt)
+void	LevelSelectState::Update(double)
 {
 	systems::Buttons(_registry, _window);
 	systems::Images(_registry, _imageCache, _window);

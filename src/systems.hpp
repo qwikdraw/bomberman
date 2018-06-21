@@ -67,7 +67,7 @@ namespace systems
 	void	Explosion(entt::DefaultRegistry&, Cells&);
 
 	//! requires: AI, Model, Velocity, [Position]
-	void	AI(entt::DefaultRegistry&, Window&, double dt);
+	void	AI(entt::DefaultRegistry&, Cells&, double dt);
 
 	//! requires: Vulnerable, Position [Dangerous]
 	void	Danger(entt::DefaultRegistry&, Cells&);

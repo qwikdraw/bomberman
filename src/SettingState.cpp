@@ -77,7 +77,7 @@ static void	resolution_button(entt::DefaultRegistry& r,
 				  std::string text)
 {
 	auto reso = r.create();
-	auto event = [&window, width, height, fullscreen](entt::DefaultRegistry& r, uint32_t e)
+	auto event = [&window, width, height, fullscreen](entt::DefaultRegistry&, uint32_t)
 	{
 		const GLFWvidmode *mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
 
@@ -159,7 +159,7 @@ _engine(e), _window(e.window)
 //creating a button to go back to menu
 	
 	auto menuButton = _registry.create();
-	auto gotoMenu = [this](entt::DefaultRegistry& r, uint32_t e)
+	auto gotoMenu = [this](entt::DefaultRegistry&, uint32_t)
 	{
 		_engine.PopState();
 	};
@@ -272,7 +272,7 @@ _engine(e), _window(e.window)
 
 SettingState::~SettingState(void) {}
 
-void	SettingState::Update(double dt)
+void	SettingState::Update(double)
 {
 	systems::BindCheck(_registry, _window, _engine);
 	systems::Buttons(_registry, _window);

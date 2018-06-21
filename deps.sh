@@ -11,3 +11,4 @@ wget https://raw.githubusercontent.com/lvandeve/lodepng/master/lodepng.h
 cd ..
 git clone --depth 1 https://github.com/logankaser/irrklang.git
 cd ..
+git clone --depth 1 https://github.com/logankaser/bomberman-assets.git assets

@@ -9,7 +9,6 @@
 #include "Light.hpp"
 #include "Model.hpp"
 #include "Sprite2D.hpp"
-#include "TestParticle.hpp"
 #include "Cells.hpp"
 #include "Effects.hpp"
 #include "LoreDisplay.hpp"

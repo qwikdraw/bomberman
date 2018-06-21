@@ -16,7 +16,7 @@ _engine(e), _window(e.window)
 	auto entity = _registry.create();	
 	_music = _engine.sound.play2D(ASSET_PATH "sounds/menu.wav", true, false, true);
 
-	auto nextstate = [this](entt::DefaultRegistry& r, uint32_t e)
+	auto nextstate = [this](entt::DefaultRegistry&, uint32_t)
 	{
 		_engine.PushState(new GameState(_engine, "01"));
 	};
@@ -39,7 +39,7 @@ _engine(e), _window(e.window)
 
 //creating settings button
 	auto settingButton = _registry.create();
-	auto settingState = [this](entt::DefaultRegistry& r, uint32_t e)
+	auto settingState = [this](entt::DefaultRegistry&, uint32_t)
 	{
 		_engine.PushState(new SettingState(_engine));
 	};
@@ -58,7 +58,7 @@ _engine(e), _window(e.window)
 
 //creating level select button
 	auto levelSelect = _registry.create();
-	auto selectState = [this](entt::DefaultRegistry& r, uint32_t e)
+	auto selectState = [this](entt::DefaultRegistry&, uint32_t)
 	{
 		_engine.PushState(new LevelSelectState(_engine));
 	};
@@ -78,7 +78,7 @@ _engine(e), _window(e.window)
 
 MenuState::~MenuState(void) {}
 
-void MenuState::Update(double dt)
+void MenuState::Update(double)
 {
 	if (_music && _music->isFinished())
 	{

@@ -13,7 +13,7 @@ _engine(e), _window(e.window)
 
 //create resume button
 	auto resumeButton = _registry.create();
-	auto resumeEvent = [this](entt::DefaultRegistry& r, uint32_t e)
+	auto resumeEvent = [this](entt::DefaultRegistry&, uint32_t)
 	{
 		_engine.PopState();
 	};
@@ -33,7 +33,7 @@ _engine(e), _window(e.window)
 
 //create back to main menu button
 	auto menuButton = _registry.create();
-	auto menuEvent = [this](entt::DefaultRegistry& r, uint32_t e)
+	auto menuEvent = [this](entt::DefaultRegistry&, uint32_t)
 	{
 		_engine.PopState();
 		_engine.PopState();
@@ -54,7 +54,7 @@ _engine(e), _window(e.window)
 
 //create a quit game button
 	auto quitButton = _registry.create();
-	auto quitEvent = [this](entt::DefaultRegistry& r, uint32_t e)
+	auto quitEvent = [this](entt::DefaultRegistry&, uint32_t)
 	{
 		_engine.isRunning = false;
 	};
@@ -74,7 +74,7 @@ _engine(e), _window(e.window)
 
 //create a settings option
 	auto settingButton = _registry.create();
-	auto settingEvent = [this](entt::DefaultRegistry& r, uint32_t e)
+	auto settingEvent = [this](entt::DefaultRegistry&, uint32_t)
 	{
 		_engine.PushState(new SettingState(_engine));
 	};
@@ -95,7 +95,7 @@ _engine(e), _window(e.window)
 
 PauseState::~PauseState(void) {}
 
-void	PauseState::Update(double dt)
+void	PauseState::Update(double)
 {
 	systems::Buttons(_registry, _window);
 	systems::Images(_registry, _imageCache, _window);
