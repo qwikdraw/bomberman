@@ -12,6 +12,7 @@
 #include "TestParticle.hpp"
 #include "Cells.hpp"
 #include "Effects.hpp"
+#include "LoreDisplay.hpp"
 
 namespace c = components;
 
@@ -30,6 +31,7 @@ class GameState : public IState
 	entt::ResourceCache<Model> _modelCache;
 	entt::ResourceCache<Sprite2D> _imageCache;
 	systems::Cells _cells;
+	LoreDisplay _lorePannel;
 	
 public:
 	GameState(Engine& engine, std::string level);
