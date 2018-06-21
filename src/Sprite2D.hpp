@@ -8,6 +8,7 @@
 #include "ShadingProgram.hpp"
 #include <vector>
 
+//! Used for rendering texture to screen
 class	Sprite2D
 {
 private:
@@ -25,8 +26,10 @@ private:
 	
 public:
 
+	//! loads the texture from the file
 	Sprite2D(std::string imagepath);
 	virtual ~Sprite2D(void);
 
+	//! renders the texture to the set render zone
 	void	Render(void);
 };
