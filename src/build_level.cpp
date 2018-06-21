@@ -84,13 +84,13 @@ static std::function<void(entt::DefaultRegistry& r, int x, int y, std::string le
 		r.assign<c::Velocity>(player);
 		r.assign<c::Collide>(player, 5);
 		r.assign<c::Vulnerable>(player, scripts::death(level));
-	}
+	},
 
 	['F'] = [](entt::DefaultRegistry &r, int x, int y, std::string level)
 	{
 		auto flashing_wall = r.create();
 		r.assign<c::Position>(flashing_wall, glm::vec3(x, y, 0));
-		r.assign<c::Model>(flashing_wall, "models/common/flashing_wall", glm::mat4(1));
+		r.assign<c::Model>(flashing_wall, "models/common/closed_fence", glm::mat4(1));
 		r.assign<c::Collide>(flashing_wall, 100000);
 		r.assign<c::Dangerous>(flashing_wall, 10000);
 		r.assign<c::TimedEffect>(flashing_wall, 5.0f, remove_wall);
@@ -100,6 +100,7 @@ static std::function<void(entt::DefaultRegistry& r, int x, int y, std::string le
 	{
 		auto flashing_wall = r.create();
 		r.assign<c::Position>(flashing_wall, glm::vec3(x, y, 0));
+		r.assign<c::Model>(flashing_wall, "models/common/open_fence", glm::mat4(1));
 		r.assign<c::TimedEffect>(flashing_wall, 5.0f, add_wall);
 	}
 };
@@ -108,7 +109,8 @@ void	add_wall(entt::DefaultRegistry& r, uint32_t e)
 {
 	r.get<c::TimedEffect>(e).timeLeft = 5.0f;
 	r.get<c::TimedEffect>(e).effect	= remove_wall;
-	r.assign<c::Model>(e, "models/common/flashing_wall", glm::mat4(1));
+	r.remove<c::Model>(e);
+	r.assign<c::Model>(e, "models/common/closed_fence", glm::mat4(1));
 	r.assign<c::Collide>(e, 100000);
 	r.assign<c::Dangerous>(e, 10000);
 }
@@ -120,6 +122,7 @@ void	remove_wall(entt::DefaultRegistry& r, uint32_t e)
 	r.remove<c::Dangerous>(e);
 	r.remove<c::Collide>(e);
 	r.remove<c::Model>(e);
+	r.assign<c::Model>(e, "models/common/open_fence", glm::mat4(1));
 }
 
 void	build_level(entt::DefaultRegistry &r, Engine& engine, std::string level,

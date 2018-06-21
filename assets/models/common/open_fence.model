@@ -3,7 +3,7 @@ textures/GateOpenTex.png
 
 	Material:
 	0 specular
-	10 diffuse
+	0.3 diffuse
 	4000 fog
 	0 0 0 fogcol
 	

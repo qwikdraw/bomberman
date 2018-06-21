@@ -3,7 +3,7 @@ textures/crate.png
 
 	Material:
 	100 specular
-	10 diffuse
+	1 diffuse
 	4000 fog
 	0 0 0 fogcol
 
