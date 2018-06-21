@@ -13,7 +13,7 @@ script	explode(int power)
 		auto &sound = r.get<c::EngineTag>().ref.sound;
 		
 		r.assign<c::Explosion>(ex, power);
-		r.assign<c::Position>(ex, pos);
+		r.assign<c::Position>(ex, glm::round(pos));
 		sound.play2D(ASSET_PATH "sounds/explosion.wav");
 	};
 }
@@ -70,10 +70,17 @@ script	switch_level(std::string level)
 
 script	death(std::string level)
 {
-	return [level](entt::DefaultRegistry& r, uint32_t)
+	return [level](entt::DefaultRegistry& r, uint32_t e)
 	{
-		auto& engine = r.get<c::EngineTag>().ref;
-		engine.ChangeState(new DeathState(engine, level));
+		explode(1)(r, e);
+		auto game_over = [level](entt::DefaultRegistry& r, uint32_t)
+		{
+			auto& engine = r.get<c::EngineTag>().ref;
+			engine.ChangeState(new DeathState(engine, level));
+		};
+		r.assign<c::TimedEffect>(e, 1.5f, game_over);
+		r.remove<c::Model>(e);
+		r.remove<c::Vulnerable>(e);
 	};
 }
 }
