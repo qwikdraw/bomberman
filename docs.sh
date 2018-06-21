@@ -1,4 +1,5 @@
 #!/bin/sh
+brew install python
 pip -q install virtualenv
 cd docs/m.css/doxygen
 virtualenv .build

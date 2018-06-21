@@ -2,13 +2,19 @@
 
 #include "Engine.hpp"
 
-//! Game states must implement this interface
+//! All screens must implement this interface
+/*!
+ * Screens include: menu, settings, level select, pause, game, death
+*/
+
 class IState
 {
 protected:
 	IState() {}
 public:
 	virtual ~IState(void) {};
+
+	//! All states must implement an Update method
 	virtual void Update(double dt) = 0;
 };
 

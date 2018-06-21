@@ -7,6 +7,11 @@
 #include "Sprite2D.hpp"
 #include <entt/entt.hpp>
 
+//! Level select state class. Implements IState
+/*!
+ * Allows access to any unlocked level (game state). Shows locked levels.
+*/
+
 class	LevelSelectState : public IState
 {
 	Engine& _engine;
@@ -16,6 +21,9 @@ class	LevelSelectState : public IState
 
 public:
 	LevelSelectState(Engine& engine);
+
 	~LevelSelectState(void);
+
+	//! Updates buttons, images, and texts systems per frame.
 	void	Update(double dt);	
 };
