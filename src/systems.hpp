@@ -17,8 +17,15 @@
 #define FACE_LEFT glm::rotate(glm::mat4(1), glm::radians(180.0f), glm::vec3(0, 0, 1))
 #define FACE_RIGHT glm::mat4(1)
 
-//! It is recommended to alias this namespace like so: `namespace s = systems;
+/*!
+ECS systems, these systems are routines that operate on components. Components are
+simple structs of data. Systems contain all the logic of the game.
+Our ECS also uses scripts much like Unity.
 
+It is recommended to alias this namespace like so: `namespace s = systems`;
+Each system documents the components that it operates on.
+Requirements in [] are optional and might provide additional functionality.
+*/
 namespace systems
 {
 	struct	ModelLoader : entt::ResourceLoader<ModelLoader, Model>
@@ -29,7 +36,7 @@ namespace systems
 		}
 	};
 
-	//! requires: Model, Position [Lighting]
+	//! requires: Model, Position, [Lighting]
 	void	RenderModels(entt::DefaultRegistry&, entt::ResourceCache<Model>&, Window&, Camera&, double dt);
 
 	//! requires: Particles, Position, TimedEffect
@@ -50,7 +57,7 @@ namespace systems
 	//! requires: Lighting; Applies falloff delta
 	void	Lighting(entt::DefaultRegistry&, double dt);
 
-	//! requires: Position, Velocity [Collide]
+	//! requires: Position, Velocity, [Collide]
 	void	Velocity(entt::DefaultRegistry&, Cells&, double dt);
 
 	//! requires: Player, Position, Velocity, Model
@@ -59,7 +66,7 @@ namespace systems
 	//! requires: Explosion
 	void	Explosion(entt::DefaultRegistry&, Cells&);
 
-	//! making AI
+	//! requires: AI, Model, Velocity, [Position]
 	void	AI(entt::DefaultRegistry&, Window&, double dt);
 
 	//! requires: Vulnerable, Position [Dangerous]
