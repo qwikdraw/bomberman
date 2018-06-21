@@ -15,6 +15,11 @@
 
 namespace c = components;
 
+//! Game State class. Implements IState
+/*! 
+ * The main game play. Each level (1-8) is its own game state class. Saves the current level. 
+*/
+
 class GameState : public IState
 {
 	Engine& _engine;
@@ -28,6 +33,9 @@ class GameState : public IState
 	
 public:
 	GameState(Engine& engine, std::string level);
+
 	~GameState(void);
+
+	//! Updates models, buttons, images, lighting, and other misc systems per frame.
 	void Update(double dt);
 };

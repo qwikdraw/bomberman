@@ -7,6 +7,11 @@
 #include "Sprite2D.hpp"
 #include <entt/entt.hpp>
 
+//! Pause state class. Implements IState
+/*! 
+ * Pauses the game state. Allows access to the main menu, settings, back to the game, or quitting.
+*/
+
 class	PauseState : public IState
 {
 	Engine& _engine;
@@ -16,6 +21,9 @@ class	PauseState : public IState
 
 public:
 	PauseState(Engine& engine);
+
 	~PauseState(void);
+
+	//! Updates buttons, images, and texts systems per frame.
 	void	Update(double dt);
 };

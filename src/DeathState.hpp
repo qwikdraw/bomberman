@@ -6,6 +6,10 @@
 #include "systems.hpp"
 #include "components.hpp"
 
+//! Death state class. Implements IState
+/*!
+ * The game over/credits screen. Appears when player dies
+*/
 class	DeathState : public IState
 {
 	Engine& _engine;

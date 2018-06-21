@@ -7,6 +7,11 @@
 #include "Sprite2D.hpp"
 #include <entt/entt.hpp>
 
+//! Setting state class. Implements IState
+/*
+ * Allows player to change key bindings, resolution, turn sound off/on.
+*/
+
 class	SettingState : public IState
 {
 	Engine& _engine;
@@ -16,6 +21,9 @@ class	SettingState : public IState
 
 public:
 	SettingState(Engine& engine);
+
 	~SettingState(void);
+
+	//! Updates bind checks, buttons, images, texts per frame.
 	void	Update(double dt);
 };
