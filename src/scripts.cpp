@@ -73,14 +73,25 @@ script	death(std::string level)
 	return [level](entt::DefaultRegistry& r, uint32_t e)
 	{
 		explode(1)(r, e);
+		auto &sound = r.get<c::EngineTag>().ref.sound;
 		auto game_over = [level](entt::DefaultRegistry& r, uint32_t)
 		{
 			auto& engine = r.get<c::EngineTag>().ref;
 			engine.ChangeState(new DeathState(engine, level));
 		};
+		sound.play2D(ASSET_PATH "sounds/player_death.wav");
 		r.assign<c::TimedEffect>(e, 1.5f, game_over);
 		r.remove<c::Model>(e);
 		r.remove<c::Vulnerable>(e);
+	};
+}
+
+script	enemy_death_sound(void)
+{
+	return [](entt::DefaultRegistry& r, uint32_t)
+	{
+		auto &sound = r.get<c::EngineTag>().ref.sound;
+		sound.play2D(ASSET_PATH "sounds/enemy_death.wav");
 	};
 }
 }
