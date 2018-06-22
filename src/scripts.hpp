@@ -25,6 +25,7 @@ namespace scripts
 	script switch_level(std::string level);
 	//! returns a script that will trigger a death sequence from a particular level
 	script death(std::string level);
+	script enemy_death_sound(void);
 };
 
 //! allows script chaining

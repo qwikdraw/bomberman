@@ -92,7 +92,7 @@ GameState::~GameState(void) {}
 
 void GameState::Update(double dt)
 {
-	if (_music && _music->getIsPaused())
+	if (_music && _music->getIsPaused() && !_engine.sound.isCurrentlyPlaying("assets/sounds/game_win.wav"))
 		_music->setIsPaused(false);
 	if (_window.Key(GLFW_KEY_ESCAPE))
 	{

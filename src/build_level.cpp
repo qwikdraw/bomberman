@@ -60,7 +60,10 @@ static std::function<void(entt::DefaultRegistry& r, int x, int y, std::string le
 		r.assign<c::Collide>(enemy, 5);
 		r.assign<c::AI>(enemy, 1.5, c::AI_type::HORZ);
 		r.assign<c::Dangerous>(enemy, 10);
-		r.assign<c::Vulnerable>(enemy, scripts::destroy(), 11);
+		r.assign<c::Vulnerable>(enemy,
+				scripts::destroy() +
+				scripts::enemy_death_sound(),
+				11);
 	},
 
 	['^'] = [](entt::DefaultRegistry &r, int x, int y, std::string)
@@ -72,7 +75,10 @@ static std::function<void(entt::DefaultRegistry& r, int x, int y, std::string le
 		r.assign<c::Collide>(enemy, 5);
 		r.assign<c::AI>(enemy, 1.5, c::AI_type::VERT);
 		r.assign<c::Dangerous>(enemy, 10);
-		r.assign<c::Vulnerable>(enemy, scripts::destroy(), 11);
+		r.assign<c::Vulnerable>(enemy,
+				scripts::destroy() +
+				scripts::enemy_death_sound(),
+				11);
 	},
 	
 	['p'] = [](entt::DefaultRegistry &r, int x, int y, std::string level)
@@ -153,7 +159,13 @@ void	build_level(entt::DefaultRegistry &r, Engine& engine, std::string level,
 		r.assign<c::Powerup>(goal, scripts::switch_level(next_level));
 	};
 	std::getline(file, soundFile);
-	*_music = engine.sound.play2D(soundFile.c_str(), true, false, true);
+	if (level == "08")
+	{
+		engine.sound.play2D(soundFile.c_str());
+		*_music = engine.sound.play2D("assets/sounds/win_song.wav", true, true, true);
+	}
+	else
+		*_music = engine.sound.play2D(soundFile.c_str(), true, false, true);
 	std::getline(file, baseplate);
 	while (std::getline(file, line))
 		level_data.push_front(line);
