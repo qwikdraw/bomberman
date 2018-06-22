@@ -1,13 +1,11 @@
 #include "Window.hpp"
 #include <stdexcept>
 
-Window::Window(int width, int height, std::string name) :
+Window::Window(std::string name) :
 	_screenCornerX(0),
 	_screenCornerY(0),
 	_width(1),
-	_height(1),
-	_windowWidth(width),
-	_windowHeight(height)
+	_height(1)
 {
 	GLuint vertex_array_id;
 
@@ -15,7 +13,15 @@ Window::Window(int width, int height, std::string name) :
 		throw std::runtime_error("Failed to initialize GLFW");
 	WindowHints();
 	glfwSetErrorCallback(ErrorCallback);
-	_window = glfwCreateWindow(width, height, name.c_str(), NULL, NULL);
+
+	const GLFWvidmode *mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+	_window = glfwCreateWindow(mode->width,
+				   mode->height,
+				   name.c_str(),
+				   glfwGetPrimaryMonitor(),
+				   NULL);
+	_windowWidth = mode->width;
+	_windowHeight = mode->height;
 	if (!_window)
 	{
 		glfwTerminate();

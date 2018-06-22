@@ -48,7 +48,7 @@ class	Window
 public:
 
 	//! Create a new window with x width and y height the window title is set to name.
-	Window(int x, int y, std::string name);
+	Window(std::string name);
 
 	//! Size of the framebuffer in pixels, ignores RenderMask
 	void	GetMaxRenderSize(float &width, float &height);
