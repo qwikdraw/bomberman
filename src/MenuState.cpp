@@ -74,6 +74,13 @@ _engine(e), _window(e.window)
 				   "Level Select",
 				   glm::vec2(-0.1, -0.8),
 				   glm::vec2(0.1, -0.6));
+
+//create background
+	auto background	= _registry.create();
+	_registry.assign<c::Image>(background, "assets/textures/menu.png",
+				   glm::vec2(-1, -1),
+				   glm::vec2(1, 1),
+				   -1);
 }
 
 MenuState::~MenuState(void) {}
