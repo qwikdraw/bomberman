@@ -9,7 +9,7 @@ _engine(e), _window(e.window)
 {
 //create pause background
 	auto background = _registry.create();
-	_registry.assign<c::Image>(background, "assets/textures/player.png");
+	_registry.assign<c::Image>(background, "assets/textures/menu.png");
 
 //create resume button
 	auto resumeButton = _registry.create();

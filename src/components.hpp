@@ -105,15 +105,15 @@ namespace components
 		int spread = 0;
 	};
 
-	enum class AI_type{HORZ, VERT};
+	enum class AI_Type{HORZ, VERT, MAZE};
 
 	//! Entity AI
 	struct AI
 	{
-		double speed = 1.0;
-		AI_type type = AI_type::HORZ;
+		AI_Type type = AI_Type::HORZ;
+		double speed = 1.5;
 		Direction dir = Direction::NONE;
-		double moveCooldown = 0.0;
+		double moveCooldown = 0.5;
 		double moveCooldownTimer = 0.0;
 	};
 

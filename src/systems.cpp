@@ -1,4 +1,5 @@
 #include "systems.hpp"
+#include <glm/gtx/rotate_vector.hpp>
 
 namespace c = components;
 
@@ -228,8 +229,13 @@ void	Player(entt::DefaultRegistry& r, Window& window, Engine::KeyBind bind,
 	player.bombCooldownTimer -= dt;
 	auto target = glm::vec3(pos.x, pos.y - 10, 20);
 	cam.Move((target - cam.GetPosition()) * dt);
-	move.v = v;
 	cells.Powerup(r, pos.x, pos.y)(r, entity);
+	// Align to grid
+	if (fabs(v.y) < 0.1)
+		pos.y += (roundf(pos.y) - pos.y) * dt * 4.0;
+	if (fabs(v.x) < 0.1)
+		pos.x += (roundf(pos.x) - pos.x) * dt * 4.0;
+	move.v = v;
 }
 
 //! Lighting
@@ -248,35 +254,14 @@ void	Lighting(entt::DefaultRegistry& r, double dt)
 //! Velocity
 
 static void    checkCollisions(entt::DefaultRegistry& r,
-	glm::vec3 &pos, glm::vec3 &v, Cells &cells, int height)
+	glm::vec3 &pos, glm::vec3 &v, Cells& cells, int height)
 {
-	if (v.y > 0 && height < cells.Collision(r, pos.x, pos.y + 1))
-	{
-		if (pos.y > roundf(pos.y))
-			v.y = 0;
-	}
-	else if (v.y < 0 && height < cells.Collision(r, pos.x, pos.y - 1))
-	{
-		if (pos.y < roundf(pos.y))
-			v.y = 0;
-	}
-	if (v.x > 0 && height < cells.Collision(r, pos.x + 1, pos.y))
-	{
-		if (pos.x > roundf(pos.x))
-			v.x = 0;
-	}
-	else if (v.x < 0 && height < cells.Collision(r, pos.x - 1, pos.y))
-	{
-		if (pos.x < roundf(pos.x))
-			v.x = 0;
-	}
-
-	// Re-align
-
-	if (v.x)
-		v.y = (roundf(pos.y) - pos.y) * 10;
-	else if (v.y)
-		v.x = (roundf(pos.x) - pos.x) * 10;
+	if ((v.y > 0.0 && height < cells.Collision(r, pos.x, pos.y + 1.0) && pos.y > roundf(pos.y)) || 
+		(v.y < 0.0 && height < cells.Collision(r, pos.x, pos.y - 1.0) && pos.y < roundf(pos.y)))
+		v.y = 0.0;
+	if ((v.x > 0.0 && height < cells.Collision(r, pos.x + 1.0, pos.y) && pos.x > roundf(pos.x)) ||
+		(v.x < 0.0 && height < cells.Collision(r, pos.x - 1.0, pos.y) && pos.x < roundf(pos.x)))
+		v.x = 0.0;
 }
 
 void	Velocity(entt::DefaultRegistry& r, Cells &cells, double dt)
@@ -288,12 +273,10 @@ void	Velocity(entt::DefaultRegistry& r, Cells &cells, double dt)
 		glm::vec3 &pos = coll.get<c::Position>(entity).pos;
 		glm::vec3 &v = coll.get<c::Velocity>(entity).v;
 		int height = coll.get<c::Collide>(entity).height;
-
 		checkCollisions(r, pos, v, cells, height);
 	}
 
 	auto view = r.view<c::Velocity, c::Position>();
-
 	for (auto entity : view)
 	{
 		glm::vec3 &moveAmount = view.get<c::Velocity>(entity).v;
@@ -333,50 +316,89 @@ void	Explosion(entt::DefaultRegistry &r, Cells& cells)
 	}
 }
 
-// AI monster
-void	AI(entt::DefaultRegistry &registry, Cells& cells, double dt)
+static void velocityDir(glm::vec3& v, double speed, c::Direction& dir)
 {
-	auto view = registry.view<c::AI, c::Velocity, c::Model, c::Position>();
+	switch (dir)
+	{
+		case (c::Direction::UP): v.y = speed; break;
+		case (c::Direction::RIGHT): v.x = speed; break;
+		case (c::Direction::DOWN): v.y = -speed; break;
+		case (c::Direction::LEFT): v.x = -speed; break;
+		default: break;	
+	}
+}
+
+// AI monster
+void	AI(entt::DefaultRegistry &r, Cells& cells, double dt)
+{
+	auto view = r.view<c::AI, c::Velocity, c::Model, c::Position>();
 	for (auto entity : view)
 	{
 		auto &ai = view.get<c::AI>(entity);
 		auto &v = view.get<c::Velocity>(entity).v;
 		glm::mat4 &transform = view.get<c::Model>(entity).transform;
 		glm::vec3 pos = view.get<c::Position>(entity).pos;
+		int vul = r.has<c::Vulnerable>(entity) ? r.get<c::Vulnerable>(entity).dangerResist : INT_MAX;
 		switch (ai.type)
 		{
-			case (c::AI_type::HORZ):
+			case (c::AI_Type::HORZ):
 				if (fabs(v.x) <= 0.001)
 				{
 					ai.moveCooldownTimer -= dt;
 					if (ai.moveCooldownTimer <= 0.001)
 					{
-						ai.moveCooldownTimer = 0.5;
+						ai.moveCooldownTimer = ai.moveCooldown;
 						ai.dir = (ai.dir == c::Direction::LEFT ? c::Direction::RIGHT : c::Direction::LEFT);
-						v.x = (ai.dir == c::Direction::RIGHT ? ai.speed : -ai.speed);
+						velocityDir(v, ai.speed, ai.dir);
 					}
 				}
-				if (cells.Danger(registry, pos.x + v.x, pos.y))
+				if (cells.Danger(r, pos.x + v.x, pos.y) >= vul)
 				{
-					ai.dir = (ai.dir == c::Direction::LEFT ? c::Direction::RIGHT : c::Direction::LEFT);
-					v.x = (ai.dir == c::Direction::RIGHT ? ai.speed : -ai.speed);
+					v.x = 0.0;
+					ai.moveCooldownTimer = ai.moveCooldown / 2.0;
 				}
 				break;
-			case (c::AI_type::VERT):
+			case (c::AI_Type::VERT):
 				if (fabs(v.y) <= 0.001)
 				{
 					ai.moveCooldownTimer -= dt;
 					if (ai.moveCooldownTimer <= 0.001)
 					{
-						ai.moveCooldownTimer = 0.5;
+						ai.moveCooldownTimer = ai.moveCooldown;
 						ai.dir = (ai.dir == c::Direction::UP ? c::Direction::DOWN : c::Direction::UP);
-						v.y = (ai.dir == c::Direction::UP ? ai.speed : -ai.speed);
+						velocityDir(v, ai.speed, ai.dir);
 					}
 				}
-				if (cells.Danger(registry, pos.x, pos.y + v.y))
+				if (cells.Danger(r, pos.x, pos.y + v.y) >= vul)
 				{
-					ai.dir = (ai.dir == c::Direction::UP ? c::Direction::DOWN : c::Direction::UP);
-					v.y = (ai.dir == c::Direction::UP ? ai.speed : -ai.speed);
+					v.y = 0.0;
+					ai.moveCooldownTimer = ai.moveCooldown / 2.0;
+				}
+				break;
+			case (c::AI_Type::MAZE):
+				if (fabs(glm::length2(v)) <= 0.1)
+				{
+					v = glm::vec3(0.0);
+					ai.moveCooldownTimer -= dt;
+					if (ai.moveCooldownTimer <= 0.001)
+					{
+						ai.moveCooldownTimer = ai.moveCooldown / 2.0;
+						switch (ai.dir)
+						{
+							case (c::Direction::UP): ai.dir = c::Direction::RIGHT; break;
+							case (c::Direction::RIGHT): ai.dir = c::Direction::DOWN; break;
+							case (c::Direction::DOWN): ai.dir = c::Direction::LEFT; break;
+							case (c::Direction::LEFT): ai.dir = c::Direction::UP; break;
+							default: ai.dir = c::Direction::LEFT; break;
+						}
+						velocityDir(v, ai.speed, ai.dir);
+					}
+				}
+				pos += v;
+				if (cells.Danger(r, pos.x, pos.y) >= vul)
+				{
+					velocityDir(v, 0.0, ai.dir);
+					ai.moveCooldownTimer = ai.moveCooldown / 2.0;
 				}
 				break;
 		}

@@ -58,13 +58,29 @@ static std::function<void(entt::DefaultRegistry& r, int x, int y, std::string le
 		r.assign<c::Model>(enemy, "models/common/enemy", glm::mat4(1));
 		r.assign<c::Velocity>(enemy);
 		r.assign<c::Collide>(enemy, 5);
-		r.assign<c::AI>(enemy, 1.5, c::AI_type::HORZ);
+		r.assign<c::AI>(enemy, c::AI_Type::HORZ);
 		r.assign<c::Dangerous>(enemy, 10);
 		r.assign<c::Vulnerable>(enemy,
 				scripts::destroy() +
 				scripts::enemy_death_sound(),
 				11);
 	},
+
+	['<'] = [](entt::DefaultRegistry &r, int x, int y, std::string)
+	{
+		auto enemy = r.create();
+		r.assign<c::Position>(enemy, glm::vec3(x, y, 0));
+		r.assign<c::Model>(enemy, "models/common/enemy", glm::mat4(1));
+		r.assign<c::Velocity>(enemy);
+		r.assign<c::Collide>(enemy, 5);
+		r.assign<c::AI>(enemy, c::AI_Type::HORZ, 1.5, c::Direction::LEFT);
+		r.assign<c::Dangerous>(enemy, 10);
+		r.assign<c::Vulnerable>(enemy,
+				scripts::destroy() +
+				scripts::enemy_death_sound(),
+				11);
+	},
+
 
 	['^'] = [](entt::DefaultRegistry &r, int x, int y, std::string)
 	{
@@ -73,7 +89,7 @@ static std::function<void(entt::DefaultRegistry& r, int x, int y, std::string le
 		r.assign<c::Model>(enemy, "models/common/enemy", glm::mat4(1));
 		r.assign<c::Velocity>(enemy);
 		r.assign<c::Collide>(enemy, 5);
-		r.assign<c::AI>(enemy, 1.5, c::AI_type::VERT);
+		r.assign<c::AI>(enemy, c::AI_Type::VERT);
 		r.assign<c::Dangerous>(enemy, 10);
 		r.assign<c::Vulnerable>(enemy,
 				scripts::destroy() +
@@ -81,6 +97,18 @@ static std::function<void(entt::DefaultRegistry& r, int x, int y, std::string le
 				11);
 	},
 	
+	['*'] = [](entt::DefaultRegistry &r, int x, int y, std::string)
+	{
+		auto enemy = r.create();
+		r.assign<c::Position>(enemy, glm::vec3(x, y, 0));
+		r.assign<c::Model>(enemy, "models/common/enemy_alt", glm::mat4(1));
+		r.assign<c::Velocity>(enemy);
+		r.assign<c::Collide>(enemy, 5);
+		r.assign<c::AI>(enemy, c::AI_Type::MAZE);
+		r.assign<c::Dangerous>(enemy, 10);
+		r.assign<c::Vulnerable>(enemy, scripts::destroy(), 11);
+	},
+
 	['p'] = [](entt::DefaultRegistry &r, int x, int y, std::string level)
 	{
 		auto player = r.create();
