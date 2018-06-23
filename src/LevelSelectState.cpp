@@ -46,7 +46,7 @@ static void	create_level_button(entt::DefaultRegistry& r, Engine& engine, size_t
 			   toprights[i],
 			   1);
 	r.assign<c::Text>(button,
-			  level,
+			  "  " + level + "  ",
 			  botlefts[i] + 0.1 * (toprights[i] - botlefts[i]),
 			  toprights[i] - 0.1 * (toprights[i] - botlefts[i]));
 }
@@ -78,7 +78,7 @@ _engine(e), _window(e.window)
 			create_locked_icon(_registry, i);
 	}
 	auto background = _registry.create();
-	_registry.assign<c::Image>(background, "assets/textures/rock.png");
+	_registry.assign<c::Image>(background, "assets/textures/select.png");
 
 // create back button
 	auto menuButton = _registry.create();

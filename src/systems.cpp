@@ -231,10 +231,10 @@ void	Player(entt::DefaultRegistry& r, Window& window, Engine::KeyBind bind,
 	cam.Move((target - cam.GetPosition()) * dt);
 	cells.Powerup(r, pos.x, pos.y)(r, entity);
 	// Align to grid
-	if (fabs(v.y) < 0.1)
-		pos.y += (roundf(pos.y) - pos.y) * dt * 4.0;
-	if (fabs(v.x) < 0.1)
-		pos.x += (roundf(pos.x) - pos.x) * dt * 4.0;
+	if (v.x)
+		v.y = (roundf(pos.y) - pos.y) * 10;
+	else if (v.y)
+		v.x = (roundf(pos.x) - pos.x) * 10;
 	move.v = v;
 }
 
