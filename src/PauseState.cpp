@@ -19,17 +19,17 @@ _engine(e), _window(e.window)
 	};
 	_registry.assign<c::Button>(resumeButton,
 				    resumeEvent,
-				    glm::vec2(-0.1, -0.8),
-				    glm::vec2(0.1, -0.6));
+				    glm::vec2(-0.15, -0.15),
+				    glm::vec2(0.15, 0.15));
 	_registry.assign<c::Image>(resumeButton,
 				   "assets/textures/blue_button.png",
-				   glm::vec2(-0.1, -0.8),
-				   glm::vec2(0.1, -0.6),
+				   glm::vec2(-0.15, -0.15),
+				   glm::vec2(0.15, 0.15),
 				   1);
 	_registry.assign<c::Text>(resumeButton,
-				  "Resume Game",
-				  glm::vec2(-0.1, -0.8),
-				  glm::vec2(0.1, -0.6));
+				  " Resume ",
+				  glm::vec2(-0.15, -0.15),
+				  glm::vec2(0.15, 0.15));
 
 //create back to main menu button
 	auto menuButton = _registry.create();
@@ -40,37 +40,35 @@ _engine(e), _window(e.window)
 	};
 	_registry.assign<c::Button>(menuButton,
 				    menuEvent,
-				    glm::vec2(-0.1, -0.4),
-				    glm::vec2(0.1, -0.2));
+				    glm::vec2(-0.45, -0.6),
+				    glm::vec2(-0.25, -0.4));
 	_registry.assign<c::Image>(menuButton,
 				   "assets/textures/blue_button.png",
-				   glm::vec2(-0.1, -0.4),
-				   glm::vec2(0.1, -0.2),
+				   glm::vec2(-0.45, -0.6),
+				   glm::vec2(-0.25, -0.4),
 				   1);
 	_registry.assign<c::Text>(menuButton,
 				  "Back to Menu",
-				  glm::vec2(-0.1, -0.4),
-				  glm::vec2(0.1, -0.2));
+				  glm::vec2(-0.45, -0.6),
+				  glm::vec2(-0.25, -0.4));
 
-//create a quit game button
-	auto quitButton = _registry.create();
-	auto quitEvent = [this](entt::DefaultRegistry&, uint32_t)
+//creating quit button
+	auto quit = _registry.create();
+	auto quitAction = [this](entt::DefaultRegistry&, uint32_t)
 	{
 		_engine.isRunning = false;
 	};
-	_registry.assign<c::Button>(quitButton,
-				    quitEvent,
-				    glm::vec2(-0.1, 0.2),
-				    glm::vec2(0.1, 0.4));
-	_registry.assign<c::Image>(quitButton,
-				   "assets/textures/blue_button.png",
-				   glm::vec2(-0.1, 0.2),
-				   glm::vec2(0.1, 0.4),
+	_registry.assign<c::Button>(quit, quitAction,
+				    glm::vec2(-0.98, 0.9),
+				    glm::vec2(-0.9, 0.98));
+	_registry.assign<c::Image>(quit,
+				  "assets/textures/dark_blue_button.png",
+				  glm::vec2(-0.98, 0.9),
+				   glm::vec2(-0.9, 0.98),
 				   1);
-	_registry.assign<c::Text>(quitButton,
-				  "  Quit  ",
-				  glm::vec2(-0.1, 0.2),
-				  glm::vec2(0.1, 0.4));
+	_registry.assign<c::Text>(quit, " Quit ",
+				  glm::vec2(-0.98, 0.9),
+				  glm::vec2(-0.9, 0.98));
 
 //create a settings option
 	auto settingButton = _registry.create();
@@ -80,17 +78,17 @@ _engine(e), _window(e.window)
 	};
 	_registry.assign<c::Button>(settingButton,
 				    settingEvent,
-				    glm::vec2(-0.1, 0.5),
-				    glm::vec2(0.1, 0.7));
+				    glm::vec2(0.25, -0.6),
+				    glm::vec2(0.45, -0.4));
 	_registry.assign<c::Image>(settingButton,
 				   "assets/textures/blue_button.png",
-				   glm::vec2(-0.1, 0.5),
-				   glm::vec2(0.1, 0.7),
+				   glm::vec2(0.25, -0.6),
+				   glm::vec2(0.45, -0.4),
 				   1);
 	_registry.assign<c::Text>(settingButton,
 				  "Settings",
-				  glm::vec2(-0.1, 0.5),
-				  glm::vec2(0.1, 0.7));
+				  glm::vec2(0.25, -0.6),
+				  glm::vec2(0.45, -0.4));
 }
 
 PauseState::~PauseState(void) {}
