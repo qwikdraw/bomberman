@@ -23,17 +23,17 @@ _engine(e), _window(e.window)
 	
 	_registry.assign<c::Button>(entity,
 				    nextstate,
-				    glm::vec2(-0.1, -0.1),
-				    glm::vec2(0.1, 0.1));
+				    glm::vec2(-0.15, -0.15),
+				    glm::vec2(0.15, 0.15));
 
 	_registry.assign<c::Image>(entity,
 				   "assets/textures/blue_button.png",
-				   glm::vec2(-0.1, -0.1),
-				   glm::vec2(0.1, 0.1));
+				   glm::vec2(-0.15, -0.15),
+				   glm::vec2(0.15, 0.15));
 
-	_registry.assign<c::Text>(entity, "Start",
-				  glm::vec2(-0.08, -0.08),
-				  glm::vec2(0.08, 0.08));
+	_registry.assign<c::Text>(entity, " Start ",
+				  glm::vec2(-0.15, -0.15),
+				  glm::vec2(0.15, 0.15));
 	
 	glClearColor(0.2, 0.25, 0.29, 1.0);
 
@@ -45,16 +45,16 @@ _engine(e), _window(e.window)
 	};
 	_registry.assign<c::Button>(settingButton,
 				    settingState,
-				    glm::vec2(-0.1, -0.4),
-				    glm::vec2(0.1, -0.2));
+				    glm::vec2(-0.1, -0.5),
+				    glm::vec2(0.1, -0.3));
 	_registry.assign<c::Image>(settingButton,
 				   "assets/textures/blue_button.png",
-				   glm::vec2(-0.1, -0.4),
-				   glm::vec2(0.1, -0.2));
+				   glm::vec2(-0.1, -0.5),
+				   glm::vec2(0.1, -0.3));
 	_registry.assign<c::Text>(settingButton,
 				  "Settings",
-				  glm::vec2(-0.1, -0.4),
-				  glm::vec2(0.1, -0.2));
+				  glm::vec2(-0.1, -0.5),
+				  glm::vec2(0.1, -0.3));
 
 //creating level select button
 	auto levelSelect = _registry.create();
@@ -74,6 +74,24 @@ _engine(e), _window(e.window)
 				   "Level Select",
 				   glm::vec2(-0.1, -0.8),
 				   glm::vec2(0.1, -0.6));
+
+//creating quit button
+	auto quit = _registry.create();
+	auto quitAction = [this](entt::DefaultRegistry&, uint32_t)
+	{
+		_engine.isRunning = false;
+	};
+	_registry.assign<c::Button>(quit, quitAction,
+				    glm::vec2(-0.98, 0.9),
+				    glm::vec2(-0.9, 0.98));
+	_registry.assign<c::Image>(quit,
+				  "assets/textures/dark_blue_button.png",
+				  glm::vec2(-0.98, 0.9),
+				  glm::vec2(-0.9, 0.98));
+	_registry.assign<c::Text>(quit, " Quit ",
+				  glm::vec2(-0.98, 0.9),
+				  glm::vec2(-0.9, 0.98));
+	
 
 //create background
 	auto background	= _registry.create();
