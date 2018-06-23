@@ -47,8 +47,8 @@ class	Window
 	glm::vec2 _mousePosition = glm::vec2(0.0f, 0.0f);
 public:
 
-	//! Create a new window with x width and y height the window title is set to name.
-	Window(int x, int y, std::string name);
+	//! Create a new fullscreen window with the window title is set to name.
+	Window(std::string name);
 
 	//! Size of the framebuffer in pixels, ignores RenderMask
 	void	GetMaxRenderSize(float &width, float &height);

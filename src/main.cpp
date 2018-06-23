@@ -5,7 +5,7 @@
 
 int	main(void)
 {
-	Window window(1920, 1080, "bomberman");
+	Window window("bomberman");
 	i::ISoundEngine *sound = i::createIrrKlangDevice();
 	Engine engine(window, *sound);
 
