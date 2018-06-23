@@ -9,7 +9,7 @@ _engine(e), _window(e.window)
 {
 //create pause background
 	auto background = _registry.create();
-	_registry.assign<c::Image>(background, "assets/textures/player.png");
+	_registry.assign<c::Image>(background, "assets/textures/menu.png");
 
 //create resume button
 	auto resumeButton = _registry.create();
@@ -68,7 +68,7 @@ _engine(e), _window(e.window)
 				   glm::vec2(0.1, 0.4),
 				   1);
 	_registry.assign<c::Text>(quitButton,
-				  "Quit",
+				  "  Quit  ",
 				  glm::vec2(-0.1, 0.2),
 				  glm::vec2(0.1, 0.4));
 
@@ -80,17 +80,17 @@ _engine(e), _window(e.window)
 	};
 	_registry.assign<c::Button>(settingButton,
 				    settingEvent,
-				    glm::vec2(-0.6, 0.2),
-				    glm::vec2(-0.4, 0.4));
+				    glm::vec2(-0.1, 0.5),
+				    glm::vec2(0.1, 0.7));
 	_registry.assign<c::Image>(settingButton,
 				   "assets/textures/blue_button.png",
-				   glm::vec2(-0.6, 0.2),
-				   glm::vec2(-0.4, 0.4),
+				   glm::vec2(-0.1, 0.5),
+				   glm::vec2(0.1, 0.7),
 				   1);
 	_registry.assign<c::Text>(settingButton,
 				  "Settings",
-				  glm::vec2(-0.6, 0.2),
-				  glm::vec2(-0.4, 0.4));
+				  glm::vec2(-0.1, 0.5),
+				  glm::vec2(0.1, 0.7));
 }
 
 PauseState::~PauseState(void) {}
