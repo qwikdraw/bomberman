@@ -106,9 +106,7 @@ void GameState::Update(double dt)
 		_lorePannel.Render();
 		return;
 	}
-	
-	_cells(_registry);
-	
+
 	systems::RenderModels(_registry, _modelCache, _window, _camera, dt);
 	systems::TimedEffect(_registry, dt);
 	systems::Buttons(_registry, _window);
@@ -123,4 +121,5 @@ void GameState::Update(double dt)
 	systems::Images(_registry, _imageCache, _window);
 	systems::Texts(_registry, _window);
 	systems::Sound(_registry, dt);
+	_cells(_registry);
 }
