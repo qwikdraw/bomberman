@@ -6,7 +6,10 @@ Texture::Texture(std::string filepath)
 	unsigned error = lodepng::decode(_imageData, _width, _height, filepath.c_str());
 
 	if (error)
+	{
+		std::cout << filepath << std::endl;
 		std::cout << "error: " << lodepng_error_text(error) << std::endl;
+	}
 
 	std::vector<unsigned char> temp(_width * 4);
 	

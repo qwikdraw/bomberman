@@ -58,7 +58,7 @@ static void	create_locked_icon(entt::DefaultRegistry& r, size_t i)
 
 	auto locked = r.create();
 	r.assign<c::Image>(locked,
-			   "assets/textures/locked.png",
+			   "assets/textures/dark_blue_button.png",
 			   botlefts[i],
 			   toprights[i],
 			   1);
