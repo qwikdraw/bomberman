@@ -31,5 +31,5 @@ started.
 * Aneesh Nazar
 
 
-![alt text](https://raw.githubusercontent.com/theo-walton/bomberman/readme/bomberman.png)
+![alt text](https://raw.githubusercontent.com/theo-walton/bomberman/master/bomberman.png)
 
