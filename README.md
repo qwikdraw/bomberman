@@ -1,6 +1,6 @@
-# 42 - Bomberman
+# Bomberman
 
-A simple 3D bomberman clone in 3d with c++ and opengl
+A 3D bomberman tribute game written in C++ with an ECS design and graphics implemented with OpenGL. Contains 8 levels with 4 themes to play on.
 
 ## Getting Started
 ...
@@ -27,4 +27,9 @@ started.
 
 * Theo Walton
 * Logan Kaser
-* ...
+* Isamar Hodge
+* Aneesh Nazar
+
+
+![alt text](https://raw.githubusercontent.com/theo-walton/bomberman/master/bomberman.png)
+
